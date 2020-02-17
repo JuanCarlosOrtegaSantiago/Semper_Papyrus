@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:IURIS.APP.GUI"
-             x:Class="IURIS.APP.GUI.MainPage"  >
+             x:Class="IURIS.APP.GUI.MainPage" NavigationPage.HasNavigationBar="False" >
 
     <ScrollView>
         <Grid>
@@ -11,7 +11,6 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="2*"/>
-                <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
@@ -60,24 +59,12 @@
                     <Button Text="Crear cuenta" x:Name="btnCrearCuenta" Clicked="BtnCrearCuenta_Clicked" HeightRequest="40" WidthRequest="230"  FontSize="Large" Style="{StaticResource buttonSecundario}"></Button>
                 </Frame>
             </StackLayout>
-            
-            <StackLayout Orientation="Horizontal" Grid.Row="7" HorizontalOptions="Center" VerticalOptions="Center" >
 
-                <Frame 
-                    BorderColor="White"
-                    Padding="1,1,1,1"
-                    HasShadow="True"
-                    IsClippedToBounds="True">
-
-                    <Button Text="Recuperar cuenta" x:Name="btnRecuperarCuenta" Clicked="BtnRecuperarCuenta_Clicked" HeightRequest="40" WidthRequest="230"  FontSize="Large" Style="{StaticResource buttonSecundario}"></Button>
-                </Frame>
-            </StackLayout>
-
-            <StackLayout Orientation="Horizontal" Grid.Row="8" HorizontalOptions="Center" VerticalOptions="Center" x:Name="lblCodigoUsuario">
+            <StackLayout Orientation="Horizontal" Grid.Row="7" HorizontalOptions="Center" VerticalOptions="Center" x:Name="lblCodigoUsuario">
                 <Label Text="Codigo de usuario" FontSize="15" TextColor="White"></Label>
             </StackLayout>
 
-            <StackLayout Orientation="Horizontal" Grid.Row="9" HorizontalOptions="Center" VerticalOptions="Center" x:Name="lblCodigo">
+            <StackLayout Orientation="Horizontal" Grid.Row="8" HorizontalOptions="Center" VerticalOptions="Center" x:Name="lblCodigo">
                 <Label Text="######" FontSize="15" TextColor="White"></Label>
             </StackLayout>
         </Grid>

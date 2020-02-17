@@ -41,7 +41,7 @@
 
                         <StackLayout Orientation="Horizontal" VerticalOptions="Center" Grid.Row="3" Margin="10,0,15,0" >
                             <Label Text="Contraseña:" Margin="5,0,0,0" WidthRequest="100" VerticalOptions="Center" HorizontalTextAlignment="End" HorizontalOptions="End" FontSize="20"></Label>
-                            <Entry Placeholder="****" Style="{StaticResource EntryCrearCuenta}" HorizontalTextAlignment="Center" IsTextPredictionEnabled="False" IsPassword="True" FontSize="Medium"></Entry>
+                            <Entry MaxLength="4" Keyboard="Numeric" Placeholder="****" Style="{StaticResource EntryCrearCuenta}" HorizontalTextAlignment="Center" IsTextPredictionEnabled="False" IsPassword="True" FontSize="Medium" x:Name="EntryPasswor"></Entry>
                         </StackLayout>
 
                         <StackLayout Grid.Row="4" Margin="20,0,20,0">
@@ -74,7 +74,7 @@
                             </Grid>
 
                         </StackLayout>
-                        <StackLayout Grid.Row="5" VerticalOptions="Center" x:Name="stakNoRecuerdoMiContrasenia">
+                        <StackLayout Grid.Row="5" VerticalOptions="End" x:Name="stakNoRecuerdoMiContrasenia">
                             <Label TextColor="White" HorizontalTextAlignment="Center" FontSize="Medium" x:Name="LblNoRecuerdoMiContrasenia" >
                                 <Label.FormattedText>
                                     <FormattedString>

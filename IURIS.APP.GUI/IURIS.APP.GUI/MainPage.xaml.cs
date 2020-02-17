@@ -9,6 +9,7 @@ namespace IURIS.APP.GUI
 {
     public partial class MainPage : ContentPage
     {
+        int Intentos = 0;
         public MainPage()
         {
             InitializeComponent();
@@ -16,21 +17,28 @@ namespace IURIS.APP.GUI
 
         private void BtnCrearCuenta_Clicked(object sender, EventArgs e)
         {
-            //Navigation.PushAsync(new PageCrearCuenta());
-            Navigation.PushAsync(new PageCrearCuenta(), false);
-            //Navigation.PushModalAsync(new PageCrearCuenta(),true);
+            Intentos++;
+            if (Intentos == 1)
+            {
+                Navigation.PushAsync(new PageCrearCuenta(), false);
+                Intentos = 0;
+            }
         }
 
-        private void BtnRecuperarCuenta_Clicked(object sender, EventArgs e)
-        {
-            btnEntrar.IsVisible = false;
-            lblCodigo.IsVisible = false;
-            lblCodigoUsuario.IsVisible = false;
-        }
+        //private void BtnRecuperarCuenta_Clicked(object sender, EventArgs e)
+        //{
+        //    lblCodigo.IsVisible = false;
+        //    lblCodigoUsuario.IsVisible = false;
+        //}
 
         private void BtnEntrar_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new PageInicioDeSesion(), false);
+            Intentos++;
+            if (Intentos == 1)
+            {
+                Navigation.PushAsync(new PageInicioDeSesion(), false);
+                Intentos = 0;
+            }
         }
     }
 }

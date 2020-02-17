@@ -12,21 +12,33 @@ namespace IURIS.APP.GUI
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class PageInicioDeSesion : ContentPage
 	{
+        int Intentos = 0;
 		public PageInicioDeSesion ()
 		{
 			InitializeComponent ();
-		}
+        }
 
         private void BtnCanselar_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new MainPage(), false);
+            Intentos++;
+            if (Intentos == 1)
+            {
+                Navigation.PushAsync(new MainPage(), false);
+                Intentos = 0;
+            }
         }
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
-            LblNoRecuerdoMiContrasenia.TextColor = Color.CadetBlue;
-            
-            DisplayAlert("Semper_Papyrus", "Redirecciona a la plantilla de recuperar cuenta", "ok");
+            Intentos++;
+            if (Intentos == 1)
+            {
+                LblNoRecuerdoMiContrasenia.TextColor = Color.CadetBlue;
+                Navigation.PushAsync(new PageRecuperarCuenta(), false);
+                LblNoRecuerdoMiContrasenia.TextColor = Color.White;
+
+                Intentos = 0;
+            }
         }
     }
 }

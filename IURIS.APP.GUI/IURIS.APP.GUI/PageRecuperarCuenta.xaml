@@ -1,10 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="IURIS.APP.GUI.PageCrearCuenta" Title="Crear Cuenta" BackgroundColor="{StaticResource SecundaryColor}" >
+             x:Class="IURIS.APP.GUI.PageRecuperarCuenta" Title="Recuperar cuenta">
     <ContentPage.Content>
         <ScrollView>
-
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="10"/>
@@ -14,11 +13,9 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
                     <RowDefinition Height="50"/>
                 </Grid.RowDefinitions>
+
 
                 <StackLayout Orientation="Horizontal"  VerticalOptions="Center" Grid.Row="1" Margin="10,0,15,0" >
                     <Label Text="|" Margin="5,0,0,0" VerticalOptions="Center" HorizontalOptions="Start" FontSize="35"></Label>
@@ -42,54 +39,23 @@
 
                 <StackLayout Orientation="Horizontal" VerticalOptions="Center" Grid.Row="5" Margin="10,0,15,0" >
                     <Label Text="|" Margin="5,0,0,0" VerticalOptions="Center" HorizontalOptions="End" FontSize="35"></Label>
-                    <Entry MaxLength="4" Keyboard="Numeric" Placeholder="Contraseña..." Style="{StaticResource EntryCrearCuenta}"></Entry>
-                </StackLayout>
-                
-                <StackLayout Orientation="Horizontal" VerticalOptions="Center" Grid.Row="6" Margin="10,0,15,0" >
-                    <Label Text="|" Margin="5,0,0,0" VerticalOptions="Center" HorizontalOptions="End" FontSize="35"></Label>
-                    <Entry MaxLength="4" Keyboard="Numeric" Placeholder="Confirmar Contraseña..." Style="{StaticResource EntryCrearCuenta}" ></Entry>
+                    <Entry MaxLength="10" Keyboard="Numeric" Placeholder="Numero de telefono..." Style="{StaticResource EntryCrearCuenta}"></Entry>
                 </StackLayout>
 
-                <StackLayout Grid.Row="7" Margin="20,0,20,0">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+                <StackLayout VerticalOptions="Center" Grid.Row="6" Margin="10,0,15,0">
 
-                        <Frame
+                    <Frame
                             Grid.Column="0"
                             BorderColor="White"
                             Padding="1,1,1,1"
                             HasShadow="True"
                             IsClippedToBounds="True">
 
-                            <Button Text="Ok" x:Name="btnOK" Clicked="BtnOK_Clicked" Style="{StaticResource buttonPrincipal}" ></Button>
-                        </Frame>
-                        <Frame
-                            Grid.Column="1"
-                            BorderColor="White"
-                            Padding="1,1,1,1"
-                            HasShadow="True"
-                            IsClippedToBounds="True">
-
-                            <Button Text="Cancelar" x:Name="btnCanselar" Clicked="BtnCanselar_Clicked" Style="{StaticResource buttonPrincipal}"></Button>
-                        </Frame>
-                    </Grid>
-
+                        <Button Text="Buscar" x:Name="btnBuscar" Style="{StaticResource buttonPrincipal}" ></Button>
+                    </Frame>
                 </StackLayout>
 
-                <StackLayout Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Grid.Row="8" BackgroundColor="{StaticResource PrimaryColor}" x:Name="stackCodigoDeUsuario">
-                    <Label Text="Codigo de usuario" Style="{StaticResource LabelCrearCuenta}"></Label>
-                    <Label Text="######" Style="{StaticResource LabelCrearCuenta}"></Label>
-                </StackLayout>
-
-                <StackLayout HorizontalOptions="Center" Grid.Row="9">
-                    <Image Source="Logo.png" ></Image>
-                </StackLayout>
-                
             </Grid>
-            
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>
