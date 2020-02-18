@@ -5,8 +5,55 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IURIS.DESKTOP.GUI.ADMIN"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Height="400" Width="400" Background="#640404" Icon="Imagenes/Logo.png" MinWidth="350" MinHeight="350" HorizontalAlignment="Center" VerticalAlignment="Center" MaxWidth="500" MaxHeight="500" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" Padding="2" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" WindowStyle="None" WindowStartupLocation="CenterScreen" Cursor="">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <!--<RowDefinition Height="*"/>-->
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+
+        <WrapPanel Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="5" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Image Source="Imagenes/Logo.png" Height="150" Width="150" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        </WrapPanel>
+        <WrapPanel Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="5" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label FontWeight="Bold" Foreground="White" FontSize="20">Semper Papyrus</Label>
+        </WrapPanel>
         
+        <StackPanel Orientation="vertical" Grid.Row="5" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="5" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5,5">
+                <Label Foreground="White" FontWeight="Bold" FontSize="15" VerticalContentAlignment="Center" VerticalAlignment="Center">Correo:</Label>
+                <TextBox Width="250" Height="25" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" ></TextBox>
+            </WrapPanel>
+            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5.5">
+                <Label Foreground="White" FontWeight="Bold" FontSize="15" VerticalContentAlignment="Center" VerticalAlignment="Center">Contraseña:</Label>
+                <PasswordBox Width="200"  Height="25" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" ></PasswordBox>
+            </WrapPanel>
+        </StackPanel>
+
+        <WrapPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="5" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button x:Name="BtnEntrar" Click="BtnEntrar_Click" BorderBrush="White" Background="#640404" Foreground="White" Width="100" Height="30" FontSize="20" VerticalContentAlignment="Center" VerticalAlignment="Center" Margin="20,0">Entrar</Button>
+            <Button x:Name="BtnSalir" Click="BtnSalir_Click" BorderBrush="White" Background="#640404" Foreground="White" Width="100" Height="30" FontSize="20" VerticalContentAlignment="Center" VerticalAlignment="Center" Margin="20,0">Salir</Button>
+        </WrapPanel>
+
+        <!--<WrapPanel Orientation="Horizontal" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="5" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label Foreground="White" FontSize="15" FontStyle="Oblique" >No Recuerdo mi usuario</Label>
+        </WrapPanel>-->
     </Grid>
 </Window>

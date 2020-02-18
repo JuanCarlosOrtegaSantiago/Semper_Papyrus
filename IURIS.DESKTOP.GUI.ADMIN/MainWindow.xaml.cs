@@ -24,5 +24,18 @@ namespace IURIS.DESKTOP.GUI.ADMIN
         {
             InitializeComponent();
         }
+
+        private void BtnSalir_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void BtnEntrar_Click(object sender, RoutedEventArgs e)
+        {
+            //validar que el usuario ingresado exista asi mismo que la contraseña ingresada corresponda al usuario 
+            WindowOperaciones windowOperaciones = new WindowOperaciones();
+            this.Close();
+            windowOperaciones.Show();
+        }
     }
 }

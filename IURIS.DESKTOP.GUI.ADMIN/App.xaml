@@ -4,6 +4,10 @@
              xmlns:local="clr-namespace:IURIS.DESKTOP.GUI.ADMIN"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+
+            <Color x:Key="PrimaryColor">#640404</Color>
+
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

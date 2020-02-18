@@ -31,7 +31,7 @@
                         </StackLayout>
 
                         <StackLayout Orientation="Horizontal" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center">
-                            <Label Text="From Semper Papyrus" FontSize="30" TextColor="White"></Label>
+                            <Label Text="Semper Papyrus" FontSize="30" TextColor="White"></Label>
                         </StackLayout>
 
                         <StackLayout Orientation="Horizontal" VerticalOptions="Center" Grid.Row="2" Margin="10,0,15,0" >
