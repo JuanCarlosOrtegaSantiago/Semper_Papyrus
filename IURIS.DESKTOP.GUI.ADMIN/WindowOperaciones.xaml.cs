@@ -23,5 +23,12 @@ namespace IURIS.DESKTOP.GUI.ADMIN
         {
             InitializeComponent();
         }
+
+        private void BtnUsuarios_Click(object sender, RoutedEventArgs e)
+        {
+            WindowUsuarios windowUsuarios = new WindowUsuarios();
+            this.Close();
+            windowUsuarios.Show();
+        }
     }
 }

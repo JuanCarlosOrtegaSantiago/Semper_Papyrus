@@ -20,14 +20,14 @@
             </Grid.RowDefinitions>
             
             <StackLayout Orientation="Horizontal" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center">
-                <Label Text="UIRIS" FontAttributes="Bold" FontSize="40" TextColor="White"></Label>
+                <Label Text="IURIS" FontAttributes="Bold" FontSize="40" TextColor="White"></Label>
             </StackLayout>
 
             <StackLayout Orientation="Horizontal" Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Start">
                 <Label Text="Bienvenido" FontAttributes="Italic" FontSize="30" TextColor="White"></Label>
             </StackLayout>
 
-            <StackLayout Orientation="Horizontal" Grid.Row="3" HorizontalOptions="Center" VerticalOptions="Center">
+            <StackLayout Orientation="Horizontal" Grid.Row="3" HorizontalOptions="Center" VerticalOptions="Center" >
                 <Image Source="Logo.png" ></Image>
             </StackLayout>
             

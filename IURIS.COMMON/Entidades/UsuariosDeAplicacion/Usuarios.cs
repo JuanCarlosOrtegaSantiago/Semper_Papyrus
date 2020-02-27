@@ -7,6 +7,7 @@ namespace IURIS.COMMON.Entidades.UsuariosDeAplicacion
 {
     public class Usuarios:BaseDTO
     {
+        public int IdApp { get; set; }
         public string Nombre { get; set; }
         public string ApellidoPaterno { get; set; }
         public string ApellidoMaterno { get; set; }

@@ -58,6 +58,9 @@
     <Compile Include="WindowOperaciones.xaml.cs">
       <DependentUpon>WindowOperaciones.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WindowUsuarios.xaml.cs">
+      <DependentUpon>WindowUsuarios.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -71,6 +74,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="WindowOperaciones.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowUsuarios.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -102,16 +109,25 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Imagenes\Logo.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Imagenes\Descargas.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Imagenes\NuevaLey.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Imagenes\NuevoUsuario.png" />
+    <Resource Include="Imagenes\Usuarios.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\LogoP.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\LogoG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\Editar.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

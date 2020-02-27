@@ -44,38 +44,42 @@
                     <Label Text="|" Margin="5,0,0,0" VerticalOptions="Center" HorizontalOptions="End" FontSize="35"></Label>
                     <Entry MaxLength="4" Keyboard="Numeric" Placeholder="Contraseña..." Style="{StaticResource EntryCrearCuenta}"></Entry>
                 </StackLayout>
-                
+
                 <StackLayout Orientation="Horizontal" VerticalOptions="Center" Grid.Row="6" Margin="10,0,15,0" >
                     <Label Text="|" Margin="5,0,0,0" VerticalOptions="Center" HorizontalOptions="End" FontSize="35"></Label>
                     <Entry MaxLength="4" Keyboard="Numeric" Placeholder="Confirmar Contraseña..." Style="{StaticResource EntryCrearCuenta}" ></Entry>
                 </StackLayout>
 
-                <StackLayout Grid.Row="7" Margin="20,0,20,0">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
 
-                        <Frame
-                            Grid.Column="0"
+
+                <StackLayout Grid.Row="7">
+                    <Frame
                             BorderColor="White"
-                            Padding="1,1,1,1"
-                            HasShadow="True"
-                            IsClippedToBounds="True">
+                    Padding="0,1,0,1"
+                    HasShadow="True"
+                    IsClippedToBounds="True"
+                    BackgroundColor="{StaticResource PrimaryColor}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
 
-                            <Button Text="Ok" x:Name="btnOK" Clicked="BtnOK_Clicked" Style="{StaticResource buttonPrincipal}" ></Button>
-                        </Frame>
-                        <Frame
-                            Grid.Column="1"
+                            <Button Grid.Column="0" BackgroundColor="Transparent" Text="Ok" x:Name="btnOK" Clicked="BtnOK_Clicked" Style="{StaticResource buttonPrincipal}" ></Button>
+
+                            <Frame
+                            Grid.Column="1" 
                             BorderColor="White"
-                            Padding="1,1,1,1"
-                            HasShadow="True"
-                            IsClippedToBounds="True">
+                    Padding="1,0,0,0"
+                    HasShadow="True"
+                    IsClippedToBounds="True">
 
-                            <Button Text="Cancelar" x:Name="btnCanselar" Clicked="BtnCanselar_Clicked" Style="{StaticResource buttonPrincipal}"></Button>
-                        </Frame>
-                    </Grid>
+
+                                <Button BackgroundColor="{StaticResource PrimaryColor}"  Text="Cancelar" x:Name="btnCanselar" Clicked="BtnCanselar_Clicked" Style="{StaticResource buttonPrincipal}">
+                                </Button>
+                            </Frame>
+                        </Grid>
+                    </Frame>
 
                 </StackLayout>
 
@@ -84,7 +88,7 @@
                     <Label Text="######" Style="{StaticResource LabelCrearCuenta}"></Label>
                 </StackLayout>
 
-                <StackLayout HorizontalOptions="Center" Grid.Row="9">
+                <StackLayout HorizontalOptions="Center" Grid.Row="9" >
                     <Image Source="Logo.png" ></Image>
                 </StackLayout>
                 
