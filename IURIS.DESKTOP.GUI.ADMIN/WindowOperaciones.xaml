@@ -31,8 +31,9 @@
         <WrapPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="8" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Label Foreground="White" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center">¿Qué operacion deceas realizar?</Label>
         </WrapPanel>
+        
         <WrapPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="10,5" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button Background="Transparent" BorderBrush="Transparent">
+            <Button x:Name="BtnSubirNuevaLey" Click="BtnSubirNuevaLey_Click" Background="Transparent" BorderBrush="Transparent">
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Image Source="Imagenes/NuevaLey.png" Width="100" Height="100"></Image>
                     <Label Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold">Subir nueva ley</Label>
@@ -41,7 +42,7 @@
         </WrapPanel>
 
         <WrapPanel Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="2" Margin="10,5" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button Background="Transparent" BorderBrush="Transparent">
+            <Button x:Name="BtnModificarLey" Click="BtnModificarLey_Click" Background="Transparent" BorderBrush="Transparent">
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Image Source="Imagenes/Editar.png"  Width="100" Height="100"></Image>
                     <Label Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold">Modificar ley</Label>

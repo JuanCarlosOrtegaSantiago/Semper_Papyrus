@@ -19,6 +19,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
     /// </summary>
     public partial class WindowOperaciones : Window
     {
+        private bool EsNuevaLey=false;
         public WindowOperaciones()
         {
             InitializeComponent();
@@ -29,6 +30,23 @@ namespace IURIS.DESKTOP.GUI.ADMIN
             WindowUsuarios windowUsuarios = new WindowUsuarios();
             this.Close();
             windowUsuarios.Show();
+        }
+
+        private void BtnSubirNuevaLey_Click(object sender, RoutedEventArgs e)
+        {
+            EsNuevaLey = true;
+            WindowOperacionesDeLeyes windowOperacionesDeLeyes = new WindowOperacionesDeLeyes();
+            //WindowOperacionesDeLeyes windowOperacionesDeLeyes = new WindowOperacionesDeLeyes(EsNuevaLey);
+            this.Close();
+            windowOperacionesDeLeyes.Show();
+        }
+
+        private void BtnModificarLey_Click(object sender, RoutedEventArgs e)
+        {
+            WindowOperacionesDeLeyes windowOperacionesDeLeyes = new WindowOperacionesDeLeyes();
+            //WindowOperacionesDeLeyes windowOperacionesDeLeyes = new WindowOperacionesDeLeyes(EsNuevaLey);
+            this.Close();
+            windowOperacionesDeLeyes.Show();
         }
     }
 }

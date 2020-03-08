@@ -58,6 +58,9 @@
     <Compile Include="WindowOperaciones.xaml.cs">
       <DependentUpon>WindowOperaciones.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WindowOperacionesDeLeyes.xaml.cs">
+      <DependentUpon>WindowOperacionesDeLeyes.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowUsuarios.xaml.cs">
       <DependentUpon>WindowUsuarios.xaml</DependentUpon>
     </Compile>
@@ -74,6 +77,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="WindowOperaciones.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowOperacionesDeLeyes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -122,6 +129,21 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Imagenes\Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\maximize.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\minimize.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\return.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\Regreso.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\Buscar.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
