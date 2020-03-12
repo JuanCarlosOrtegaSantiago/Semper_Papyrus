@@ -7,7 +7,10 @@
     <Application.Resources>
         <ResourceDictionary>
 
-            <Color x:Key="PrimaryColor">#640404</Color>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="DiccionarioDeRecursos/DictionaryOfButton.xaml"/>
+                <ResourceDictionary Source="DiccionarioDeRecursos/DictionaryOfLabel.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
 
         </ResourceDictionary>
     </Application.Resources>

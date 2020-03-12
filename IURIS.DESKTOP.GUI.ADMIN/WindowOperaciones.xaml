@@ -33,7 +33,7 @@
         </WrapPanel>
         
         <WrapPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="10,5" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button x:Name="BtnSubirNuevaLey" Click="BtnSubirNuevaLey_Click" Background="Transparent" BorderBrush="Transparent">
+            <Button x:Name="BtnSubirNuevaLey" Click="BtnSubirNuevaLey_Click" Style="{DynamicResource ButtonStyle1}">
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Image Source="Imagenes/NuevaLey.png" Width="100" Height="100"></Image>
                     <Label Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold">Subir nueva ley</Label>
@@ -42,7 +42,7 @@
         </WrapPanel>
 
         <WrapPanel Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="2" Margin="10,5" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button x:Name="BtnModificarLey" Click="BtnModificarLey_Click" Background="Transparent" BorderBrush="Transparent">
+            <Button x:Name="BtnModificarLey" Click="BtnModificarLey_Click" Style="{DynamicResource ButtonStyle1}">
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Image Source="Imagenes/Editar.png"  Width="100" Height="100"></Image>
                     <Label Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold">Modificar ley</Label>
@@ -51,7 +51,7 @@
         </WrapPanel>
 
         <WrapPanel Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="2" Margin="10,5" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button Background="Transparent" BorderBrush="Transparent" >
+            <Button Style="{DynamicResource ButtonStyle1}">
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Image Source="Imagenes/Descargas.png" Width="100" Height="100"></Image>
                     <Label Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold">Leyes descargadas</Label>
@@ -61,7 +61,7 @@
 
 
         <WrapPanel Grid.Row="2" Grid.Column="7" Grid.ColumnSpan="2" Margin="10,5" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button x:Name="BtnUsuarios" Click="BtnUsuarios_Click" Background="Transparent" BorderBrush="Transparent">
+            <Button x:Name="BtnUsuarios" Click="BtnUsuarios_Click" Style="{DynamicResource ButtonStyle1}">
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Image Source="Imagenes/Usuarios.png" Width="100" Height="100"></Image>
                     <Label Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold">Usuarios</Label>

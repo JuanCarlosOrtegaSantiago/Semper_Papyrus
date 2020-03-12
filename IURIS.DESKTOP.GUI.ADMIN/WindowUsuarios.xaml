@@ -78,12 +78,12 @@
         </WrapPanel>-->
 
         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="6">
-            <Button Width="100" Height="30" Margin="10" FontWeight="Bold" Foreground="White" Background="Transparent" BorderBrush="White" FontSize="15" x:Name="BtnNuevo" Click="BtnNuevo_Click">Nuevo</Button>
-            <Button Width="100" Height="30" Margin="10" FontWeight="Bold" Foreground="White" Background="Transparent" BorderBrush="White" FontSize="15" x:Name="BtnGuardar">Guardar</Button>
-            <Button Width="100" Height="30" Margin="10" FontWeight="Bold" Foreground="White" Background="Transparent" BorderBrush="White" FontSize="15" x:Name="BtnCancelar">Cancelar</Button>
-            <Button Width="100" Height="30" Margin="10" FontWeight="Bold" Foreground="White" Background="Transparent" BorderBrush="White" FontSize="15" x:Name="BtnEditar" Click="BtnEditar_Click">Editar</Button>
-            <Button Width="100" Height="30" Margin="10" FontWeight="Bold" Foreground="White" Background="Transparent" BorderBrush="White" FontSize="15" x:Name="BtnEliminar" Click="BtnEliminar_Click">Eliminar</Button>
-            <Button Width="100" Height="30" Margin="10" FontWeight="Bold" Foreground="White" Background="Transparent" BorderBrush="White" FontSize="15" x:Name="BtnRegresar" Click="BtnRegresar_Click"> Regresar</Button>
+            <Button Style="{DynamicResource ButtonStyle1}" Width="100" Height="30" Margin="10" FontWeight="Bold" Foreground="White" BorderBrush="White" FontSize="15" x:Name="BtnNuevo" Click="BtnNuevo_Click">Nuevo</Button>
+            <Button Style="{DynamicResource ButtonStyle1}" Width="100" Height="30" Margin="10" FontWeight="Bold" Foreground="White" BorderBrush="White" FontSize="15" x:Name="BtnGuardar">Guardar</Button>
+            <Button Style="{DynamicResource ButtonStyle1}" Width="100" Height="30" Margin="10" FontWeight="Bold" Foreground="White" BorderBrush="White" FontSize="15" x:Name="BtnCancelar">Cancelar</Button>
+            <Button Style="{DynamicResource ButtonStyle1}" Width="100" Height="30" Margin="10" FontWeight="Bold" Foreground="White" BorderBrush="White" FontSize="15" x:Name="BtnEditar" Click="BtnEditar_Click">Editar</Button>
+            <Button Style="{DynamicResource ButtonStyle1}" Width="100" Height="30" Margin="10" FontWeight="Bold" Foreground="White" BorderBrush="White" FontSize="15" x:Name="BtnEliminar" Click="BtnEliminar_Click">Eliminar</Button>
+            <Button Style="{DynamicResource ButtonStyle1}" Width="100" Height="30" Margin="10" FontWeight="Bold" Foreground="White" BorderBrush="White" FontSize="15" x:Name="BtnRegresar" Click="BtnRegresar_Click"> Regresar</Button>
         </WrapPanel>
     
     </Grid>

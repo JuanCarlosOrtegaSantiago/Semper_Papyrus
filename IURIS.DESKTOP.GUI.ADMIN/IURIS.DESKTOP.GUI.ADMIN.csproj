@@ -64,6 +64,14 @@
     <Compile Include="WindowUsuarios.xaml.cs">
       <DependentUpon>WindowUsuarios.xaml</DependentUpon>
     </Compile>
+    <Page Include="DiccionarioDeRecursos\DictionaryOfButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DiccionarioDeRecursos\DictionaryOfLabel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -144,6 +152,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Imagenes\Buscar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\add.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

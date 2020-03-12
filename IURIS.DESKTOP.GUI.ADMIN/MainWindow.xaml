@@ -49,8 +49,8 @@
         </StackPanel>
 
         <WrapPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="5" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button x:Name="BtnEntrar" Click="BtnEntrar_Click" BorderBrush="White" Background="#640404" Foreground="White" Width="100" Height="30" FontSize="20" VerticalContentAlignment="Center" VerticalAlignment="Center" Margin="20,0">Entrar</Button>
-            <Button x:Name="BtnSalir" Click="BtnSalir_Click" BorderBrush="White" Background="#640404" Foreground="White" Width="100" Height="30" FontSize="20" VerticalContentAlignment="Center" VerticalAlignment="Center" Margin="20,0">Salir</Button>
+            <Button x:Name="BtnEntrar" Click="BtnEntrar_Click" BorderBrush="White" Foreground="White" Width="100" Height="30" FontSize="20" VerticalContentAlignment="Center" VerticalAlignment="Center" Margin="20,0" Style="{DynamicResource ButtonStyle1}">Entrar</Button>
+            <Button x:Name="BtnSalir" Click="BtnSalir_Click" BorderBrush="White" Foreground="White" Width="100" Height="30" FontSize="20" VerticalContentAlignment="Center" VerticalAlignment="Center" Margin="20,0" Style="{DynamicResource ButtonStyle1}">Salir</Button>
         </WrapPanel>
 
         <!--<WrapPanel Orientation="Horizontal" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="5" HorizontalAlignment="Center" VerticalAlignment="Center">

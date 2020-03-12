@@ -13,5 +13,6 @@ namespace IURIS.COMMON.Entidades.Ley
         public bool EsModificacion { get; set; }
         public DateTime UltimaFechaDeModificacion { get; set; }
         public List<Titulo> ListaDeTitulos { get; set; }
+        public int numDescargas { get; set; }
     }
 }
