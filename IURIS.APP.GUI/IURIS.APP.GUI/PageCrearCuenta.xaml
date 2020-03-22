@@ -21,32 +21,26 @@
                 </Grid.RowDefinitions>
 
                 <StackLayout Orientation="Horizontal"  VerticalOptions="Center" Grid.Row="1" Margin="10,0,15,0" >
-                    <Label Text="|" Margin="5,0,0,0" VerticalOptions="Center" HorizontalOptions="Start" FontSize="35"></Label>
                     <Entry Placeholder="Nombre..." Style="{StaticResource EntryCrearCuenta}" ></Entry>
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal" VerticalOptions="Center" Grid.Row="2" Margin="10,0,15,0" >
-                    <Label Text="|" Margin="5,0,0,0" VerticalOptions="Center" HorizontalOptions="End" FontSize="35"></Label>
                     <Entry Placeholder="Apellido Paterno..." Style="{StaticResource EntryCrearCuenta}"></Entry>
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal" VerticalOptions="Center" Grid.Row="3" Margin="10,0,15,0" >
-                    <Label Text="|" Margin="5,0,0,0" VerticalOptions="Center" HorizontalOptions="End" FontSize="35"></Label>
                     <Entry Placeholder="Apellido Materno..." Style="{StaticResource EntryCrearCuenta}" ></Entry>
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal" VerticalOptions="Center" Grid.Row="4" Margin="10,0,15,0" >
-                    <Label Text="|" Margin="5,0,0,0" VerticalOptions="Center" HorizontalOptions="End" FontSize="35"></Label>
                     <Entry Placeholder="Correo electrónico..." Style="{StaticResource EntryCrearCuenta}"></Entry>
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal" VerticalOptions="Center" Grid.Row="5" Margin="10,0,15,0" >
-                    <Label Text="|" Margin="5,0,0,0" VerticalOptions="Center" HorizontalOptions="End" FontSize="35"></Label>
                     <Entry MaxLength="4" Keyboard="Numeric" Placeholder="Contraseña..." Style="{StaticResource EntryCrearCuenta}"></Entry>
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal" VerticalOptions="Center" Grid.Row="6" Margin="10,0,15,0" >
-                    <Label Text="|" Margin="5,0,0,0" VerticalOptions="Center" HorizontalOptions="End" FontSize="35"></Label>
                     <Entry MaxLength="4" Keyboard="Numeric" Placeholder="Confirmar Contraseña..." Style="{StaticResource EntryCrearCuenta}" ></Entry>
                 </StackLayout>
 

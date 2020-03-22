@@ -49,9 +49,9 @@
             </Button>
         </WrapPanel>
 
-        <Label x:Name="LblOperacionARealizar" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="6" FontSize="20" FontWeight="SemiBold" FontStretch="Expanded" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+        <Label x:Name="LblOperacionARealizar" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="10" FontSize="20" FontWeight="SemiBold" FontStretch="Expanded" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
 
-        <WrapPanel Grid.Row="0" Grid.Column="8"  VerticalAlignment="Center" HorizontalAlignment="Right">
+        <WrapPanel Grid.Row="0" Grid.Column="12"  VerticalAlignment="Center" HorizontalAlignment="Right">
             <Button x:Name="BtnCambiarDeAlturaMaximisar" Click="BtnCambiarDeAlturaMaximisar_Click" Style="{DynamicResource ButtonStyle1}">
                 <WrapPanel>
                     <Image x:Name="ImgCambiarAlturaMaximisar" Source="Imagenes/maximize.ico" Width="20" Height="20"></Image>
@@ -63,43 +63,44 @@
                 </WrapPanel>
             </Button>
         </WrapPanel>
-        <Separator Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="10" VerticalAlignment="Bottom"/>
+        <Separator Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="14" VerticalAlignment="Bottom"/>
 
         <!--comienza con los cuadros para ediciones-->
+        <WrapPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="8" VerticalAlignment="Center" Margin="0,2">
+            <WrapPanel Orientation="Vertical" Margin="10,0">
 
-        <WrapPanel Orientation="Vertical" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="5">
+                <Label VerticalAlignment="Center" VerticalContentAlignment="Center" Style="{DynamicResource LabelStyle1}">Nombre de la ley:</Label>
+                <TextBox Width="350" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"></TextBox>
 
-            <Label VerticalAlignment="Center" VerticalContentAlignment="Center" Style="{DynamicResource LabelStyle1}">Nombre de la ley:</Label>
-            <TextBox Width="350" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"></TextBox>
+            </WrapPanel>
 
-        </WrapPanel>
+            <WrapPanel Orientation="Vertical" Margin="10,0">
 
-        <WrapPanel Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="4" Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="5">
+                <WrapPanel Orientation="Vertical">
 
-            <WrapPanel Orientation="Vertical">
+                    <Label VerticalAlignment="Center" VerticalContentAlignment="Center" Style="{DynamicResource LabelStyle1}">Codigo:</Label>
 
-                <Label VerticalAlignment="Center" VerticalContentAlignment="Center" Style="{DynamicResource LabelStyle1}">Codigo:</Label>
+                    <WrapPanel Orientation="Horizontal">
 
-                <WrapPanel Orientation="Horizontal">
+                        <TextBox Width="350" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"></TextBox>
+                        <Button x:Name="BtnBuscarCodgio" Click="BtnBuscarCodgio_Click" Width="30" Height="30" Style="{DynamicResource ButtonStyle1}" BorderBrush="White">
+                            <Image Source="Imagenes/Buscar.png" Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center" ></Image>
+                        </Button>
 
-                    <TextBox Width="350" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"></TextBox>
-                    <Button x:Name="BtnBuscarCodgio" Click="BtnBuscarCodgio_Click" Width="30" Height="30" Style="{DynamicResource ButtonStyle1}" BorderBrush="White">
-                        <Image Source="Imagenes/Buscar.png" Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center" ></Image>
-                    </Button>
+                    </WrapPanel>
+
+                </WrapPanel>
+
+                <WrapPanel HorizontalAlignment="Center" x:Name="WrpLblCodigoAsociado" Visibility="Collapsed" >
+
+                    <Label Foreground="Fuchsia" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" >El codigo ingresado ya esta asociado a otra ley</Label>
 
                 </WrapPanel>
 
             </WrapPanel>
-
-            <WrapPanel HorizontalAlignment="Center" x:Name="WrpLblCodigoAsociado" Visibility="Collapsed" >
-
-                <Label Foreground="Fuchsia" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" >El codigo ingresado ya esta asociado a otra ley</Label>
-
-            </WrapPanel>
-
         </WrapPanel>
 
-        <WrapPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="8">
+        <WrapPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="8" VerticalAlignment="Center">
 
             <WrapPanel Orientation="Vertical" Margin="10,0">
 
@@ -132,7 +133,7 @@
 
         </WrapPanel>
 
-        <WrapPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="8">
+        <WrapPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="8" VerticalAlignment="Center">
 
             <WrapPanel Orientation="Vertical" Margin="10,0">
 
@@ -165,7 +166,7 @@
 
         </WrapPanel>
 
-        <WrapPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="8">
+        <WrapPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="8" VerticalAlignment="Center">
 
             <WrapPanel Orientation="Vertical" Margin="10,0">
 
@@ -200,10 +201,36 @@
 
         <WrapPanel Orientation="Vertical" HorizontalAlignment="Left" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="8">
 
-            <!--KeyboardNavigation.TabNavigation="Continue"-->
             <Label Style="{DynamicResource LabelStyle1}">Contenido</Label>
-            <TextBox Width="1000" Height="300" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" FontSize="20" FontWeight="Black"></TextBox>
+            <TextBox Width="1000" Height="250" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" FontSize="20" FontWeight="Black"></TextBox>
         
+        </WrapPanel>
+
+        <WrapPanel Grid.Row="3" Grid.Column="9" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2">
+            <Button Background="Transparent" Style="{DynamicResource ButtonStyle1}" BorderBrush="White" Width="100" Height="100">
+                <WrapPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Image Source="Imagenes/Subir.png" Width="50" Height="50"></Image>
+                    <Label Style="{DynamicResource LabelStyle1}" FontSize="15">Subir</Label>
+                </WrapPanel>
+            </Button>
+        </WrapPanel>
+        
+        <WrapPanel Grid.Row="4" Grid.Column="9" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2">
+            <Button Background="Transparent" Style="{DynamicResource ButtonStyle1}" BorderBrush="White" Width="100" Height="100">
+                <WrapPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Image Source="Imagenes/Nuevo.png" Width="50" Height="50"></Image>
+                    <Label Style="{DynamicResource LabelStyle1}" FontSize="15">Nueva</Label>
+                </WrapPanel>
+            </Button>
+        </WrapPanel>
+
+        <WrapPanel Grid.Row="5" Grid.Column="9" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2">
+            <Button Background="Transparent" Style="{DynamicResource ButtonStyle1}" BorderBrush="White" Width="100" Height="100">
+                <WrapPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Image Source="Imagenes/cancelar.png" Width="50" Height="50"></Image>
+                    <Label Style="{DynamicResource LabelStyle1}" FontSize="15">Cancelar</Label>
+                </WrapPanel>
+            </Button>
         </WrapPanel>
     </Grid>
 </Window>
