@@ -56,5 +56,17 @@ namespace IURIS.DESKTOP.GUI.ADMIN
                 this.Close();
             }
         }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.S)
+            {
+                WindowCambiarContrasenia windowCambiarContrasenia = new WindowCambiarContrasenia();
+                this.Close();
+                windowCambiarContrasenia.Show();
+            }
+
+        }
     }
 }
