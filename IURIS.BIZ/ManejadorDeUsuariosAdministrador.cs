@@ -1,5 +1,6 @@
 ﻿using IURIS.COMMON.Entidades.UsuariosAdministrador;
 using IURIS.COMMON.Interfaces;
+using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,12 +32,12 @@ namespace IURIS.BIZ
             return Listar.Where(e => e.Correo == Correo).SingleOrDefault();
         }
 
-        public UsuarioAdministrador BuscarPorID(int Id)
+        public UsuarioAdministrador BuscarPorID(ObjectId Id)
         {
-            return Listar.Where(e => e.ID == Id).SingleOrDefault();
+            return Listar.Where(e => e.id == Id).SingleOrDefault();
         }
 
-        public bool Eliminar(int id)
+        public bool Eliminar(ObjectId id)
         {
             return repositorio.Delete(id);
         }

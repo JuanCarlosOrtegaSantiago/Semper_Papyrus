@@ -19,8 +19,8 @@ namespace IURIS.DESKTOP.GUI.ADMIN
     /// </summary>
     public partial class WindowOperaciones : Window
     {
-        private bool EsNuevaLey=false;
-        public WindowOperaciones()
+        //private bool EsNuevaLey=false;
+        public WindowOperaciones( )
         {
             InitializeComponent();
         }
@@ -34,7 +34,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
 
         private void BtnSubirNuevaLey_Click(object sender, RoutedEventArgs e)
         {
-            EsNuevaLey = true;
+            //EsNuevaLey = true;
             WindowOperacionesDeLeyes windowOperacionesDeLeyes = new WindowOperacionesDeLeyes();
             //WindowOperacionesDeLeyes windowOperacionesDeLeyes = new WindowOperacionesDeLeyes(EsNuevaLey);
             this.Close();
@@ -47,6 +47,14 @@ namespace IURIS.DESKTOP.GUI.ADMIN
             //WindowOperacionesDeLeyes windowOperacionesDeLeyes = new WindowOperacionesDeLeyes(EsNuevaLey);
             this.Close();
             windowOperacionesDeLeyes.Show();
+        }
+
+        private void BtnSalir_Click(object sender, RoutedEventArgs e)
+        {
+            if(MessageBox.Show("¿Desa salir de la apliación?", "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.No) == MessageBoxResult.Yes)
+            {
+                this.Close();
+            }
         }
     }
 }

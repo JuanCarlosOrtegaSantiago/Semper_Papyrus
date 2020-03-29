@@ -1,4 +1,5 @@
 ﻿using IURIS.COMMON.Entidades.CapaBase;
+using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,10 +11,10 @@ namespace IURIS.COMMON.Interfaces
         bool AGREGAR(T entidad);
         List<T> Listar { get; }
         //Al crear la ase de datos en mongo db cambiar el identificador para ObjectId
-        bool Eliminar(int id);
+        bool Eliminar(ObjectId id);
         bool Modificar(T entidad);
         //Al crear la ase de datos en mongo db cambiar el identificador para ObjectId
-        T BuscarPorID(int Id);
+        T BuscarPorID(ObjectId Id);
 
     }
 }

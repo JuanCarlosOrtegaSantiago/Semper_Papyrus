@@ -39,12 +39,18 @@
         
         <StackPanel Orientation="vertical" Grid.Row="5" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="5" HorizontalAlignment="Center" VerticalAlignment="Center">
             <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="5,5">
-                <Label Foreground="White" FontWeight="Bold" FontSize="15" VerticalContentAlignment="Center" VerticalAlignment="Center">Correo:</Label>
-                <TextBox Width="200" Height="25" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" ></TextBox>
+                <Label Foreground="White" FontWeight="Bold" FontSize="15" VerticalContentAlignment="Center" VerticalAlignment="Center">Usuario:</Label>
+                <ComboBox x:Name="CmbxUsuario" Width="200" Height="25" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" ></ComboBox>
             </WrapPanel>
-            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="5.5">
-                <Label Foreground="White" FontWeight="Bold" FontSize="15" VerticalContentAlignment="Center" VerticalAlignment="Center">Contraseña:</Label>
-                <PasswordBox Width="200"  Height="25" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" ></PasswordBox>
+            <WrapPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="5.5">
+                
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" >
+                    <Label Foreground="White" FontWeight="Bold" FontSize="15" VerticalContentAlignment="Center" VerticalAlignment="Center">Contraseña:</Label>
+                    <PasswordBox x:Name="PswrDeUsuario" Width="200"  Height="25" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" KeyDown="PswrDeUsuario_KeyDown"></PasswordBox>
+                </WrapPanel>
+                
+                <Label x:Name="LblErrorDeContrasenia" Foreground="LightPink" HorizontalAlignment="Center" Visibility="Collapsed">Contraseña invalida, intente de nuevo</Label>
+            
             </WrapPanel>
         </StackPanel>
 

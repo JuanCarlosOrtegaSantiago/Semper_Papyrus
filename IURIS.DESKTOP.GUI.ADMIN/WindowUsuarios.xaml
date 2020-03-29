@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IURIS.DESKTOP.GUI.ADMIN"
         mc:Ignorable="d"
-        Title="WindowUsuarios" Height="450" Width="800">
+        Title="WindowUsuarios" Height="450" Width="800" WindowStyle="None" WindowStartupLocation="CenterScreen">
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
             <GradientStop Color="#FFF36060" Offset="0.079"/>
@@ -23,7 +23,6 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
-            <!--<RowDefinition Height="*"/>-->
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -64,23 +63,16 @@
 
         <WrapPanel Orientation="Vertical" Grid.Row="1" Grid.Column="4" Grid.RowSpan="5" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Image Source="Imagenes/Logo.png" Height="250"></Image>
-            <ComboBox x:Name="cmbxUsuarios" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Height="30" Width="200" Margin="15,5">
-                <ComboBoxItem HorizontalAlignment="Center" HorizontalContentAlignment="Center">Usuarios</ComboBoxItem>
-            </ComboBox>
-            <!--<ComboBox HorizontalAlignment="Center" Height="30" Width="200" Margin="15,5"></ComboBox>-->
-        </WrapPanel>
-        <!--<WrapPanel Orientation="Horizontal"  Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Left">
-            <Label FontSize="20" HorizontalAlignment="Center">Administrador:</Label>
-            <WrapPanel Orientation="Vertical" VerticalAlignment="Center">
-                <RadioButton Foreground="White">Si</RadioButton>
-                <RadioButton Foreground="White">No</RadioButton>
+            <WrapPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="wraCmbx">
+                <ComboBox x:Name="cmbxUsuarios" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Height="30" Width="200" Margin="15,5" FontSize="20" SelectionChanged="CmbxUsuarios_SelectionChanged"></ComboBox>
+                <CheckBox x:Name="ChkRevision" VerticalAlignment="Center" Click="ChkRevision_Click">Revisión</CheckBox>
             </WrapPanel>
-        </WrapPanel>-->
+        </WrapPanel>
 
         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="6">
             <Button Style="{DynamicResource ButtonStyle1}" Width="100" Height="30" Margin="10" FontWeight="Bold" Foreground="White" BorderBrush="White" FontSize="15" x:Name="BtnNuevo" Click="BtnNuevo_Click">Nuevo</Button>
-            <Button Style="{DynamicResource ButtonStyle1}" Width="100" Height="30" Margin="10" FontWeight="Bold" Foreground="White" BorderBrush="White" FontSize="15" x:Name="BtnGuardar">Guardar</Button>
-            <Button Style="{DynamicResource ButtonStyle1}" Width="100" Height="30" Margin="10" FontWeight="Bold" Foreground="White" BorderBrush="White" FontSize="15" x:Name="BtnCancelar">Cancelar</Button>
+            <Button Style="{DynamicResource ButtonStyle1}" Width="100" Height="30" Margin="10" FontWeight="Bold" Foreground="White" BorderBrush="White" FontSize="15" x:Name="BtnGuardar" Click="BtnGuardar_Click">Guardar</Button>
+            <Button Style="{DynamicResource ButtonStyle1}" Width="100" Height="30" Margin="10" FontWeight="Bold" Foreground="White" BorderBrush="White" FontSize="15" x:Name="BtnCancelar" Click="BtnCancelar_Click">Cancelar</Button>
             <Button Style="{DynamicResource ButtonStyle1}" Width="100" Height="30" Margin="10" FontWeight="Bold" Foreground="White" BorderBrush="White" FontSize="15" x:Name="BtnEditar" Click="BtnEditar_Click">Editar</Button>
             <Button Style="{DynamicResource ButtonStyle1}" Width="100" Height="30" Margin="10" FontWeight="Bold" Foreground="White" BorderBrush="White" FontSize="15" x:Name="BtnEliminar" Click="BtnEliminar_Click">Eliminar</Button>
             <Button Style="{DynamicResource ButtonStyle1}" Width="100" Height="30" Margin="10" FontWeight="Bold" Foreground="White" BorderBrush="White" FontSize="15" x:Name="BtnRegresar" Click="BtnRegresar_Click"> Regresar</Button>

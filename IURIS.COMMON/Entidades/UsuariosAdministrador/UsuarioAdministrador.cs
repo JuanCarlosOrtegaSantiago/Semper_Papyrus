@@ -11,5 +11,10 @@ namespace IURIS.COMMON.Entidades.UsuariosAdministrador
         public string Direccion { get; set; }
         public string Correo { get; set; }
         public string Contrasenia { get; set; }
+
+        public override string ToString()
+        {
+            return string.Format("- {0} -",NombreCompleto);
+        }
     }
 }
