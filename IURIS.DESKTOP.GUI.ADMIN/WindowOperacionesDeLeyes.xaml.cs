@@ -1,4 +1,8 @@
-﻿using System;
+﻿using IURIS.BIZ;
+using IURIS.COMMON.Entidades.Ley;
+using IURIS.COMMON.Interfaces;
+using IURIS.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,10 +24,16 @@ namespace IURIS.DESKTOP.GUI.ADMIN
     public partial class WindowOperacionesDeLeyes : Window
     {
         //public WindowOperacionesDeLeyes(bool EsNuevaLey)
+
+        //Leyes ley;
+        IManejadorDeLeyes manejadorDeLeyes;
+
+        
+
         public WindowOperacionesDeLeyes()
         {
             InitializeComponent();
-
+            manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
             LblOperacionARealizar.Content = "Nueva ley // editar ley";
 
 
@@ -68,6 +78,16 @@ namespace IURIS.DESKTOP.GUI.ADMIN
         private void BtnBuscarCodgio_Click(object sender, RoutedEventArgs e)
         {
             WrpLblCodigoAsociado.Visibility = Visibility.Visible;
+        }
+
+        private void BtnNuevaLey_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnCancelar_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

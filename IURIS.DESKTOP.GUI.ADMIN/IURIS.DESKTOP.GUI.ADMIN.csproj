@@ -89,6 +89,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="WindowAccesoRestringido.xaml.cs">
+      <DependentUpon>WindowAccesoRestringido.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowCambiarContrasenia.xaml.cs">
       <DependentUpon>WindowCambiarContrasenia.xaml</DependentUpon>
     </Compile>
@@ -121,6 +124,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="WindowAccesoRestringido.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WindowCambiarContrasenia.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

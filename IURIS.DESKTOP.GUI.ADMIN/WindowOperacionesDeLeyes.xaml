@@ -70,7 +70,7 @@
             <WrapPanel Orientation="Vertical" Margin="10,0">
 
                 <Label VerticalAlignment="Center" VerticalContentAlignment="Center" Style="{DynamicResource LabelStyle1}">Nombre de la ley:</Label>
-                <TextBox Width="350" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"></TextBox>
+                <TextBox x:Name="TxtNombreDeLey" Width="350" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"></TextBox>
 
             </WrapPanel>
 
@@ -82,7 +82,7 @@
 
                     <WrapPanel Orientation="Horizontal">
 
-                        <TextBox Width="350" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"></TextBox>
+                        <TextBox x:Name="txtCodigo" Width="350" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"></TextBox>
                         <Button x:Name="BtnBuscarCodgio" Click="BtnBuscarCodgio_Click" Width="30" Height="30" Style="{DynamicResource ButtonStyle1}" BorderBrush="White">
                             <Image Source="Imagenes/Buscar.png" Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center" ></Image>
                         </Button>
@@ -105,14 +105,14 @@
             <WrapPanel Orientation="Vertical" Margin="10,0">
 
                 <Label Style="{DynamicResource LabelStyle1}">Nombre del titulo</Label>
-                <TextBox Width="350" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"></TextBox>
+                <TextBox x:Name="txtNombreTitulo" Width="350" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"></TextBox>
           
             </WrapPanel>
 
             <WrapPanel Orientation="Vertical" Margin="10,0">
        
                 <Label Style="{DynamicResource LabelStyle1}">Numero del titulo</Label>
-                <TextBox Width="350" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"></TextBox>
+                <TextBox x:Name="txtNumTitulo" Width="350" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"></TextBox>
 
             </WrapPanel>
 
@@ -138,14 +138,14 @@
             <WrapPanel Orientation="Vertical" Margin="10,0">
 
                 <Label Style="{DynamicResource LabelStyle1}">Nombre del capitulo</Label>
-                <TextBox Width="350" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"></TextBox>
+                <TextBox x:Name="txtNombreCapitulo" Width="350" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"></TextBox>
 
             </WrapPanel>
 
             <WrapPanel Orientation="Vertical" Margin="10,0">
 
                 <Label Style="{DynamicResource LabelStyle1}">Numero del capitulo</Label>
-                <TextBox Width="350" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"></TextBox>
+                <TextBox x:Name="txtNumCapitulo" Width="350" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"></TextBox>
 
             </WrapPanel>
 
@@ -171,14 +171,14 @@
             <WrapPanel Orientation="Vertical" Margin="10,0">
 
                 <Label Style="{DynamicResource LabelStyle1}">Nombre del articulo</Label>
-                <TextBox Width="350" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"></TextBox>
+                <TextBox x:Name="txtNombreArticulo" Width="350" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"></TextBox>
 
             </WrapPanel>
 
             <WrapPanel Orientation="Vertical" Margin="10,0">
 
                 <Label Style="{DynamicResource LabelStyle1}">Numero del articulo</Label>
-                <TextBox Width="350" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"></TextBox>
+                <TextBox x:Name="txtNumArticulo" Width="350" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"></TextBox>
 
             </WrapPanel>
 
@@ -202,7 +202,7 @@
         <WrapPanel Orientation="Vertical" HorizontalAlignment="Left" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="8">
 
             <Label Style="{DynamicResource LabelStyle1}">Contenido</Label>
-            <TextBox Width="1000" Height="250" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" FontSize="20" FontWeight="Black"></TextBox>
+            <TextBox x:Name="txtContenido" Width="1000" Height="250" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" FontSize="20" FontWeight="Black"></TextBox>
         
         </WrapPanel>
 
@@ -216,7 +216,7 @@
         </WrapPanel>
         
         <WrapPanel Grid.Row="4" Grid.Column="9" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2">
-            <Button Background="Transparent" Style="{DynamicResource ButtonStyle1}" BorderBrush="White" Width="100" Height="100">
+            <Button x:Name="BtnNuevaLey" Background="Transparent" Style="{DynamicResource ButtonStyle1}" BorderBrush="White" Width="100" Height="100" Click="BtnNuevaLey_Click">
                 <WrapPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <Image Source="Imagenes/Nuevo.png" Width="50" Height="50"></Image>
                     <Label Style="{DynamicResource LabelStyle1}" FontSize="15">Nueva</Label>
@@ -225,7 +225,7 @@
         </WrapPanel>
 
         <WrapPanel Grid.Row="5" Grid.Column="9" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2">
-            <Button Background="Transparent" Style="{DynamicResource ButtonStyle1}" BorderBrush="White" Width="100" Height="100">
+            <Button x:Name="BtnCancelar" Background="Transparent" Style="{DynamicResource ButtonStyle1}" BorderBrush="White" Width="100" Height="100" Click="BtnCancelar_Click">
                 <WrapPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <Image Source="Imagenes/cancelar.png" Width="50" Height="50"></Image>
                     <Label Style="{DynamicResource LabelStyle1}" FontSize="15">Cancelar</Label>

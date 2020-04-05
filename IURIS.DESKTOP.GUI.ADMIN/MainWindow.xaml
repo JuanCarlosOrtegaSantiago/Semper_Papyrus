@@ -42,7 +42,7 @@
                 <Label Foreground="White" FontWeight="Bold" FontSize="15" VerticalContentAlignment="Center" VerticalAlignment="Center">Usuario:</Label>
                 <ComboBox x:Name="CmbxUsuario" Width="200" Height="25" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" ></ComboBox>
             </WrapPanel>
-            <WrapPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="5.5">
+            <WrapPanel Orientation="Vertical" HorizontalAlignment="Right" Margin="5.5">
                 
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" >
                     <Label Foreground="White" FontWeight="Bold" FontSize="15" VerticalContentAlignment="Center" VerticalAlignment="Center">Contraseña:</Label>
@@ -55,8 +55,8 @@
         </StackPanel>
 
         <WrapPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="5" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button x:Name="BtnEntrar" Click="BtnEntrar_Click" BorderBrush="White" Foreground="White" Width="100" Height="30" FontSize="20" VerticalContentAlignment="Center" VerticalAlignment="Center" Margin="20,0" Style="{DynamicResource ButtonStyle1}">Entrar</Button>
-            <Button x:Name="BtnSalir" Click="BtnSalir_Click" BorderBrush="White" Foreground="White" Width="100" Height="30" FontSize="20" VerticalContentAlignment="Center" VerticalAlignment="Center" Margin="20,0" Style="{DynamicResource ButtonStyle1}">Salir</Button>
+            <Button x:Name="BtnEntrar" Click="BtnEntrar_Click" BorderBrush="White" Width="100" Height="35" FontSize="20" Margin="20,0" Style="{DynamicResource ButtonStyle1}" VerticalContentAlignment="Top">Entrar</Button>
+            <Button x:Name="BtnSalir" Click="BtnSalir_Click" BorderBrush="White" Width="100" Height="35" FontSize="20" Margin="20,0" Style="{DynamicResource ButtonStyle1}" VerticalContentAlignment="Top">Salir</Button>
         </WrapPanel>
 
         <!--<WrapPanel Orientation="Horizontal" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="5" HorizontalAlignment="Center" VerticalAlignment="Center">

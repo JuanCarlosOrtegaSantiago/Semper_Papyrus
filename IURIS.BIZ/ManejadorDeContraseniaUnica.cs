@@ -3,6 +3,7 @@ using IURIS.COMMON.Interfaces;
 using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace IURIS.BIZ
@@ -14,19 +15,24 @@ namespace IURIS.BIZ
         {
             this.repositorio = repositorio;
         }
-        public List<ContraseniaUnica> Read => repositorio.Read;
+        public List<ContraseniaUnica> Listar => repositorio.Read;
 
-        public bool Create(ContraseniaUnica Entidad)
+        public bool AGREGAR(ContraseniaUnica Entidad)
         {
             return repositorio.Create(Entidad);
         }
 
-        public bool Delete(ObjectId id)
+        public ContraseniaUnica BuscarPorID(ObjectId Id)
+        {
+            return Listar.Where(e => e.id == Id).SingleOrDefault();
+        }
+
+        public bool Eliminar(ObjectId id)
         {
             return repositorio.Delete(id);
         }
 
-        public bool Update(ContraseniaUnica EntidadModificada)
+        public bool Modificar(ContraseniaUnica EntidadModificada)
         {
             return repositorio.Update(EntidadModificada);
         }

@@ -25,6 +25,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
     /// </summary>
     public partial class MainWindow : Window
     {
+
         IManejadorDeUsuarioAdministrador manejadorDeUsuarioAdministrador;
         IManejadorDeContraseniaUnica manejadorDeContraseniaUnica;
 
@@ -49,20 +50,20 @@ namespace IURIS.DESKTOP.GUI.ADMIN
 
         private void IniciandoPrograma()
         {
-            if (manejadorDeContraseniaUnica.Read.Count == 0)
+            if (manejadorDeContraseniaUnica.Listar.Count == 0)
             {
                 ContraseniaUnica contraseniaUnica = new ContraseniaUnica()
                 {
                     Password = "Admin.Semper_Papyrus"
                 };
-                if (!manejadorDeContraseniaUnica.Create(contraseniaUnica))
+                if (!manejadorDeContraseniaUnica.AGREGAR(contraseniaUnica))
                 {
                     this.Close();
                 }
             }
             else
             {
-                contraseniaUnica = manejadorDeContraseniaUnica.Read.SingleOrDefault();
+                contraseniaUnica = manejadorDeContraseniaUnica.Listar.SingleOrDefault();
             }
         }
 

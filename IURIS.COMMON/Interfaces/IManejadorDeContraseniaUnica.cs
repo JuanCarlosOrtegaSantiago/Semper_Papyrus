@@ -5,7 +5,7 @@ using System.Text;
 
 namespace IURIS.COMMON.Interfaces
 {
-    public interface IManejadorDeContraseniaUnica: IRepositorio<ContraseniaUnica>
+    public interface IManejadorDeContraseniaUnica: IManejadorGenerico<ContraseniaUnica>
     {
     }
 }

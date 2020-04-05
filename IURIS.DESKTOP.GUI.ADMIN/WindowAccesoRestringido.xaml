@@ -1,0 +1,63 @@
+﻿<Window x:Class="IURIS.DESKTOP.GUI.ADMIN.WindowAccesoRestringido"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IURIS.DESKTOP.GUI.ADMIN"
+        mc:Ignorable="d"
+        Height="350" Width="400" Background="#640404" WindowStyle="None" WindowStartupLocation="CenterScreen" >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+
+        <WrapPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="5" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Image Source="Imagenes/Logo.png" Height="100" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        </WrapPanel>
+        <WrapPanel Orientation="Vertical" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="5" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label FontWeight="Bold" Foreground="White" FontSize="25" HorizontalAlignment="Center">IURIS</Label>
+            <Label FontWeight="Bold" Foreground="White" FontSize="10">From Semper Papyrus</Label>
+        </WrapPanel>
+
+        <StackPanel Orientation="vertical" Grid.Row="5" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="5" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="5,5">
+                <Label Foreground="White" FontWeight="Bold" FontSize="15" VerticalContentAlignment="Center" VerticalAlignment="Center">Administrador:</Label>
+                <ComboBox x:Name="CmbxUsuarioAdmin" Width="200" Height="25" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" ></ComboBox>
+            </WrapPanel>
+            
+            <WrapPanel Orientation="Vertical" HorizontalAlignment="Right" Margin="5.5">
+
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" >
+                    <Label Foreground="White" FontWeight="Bold" FontSize="15" VerticalContentAlignment="Center" VerticalAlignment="Center">Contraseña:</Label>
+                    <PasswordBox x:Name="PswrDeUsuarioAdmin" Width="200"  Height="25" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" KeyDown="PswrDeUsuario_KeyDown"></PasswordBox>
+                </WrapPanel>
+
+                <Label x:Name="LblErrorDeContraseniaAdmin" Foreground="LightPink" HorizontalAlignment="Center" Visibility="Collapsed">Contraseña invalida, intente de nuevo</Label>
+
+            </WrapPanel>
+        </StackPanel>
+
+        <WrapPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="5" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button x:Name="BtnEntrarAdmin" Click="BtnEntrar_Click" BorderBrush="White" Width="100" Height="35" FontSize="20" Margin="20,0" Style="{DynamicResource ButtonStyle1}" VerticalContentAlignment="Top">Entrar</Button>
+            <Button x:Name="BtnSalirAdmin" Click="BtnSalir_Click" BorderBrush="White" Width="100" Height="35" FontSize="20" Margin="20,0" Style="{DynamicResource ButtonStyle1}" VerticalContentAlignment="Top">Salir</Button>
+        </WrapPanel>
+
+    </Grid>
+</Window>
