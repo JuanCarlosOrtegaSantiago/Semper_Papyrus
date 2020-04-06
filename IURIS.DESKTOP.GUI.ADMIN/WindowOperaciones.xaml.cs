@@ -27,9 +27,9 @@ namespace IURIS.DESKTOP.GUI.ADMIN
 
         private void BtnUsuarios_Click(object sender, RoutedEventArgs e)
         {
-            WindowUsuarios windowUsuarios = new WindowUsuarios();
-            this.Close();
-            windowUsuarios.Show();
+            WindowAccesoRestringido windowAccesoRestringido = new WindowAccesoRestringido();
+            
+            windowAccesoRestringido.ShowDialog();
         }
 
         private void BtnSubirNuevaLey_Click(object sender, RoutedEventArgs e)
@@ -57,16 +57,5 @@ namespace IURIS.DESKTOP.GUI.ADMIN
             }
         }
 
-        private void Window_KeyDown(object sender, KeyEventArgs e)
-        {
-
-            if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.S)
-            {
-                WindowCambiarContrasenia windowCambiarContrasenia = new WindowCambiarContrasenia();
-                this.Close();
-                windowCambiarContrasenia.Show();
-            }
-
-        }
     }
 }

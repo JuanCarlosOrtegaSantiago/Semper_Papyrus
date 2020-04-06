@@ -31,7 +31,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
         {
             InitializeComponent();
             manejadorDeContraseniaUnica = new ManejadorDeContraseniaUnica(new RepositorioGenerico<ContraseniaUnica>());
-            contraseniaUnica = manejadorDeContraseniaUnica.Read.SingleOrDefault();
+            contraseniaUnica = manejadorDeContraseniaUnica.Listar.SingleOrDefault();
         }
 
         private void BtnCancelar_Click(object sender, RoutedEventArgs e)
@@ -51,7 +51,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
                     try
                     {
 
-                        if (manejadorDeContraseniaUnica.Update(contraseniaUnica))
+                        if (manejadorDeContraseniaUnica.Modificar(contraseniaUnica))
                         {
                             if (MessageBox.Show("La contraseña se actualizo correctamente\n Por favor vuelve a iniciar sesion", "Operacion", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.OK) == MessageBoxResult.OK)
                             {

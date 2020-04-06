@@ -75,23 +75,23 @@ namespace IURIS.DESKTOP.GUI.ADMIN
         private void BtnEntrar_Click(object sender, RoutedEventArgs e)
         {
 
-            if (CmbxUsuario.SelectedItem == null)
-            {
-                MessageBox.Show("Aun No has seleccionado tu usuario", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-            }
-            else
-            {
-                if (PswrDeUsuario.Password == contraseniaUnica.Password)
-                {
+            //if (CmbxUsuario.SelectedItem == null)
+            //{
+            //    MessageBox.Show("Aun No has seleccionado tu usuario", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            //}
+            //else
+            //{
+            //    if (PswrDeUsuario.Password == contraseniaUnica.Password)
+            //    {
                     WindowOperaciones windowOperaciones = new WindowOperaciones();
                     this.Close();
                     windowOperaciones.Show();
-                }
-                else
-                {
-                    LblErrorDeContrasenia.Visibility = Visibility.Visible;
-                }
-            }
+            //    }
+            //    else
+            //    {
+            //        LblErrorDeContrasenia.Visibility = Visibility.Visible;
+            //    }
+            //}
         }
 
         private void PswrDeUsuario_KeyDown(object sender, KeyEventArgs e)

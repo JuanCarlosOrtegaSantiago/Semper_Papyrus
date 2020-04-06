@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IURIS.DESKTOP.GUI.ADMIN"
         mc:Ignorable="d"
-        Height="300" Width="650" Background="#640404" Icon="Imagenes/Logo.png" MinWidth="650" MinHeight="300" WindowStyle="None" MaxWidth="650" MaxHeight="300" WindowStartupLocation="CenterScreen" KeyDown="Window_KeyDown">
+        Height="300" Width="650" Background="#640404" Icon="Imagenes/Logo.png" MinWidth="650" MinHeight="300" WindowStyle="None" MaxWidth="650" MaxHeight="300" WindowStartupLocation="CenterScreen" >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
