@@ -95,6 +95,15 @@
     <Compile Include="WindowCambiarContrasenia.xaml.cs">
       <DependentUpon>WindowCambiarContrasenia.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WindowEditarDatosDeAdmin.xaml.cs">
+      <DependentUpon>WindowEditarDatosDeAdmin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowEleccionDeUsuarios.xaml.cs">
+      <DependentUpon>WindowEleccionDeUsuarios.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowMenuAdmin.xaml.cs">
+      <DependentUpon>WindowMenuAdmin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowOperaciones.xaml.cs">
       <DependentUpon>WindowOperaciones.xaml</DependentUpon>
     </Compile>
@@ -103,6 +112,9 @@
     </Compile>
     <Compile Include="WindowUsuarios.xaml.cs">
       <DependentUpon>WindowUsuarios.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowUsuariosGlobal.xaml.cs">
+      <DependentUpon>WindowUsuariosGlobal.xaml</DependentUpon>
     </Compile>
     <Page Include="DiccionarioDeRecursos\DictionaryOfButton.xaml">
       <SubType>Designer</SubType>
@@ -132,6 +144,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="WindowEditarDatosDeAdmin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowEleccionDeUsuarios.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowMenuAdmin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WindowOperaciones.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -141,6 +165,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WindowUsuarios.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowUsuariosGlobal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -233,6 +261,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Imagenes\exit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\Admin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\CambiarContrasenia.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\EditarPerfil.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MongoDB.Libmongocrypt.1.0.0\build\MongoDB.Libmongocrypt.targets" Condition="Exists('..\packages\MongoDB.Libmongocrypt.1.0.0\build\MongoDB.Libmongocrypt.targets')" />

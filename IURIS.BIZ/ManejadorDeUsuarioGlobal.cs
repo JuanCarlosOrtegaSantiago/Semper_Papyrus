@@ -8,10 +8,10 @@ using System.Text;
 
 namespace IURIS.BIZ
 {
-    public class ManejadorDeUsuarioGloblal : IManejadorDeUsuarioGlobal
+    public class ManejadorDeUsuarioGlobal : IManejadorDeUsuarioGlobal
     {
         IRepositorio<UsuarioGlobal> repositorio;
-        public ManejadorDeUsuarioGloblal(IRepositorio<UsuarioGlobal> repositorio)
+        public ManejadorDeUsuarioGlobal(IRepositorio<UsuarioGlobal> repositorio)
         {
             this.repositorio = repositorio;
         }

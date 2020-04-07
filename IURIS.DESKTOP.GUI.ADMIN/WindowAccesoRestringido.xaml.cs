@@ -21,43 +21,23 @@ namespace IURIS.DESKTOP.GUI.ADMIN
     /// <summary>
     /// Lógica de interacción para WindowAccesoRestringido.xaml
     /// </summary>
-    public partial class WindowAccesoRestringido : Window
+    public partial class windowAccesoRestringido : Window
     {
+
+        public bool Entro;
         IManejadorDeUsuarioGlobal manejadorDeUsuarioGloblal;
 
-        public WindowAccesoRestringido()
+        public windowAccesoRestringido()
         {
             InitializeComponent();
-            manejadorDeUsuarioGloblal = new ManejadorDeUsuarioGloblal(new RepositorioGenerico<UsuarioGlobal>());
+            manejadorDeUsuarioGloblal = new ManejadorDeUsuarioGlobal(new RepositorioGenerico<UsuarioGlobal>());
+            CosasAInicializar();
         }
 
         private void CosasAInicializar()
         {
             CmbxUsuarioAdmin.ItemsSource = null;
             CmbxUsuarioAdmin.ItemsSource = manejadorDeUsuarioGloblal.Listar;
-        }
-
-
-        private void IniciandoPrograma()
-        {
-            if (manejadorDeUsuarioGloblal.Listar.Count == 0)
-            {
-
-                UsuarioGlobal usuario1 = new UsuarioGlobal()
-                {
-                    Contrasenia = "Admin",
-                    NombreCompleto = "Admin"
-                };
-                if (manejadorDeUsuarioGloblal.AGREGAR(usuario1))
-                {
-                    CosasAInicializar();
-                }
-
-
-            }
-            else
-            {
-            }
         }
 
         private void BtnSalir_Click(object sender, RoutedEventArgs e)
@@ -67,30 +47,49 @@ namespace IURIS.DESKTOP.GUI.ADMIN
 
         private void BtnEntrar_Click(object sender, RoutedEventArgs e)
         {
+            AccionEntrar();
+           
+        }
 
-            //if (CmbxUsuario.SelectedItem == null)
-            //{
-            //    MessageBox.Show("Aun No has seleccionado tu usuario", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-            //}
-            //else
-            //{
-            //    if (PswrDeUsuario.Password == contraseniaUnica.Password)
-            //    {
-            //        WindowOperaciones windowOperaciones = new WindowOperaciones();
-            //        this.Close();
-            //        windowOperaciones.Show();
-            //    }
-            //    else
-            //    {
-            //        LblErrorDeContrasenia.Visibility = Visibility.Visible;
-            //    }
-            //}
+        void AccionEntrar()
+        {
+            if (CmbxUsuarioAdmin.SelectedItem == null)
+            {
+                MessageBox.Show("Administrador no seleccionado", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            else
+            {
+
+                UsuarioGlobal usuarioGlobal = CmbxUsuarioAdmin.SelectedItem as UsuarioGlobal;
+
+                if (usuarioGlobal.Contrasenia == PswrDeUsuarioAdmin.Password)
+                {
+                    Entro = true;
+                    WindowMenuAdmin windowMenuAdmin = new WindowMenuAdmin(usuarioGlobal);
+                    this.Close();
+                    windowMenuAdmin.Show();
+                }
+                else
+                {
+                    Entro = false;
+                    LblErrorDeContraseniaAdmin.Visibility = Visibility.Visible;
+                }
+            }
         }
 
         private void PswrDeUsuario_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.IsDown)
+            if (e.Key != Key.Enter)
+            {
                 LblErrorDeContraseniaAdmin.Visibility = Visibility.Collapsed;
+
+            }
+            if (e.Key == Key.Enter)
+            {
+                AccionEntrar();
+
+            }
         }
+        
     }
 }

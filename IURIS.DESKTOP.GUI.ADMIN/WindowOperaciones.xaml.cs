@@ -25,13 +25,6 @@ namespace IURIS.DESKTOP.GUI.ADMIN
             InitializeComponent();
         }
 
-        private void BtnUsuarios_Click(object sender, RoutedEventArgs e)
-        {
-            WindowAccesoRestringido windowAccesoRestringido = new WindowAccesoRestringido();
-            
-            windowAccesoRestringido.ShowDialog();
-        }
-
         private void BtnSubirNuevaLey_Click(object sender, RoutedEventArgs e)
         {
             //EsNuevaLey = true;
@@ -52,10 +45,19 @@ namespace IURIS.DESKTOP.GUI.ADMIN
         private void BtnSalir_Click(object sender, RoutedEventArgs e)
         {
             if(MessageBox.Show("¿Desa salir de la apliación?", "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.No) == MessageBoxResult.Yes)
-            {
+            
                 this.Close();
-            }
+            
         }
 
+        private void BtnAdministrador_Click(object sender, RoutedEventArgs e)
+        {
+            windowAccesoRestringido windowAccesoRestringido = new windowAccesoRestringido();
+
+            windowAccesoRestringido.ShowDialog();
+
+            if (windowAccesoRestringido.Entro)
+                this.Close();
+        }
     }
 }

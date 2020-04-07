@@ -46,7 +46,7 @@
                 
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" >
                     <Label Foreground="White" FontWeight="Bold" FontSize="15" VerticalContentAlignment="Center" VerticalAlignment="Center">Contraseña:</Label>
-                    <PasswordBox x:Name="PswrDeUsuario" Width="200"  Height="25" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" KeyDown="PswrDeUsuario_KeyDown"></PasswordBox>
+                    <PasswordBox x:Name="PswrDeUsuario" Width="200"  Height="25" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" KeyDown="PswrDeUsuario_KeyDown" ></PasswordBox>
                 </WrapPanel>
                 
                 <Label x:Name="LblErrorDeContrasenia" Foreground="LightPink" HorizontalAlignment="Center" Visibility="Collapsed">Contraseña invalida, intente de nuevo</Label>

@@ -18,8 +18,6 @@ namespace IURIS.DAL
         {
             client = new MongoClient(new MongoUrl(@"mongodb://AdminDbSemper:Semper1234@ds060009.mlab.com:60009/semperpapyrusbd?retryWrites=false"));
             db = client.GetDatabase("semperpapyrusbd");
-            
-
         }
 
         private IMongoCollection<T> Collection()

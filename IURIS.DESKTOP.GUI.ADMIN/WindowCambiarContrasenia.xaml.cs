@@ -1,5 +1,6 @@
 ﻿using IURIS.BIZ;
 using IURIS.COMMON.Entidades.ContraseniaDeAccesoUnico;
+using IURIS.COMMON.Entidades.UsuarioGlobal;
 using IURIS.COMMON.Interfaces;
 using IURIS.DAL;
 using System;
@@ -25,20 +26,28 @@ namespace IURIS.DESKTOP.GUI.ADMIN
     {
 
         ContraseniaUnica contraseniaUnica;
+        UsuarioGlobal UsuarioGlobal;
 
         IManejadorDeContraseniaUnica manejadorDeContraseniaUnica;
-        public WindowCambiarContrasenia()
+        public WindowCambiarContrasenia(UsuarioGlobal usuarioGlobal)
         {
             InitializeComponent();
+            UsuarioGlobal = usuarioGlobal;
             manejadorDeContraseniaUnica = new ManejadorDeContraseniaUnica(new RepositorioGenerico<ContraseniaUnica>());
             contraseniaUnica = manejadorDeContraseniaUnica.Listar.SingleOrDefault();
         }
 
         private void BtnCancelar_Click(object sender, RoutedEventArgs e)
         {
-            WindowOperaciones windowOperaciones = new WindowOperaciones();
-            this.Close();
-            windowOperaciones.Show();
+
+            if (MessageBox.Show("¿Esta seguro de regresar?", "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No) == MessageBoxResult.Yes)
+            {
+
+                WindowMenuAdmin windowMenuAdmin = new WindowMenuAdmin(UsuarioGlobal);
+                this.Close();
+                windowMenuAdmin.Show();
+            }
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

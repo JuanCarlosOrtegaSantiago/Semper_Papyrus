@@ -1,4 +1,5 @@
 ﻿using IURIS.BIZ;
+using IURIS.COMMON.Entidades.UsuarioGlobal;
 using IURIS.COMMON.Entidades.UsuariosAdministrador;
 using IURIS.COMMON.Interfaces;
 using IURIS.DAL;
@@ -38,10 +39,12 @@ namespace IURIS.DESKTOP.GUI.ADMIN
         AccionSeleccionComboBox SeleccionComboBox;
 
         IManejadorDeUsuarioAdministrador manejadorDeUsuarioAdministrador;
+        UsuarioGlobal UsuarioGlobal;
 
-        public WindowUsuarios()
+        public WindowUsuarios(UsuarioGlobal usuarioGlobal)
         {
             InitializeComponent();
+            UsuarioGlobal = usuarioGlobal;
             manejadorDeUsuarioAdministrador = new ManejadorDeUsuariosAdministrador(new RepositorioGenerico<UsuarioAdministrador>());
             EstadoInicial();
         }
@@ -98,9 +101,9 @@ namespace IURIS.DESKTOP.GUI.ADMIN
         {
             if (MessageBox.Show("¿Esta seguro de regresar?", "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No) == MessageBoxResult.Yes)
             {
-                WindowOperaciones windowOperaciones = new WindowOperaciones();
+                WindowMenuAdmin windowMenuAdmin= new WindowMenuAdmin(UsuarioGlobal);
                 this.Close();
-                windowOperaciones.Show();
+                windowMenuAdmin.Show();
             }
         }
 

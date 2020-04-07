@@ -1,5 +1,6 @@
 ﻿using IURIS.BIZ;
 using IURIS.COMMON.Entidades.ContraseniaDeAccesoUnico;
+using IURIS.COMMON.Entidades.UsuarioGlobal;
 using IURIS.COMMON.Entidades.UsuariosAdministrador;
 using IURIS.COMMON.Interfaces;
 using IURIS.DAL;
@@ -28,64 +29,110 @@ namespace IURIS.DESKTOP.GUI.ADMIN
 
         IManejadorDeUsuarioAdministrador manejadorDeUsuarioAdministrador;
         IManejadorDeContraseniaUnica manejadorDeContraseniaUnica;
+        IManejadorDeUsuarioGlobal manejadorDeUsuarioGlobal;
 
-        ContraseniaUnica contraseniaUnica;
+        ContraseniaUnica contrasenia;
 
         public MainWindow()
         {
             InitializeComponent();
             manejadorDeUsuarioAdministrador = new ManejadorDeUsuariosAdministrador(new RepositorioGenerico<UsuarioAdministrador>());
             manejadorDeContraseniaUnica = new ManejadorDeContraseniaUnica(new RepositorioGenerico<ContraseniaUnica>());
-
+            manejadorDeUsuarioGlobal = new ManejadorDeUsuarioGlobal(new RepositorioGenerico<UsuarioGlobal>());
             IniciandoPrograma();
-            cosasAInicializar();
+            CosasAInicializarConUsuarios();
         }
 
-        private void cosasAInicializar()
+        private void CosasAInicializarConUsuarios()
         {
             CmbxUsuario.ItemsSource = null;
             CmbxUsuario.ItemsSource = manejadorDeUsuarioAdministrador.Listar;
         }
 
-
         private void IniciandoPrograma()
         {
-            if (manejadorDeContraseniaUnica.Listar.Count == 0)
+
+            try
             {
-                ContraseniaUnica contraseniaUnica = new ContraseniaUnica()
+
+                if (manejadorDeUsuarioGlobal.Listar.Count == 0)
                 {
-                    Password = "Admin.Semper_Papyrus"
-                };
-                if (!manejadorDeContraseniaUnica.AGREGAR(contraseniaUnica))
-                {
-                    this.Close();
+
+                    UsuarioGlobal usuario1 = new UsuarioGlobal()
+                    {
+                        Contrasenia = "Admin",
+                        NombreCompleto = "Admin"
+                    };
+
+                    manejadorDeUsuarioGlobal.AGREGAR(usuario1);
+
                 }
+
+                if (manejadorDeUsuarioAdministrador.Listar.Count == 0)
+                {
+                    UsuarioAdministrador usuarioAdministrador = new UsuarioAdministrador()
+                    {
+                        NombreCompleto = "User1"
+                    };
+
+                    manejadorDeUsuarioAdministrador.AGREGAR(usuarioAdministrador);
+                    CosasAInicializarConUsuarios();
+                }
+
+                if (manejadorDeContraseniaUnica.Listar.Count == 0)
+                {
+
+                    ContraseniaUnica contraseniaUnica = new ContraseniaUnica()
+                    {
+                        Password = "Admin.Semper_Papyrus"
+                    };
+
+                    if (manejadorDeContraseniaUnica.AGREGAR(contraseniaUnica))
+                        contrasenia = manejadorDeContraseniaUnica.Listar.SingleOrDefault();
+
+                }
+                else
+                {
+                    contrasenia = manejadorDeContraseniaUnica.Listar.SingleOrDefault();
+                }
+
             }
-            else
+            catch (Exception ex)
             {
-                contraseniaUnica = manejadorDeContraseniaUnica.Listar.SingleOrDefault();
+
+                MessageBox.Show("Error al inicar error:\n" + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Hand);
+
             }
+
         }
 
         private void BtnSalir_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            if(MessageBox.Show("¿Está seguro de salir?","Salir",MessageBoxButton.YesNo,MessageBoxImage.Question,MessageBoxResult.No)==MessageBoxResult.Yes)
+                this.Close();
         }
 
         private void BtnEntrar_Click(object sender, RoutedEventArgs e)
         {
 
+            AccionEntrar();
+
+        }
+
+        void AccionEntrar()
+        {
+
             //if (CmbxUsuario.SelectedItem == null)
             //{
-            //    MessageBox.Show("Aun No has seleccionado tu usuario", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            //    MessageBox.Show("Aún no has seleccionado tu usuario", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             //}
             //else
             //{
-            //    if (PswrDeUsuario.Password == contraseniaUnica.Password)
+            //    if (PswrDeUsuario.Password == contrasenia.Password)
             //    {
-                    WindowOperaciones windowOperaciones = new WindowOperaciones();
-                    this.Close();
-                    windowOperaciones.Show();
+            WindowOperaciones windowOperaciones = new WindowOperaciones();
+            this.Close();
+            windowOperaciones.Show();
             //    }
             //    else
             //    {
@@ -96,8 +143,17 @@ namespace IURIS.DESKTOP.GUI.ADMIN
 
         private void PswrDeUsuario_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.IsDown)
+            if (e.Key != Key.Enter) 
+            {
                 LblErrorDeContrasenia.Visibility = Visibility.Collapsed;
+
+            }
+            if (e.Key == Key.Enter)
+            {
+                AccionEntrar();
+
+            }
         }
+        
     }
 }
