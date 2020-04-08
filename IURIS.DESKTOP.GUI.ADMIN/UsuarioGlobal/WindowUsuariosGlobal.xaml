@@ -50,9 +50,33 @@
             </WrapPanel>
         </WrapPanel>
 
-        <DataGrid x:Name="DTGUsuariosGlobal" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Grid.RowSpan="5" IsReadOnly="True" VerticalScrollBarVisibility="Auto"></DataGrid>
+        <ListView x:Name="DTGUsuariosGlobal" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="5" Background="Transparent" BorderBrush="Transparent" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
 
-        <WrapPanel Orientation="Vertical" Grid.Row="1" Grid.Column="4" Grid.RowSpan="5" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <WrapPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <Label HorizontalAlignment="Left" Style="{DynamicResource LabelStyle1}" Margin="4,0" FontSize="15">Nombre: </Label>
+                            <Label FontSize="15" HorizontalContentAlignment="Right" Content="{Binding NombreCompleto}" Style="{DynamicResource LabelStyle1}" />
+                        </WrapPanel>
+                        <WrapPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <Label HorizontalAlignment="Left" Style="{DynamicResource LabelStyle1}" Margin="12,0,5,0" FontSize="15">Correo:</Label>
+                            <Label FontSize="15" HorizontalContentAlignment="Right" Content="{Binding Correo}" Style="{DynamicResource LabelStyle1}" />
+                        </WrapPanel>
+
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <WrapPanel Orientation="Vertical" Grid.Row="1" Grid.Column="5" Grid.RowSpan="5" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Image Source="Imagenes/Logo.png" Height="250"></Image>
         </WrapPanel>
 
