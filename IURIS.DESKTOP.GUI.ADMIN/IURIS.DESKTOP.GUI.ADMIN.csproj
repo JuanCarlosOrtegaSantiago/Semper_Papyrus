@@ -89,31 +89,31 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="UsuarioGlobal\WindowAccesoRestringido.xaml.cs">
+    <Compile Include="WindowAccesoRestringido.xaml.cs">
       <DependentUpon>WindowAccesoRestringido.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UsuarioGlobal\WindowCambiarContrasenia.xaml.cs">
+    <Compile Include="WindowCambiarContrasenia.xaml.cs">
       <DependentUpon>WindowCambiarContrasenia.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UsuarioGlobal\WindowEditarDatosDeAdmin.xaml.cs">
+    <Compile Include="WindowEditarDatosDeAdmin.xaml.cs">
       <DependentUpon>WindowEditarDatosDeAdmin.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UsuarioGlobal\WindowEleccionDeUsuarios.xaml.cs">
+    <Compile Include="WindowEleccionDeUsuarios.xaml.cs">
       <DependentUpon>WindowEleccionDeUsuarios.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UsuarioGlobal\WindowMenuAdmin.xaml.cs">
+    <Compile Include="WindowMenuAdmin.xaml.cs">
       <DependentUpon>WindowMenuAdmin.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UsuarioAdmin\WindowOperaciones.xaml.cs">
+    <Compile Include="WindowOperaciones.xaml.cs">
       <DependentUpon>WindowOperaciones.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UsuarioAdmin\WindowOperacionesDeLeyes.xaml.cs">
+    <Compile Include="WindowOperacionesDeLeyes.xaml.cs">
       <DependentUpon>WindowOperacionesDeLeyes.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UsuarioGlobal\WindowUsuarios.xaml.cs">
+    <Compile Include="WindowUsuarios.xaml.cs">
       <DependentUpon>WindowUsuarios.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UsuarioGlobal\WindowUsuariosGlobal.xaml.cs">
+    <Compile Include="WindowUsuariosGlobal.xaml.cs">
       <DependentUpon>WindowUsuariosGlobal.xaml</DependentUpon>
     </Compile>
     <Page Include="DiccionarioDeRecursos\DictionaryOfButton.xaml">
@@ -124,7 +124,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UsuarioAdmin\MainWindow.xaml">
+    <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -132,43 +132,43 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="UsuarioAdmin\MainWindow.xaml.cs">
+    <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="UsuarioGlobal\WindowAccesoRestringido.xaml">
+    <Page Include="WindowAccesoRestringido.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UsuarioGlobal\WindowCambiarContrasenia.xaml">
+    <Page Include="WindowCambiarContrasenia.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UsuarioGlobal\WindowEditarDatosDeAdmin.xaml">
+    <Page Include="WindowEditarDatosDeAdmin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UsuarioGlobal\WindowEleccionDeUsuarios.xaml">
+    <Page Include="WindowEleccionDeUsuarios.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UsuarioGlobal\WindowMenuAdmin.xaml">
+    <Page Include="WindowMenuAdmin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UsuarioAdmin\WindowOperaciones.xaml">
+    <Page Include="WindowOperaciones.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UsuarioAdmin\WindowOperacionesDeLeyes.xaml">
+    <Page Include="WindowOperacionesDeLeyes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UsuarioGlobal\WindowUsuarios.xaml">
+    <Page Include="WindowUsuarios.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UsuarioGlobal\WindowUsuariosGlobal.xaml">
+    <Page Include="WindowUsuariosGlobal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -271,7 +271,10 @@
   <ItemGroup>
     <Resource Include="Imagenes\EditarPerfil.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="UsuarioAdmin\" />
+    <Folder Include="UsuarioGlobal\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MongoDB.Libmongocrypt.1.0.0\build\MongoDB.Libmongocrypt.targets" Condition="Exists('..\packages\MongoDB.Libmongocrypt.1.0.0\build\MongoDB.Libmongocrypt.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

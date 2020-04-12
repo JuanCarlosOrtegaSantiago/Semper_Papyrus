@@ -77,7 +77,7 @@
         </ListView>
 
         <WrapPanel Orientation="Vertical" Grid.Row="1" Grid.Column="5" Grid.RowSpan="5" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Image Source="Imagenes/Logo.png" Height="250"></Image>
+            <Image Source="Imagenes/Logo.png" Height="240" Width="240"></Image>
         </WrapPanel>
 
         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="6">

@@ -68,17 +68,6 @@ namespace IURIS.DESKTOP.GUI.ADMIN
 
                 }
 
-                if (manejadorDeUsuarioAdministrador.Listar.Count == 0)
-                {
-                    UsuarioAdministrador usuarioAdministrador = new UsuarioAdministrador()
-                    {
-                        NombreCompleto = "User1"
-                    };
-
-                    manejadorDeUsuarioAdministrador.AGREGAR(usuarioAdministrador);
-                    CosasAInicializarConUsuarios();
-                }
-
                 if (manejadorDeContraseniaUnica.Listar.Count == 0)
                 {
 
@@ -95,6 +84,19 @@ namespace IURIS.DESKTOP.GUI.ADMIN
                 {
                     contrasenia = manejadorDeContraseniaUnica.Listar.SingleOrDefault();
                 }
+
+                if (manejadorDeUsuarioAdministrador.Listar.Count == 0)
+                {
+                    UsuarioAdministrador usuarioAdministrador = new UsuarioAdministrador()
+                    {
+                        NombreCompleto = "User1",
+                        Contrasenia = manejadorDeContraseniaUnica.Listar.SingleOrDefault().Password
+                    };
+
+                    manejadorDeUsuarioAdministrador.AGREGAR(usuarioAdministrador);
+                    CosasAInicializarConUsuarios();
+                }
+
 
             }
             catch (Exception ex)
