@@ -110,8 +110,11 @@
             </WrapPanel>
 
             <WrapPanel Orientation="Vertical" Margin="10,0">
-       
-                <Label Style="{DynamicResource LabelStyle1}">Numero del titulo</Label>
+
+                <WrapPanel Orientation="Horizontal">
+                    <Label Style="{DynamicResource LabelStyle1}" FontWeight="Black" Margin="0,0,-5,0">Numero</Label>
+                    <Label Style="{DynamicResource LabelStyle1}" >del titulo</Label>
+                </WrapPanel>
                 <TextBox x:Name="txtNumTitulo" Width="350" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"></TextBox>
 
             </WrapPanel>
@@ -144,7 +147,10 @@
 
             <WrapPanel Orientation="Vertical" Margin="10,0">
 
-                <Label Style="{DynamicResource LabelStyle1}">Numero del capitulo</Label>
+                <WrapPanel Orientation="Horizontal">
+                    <Label Style="{DynamicResource LabelStyle1}" FontWeight="Black" Margin="0,0,-5,0">Numero</Label>
+                    <Label Style="{DynamicResource LabelStyle1}" >del capituo</Label>
+                </WrapPanel>
                 <TextBox x:Name="txtNumCapitulo" Width="350" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"></TextBox>
 
             </WrapPanel>
@@ -177,7 +183,10 @@
 
             <WrapPanel Orientation="Vertical" Margin="10,0">
 
-                <Label Style="{DynamicResource LabelStyle1}">Numero del articulo</Label>
+                <WrapPanel Orientation="Horizontal">
+                    <Label Style="{DynamicResource LabelStyle1}" FontWeight="Black" Margin="0,0,-5,0">Numero</Label>
+                    <Label Style="{DynamicResource LabelStyle1}">del articulo</Label>
+                </WrapPanel>
                 <TextBox x:Name="txtNumArticulo" Width="350" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"></TextBox>
 
             </WrapPanel>
@@ -202,12 +211,12 @@
         <WrapPanel Orientation="Vertical" HorizontalAlignment="Left" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="8">
 
             <Label Style="{DynamicResource LabelStyle1}">Contenido</Label>
-            <TextBox x:Name="txtContenido" Width="1000" Height="250" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" FontSize="20" FontWeight="Black"></TextBox>
-        
+            <RichTextBox x:Name="RtcTxtContenido" Width="800" Height="200" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" FontSize="20" FontWeight="Black"></RichTextBox> <!--SpellCheck.IsEnabled="True"-->
+
         </WrapPanel>
 
         <WrapPanel Grid.Row="3" Grid.Column="9" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2">
-            <Button Background="Transparent" Style="{DynamicResource ButtonStyle1}" BorderBrush="White" Width="100" Height="100">
+            <Button x:Name="BtnSubirLey" Background="Transparent" Style="{DynamicResource ButtonStyle1}" BorderBrush="White" Width="100" Height="100">
                 <WrapPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <Image Source="Imagenes/Subir.png" Width="50" Height="50"></Image>
                     <Label Style="{DynamicResource LabelStyle1}" FontSize="15">Subir</Label>

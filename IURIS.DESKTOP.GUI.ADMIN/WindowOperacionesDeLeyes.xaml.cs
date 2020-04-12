@@ -35,10 +35,44 @@ namespace IURIS.DESKTOP.GUI.ADMIN
             InitializeComponent();
             manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
             LblOperacionARealizar.Content = "Nueva ley // editar ley";
+            EstadoDeCajas(false);
+
+        }
+
+        private void EstadoDeCajas(bool v)
+        {
+            //Limpiar cajas
+            LimpiarCajaDeContenido();
+            txtCodigo.Clear();
+            txtNombreArticulo.Clear();
+            txtNombreCapitulo.Clear();
+            TxtNombreDeLey.Clear();
+            txtNombreTitulo.Clear();
+            txtNumArticulo.Clear();
+            txtNumCapitulo.Clear();
+            txtNumTitulo.Clear();
+            //Abilitar cajas
+            RtcTxtContenido.IsEnabled = v;
+            txtCodigo.IsEnabled = v;
+            txtNombreArticulo.IsEnabled = v;
+            txtNombreCapitulo.IsEnabled = v;
+            TxtNombreDeLey.IsEnabled = v;
+            txtNombreTitulo.IsEnabled = v;
+            txtNumArticulo.IsEnabled = v;
+            txtNumCapitulo.IsEnabled = v;
+            txtNumTitulo.IsEnabled = v;
+            //Hanilitar botones
+            BtnAgregarArticulo.IsEnabled = v;
+            BtnAgregarCapitulo.IsEnabled = v;
+            BtnAgregarTitulo.IsEnabled = v;
+            BtnBuscarCodgio.IsEnabled = v;
+            BtnRegresarAMenuDeOperaciones.IsEnabled = !v;
+            BtnNuevaLey.IsEnabled = !v;
+            BtnCancelar.IsEnabled = v;
+            BtnSubirLey.IsEnabled = v;
 
 
         }
-        
 
         private void BtnCambiarDeAlturaMinimizar_Click(object sender, RoutedEventArgs e)
         {
@@ -82,12 +116,24 @@ namespace IURIS.DESKTOP.GUI.ADMIN
 
         private void BtnNuevaLey_Click(object sender, RoutedEventArgs e)
         {
-
+            EstadoDeCajas(true);
         }
 
         private void BtnCancelar_Click(object sender, RoutedEventArgs e)
         {
+            EstadoDeCajas(false);
+        }
 
+        private string Contenido()
+        {
+            //string richText;
+            return new TextRange(RtcTxtContenido.Document.ContentStart, RtcTxtContenido.Document.ContentEnd).Text;
+        }
+
+        private void LimpiarCajaDeContenido()
+        {
+            TextRange textRange = new TextRange(RtcTxtContenido.Document.ContentStart, RtcTxtContenido.Document.ContentEnd);
+            textRange.Text = "";
         }
     }
 }
