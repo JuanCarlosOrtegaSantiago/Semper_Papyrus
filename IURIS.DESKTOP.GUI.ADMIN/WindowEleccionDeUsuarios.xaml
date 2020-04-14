@@ -22,7 +22,7 @@
         </Grid.RowDefinitions>
 
         <WrapPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Margin="0,10">
-            <Label Style="{DynamicResource LabelStyle1}" FontSize="15">¿Qué tipo de usuarios decea ver?</Label>
+            <Label Style="{DynamicResource LabelStyle1}" FontSize="15">¿Qué tipo de usuarios desea ver?</Label>
         </WrapPanel>
 
         <WrapPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2">

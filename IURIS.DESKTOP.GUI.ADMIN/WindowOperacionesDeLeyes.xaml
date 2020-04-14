@@ -100,7 +100,7 @@
             </WrapPanel>
         </WrapPanel>
 
-        <WrapPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="8" VerticalAlignment="Center">
+        <WrapPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="8" VerticalAlignment="Center" x:Name="WrpTitulo">
 
             <WrapPanel Orientation="Vertical" Margin="10,0">
 
@@ -121,7 +121,7 @@
 
             <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,0">
                 
-                <Button x:Name="BtnAgregarTitulo" Style="{DynamicResource ButtonStyle1}">
+                <Button x:Name="BtnAgregarTitulo" Style="{DynamicResource ButtonStyle1}" Click="BtnAgregarTitulo_Click">
                     
                     <WrapPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
 
@@ -136,7 +136,7 @@
 
         </WrapPanel>
 
-        <WrapPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="8" VerticalAlignment="Center">
+        <WrapPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="8" VerticalAlignment="Center" x:Name="WrpCapitulo">
 
             <WrapPanel Orientation="Vertical" Margin="10,0">
 
@@ -149,7 +149,7 @@
 
                 <WrapPanel Orientation="Horizontal">
                     <Label Style="{DynamicResource LabelStyle1}" FontWeight="Black" Margin="0,0,-5,0">Numero</Label>
-                    <Label Style="{DynamicResource LabelStyle1}" >del capituo</Label>
+                    <Label Style="{DynamicResource LabelStyle1}" >del capitulo</Label>
                 </WrapPanel>
                 <TextBox x:Name="txtNumCapitulo" Width="350" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"></TextBox>
 
@@ -157,7 +157,7 @@
 
             <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,0">
 
-                <Button x:Name="BtnAgregarCapitulo" Style="{DynamicResource ButtonStyle1}">
+                <Button x:Name="BtnAgregarCapitulo" Style="{DynamicResource ButtonStyle1}" Click="BtnAgregarCapitulo_Click">
 
                     <WrapPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
 
@@ -172,7 +172,7 @@
 
         </WrapPanel>
 
-        <WrapPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="8" VerticalAlignment="Center">
+        <WrapPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="8" VerticalAlignment="Center" x:Name="WrpArticulo">
 
             <WrapPanel Orientation="Vertical" Margin="10,0">
 
@@ -193,7 +193,7 @@
 
             <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,0">
 
-                <Button x:Name="BtnAgregarArticulo" Style="{DynamicResource ButtonStyle1}">
+                <Button x:Name="BtnAgregarArticulo" Style="{DynamicResource ButtonStyle1}" Click="BtnAgregarArticulo_Click">
 
                     <WrapPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
 
@@ -216,7 +216,7 @@
         </WrapPanel>
 
         <WrapPanel Grid.Row="3" Grid.Column="9" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2">
-            <Button x:Name="BtnSubirLey" Background="Transparent" Style="{DynamicResource ButtonStyle1}" BorderBrush="White" Width="100" Height="100">
+            <Button x:Name="BtnSubirLey" Background="Transparent" Style="{DynamicResource ButtonStyle1}" BorderBrush="White" Width="100" Height="100" Click="BtnSubirLey_Click">
                 <WrapPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <Image Source="Imagenes/Subir.png" Width="50" Height="50"></Image>
                     <Label Style="{DynamicResource LabelStyle1}" FontSize="15">Subir</Label>

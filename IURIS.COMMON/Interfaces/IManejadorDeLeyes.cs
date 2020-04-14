@@ -7,5 +7,6 @@ namespace IURIS.COMMON.Interfaces
 {
     public interface IManejadorDeLeyes:IManejadorGenerico<Leyes>
     {
+        bool BuscarPorCodigo(string codigo);
     }
 }

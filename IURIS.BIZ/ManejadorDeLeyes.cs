@@ -23,6 +23,11 @@ namespace IURIS.BIZ
             return repositorio.Create(entidad);
         }
 
+        public bool BuscarPorCodigo(string codigo)
+        {
+            return Listar.Where(e => e.CodigoLey == codigo).Count() >= 1 ? true : false;
+        }
+
         public Leyes BuscarPorID(ObjectId Id)
         {
             return Listar.Where(e => e.id == Id).SingleOrDefault();

@@ -73,7 +73,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
 
                     ContraseniaUnica contraseniaUnica = new ContraseniaUnica()
                     {
-                        Password = "Admin.Semper_Papyrus"
+                         Password = "Admin.Semper_Papyrus"
                     };
 
                     if (manejadorDeContraseniaUnica.AGREGAR(contraseniaUnica))
@@ -132,9 +132,9 @@ namespace IURIS.DESKTOP.GUI.ADMIN
             //{
             //    if (PswrDeUsuario.Password == contrasenia.Password)
             //    {
-            WindowOperaciones windowOperaciones = new WindowOperaciones();
-            this.Close();
-            windowOperaciones.Show();
+                    WindowOperaciones windowOperaciones = new WindowOperaciones();
+                    this.Close();
+                    windowOperaciones.Show();
             //    }
             //    else
             //    {
