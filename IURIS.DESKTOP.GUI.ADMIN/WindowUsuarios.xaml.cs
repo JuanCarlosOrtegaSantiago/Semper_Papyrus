@@ -1,6 +1,6 @@
 ﻿using IURIS.BIZ;
+using IURIS.COMMON.Entidades.UsuarioGenerico;
 using IURIS.COMMON.Entidades.UsuarioGlobal;
-using IURIS.COMMON.Entidades.UsuariosAdministrador;
 using IURIS.COMMON.Interfaces;
 using IURIS.DAL;
 using System;
@@ -38,14 +38,14 @@ namespace IURIS.DESKTOP.GUI.ADMIN
         }
         AccionSeleccionComboBox SeleccionComboBox;
 
-        IManejadorDeUsuarioAdministrador manejadorDeUsuarioAdministrador;
+        IManejadorDeUsuarioGenerico manejadorDeUsuarioGenerico;
         UsuarioGlobal UsuarioGlobal;
 
         public WindowUsuarios(UsuarioGlobal usuarioGlobal)
         {
             InitializeComponent();
             UsuarioGlobal = usuarioGlobal;
-            manejadorDeUsuarioAdministrador = new ManejadorDeUsuariosAdministrador(new RepositorioGenerico<UsuarioAdministrador>());
+            manejadorDeUsuarioGenerico = new ManejadorDeUsuarioGenerico(new RepositorioGenerico<UsuarioGenerico>());
             EstadoInicial();
         }
 
@@ -86,7 +86,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
         private void CargarDarosEnComboBox()
         {
             cmbxUsuarios.ItemsSource = null;
-            cmbxUsuarios.ItemsSource = manejadorDeUsuarioAdministrador.Listar;
+            cmbxUsuarios.ItemsSource = manejadorDeUsuarioGenerico.Listar;
         }
 
         private void EstadoInicial()
@@ -109,7 +109,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
 
         private void BtnEditar_Click(object sender, RoutedEventArgs e)
         {
-            if (manejadorDeUsuarioAdministrador.Listar.Count <= 0)
+            if (manejadorDeUsuarioGenerico.Listar.Count <= 0)
             {
                 MessageBox.Show("No puedes editar ningun usuario \n ya que no tienes agregado a ninguno", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
@@ -134,7 +134,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
 
         private void BtnEliminar_Click(object sender, RoutedEventArgs e)
         {
-            if (manejadorDeUsuarioAdministrador.Listar.Count <= 0)
+            if (manejadorDeUsuarioGenerico.Listar.Count <= 0)
             {
                 MessageBox.Show("No puedes eliminar ningun usuario \n ya que no tienes agregado a ninguno", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
@@ -166,7 +166,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
                     {
                         if (txtContrasenia.Text == TxtRepetirContrasenia.Text)
                         {
-                            UsuarioAdministrador usuarioAdministrador = new UsuarioAdministrador()
+                            UsuarioGenerico usuarioGenerico= new UsuarioGenerico()
                             {
                                 Contrasenia = txtContrasenia.Text,
                                 Correo = txtCorreo.Text,
@@ -176,7 +176,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
                             if (MessageBox.Show(string.Format("¿Realmente decea agregar el usuario: {0}?", TxtNombre.Text), "Operación", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes) == MessageBoxResult.Yes)
                             {
 
-                                if (manejadorDeUsuarioAdministrador.AGREGAR(usuarioAdministrador))
+                                if (manejadorDeUsuarioGenerico.AGREGAR(usuarioGenerico))
                                 
                                     MessageBox.Show("Usuario agregado correctamente", "Operación", MessageBoxButton.OK, MessageBoxImage.Information);
 
@@ -201,7 +201,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
                     {
                         if (txtContrasenia.Text == TxtRepetirContrasenia.Text)
                         {
-                            UsuarioAdministrador usuarioAdministradorEditado = cmbxUsuarios.SelectedItem as UsuarioAdministrador;
+                            UsuarioGenerico usuarioAdministradorEditado = cmbxUsuarios.SelectedItem as UsuarioGenerico;
 
                             if (MessageBox.Show(string.Format("¿Realmente guardar los cambios \nal usuario: {0}?", usuarioAdministradorEditado.NombreCompleto), "Operación", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes) == MessageBoxResult.Yes)
                             {
@@ -210,7 +210,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
                                 usuarioAdministradorEditado.Direccion = txtDireccion.Text;
                                 usuarioAdministradorEditado.NombreCompleto = TxtNombre.Text;
 
-                                if (manejadorDeUsuarioAdministrador.Modificar(usuarioAdministradorEditado))
+                                if (manejadorDeUsuarioGenerico.Modificar(usuarioAdministradorEditado))
 
                                     MessageBox.Show("Usuario modificado correctamente", "Operación", MessageBoxButton.OK, MessageBoxImage.Information);
 
@@ -246,7 +246,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
 
         private void CmbxUsuarios_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            UsuarioAdministrador usuarioAdministrador = cmbxUsuarios.SelectedItem as UsuarioAdministrador;
+            UsuarioGenerico usuarioAdministrador = cmbxUsuarios.SelectedItem as UsuarioGenerico;
 
             if (usuarioAdministrador != null)
             {
@@ -268,7 +268,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
 
                         try
                         {
-                            if (manejadorDeUsuarioAdministrador.Eliminar(usuarioAdministrador.id))
+                            if (manejadorDeUsuarioGenerico.Eliminar(usuarioAdministrador.id))
 
                                 MessageBox.Show("El usuario fue eliminado exitosamemte", "Operación", MessageBoxButton.OK, MessageBoxImage.Information);
 

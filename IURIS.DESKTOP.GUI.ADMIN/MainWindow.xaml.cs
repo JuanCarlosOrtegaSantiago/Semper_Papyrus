@@ -1,7 +1,7 @@
 ﻿using IURIS.BIZ;
 using IURIS.COMMON.Entidades.ContraseniaDeAccesoUnico;
+using IURIS.COMMON.Entidades.UsuarioGenerico;
 using IURIS.COMMON.Entidades.UsuarioGlobal;
-using IURIS.COMMON.Entidades.UsuariosAdministrador;
 using IURIS.COMMON.Interfaces;
 using IURIS.DAL;
 using System;
@@ -27,7 +27,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
     public partial class MainWindow : Window
     {
 
-        IManejadorDeUsuarioAdministrador manejadorDeUsuarioAdministrador;
+        IManejadorDeUsuarioGenerico manejadorDeUsuarioGenerico;
         IManejadorDeContraseniaUnica manejadorDeContraseniaUnica;
         IManejadorDeUsuarioGlobal manejadorDeUsuarioGlobal;
 
@@ -36,7 +36,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
         public MainWindow()
         {
             InitializeComponent();
-            manejadorDeUsuarioAdministrador = new ManejadorDeUsuariosAdministrador(new RepositorioGenerico<UsuarioAdministrador>());
+            manejadorDeUsuarioGenerico = new ManejadorDeUsuarioGenerico(new RepositorioGenerico<UsuarioGenerico>());
             manejadorDeContraseniaUnica = new ManejadorDeContraseniaUnica(new RepositorioGenerico<ContraseniaUnica>());
             manejadorDeUsuarioGlobal = new ManejadorDeUsuarioGlobal(new RepositorioGenerico<UsuarioGlobal>());
             IniciandoPrograma();
@@ -46,7 +46,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
         private void CosasAInicializarConUsuarios()
         {
             CmbxUsuario.ItemsSource = null;
-            CmbxUsuario.ItemsSource = manejadorDeUsuarioAdministrador.Listar;
+            CmbxUsuario.ItemsSource = manejadorDeUsuarioGenerico.Listar;
         }
 
         private void IniciandoPrograma()
@@ -85,15 +85,15 @@ namespace IURIS.DESKTOP.GUI.ADMIN
                     contrasenia = manejadorDeContraseniaUnica.Listar.SingleOrDefault();
                 }
 
-                if (manejadorDeUsuarioAdministrador.Listar.Count == 0)
+                if (manejadorDeUsuarioGenerico.Listar.Count == 0)
                 {
-                    UsuarioAdministrador usuarioAdministrador = new UsuarioAdministrador()
+                    UsuarioGenerico usuarioGenerico= new UsuarioGenerico()
                     {
                         NombreCompleto = "User1",
                         Contrasenia = manejadorDeContraseniaUnica.Listar.SingleOrDefault().Password
                     };
 
-                    manejadorDeUsuarioAdministrador.AGREGAR(usuarioAdministrador);
+                    manejadorDeUsuarioGenerico.AGREGAR(usuarioGenerico);
                     CosasAInicializarConUsuarios();
                 }
 
