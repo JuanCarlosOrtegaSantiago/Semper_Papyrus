@@ -27,17 +27,6 @@ namespace IURIS.DESKTOP.GUI.ADMIN
             UsuarioGlobal = usuarioGlobal;
         }
 
-        private void BtnCancelar_Click(object sender, RoutedEventArgs e)
-        {
-            if (MessageBox.Show("¿Esta seguro de regresar?", "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No) == MessageBoxResult.Yes)
-            {
-                WindowMenuAdmin windowMenuAdmin= new WindowMenuAdmin(UsuarioGlobal);
-                this.Close();
-                windowMenuAdmin.Show();
-            }
-
-        }
-
         private void BtnAceptar_Click(object sender, RoutedEventArgs e)
         {
             if (RdBtnUsuarioAdmin.IsChecked == false && RdBtnUsuarioGlobal.IsChecked == false)
@@ -58,6 +47,16 @@ namespace IURIS.DESKTOP.GUI.ADMIN
                     this.Close();
                     windowUsuarios.Show();
                 }
+            }
+        }
+
+        private void BtnRegresar_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("¿Esta seguro de regresar?", "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No) == MessageBoxResult.Yes)
+            {
+                WindowMenuAdmin windowMenuAdmin = new WindowMenuAdmin(UsuarioGlobal);
+                this.Close();
+                windowMenuAdmin.Show();
             }
         }
     }

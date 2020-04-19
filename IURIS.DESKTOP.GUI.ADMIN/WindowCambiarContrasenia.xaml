@@ -23,12 +23,12 @@
         </Grid.RowDefinitions>
 
         <WrapPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2">
-            <Label Style="{DynamicResource LabelStyle1}" FontSize="15">Ingresa la nueva Contraseña</Label>
+            <Label Style="{DynamicResource LabelStyle1}" FontSize="15">Ingresa la nueva contraseña</Label>
             <TextBox x:Name="txtContraseniaNueva" Height="30" Width="200" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="15"></TextBox>
         </WrapPanel>
 
         <WrapPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2">
-            <Label Style="{DynamicResource LabelStyle1}" FontSize="15">Confirma la nueva Contraseña</Label>
+            <Label Style="{DynamicResource LabelStyle1}" FontSize="15">Confirma la nueva contraseña</Label>
             <TextBox x:Name="txtConfirmarContraseniaNueva" Height="30" Width="200" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="15"></TextBox>
         </WrapPanel>
         <WrapPanel x:Name="WrpErrorDeContrasenia" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Visibility="Collapsed">

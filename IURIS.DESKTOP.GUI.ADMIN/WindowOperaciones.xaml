@@ -70,7 +70,7 @@
             <Button x:Name="BtnAdministrador" Click="BtnAdministrador_Click" Style="{DynamicResource ButtonStyle1}">
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Image Source="Imagenes/Admin.png" Width="100" Height="100"></Image>
-                    <Label Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold">Administrador</Label>
+                    <Label Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold">Usurio global</Label>
                 </StackPanel>
             </Button>
         </WrapPanel>

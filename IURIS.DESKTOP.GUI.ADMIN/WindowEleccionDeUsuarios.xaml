@@ -26,13 +26,13 @@
         </WrapPanel>
 
         <WrapPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2">
-            <RadioButton x:Name="RdBtnUsuarioGlobal" VerticalContentAlignment="Center" Margin="10,10" FontSize="15" Foreground="White">Usuario Global</RadioButton>
-            <RadioButton x:Name="RdBtnUsuarioAdmin" VerticalContentAlignment="Center" Margin="10,10" FontSize="15" Foreground="White">Usuario Administrador</RadioButton>
+            <RadioButton x:Name="RdBtnUsuarioGlobal" VerticalContentAlignment="Center" Margin="10,10" FontSize="15" Foreground="White">Usuario global</RadioButton>
+            <RadioButton x:Name="RdBtnUsuarioAdmin" VerticalContentAlignment="Center" Margin="10,10" FontSize="15" Foreground="White">Usuario genérico</RadioButton>
         </WrapPanel>
         
         <WrapPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,15">
             <Button Style="{DynamicResource ButtonStyle1}" Width="80" Height="30" BorderBrush="White" Margin="15,0" x:Name="BtnAceptar" Click="BtnAceptar_Click">Aceptar</Button>
-            <Button Style="{DynamicResource ButtonStyle1}" Width="80" Height="30" BorderBrush="White" Margin="15,0" x:Name="BtnCancelar" Click="BtnCancelar_Click">Regresar</Button>
+            <Button Style="{DynamicResource ButtonStyle1}" Width="80" Height="30" BorderBrush="White" Margin="15,0" x:Name="BtnRegresar" Click="BtnRegresar_Click">Regresar</Button>
         </WrapPanel>
     </Grid>
 </Window>
