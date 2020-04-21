@@ -1,0 +1,64 @@
+{
+    "_id": {
+        "$oid": "5e953f6abaf60305982d6812"
+    },
+    "NombreLey": "vrsdasax",
+    "CodigoLey": "csxascae",
+    "EsModificacion": false,
+    "UltimaFechaDeModificacion": {
+        "$date": "2020-04-13T05:00:00.000Z"
+    },
+    "ListaDeTitulos": [
+        {
+            "NombreTitulo": "xwas",
+            "NumTitulo": "xasx",
+            "ListaCapitulos": [
+                {
+                    "NombreCapitulo": "xsaxa",
+                    "NumCapitulo": "xasxa",
+                    "ListaArticulos": [
+                        {
+                            "NombreArticulo": "nl ",
+                            "NumArticulo": "lk ",
+                            "Contenido": "lxask\r\n"
+                        }
+                    ]
+                },
+                {
+                    "NombreCapitulo": "xsxs",
+                    "NumCapitulo": "ceas",
+                    "ListaArticulos": [
+                        {
+                            "NombreArticulo": "xasxsa",
+                            "NumArticulo": "cdscd",
+                            "Contenido": "cdcsc\r\n"
+                        },
+                        {
+                            "NombreArticulo": "cssa",
+                            "NumArticulo": "cas",
+                            "Contenido": "csaxsx\r\n"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "NombreTitulo": "cescbt",
+            "NumTitulo": "rtbgrf",
+            "ListaCapitulos": [
+                {
+                    "NombreCapitulo": "vrdfs",
+                    "NumCapitulo": "scsxca",
+                    "ListaArticulos": [
+                        {
+                            "NombreArticulo": "crgr",
+                            "NumArticulo": "bdrv",
+                            "Contenido": "bdvd\r\n"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "numDescargas": 0
+}
