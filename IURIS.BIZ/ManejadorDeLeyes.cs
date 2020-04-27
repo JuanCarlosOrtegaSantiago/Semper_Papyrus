@@ -26,7 +26,8 @@ namespace IURIS.BIZ
         public Leyes BuscarLey(string NombreDeLEy)
         {
         
-            return Listar.Where(e => e.NombreLey == NombreDeLEy).ToList().OrderBy(e => e.NombreLey).Single();
+            return Listar.Where(e => e.NombreLey == NombreDeLEy).SingleOrDefault();
+            //return Listar.Where(e => e.NombreLey == NombreDeLEy).ToList().OrderBy(e => e.NombreLey).Single();
         }
 
         public bool BuscarPorCodigo(string codigo)

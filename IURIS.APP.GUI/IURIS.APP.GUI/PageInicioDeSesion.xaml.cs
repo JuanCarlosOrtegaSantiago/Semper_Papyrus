@@ -40,5 +40,15 @@ namespace IURIS.APP.GUI
                 Intentos = 0;
             }
         }
+
+        private void BtnAceptar_Clicked(object sender, EventArgs e)
+        {
+            Intentos++;
+            if (Intentos == 1)
+            {
+                Navigation.PushAsync(new PageVerLey(), false);
+                Intentos = 0;
+            }
+        }
     }
 }

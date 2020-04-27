@@ -59,7 +59,7 @@
                             HasShadow="True"
                             IsClippedToBounds="True">
 
-                                    <Button Text="Aceptar" x:Name="btnAceptar" Style="{StaticResource buttonPrincipal}" ></Button>
+                                    <Button Text="Aceptar" x:Name="btnAceptar" Clicked="BtnAceptar_Clicked" Style="{StaticResource buttonPrincipal}" ></Button>
                                 </Frame>
                                 <Frame
                             Margin="25,0"

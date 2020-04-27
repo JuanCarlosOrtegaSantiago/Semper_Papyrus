@@ -89,8 +89,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
                 {
                     UsuarioGenerico usuarioGenerico= new UsuarioGenerico()
                     {
-                        NombreCompleto = "User1",
-                        Contrasenia = manejadorDeContraseniaUnica.Listar.SingleOrDefault().Password
+                        NombreCompleto = "User1"
                     };
 
                     manejadorDeUsuarioGenerico.AGREGAR(usuarioGenerico);

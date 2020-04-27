@@ -51,20 +51,16 @@ namespace IURIS.DESKTOP.GUI.ADMIN
 
         private void LimpiarCampos()
         {
-            txtContrasenia.Clear();
             txtCorreo.Clear();
             txtDireccion.Clear();
             TxtNombre.Clear();
-            TxtRepetirContrasenia.Clear();
         }
 
         private void TextosSonEditables(bool Y)
         {
-            txtContrasenia.IsEnabled = Y;
             txtCorreo.IsEnabled = Y;
             txtDireccion.IsEnabled = Y;
             TxtNombre.IsEnabled = Y;
-            TxtRepetirContrasenia.IsEnabled = Y;
         }
 
         private void BotonesSonEditables(bool X)
@@ -160,73 +156,55 @@ namespace IURIS.DESKTOP.GUI.ADMIN
             try
             {
 
-                if (!string.IsNullOrWhiteSpace(txtContrasenia.Text) && !string.IsNullOrWhiteSpace(txtCorreo.Text) && !string.IsNullOrWhiteSpace(txtDireccion.Text) && !string.IsNullOrWhiteSpace(TxtNombre.Text) && !string.IsNullOrWhiteSpace(TxtRepetirContrasenia.Text))
+                if (!string.IsNullOrWhiteSpace(txtCorreo.Text) && !string.IsNullOrWhiteSpace(txtDireccion.Text) && !string.IsNullOrWhiteSpace(TxtNombre.Text))
                 {
                     if (AccionDeGuardarUsuarioAdministrador == AccionGuardar.Nuevo)
                     {
-                        if (txtContrasenia.Text == TxtRepetirContrasenia.Text)
+                        UsuarioGenerico usuarioGenerico = new UsuarioGenerico()
                         {
-                            UsuarioGenerico usuarioGenerico= new UsuarioGenerico()
-                            {
-                                Contrasenia = txtContrasenia.Text,
-                                Correo = txtCorreo.Text,
-                                Direccion = txtDireccion.Text,
-                                NombreCompleto = TxtNombre.Text,
-                            };
-                            if (MessageBox.Show(string.Format("¿Realmente decea agregar el usuario: {0}?", TxtNombre.Text), "Operación", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes) == MessageBoxResult.Yes)
-                            {
-
-                                if (manejadorDeUsuarioGenerico.AGREGAR(usuarioGenerico))
-                                
-                                    MessageBox.Show("Usuario agregado correctamente", "Operación", MessageBoxButton.OK, MessageBoxImage.Information);
-
-                                else
-
-                                    MessageBox.Show("Error al agregar el usuario", "Operación", MessageBoxButton.OK, MessageBoxImage.Hand);
-                                
-                            }
-
-                            ElementosHabilitados(false);
-                            EstadoInicial();
-                        }
-                        else
+                            Correo = txtCorreo.Text,
+                            Direccion = txtDireccion.Text,
+                            NombreCompleto = TxtNombre.Text,
+                        };
+                        if (MessageBox.Show(string.Format("¿Realmente decea agregar el usuario: {0}?", TxtNombre.Text), "Operación", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes) == MessageBoxResult.Yes)
                         {
-                            MessageBox.Show("Las contraseñas no son iguales\nPor favor verificar", "Error", MessageBoxButton.OK, MessageBoxImage.Stop);
+
+                            if (manejadorDeUsuarioGenerico.AGREGAR(usuarioGenerico))
+
+                                MessageBox.Show("Usuario agregado correctamente", "Operación", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                            else
+
+                                MessageBox.Show("Error al agregar el usuario", "Operación", MessageBoxButton.OK, MessageBoxImage.Hand);
 
                         }
+
+                        ElementosHabilitados(false);
+                        EstadoInicial();
 
 
                     }
                     else
                     {
-                        if (txtContrasenia.Text == TxtRepetirContrasenia.Text)
+                        UsuarioGenerico usuarioAdministradorEditado = cmbxUsuarios.SelectedItem as UsuarioGenerico;
+
+                        if (MessageBox.Show(string.Format("¿Realmente guardar los cambios \nal usuario: {0}?", usuarioAdministradorEditado.NombreCompleto), "Operación", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes) == MessageBoxResult.Yes)
                         {
-                            UsuarioGenerico usuarioAdministradorEditado = cmbxUsuarios.SelectedItem as UsuarioGenerico;
+                            usuarioAdministradorEditado.Correo = txtCorreo.Text;
+                            usuarioAdministradorEditado.Direccion = txtDireccion.Text;
+                            usuarioAdministradorEditado.NombreCompleto = TxtNombre.Text;
 
-                            if (MessageBox.Show(string.Format("¿Realmente guardar los cambios \nal usuario: {0}?", usuarioAdministradorEditado.NombreCompleto), "Operación", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes) == MessageBoxResult.Yes)
-                            {
-                                usuarioAdministradorEditado.Contrasenia = txtContrasenia.Text;
-                                usuarioAdministradorEditado.Correo = txtCorreo.Text;
-                                usuarioAdministradorEditado.Direccion = txtDireccion.Text;
-                                usuarioAdministradorEditado.NombreCompleto = TxtNombre.Text;
+                            if (manejadorDeUsuarioGenerico.Modificar(usuarioAdministradorEditado))
 
-                                if (manejadorDeUsuarioGenerico.Modificar(usuarioAdministradorEditado))
+                                MessageBox.Show("Usuario modificado correctamente", "Operación", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                                    MessageBox.Show("Usuario modificado correctamente", "Operación", MessageBoxButton.OK, MessageBoxImage.Information);
+                            else
 
-                                else
-
-                                    MessageBox.Show("Error al modificar el usuario", "Operación", MessageBoxButton.OK, MessageBoxImage.Hand);
-
-                            }
-                            ElementosHabilitados(false);
-                            EstadoInicial();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Las contraseñas no son iguales\nPor favor verificar", "Error", MessageBoxButton.OK, MessageBoxImage.Stop);
+                                MessageBox.Show("Error al modificar el usuario", "Operación", MessageBoxButton.OK, MessageBoxImage.Hand);
 
                         }
+                        ElementosHabilitados(false);
+                        EstadoInicial();
 
                     }
                 }
@@ -253,11 +231,9 @@ namespace IURIS.DESKTOP.GUI.ADMIN
 
                 if (SeleccionComboBox == AccionSeleccionComboBox.Editar)
                 {
-                    txtContrasenia.Text = usuarioAdministrador.Contrasenia;
                     txtCorreo.Text = usuarioAdministrador.Correo;
                     txtDireccion.Text = usuarioAdministrador.Direccion;
                     TxtNombre.Text = usuarioAdministrador.NombreCompleto;
-                    TxtRepetirContrasenia.Text = usuarioAdministrador.Contrasenia;
                     
                     
                 }
