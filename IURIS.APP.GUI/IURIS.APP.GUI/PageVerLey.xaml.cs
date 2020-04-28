@@ -23,7 +23,7 @@ namespace IURIS.APP.GUI
             InitializeComponent();
             manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
             Leyes leyes;
-            leyes = manejadorDeLeyes.BuscarLey("vrsdasax");
+            leyes = manejadorDeLeyes.BuscarLey("MiEjemplo");
             this.Title = leyes.NombreLey;
             ListTitulos.ItemsSource = leyes.ListaDeTitulos;
 
