@@ -8,6 +8,7 @@ namespace IURIS.COMMON.Entidades.Ley.ComponentesDeLey
     {
         public string NombreTitulo { get; set; }
         public string NumTitulo { get; set; }
+        public bool Isvisible{ get; set; }
         public List<Capitulo> ListaCapitulos { get; set; }
     }
 }
