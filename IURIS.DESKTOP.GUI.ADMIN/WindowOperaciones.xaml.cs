@@ -36,10 +36,10 @@ namespace IURIS.DESKTOP.GUI.ADMIN
 
         private void BtnModificarLey_Click(object sender, RoutedEventArgs e)
         {
-            WindowOperacionesDeLeyes windowOperacionesDeLeyes = new WindowOperacionesDeLeyes();
+            WindowMostrarListaDeLeyes windowMostrarListaDeLeyes= new WindowMostrarListaDeLeyes();
             //WindowOperacionesDeLeyes windowOperacionesDeLeyes = new WindowOperacionesDeLeyes(EsNuevaLey);
             this.Close();
-            windowOperacionesDeLeyes.Show();
+            windowMostrarListaDeLeyes.Show();
         }
 
         private void BtnSalir_Click(object sender, RoutedEventArgs e)

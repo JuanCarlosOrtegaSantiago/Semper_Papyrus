@@ -18,6 +18,8 @@ namespace IURIS.BIZ
         }
         public List<Leyes> Listar => repositorio.Read;
 
+        public List<Leyes> MostrarLeyes => repositorio.Read.OrderByDescending(e => e.UltimaFechaDeModificacion).ToList();
+
         public bool AGREGAR(Leyes entidad)
         {
             return repositorio.Create(entidad);
@@ -25,7 +27,7 @@ namespace IURIS.BIZ
 
         public List<Leyes> BuscarEnLeyes(string BuscarLey)
         {
-            return repositorio.Read.Where(e => e.NombreLey.Contains(BuscarLey) == true).ToList();
+            return repositorio.Read.Where(e => e.NombreLey.ToUpper().Contains(BuscarLey.ToUpper()) == true || e.CodigoLey.ToUpper().Contains(BuscarLey.ToUpper()) == true).OrderByDescending(e => e.UltimaFechaDeModificacion).ToList();
         }
 
         public Leyes BuscarLey(string NombreDeLEy)
