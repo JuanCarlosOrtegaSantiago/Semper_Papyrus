@@ -9,5 +9,6 @@ namespace IURIS.COMMON.Interfaces
     {
         bool BuscarPorCodigo(string codigo);
         Leyes BuscarLey(string NombreDeLEy);
+        List<Leyes> BuscarEnLeyes(string BuscarLey);
     }
 }

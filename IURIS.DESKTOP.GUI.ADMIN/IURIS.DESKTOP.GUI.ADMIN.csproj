@@ -98,6 +98,9 @@
     <Compile Include="WindowEditarDatosDeAdmin.xaml.cs">
       <DependentUpon>WindowEditarDatosDeAdmin.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WindowEditarLey.xaml.cs">
+      <DependentUpon>WindowEditarLey.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowEleccionDeUsuarios.xaml.cs">
       <DependentUpon>WindowEleccionDeUsuarios.xaml</DependentUpon>
     </Compile>
@@ -145,6 +148,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WindowEditarDatosDeAdmin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowEditarLey.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

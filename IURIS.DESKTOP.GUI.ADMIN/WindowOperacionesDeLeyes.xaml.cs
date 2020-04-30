@@ -38,7 +38,6 @@ namespace IURIS.DESKTOP.GUI.ADMIN
         {
             InitializeComponent();
             manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
-            LblOperacionARealizar.Content = "Nueva ley // editar ley";
             EstadoDeCajas(false);
 
         }

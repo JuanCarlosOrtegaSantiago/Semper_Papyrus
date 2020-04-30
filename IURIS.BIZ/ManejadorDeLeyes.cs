@@ -23,6 +23,11 @@ namespace IURIS.BIZ
             return repositorio.Create(entidad);
         }
 
+        public List<Leyes> BuscarEnLeyes(string BuscarLey)
+        {
+            return repositorio.Read.Where(e => e.NombreLey.Contains(BuscarLey) == true).ToList();
+        }
+
         public Leyes BuscarLey(string NombreDeLEy)
         {
         
