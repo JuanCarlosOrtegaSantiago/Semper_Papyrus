@@ -116,7 +116,7 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Codigo" Width="auto" DisplayMemberBinding="{Binding CodigoLey}" />
-                    <GridViewColumn Header="No,bre" Width="auto" DisplayMemberBinding="{Binding NombreLey}" />
+                    <GridViewColumn Header="Nombre" Width="auto" DisplayMemberBinding="{Binding NombreLey}" />
                     <GridViewColumn Header="Ultima modificacion" Width="auto" DisplayMemberBinding="{Binding UltimaFechaDeModificacion}" />
                 </GridView>
             </ListView.View>

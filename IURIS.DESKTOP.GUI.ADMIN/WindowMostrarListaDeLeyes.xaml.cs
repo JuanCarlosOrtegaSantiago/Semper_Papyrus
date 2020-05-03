@@ -74,7 +74,9 @@ namespace IURIS.DESKTOP.GUI.ADMIN
             if (ListLeyes.SelectedItem != null)
             {
                 Leyes ley = ListLeyes.SelectedItem as Leyes;
-                MessageBox.Show(ley.NombreLey);
+                WindowEditarLey windowEditarLey = new WindowEditarLey(ley);
+                this.Close();
+                windowEditarLey.Show();
             }
         }
     }

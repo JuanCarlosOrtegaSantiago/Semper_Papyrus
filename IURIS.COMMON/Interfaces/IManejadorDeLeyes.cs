@@ -11,5 +11,7 @@ namespace IURIS.COMMON.Interfaces
         Leyes BuscarLey(string NombreDeLEy);
         List<Leyes> BuscarEnLeyes(string BuscarLey);
         List<Leyes> MostrarLeyes { get; }
+
+
     }
 }
