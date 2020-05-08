@@ -61,11 +61,11 @@ namespace IURIS.DESKTOP.GUI.ADMIN
 
                 //titulos.IndexOf(ListTitulos.SelectedItem as Titulo, indice);
 
-                Titulo leyes = ListTitulos.SelectedItem as Titulo;
+                Titulo titulo = ListTitulos.SelectedItem as Titulo;
 
-                List<Capitulo> titulo = leyes.ListaCapitulos as List<Capitulo>;
+                List<Capitulo> capitulos = titulo.ListaCapitulos as List<Capitulo>;
 
-                foreach (var item in titulo)
+                foreach (var item in capitulos)
                 {
                     MessageBox.Show(item.NombreCapitulo);
                 }

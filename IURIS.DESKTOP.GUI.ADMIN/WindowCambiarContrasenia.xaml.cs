@@ -6,6 +6,8 @@ using IURIS.DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -64,6 +66,20 @@ namespace IURIS.DESKTOP.GUI.ADMIN
                         {
                             if (MessageBox.Show("La contraseña se actualizo correctamente\n Por favor vuelve a iniciar sesion", "Operacion", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.OK) == MessageBoxResult.OK)
                             {
+
+                                //Mandar correo electronico
+
+                                //MailMessage mailMessage = new MailMessage();
+                                //mailMessage.From = new MailAddress("Ssa");
+                                //mailMessage.To.Add("");
+                                //mailMessage.Subject = "";
+                                //mailMessage.Body = txtContraseniaNueva.Text;
+
+                                //SmtpClient smtpClient = new SmtpClient();
+                                //smtpClient.Port = 587;
+                                //smtpClient.Credentials = new System.Net.NetworkCredential("sender", "password");
+                                //smtpClient.Send(mailMessage);
+
                                 MainWindow mainWindow = new MainWindow();
                                 this.Close();
                                 mainWindow.Show();

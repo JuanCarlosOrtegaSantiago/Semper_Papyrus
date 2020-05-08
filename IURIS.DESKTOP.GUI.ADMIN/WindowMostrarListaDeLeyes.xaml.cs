@@ -29,6 +29,10 @@ namespace IURIS.DESKTOP.GUI.ADMIN
             InitializeComponent();
             manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
 
+            if (manejadorDeLeyes.Listar.Count <= 0)
+                if (MessageBox.Show("Aun no tiene leyes agregadas", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning) == MessageBoxResult.OK)
+                    this.Close();
+
             ListLeyes.ItemsSource = manejadorDeLeyes.MostrarLeyes;
         }
 
