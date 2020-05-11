@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,6 +25,28 @@ namespace IURIS.DESKTOP.GUI.ADMIN
         public WindowOperaciones( )
         {
             InitializeComponent();
+
+            //try
+            //{
+            //    string mail = "salut";
+            //    MailMessage msg = new MailMessage();
+            //    msg.From = new MailAddress("tecprogjuancarlos@gmail.com");
+            //    msg.To.Add(new MailAddress("juankxsantix@gmail.com"));
+            //    msg.Body = mail;
+            //    SmtpClient client = new SmtpClient("smtp.googl.com",587);
+            //    client.EnableSsl = false;
+            //    client.Timeout = 10000;
+            //    //client.Port = 587;
+            //    client.Credentials = new NetworkCredential("tecprogjuancarlos@gmail.com", "juankx99stx");
+            //    client.Send(msg);
+
+            //    MessageBox.Show("Successfully Message Sent!");
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("Message not sent because of:" + ex.Message);
+            //}
+
         }
 
         private void BtnSubirNuevaLey_Click(object sender, RoutedEventArgs e)

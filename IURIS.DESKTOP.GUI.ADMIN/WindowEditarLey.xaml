@@ -12,13 +12,10 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="20"/>
+            <RowDefinition Height="80"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
-            <!--<RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>-->
             <RowDefinition Height="auto"/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
@@ -55,34 +52,103 @@
 
         <!--comienza con los cuadros para ediciones-->
 
-        <WrapPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="8">
-            <WrapPanel Orientation="Horizontal">
+        <WrapPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="8" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="15,0">
+            <WrapPanel Orientation="Horizontal" VerticalAlignment="Center">
 
-                <WrapPanel Orientation="Horizontal" Margin="20,0">
+                <WrapPanel Orientation="Horizontal" Margin="20,0" VerticalAlignment="Center">
                 <Label Style="{DynamicResource LabelStyle1}" >Nombre</Label>
             </WrapPanel>
                 <TextBox x:Name="txtNombre" Width="250" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"></TextBox>
             </WrapPanel>
-            <WrapPanel Orientation="Horizontal">
+            <WrapPanel Orientation="Horizontal" VerticalAlignment="Center">
                 
-            <WrapPanel Orientation="Horizontal" Margin="20,0">
+            <WrapPanel Orientation="Horizontal" Margin="20,0" VerticalAlignment="Center">
                 <Label Style="{DynamicResource LabelStyle1}" >Codigo</Label>
             </WrapPanel>
                 <TextBox x:Name="txtCodigo" Width="250" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"></TextBox>
             </WrapPanel>
-            
+
+
         </WrapPanel>
+            <Button x:Name="BtnAdd" Click="BtnAdd_Click" Grid.Row="2" Grid.Column="8" Width="40" Height="40" Style="{DynamicResource ButtonStyle1}" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <Image Source="Imagenes/add.png" Width="40" Height="40" VerticalAlignment="Center" HorizontalAlignment="Center" ></Image>
+            </Button>
         
+        <Separator Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="10" VerticalAlignment="Top" Background="White"/>
+
+        <WrapPanel x:Name="wraMas" Orientation="Horizontal" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="8" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="15,0" Visibility="Collapsed">
+            <WrapPanel Orientation="Vertical" VerticalAlignment="Center" Margin="10,10" >
+
+                <RadioButton x:Name="RdoBtnTitulo" Click="RdoBtnTitulo_Click"  VerticalContentAlignment="Center">
+                    <Label Style="{DynamicResource LabelStyle1}" >Titulo</Label>
+                </RadioButton>
+
+                <RadioButton x:Name="RdoBtnCapitulo" Checked="RdoBtnCapitulo_Checked" VerticalContentAlignment="Center">
+                    <Label Style="{DynamicResource LabelStyle1}" >Capitulo</Label>
+                </RadioButton>
+
+                <RadioButton x:Name="RdoBtnArticulo" Checked="RdoBtnArticulo_Checked" VerticalContentAlignment="Center">
+                    <Label Style="{DynamicResource LabelStyle1}" >Articulo</Label>
+                </RadioButton>
+
+            </WrapPanel>
+
+            <WrapPanel Orientation="Vertical" VerticalAlignment="Center" Margin="20,0" HorizontalAlignment="Center">
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                    <WrapPanel Orientation="Horizontal">
+
+                        <WrapPanel Orientation="Horizontal" Margin="10,0">
+                            <Label Style="{DynamicResource LabelStyle1}" >Numero titulo</Label>
+                        </WrapPanel>
+                        <TextBox x:Name="txtNumeroTitulo" Width="150" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"></TextBox>
+
+                    </WrapPanel>
+
+                    <WrapPanel x:Name="WrpCapitulo" Orientation="Horizontal" Visibility="Collapsed">
+
+                        <WrapPanel Orientation="Horizontal" Margin="10,0">
+                            <Label Style="{DynamicResource LabelStyle1}" >Numero capitulo</Label>
+                        </WrapPanel>
+                        <TextBox x:Name="txtNumeroCaputilo" Width="150" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"></TextBox>
+
+                    </WrapPanel>
+
+                    <WrapPanel x:Name="WrpArticulo" Orientation="Horizontal" Visibility="Collapsed">
+
+                        <WrapPanel Orientation="Horizontal" Margin="10,0">
+                            <Label Style="{DynamicResource LabelStyle1}" >Numero articulo</Label>
+                        </WrapPanel>
+                        <TextBox x:Name="txtNumeroArtitulo" Width="150" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"></TextBox>
+
+                    </WrapPanel>
+                </WrapPanel>
+                <WrapPanel VerticalAlignment="Center" Margin="0,15"  HorizontalAlignment="Center">
+
+                    <Button x:Name="BtnBuscar" Click="BtnBuscar_Click" Width="200" Height="40" Style="{DynamicResource ButtonStyle1}" BorderBrush="White" VerticalContentAlignment="Center" VerticalAlignment="Center">
+                        <WrapPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Label Style="{DynamicResource LabelStyle1}" Margin="5,0" VerticalAlignment="Top" VerticalContentAlignment="Top">Buscar</Label>
+                            <Image Source="Imagenes/Buscar.png" Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center" ></Image>
+                        </WrapPanel>
+                    </Button>
+
+                    <Button x:Name="BtnCancel" Click="BtnCancel_Click" Width="40" Height="40" Style="{DynamicResource ButtonStyle1}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="100,0,0,0">
+                        <Image Source="Imagenes/cancel.png" Width="40" Height="40" VerticalAlignment="Center" HorizontalAlignment="Center" ></Image>
+                    </Button>
+                </WrapPanel>
+            </WrapPanel>
+        </WrapPanel>
+
+
         <ListView x:Name="ListTitulos" 
                   ScrollViewer.VerticalScrollBarVisibility="Auto"
                   ScrollViewer.CanContentScroll="False"
-                  Grid.Row="3" Grid.RowSpan="2" 
+                  Grid.Row="4" Grid.RowSpan="2" 
                   Background="Transparent" 
                   Grid.Column="1" Grid.ColumnSpan="8" 
                   HorizontalAlignment="Center" 
                   Selector.IsSelected="False"
-                  BorderBrush="Transparent" ItemsSource="{Binding Titulo}"
-                  MouseDoubleClick="ListTitulos_MouseDoubleClick">
+                  BorderBrush="Transparent" ItemsSource="{Binding Titulo}">
             
             <ListView.ItemTemplate>
                 <DataTemplate>

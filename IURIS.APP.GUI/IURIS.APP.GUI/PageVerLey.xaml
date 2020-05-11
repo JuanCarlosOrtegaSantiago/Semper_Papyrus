@@ -26,8 +26,8 @@
                 </ListView.HeaderTemplate>-->
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell>
-                            <ContentView  >
+                        <!--<ViewCell>
+                            <ContentView  >-->
                                 <!--Padding="2, 5, 5, 0"-->
                                 <!--<ScrollView>-->
 
@@ -101,8 +101,8 @@
 
                                     </Grid>
                                 <!--</ScrollView>-->
-                            </ContentView>
-                        </ViewCell>
+                            <!--</ContentView>
+                        </ViewCell>-->
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
