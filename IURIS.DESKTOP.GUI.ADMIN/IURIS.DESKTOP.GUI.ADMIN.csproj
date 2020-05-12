@@ -55,6 +55,9 @@
     <Reference Include="MongoDB.Libmongocrypt, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MongoDB.Libmongocrypt.1.0.0\lib\net452\MongoDB.Libmongocrypt.dll</HintPath>
     </Reference>
+    <Reference Include="Mono.Android">
+      <HintPath>..\..\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v8.1\Mono.Android.dll</HintPath>
+    </Reference>
     <Reference Include="SharpCompress, Version=0.23.0.0, Culture=neutral, PublicKeyToken=afb0a02973931d96, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpCompress.0.23.0\lib\net45\SharpCompress.dll</HintPath>
     </Reference>
@@ -106,6 +109,9 @@
     </Compile>
     <Compile Include="WindowMenuAdmin.xaml.cs">
       <DependentUpon>WindowMenuAdmin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowModificarDatos.xaml.cs">
+      <DependentUpon>WindowModificarDatos.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowMostrarListaDeLeyes.xaml.cs">
       <DependentUpon>WindowMostrarListaDeLeyes.xaml</DependentUpon>
@@ -163,6 +169,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WindowMenuAdmin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowModificarDatos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

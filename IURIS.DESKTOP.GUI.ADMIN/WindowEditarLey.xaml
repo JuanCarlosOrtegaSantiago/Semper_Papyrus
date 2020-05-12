@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="WindowEditarLey" Height="600" Width="800" WindowStyle="None" Background="#640404" WindowStartupLocation="CenterScreen" >
 
+    
     <Grid>
 
         <Grid.RowDefinitions>
@@ -147,11 +148,78 @@
                   Background="Transparent" 
                   Grid.Column="1" Grid.ColumnSpan="8" 
                   HorizontalAlignment="Center" 
-                  Selector.IsSelected="False"
-                  BorderBrush="Transparent" ItemsSource="{Binding Titulo}">
-            
-            <ListView.ItemTemplate>
+                  ItemsSource="{Binding Titulo}" 
+                  BorderBrush="Transparent" 
+                   >
+
+                <!--IsHitTestVisible="False"  OpacityMask="Transparent" -->
+
+            <!--<ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="Transparent" />
+                            <Setter Property="BorderBrush" Value="Transparent" />
+                            <Setter Property="BorderThickness" Value="0" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListView.ItemContainerStyle>-->
+            <!--<ListView.ItemContainerStyle>
+
+                <Style TargetType="{x:Type ListViewItem}">
+                    <Style.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="true" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter Property="FocusManager.IsFocusScope" Value="False" />
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                    </Style.Triggers>
+                    <Setter Property="Focusable" Value="False"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ListViewItem">
+                                <Border x:Name="border" Background="Transparent">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Normal" />
+                                            <VisualState x:Name="Disabled" />
+                                        </VisualStateGroup>
+                                        <VisualStateGroup x:Name="SelectionStates">
+                                            <VisualState x:Name="Unselected" />
+                                            <VisualState x:Name="Selected">
+                                                <Storyboard>
+                                                    <ColorAnimationUsingKeyFrames Storyboard.TargetName="border"
+                                                              Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+                                                        <EasingColorKeyFrame KeyTime="0" Value="LightBlue" />
+                                                    </ColorAnimationUsingKeyFrames>
+                                                </Storyboard>
+                                            </VisualState>
+                                            <VisualState x:Name="SelectedUnfocused">
+                                                <Storyboard>
+                                                    <ColorAnimationUsingKeyFrames Storyboard.TargetName="border"
+                                                              Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+                                                        <EasingColorKeyFrame KeyTime="0" Value="SkyBlue" />
+                                                    </ColorAnimationUsingKeyFrames>
+                                                </Storyboard>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                    <ContentPresenter/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+
+            </ListView.ItemContainerStyle>-->
+
+            <ListView.ItemTemplate  >
                 <DataTemplate>
+                    
                     <Grid>
 
                         <Grid.RowDefinitions>
@@ -184,6 +252,58 @@
                             <Expander Header="Capitulos" Foreground="White" FontSize="15" Margin="0,10">
 
                                 <ListView SelectionMode="Single" Background="Transparent" HorizontalContentAlignment="Center" MinWidth="400" Grid.Column="1" Grid.ColumnSpan="8" HorizontalAlignment="Center" BorderBrush="Transparent" ItemsSource="{Binding ListaCapitulos}" >
+                                    <ListView.ItemContainerStyle>
+
+                                        <Style TargetType="{x:Type ListViewItem}">
+                                            <Style.Triggers>
+                                                <MultiTrigger>
+                                                    <MultiTrigger.Conditions>
+                                                        <Condition Property="IsMouseOver" Value="true" />
+                                                    </MultiTrigger.Conditions>
+                                                    <MultiTrigger.Setters>
+                                                        <Setter Property="FocusManager.IsFocusScope" Value="False" />
+                                                    </MultiTrigger.Setters>
+                                                </MultiTrigger>
+                                            </Style.Triggers>
+                                            <Setter Property="Focusable" Value="False"/>
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="ListViewItem">
+                                                        <Border x:Name="border" Background="Transparent">
+                                                            <VisualStateManager.VisualStateGroups>
+                                                                <VisualStateGroup x:Name="CommonStates">
+                                                                    <VisualState x:Name="Normal" />
+                                                                    <VisualState x:Name="Disabled" />
+                                                                </VisualStateGroup>
+                                                                <VisualStateGroup x:Name="SelectionStates">
+                                                                    <VisualState x:Name="Unselected" />
+                                                                    <VisualState x:Name="Selected">
+                                                                        <Storyboard>
+                                                                            <ColorAnimationUsingKeyFrames Storyboard.TargetName="border"
+                                                              Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+                                                                                <EasingColorKeyFrame KeyTime="0" Value="LightBlue" />
+                                                                            </ColorAnimationUsingKeyFrames>
+                                                                        </Storyboard>
+                                                                    </VisualState>
+                                                                    <VisualState x:Name="SelectedUnfocused">
+                                                                        <Storyboard>
+                                                                            <ColorAnimationUsingKeyFrames Storyboard.TargetName="border"
+                                                              Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+                                                                                <EasingColorKeyFrame KeyTime="0" Value="SkyBlue" />
+                                                                            </ColorAnimationUsingKeyFrames>
+                                                                        </Storyboard>
+                                                                    </VisualState>
+                                                                </VisualStateGroup>
+                                                            </VisualStateManager.VisualStateGroups>
+                                                            <ContentPresenter/>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+
+                                    </ListView.ItemContainerStyle>
+
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <Grid>
@@ -219,7 +339,59 @@
                                                     <Expander Header="Articulos" Foreground="White" FontSize="15" Margin="0,10">
                                                     
                                                         <ListView SelectionMode="Single" Background="Transparent" HorizontalContentAlignment="Center" MinWidth="400" Grid.Column="1" Grid.ColumnSpan="8" HorizontalAlignment="Center" BorderBrush="Transparent" ItemsSource="{Binding ListaArticulos}" >
-                                                        <ListView.ItemTemplate>
+                                                            <ListView.ItemContainerStyle>
+
+                                                                <Style TargetType="{x:Type ListViewItem}">
+                                                                    <Style.Triggers>
+                                                                        <MultiTrigger>
+                                                                            <MultiTrigger.Conditions>
+                                                                                <Condition Property="IsMouseOver" Value="true" />
+                                                                            </MultiTrigger.Conditions>
+                                                                            <MultiTrigger.Setters>
+                                                                                <Setter Property="FocusManager.IsFocusScope" Value="False" />
+                                                                            </MultiTrigger.Setters>
+                                                                        </MultiTrigger>
+                                                                    </Style.Triggers>
+                                                                    <Setter Property="Focusable" Value="False"/>
+                                                                    <Setter Property="Template">
+                                                                        <Setter.Value>
+                                                                            <ControlTemplate TargetType="ListViewItem">
+                                                                                <Border x:Name="border" Background="Transparent">
+                                                                                    <VisualStateManager.VisualStateGroups>
+                                                                                        <VisualStateGroup x:Name="CommonStates">
+                                                                                            <VisualState x:Name="Normal" />
+                                                                                            <VisualState x:Name="Disabled" />
+                                                                                        </VisualStateGroup>
+                                                                                        <VisualStateGroup x:Name="SelectionStates">
+                                                                                            <VisualState x:Name="Unselected" />
+                                                                                            <VisualState x:Name="Selected">
+                                                                                                <Storyboard>
+                                                                                                    <ColorAnimationUsingKeyFrames Storyboard.TargetName="border"
+                                                              Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+                                                                                                        <EasingColorKeyFrame KeyTime="0" Value="LightBlue" />
+                                                                                                    </ColorAnimationUsingKeyFrames>
+                                                                                                </Storyboard>
+                                                                                            </VisualState>
+                                                                                            <VisualState x:Name="SelectedUnfocused">
+                                                                                                <Storyboard>
+                                                                                                    <ColorAnimationUsingKeyFrames Storyboard.TargetName="border"
+                                                              Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+                                                                                                        <EasingColorKeyFrame KeyTime="0" Value="SkyBlue" />
+                                                                                                    </ColorAnimationUsingKeyFrames>
+                                                                                                </Storyboard>
+                                                                                            </VisualState>
+                                                                                        </VisualStateGroup>
+                                                                                    </VisualStateManager.VisualStateGroups>
+                                                                                    <ContentPresenter/>
+                                                                                </Border>
+                                                                            </ControlTemplate>
+                                                                        </Setter.Value>
+                                                                    </Setter>
+                                                                </Style>
+
+                                                            </ListView.ItemContainerStyle>
+
+                                                            <ListView.ItemTemplate>
                                                             <DataTemplate>
                                                                 <Grid>
 
@@ -274,6 +446,8 @@
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
+         
+            
         </ListView>
 
         <WrapPanel Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="8" Orientation="Horizontal"  HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,10,0,0">

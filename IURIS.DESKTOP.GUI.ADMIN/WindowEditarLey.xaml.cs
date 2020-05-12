@@ -26,6 +26,11 @@ namespace IURIS.DESKTOP.GUI.ADMIN
         bool Articulo;
 
         Leyes CopiaLey;
+
+        Titulo _titulo=null;
+        Capitulo _capitulo = null;
+        Articulo _articulo=null;
+
         public WindowEditarLey(Leyes Ley)
         {
             InitializeComponent();
@@ -38,10 +43,10 @@ namespace IURIS.DESKTOP.GUI.ADMIN
 
             ListTitulos.ItemsSource = CopiaLey.ListaDeTitulos;
 
-            foreach (ListView item in ListTitulos.SelectedItems)
-            {
-                item.SelectedItem = false;
-            }
+            //foreach (ListView item in ListTitulos.SelectedItems)
+            //{
+            //    item.SelectedItem = false;
+            //}
 
         }
 
@@ -69,32 +74,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
             }
         }
 
-        private void ListTitulos_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            if (ListTitulos.SelectedItem != null)
-            {
-
-                List<Titulo> titulos = CopiaLey.ListaDeTitulos as List<Titulo>;
-
-                var indice = titulos.IndexOf(ListTitulos.SelectedItem as Titulo);
-
-                //titulos.RemoveAt(indice);
-
-
-                //titulos.IndexOf(ListTitulos.SelectedItem as Titulo, indice);
-
-                Titulo titulo = ListTitulos.SelectedItem as Titulo;
-
-                List<Capitulo> capitulos = titulo.ListaCapitulos as List<Capitulo>;
-
-                foreach (var item in capitulos)
-                {
-                    MessageBox.Show(item.NombreCapitulo);
-                }
-
-            }
-        }
-
+        
         private void BtnEditarLey_Click(object sender, RoutedEventArgs e)
         {
             CopiaLey.NombreLey = txtNombre.Text != CopiaLey.NombreLey ? txtNombre.Text : CopiaLey.NombreLey;
@@ -134,47 +114,110 @@ namespace IURIS.DESKTOP.GUI.ADMIN
 
         private void BtnBuscar_Click(object sender, RoutedEventArgs e)
         {
-
-                List<Titulo> titulos = CopiaLey.ListaDeTitulos as List<Titulo>;
-            if (Titulo && !string.IsNullOrWhiteSpace(txtNumeroTitulo.Text)) {
-
-
-
-                Titulo titulo = titulos.Find(i => i.NumTitulo == txtNumeroTitulo.Text) as Titulo;
+            _articulo = null;
+            _capitulo = null;
+            _titulo = null;
 
 
-                MessageBox.Show("nombre:" + titulo.NombreTitulo + "\nNumero:" + titulo.NumTitulo, "ñ", MessageBoxButton.OK, MessageBoxImage.Stop);
+            List<Titulo> titulos = CopiaLey.ListaDeTitulos as List<Titulo>;
+
+
+            if (Titulo && !string.IsNullOrWhiteSpace(txtNumeroTitulo.Text))
+            {
+
+
+                _titulo = titulos.Find(i => i.NumTitulo == txtNumeroTitulo.Text) as Titulo;
+                if (_titulo != null)
+                {
+
+                    WindowModificarDatos windowModificarDatos = new WindowModificarDatos(_titulo,_capitulo,_articulo,Titulo,Capitulo,Articulo);
+                    windowModificarDatos.ShowDialog();
+                }
+                else
+                {
+
+                    MessageBox.Show("El titulo no fue encontrado\nrevisar numero introducido", "Titulo", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
+
 
 
             }
+
             else if (Capitulo && !string.IsNullOrWhiteSpace(txtNumeroTitulo.Text) && !string.IsNullOrWhiteSpace(txtNumeroCaputilo.Text))
-
             {
 
-                Titulo titulo = titulos.Find(i => i.NumTitulo == txtNumeroTitulo.Text) as Titulo;
+                _titulo = titulos.Find(i => i.NumTitulo == txtNumeroTitulo.Text) as Titulo;
+                if (_titulo != null)
+                {
 
-                List<Capitulo> capitulos = titulo.ListaCapitulos as List<Capitulo>;
+                    List<Capitulo> capitulos = _titulo.ListaCapitulos as List<Capitulo>;
 
-                Capitulo capitulo = capitulos.Find(i => i.NumCapitulo == txtNumeroCaputilo.Text) as Capitulo;
+                    _capitulo = capitulos.Find(i => i.NumCapitulo == txtNumeroCaputilo.Text) as Capitulo;
+                    if (_capitulo != null)
+                    {
+                        WindowModificarDatos windowModificarDatos = new WindowModificarDatos(_titulo, _capitulo, _articulo, Titulo, Capitulo, Articulo);
+                        windowModificarDatos.ShowDialog();
 
-                MessageBox.Show("nombre:" + capitulo.NombreCapitulo + "\nNumero:" + capitulo.NumCapitulo, "ñ", MessageBoxButton.OK, MessageBoxImage.Stop);
+                    }
+                    else
+                    {
+
+                        MessageBox.Show("El capitulo no fue encontrado\nrevisar numero introducido", "Capitulo", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+
+                }
+                else
+                {
+
+                    MessageBox.Show("El titulo no fue encontrado\nrevisar numero introducido", "Titulo", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
 
             }
+
             else if (Articulo && !string.IsNullOrWhiteSpace(txtNumeroTitulo.Text) && !string.IsNullOrWhiteSpace(txtNumeroCaputilo.Text) && !string.IsNullOrWhiteSpace(txtNumeroArtitulo.Text))
-
             {
-                Titulo titulo = titulos.Find(i => i.NumTitulo == txtNumeroTitulo.Text) as Titulo;
+                _titulo = titulos.Find(i => i.NumTitulo == txtNumeroTitulo.Text) as Titulo;
+                if (_titulo != null)
+                {
 
-                List<Capitulo> capitulos = titulo.ListaCapitulos as List<Capitulo>;
+                    List<Capitulo> capitulos = _titulo.ListaCapitulos as List<Capitulo>;
 
-                Capitulo capitulo = capitulos.Find(i => i.NumCapitulo == txtNumeroCaputilo.Text) as Capitulo;
+                    _capitulo = capitulos.Find(i => i.NumCapitulo == txtNumeroCaputilo.Text) as Capitulo;
+                    if (_capitulo != null)
+                    {
+                        List<Articulo> articulos = _capitulo.ListaArticulos as List<Articulo>;
 
-                List<Articulo> articulos = capitulo.ListaArticulos as List<Articulo>;
+                        _articulo = articulos.Find(i => i.NumArticulo == txtNumeroArtitulo.Text) as Articulo;
+                        if (_articulo != null)
+                        {
+                            WindowModificarDatos windowModificarDatos = new WindowModificarDatos(_titulo, _capitulo, _articulo, Titulo, Capitulo, Articulo);
+                            windowModificarDatos.ShowDialog();
+                        }
+                        else
+                        {
+                            MessageBox.Show("El articulo no fue encontrado\nrevisar numero introducido", "Articulo", MessageBoxButton.OK, MessageBoxImage.Error);
 
-                Articulo articulo = articulos.Find(i => i.NumArticulo == txtNumeroArtitulo.Text) as Articulo;
+                        }
+
+                    }
+                    else
+                    {
+
+                        MessageBox.Show("El capitulo no fue encontrado\nrevisar numero introducido", "Capitulo", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+
+                }
+                else
+                {
+
+                    MessageBox.Show("El titulo no fue encontrado\nrevisar numero introducido", "Titulo", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
 
 
-                MessageBox.Show("nombre:" + articulo.NombreArticulo+ "\nNumero:" + articulo.NumArticulo+"\nContenido:"+articulo.Contenido, "ñ", MessageBoxButton.OK, MessageBoxImage.Stop);
+
+
+
             }
             else
             {
