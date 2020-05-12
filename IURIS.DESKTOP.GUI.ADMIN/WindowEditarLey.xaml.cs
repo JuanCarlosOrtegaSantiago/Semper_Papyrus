@@ -1,5 +1,8 @@
-﻿using IURIS.COMMON.Entidades.Ley;
+﻿using IURIS.BIZ;
+using IURIS.COMMON.Entidades.Ley;
 using IURIS.COMMON.Entidades.Ley.ComponentesDeLey;
+using IURIS.COMMON.Interfaces;
+using IURIS.DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,23 +34,34 @@ namespace IURIS.DESKTOP.GUI.ADMIN
         Capitulo _capitulo = null;
         Articulo _articulo=null;
 
+        IManejadorDeLeyes manejadorDeLeyes;
+
         public WindowEditarLey(Leyes Ley)
         {
             InitializeComponent();
+            manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
 
             this.WindowState = WindowState.Maximized;
             CopiaLey = Ley;
+
             LblEditarLey.Content = string.Format("Editar ley {0}", CopiaLey.NombreLey);
             txtCodigo.Text = CopiaLey.CodigoLey;
             txtNombre.Text = CopiaLey.NombreLey;
 
-            ListTitulos.ItemsSource = CopiaLey.ListaDeTitulos;
+            
+            ActualizarLista();
 
             //foreach (ListView item in ListTitulos.SelectedItems)
             //{
             //    item.SelectedItem = false;
             //}
 
+        }
+
+        private void ActualizarLista()
+        {
+            ListTitulos.ItemsSource = null;
+            ListTitulos.ItemsSource = CopiaLey.ListaDeTitulos;
         }
 
         private void LimpiarCajas()
@@ -77,11 +91,45 @@ namespace IURIS.DESKTOP.GUI.ADMIN
         
         private void BtnEditarLey_Click(object sender, RoutedEventArgs e)
         {
-            CopiaLey.NombreLey = txtNombre.Text != CopiaLey.NombreLey ? txtNombre.Text : CopiaLey.NombreLey;
-            CopiaLey.CodigoLey= txtCodigo.Text != CopiaLey.CodigoLey ? txtCodigo.Text : CopiaLey.CodigoLey;
+            if (MessageBox.Show("Esta seguro de subir los cambios", "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Exclamation, MessageBoxResult.No) == MessageBoxResult.Yes)
+            {
+
+                try
+                {
+
+                    CopiaLey.NombreLey = txtNombre.Text != CopiaLey.NombreLey ? txtNombre.Text : CopiaLey.NombreLey;
+                    CopiaLey.CodigoLey = txtCodigo.Text != CopiaLey.CodigoLey ? txtCodigo.Text : CopiaLey.CodigoLey;
+
+                    while (CopiaLey.EsModificacion)
+                    {
+                        CopiaLey.EsModificacion = false;
+                    }
+
+                    CopiaLey.EsModificacion = true;
+                    CopiaLey.UltimaFechaDeModificacion = DateTime.Now;
+
+                    if (manejadorDeLeyes.Modificar(CopiaLey))
+                    {
+
+                        MessageBox.Show("Ley modificada satisfactoriamente", "Carga correcta", MessageBoxButton.OK, MessageBoxImage.Information);
+                        WindowMostrarListaDeLeyes windowMostrarListaDeLeyes = new WindowMostrarListaDeLeyes();
+                        this.Close();
+                        windowMostrarListaDeLeyes.Show();
+                    }
+                    else
+                    {
+
+                        MessageBox.Show("no se peuden subir las modificaciones", "Carga erronea", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
 
 
+                }
+                catch (Exception ex)
+                {
 
+                    MessageBox.Show("Error:\n" + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
         }
 
         private void RdoBtnTitulo_Click(object sender, RoutedEventArgs e)
@@ -127,11 +175,13 @@ namespace IURIS.DESKTOP.GUI.ADMIN
 
 
                 _titulo = titulos.Find(i => i.NumTitulo == txtNumeroTitulo.Text) as Titulo;
+
                 if (_titulo != null)
                 {
 
                     WindowModificarDatos windowModificarDatos = new WindowModificarDatos(_titulo,_capitulo,_articulo,Titulo,Capitulo,Articulo);
                     windowModificarDatos.ShowDialog();
+                    ActualizarLista();
                 }
                 else
                 {
@@ -148,17 +198,19 @@ namespace IURIS.DESKTOP.GUI.ADMIN
             {
 
                 _titulo = titulos.Find(i => i.NumTitulo == txtNumeroTitulo.Text) as Titulo;
+
                 if (_titulo != null)
                 {
 
                     List<Capitulo> capitulos = _titulo.ListaCapitulos as List<Capitulo>;
 
                     _capitulo = capitulos.Find(i => i.NumCapitulo == txtNumeroCaputilo.Text) as Capitulo;
+
                     if (_capitulo != null)
                     {
                         WindowModificarDatos windowModificarDatos = new WindowModificarDatos(_titulo, _capitulo, _articulo, Titulo, Capitulo, Articulo);
                         windowModificarDatos.ShowDialog();
-
+                        ActualizarLista();
                     }
                     else
                     {
@@ -184,15 +236,18 @@ namespace IURIS.DESKTOP.GUI.ADMIN
                     List<Capitulo> capitulos = _titulo.ListaCapitulos as List<Capitulo>;
 
                     _capitulo = capitulos.Find(i => i.NumCapitulo == txtNumeroCaputilo.Text) as Capitulo;
+
                     if (_capitulo != null)
                     {
                         List<Articulo> articulos = _capitulo.ListaArticulos as List<Articulo>;
 
                         _articulo = articulos.Find(i => i.NumArticulo == txtNumeroArtitulo.Text) as Articulo;
+
                         if (_articulo != null)
                         {
                             WindowModificarDatos windowModificarDatos = new WindowModificarDatos(_titulo, _capitulo, _articulo, Titulo, Capitulo, Articulo);
                             windowModificarDatos.ShowDialog();
+                            ActualizarLista();
                         }
                         else
                         {
@@ -219,6 +274,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
 
 
             }
+
             else
             {
 

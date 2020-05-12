@@ -28,7 +28,13 @@
             <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
 
-            <Label Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="0,5"  Style="{DynamicResource LabelStyle1}" x:Name="lblNombreDeComponente">csa</Label>
+        <Button Grid.Column="1" Grid.Row="1" x:Name="BtnRegresar" Click="BtnRegresar_Click" Style="{DynamicResource ButtonStyle1}">
+            <WrapPanel>
+                <Image Source="Imagenes/Regreso.png" Width="50" Height="35"></Image>
+            </WrapPanel>
+        </Button>
+
+        <Label Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="0,5"  Style="{DynamicResource LabelStyle1}" x:Name="lblNombreDeComponente"></Label>
         <Separator Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="8" Background="White" VerticalAlignment="Top" ></Separator>
 
         <WrapPanel Orientation="Horizontal"  Grid.Row="2"  Grid.Column="1" Grid.ColumnSpan="6" VerticalAlignment="Center" HorizontalAlignment="Center">
@@ -51,6 +57,7 @@
 
         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="6">
             <WrapPanel Orientation="Horizontal" Margin="0,5">
+                <Button Style="{DynamicResource ButtonStyle1}" Width="100" Height="30" Margin="25,5" FontWeight="Bold" BorderBrush="White" FontSize="15" x:Name="BtnEditar" Click="BtnEditar_Click">Editar</Button>
                 <Button Style="{DynamicResource ButtonStyle1}" Width="100" Height="30" Margin="25,5" FontWeight="Bold" BorderBrush="White" FontSize="15" x:Name="BtnGuardar" Click="BtnGuardar_Click">Guardar</Button>
                 <Button Style="{DynamicResource ButtonStyle1}" Width="100" Height="30" Margin="25,5" FontWeight="Bold" BorderBrush="White" FontSize="15" x:Name="BtnCancelar" Click="BtnCancelar_Click">Cancelar</Button>
             </WrapPanel>

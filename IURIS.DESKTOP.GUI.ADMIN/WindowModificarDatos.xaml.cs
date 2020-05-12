@@ -50,6 +50,8 @@ namespace IURIS.DESKTOP.GUI.ADMIN
 
         private void DatosAIniciar()
         {
+
+            EditarCampos(false);
             if (titulo)
             {
                 lblNombreDeComponente.Content = "Titulo";
@@ -80,16 +82,88 @@ namespace IURIS.DESKTOP.GUI.ADMIN
             }
         }
 
+        private void EditarCampos(bool v)
+        {
+            txtNombre.IsEnabled = v;
+            RtcTxtContenido.IsEnabled = v;
+            txtNumero.IsEnabled = v;
+            BtnCancelar.IsEnabled = v;
+            BtnEditar.IsEnabled = !v;
+            BtnGuardar.IsEnabled = v;
+        }
+
         private void BtnGuardar_Click(object sender, RoutedEventArgs e)
         {
-            lblContenido.Visibility = Visibility.Visible;
-            RtcTxtContenido.Visibility = Visibility.Visible;
+            if (titulo)
+            {
+                if (!string.IsNullOrWhiteSpace(txtNombre.Text) && !string.IsNullOrWhiteSpace(txtNumero.Text))
+                {
+                    _titulo.NombreTitulo = txtNombre.Text;
+                    _titulo.NumTitulo = txtNumero.Text;
+                }
+                else
+                {
+
+                    MessageBox.Show("Faltan campos por llenar", "Error", MessageBoxButton.OK, MessageBoxImage.Stop);
+                }
+            }
+
+            if (capitulo)
+            {
+                if (!string.IsNullOrWhiteSpace(txtNombre.Text) && !string.IsNullOrWhiteSpace(txtNumero.Text))
+                {
+                    _capitulo.NombreCapitulo = txtNombre.Text;
+                    _capitulo.NumCapitulo = txtNumero.Text;
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Faltan campos por llenar", "Error", MessageBoxButton.OK, MessageBoxImage.Stop);
+
+                }
+            }
+
+            if (articulo)
+            {
+
+                if (!string.IsNullOrWhiteSpace(txtNombre.Text) && !string.IsNullOrWhiteSpace(txtNumero.Text) && RtcTxtContenido != null)
+                {
+                    _articulo.Contenido = Contenido();
+                    _articulo.NombreArticulo = txtNombre.Text;
+                    _articulo.NumArticulo = txtNumero.Text;
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Faltan campos por llenar", "Error", MessageBoxButton.OK, MessageBoxImage.Stop);
+                }
+
+            }
+
+            if (MessageBox.Show("¿Está seguro de guardar?", "Guardar", MessageBoxButton.OKCancel, MessageBoxImage.Warning, MessageBoxResult.Cancel) == MessageBoxResult.OK)
+                this.Close();
         }
 
         private void BtnCancelar_Click(object sender, RoutedEventArgs e)
         {
+            DatosAIniciar();
+        }
 
+        private void BtnEditar_Click(object sender, RoutedEventArgs e)
+        {
+            EditarCampos(true);
+        }
+
+        private void BtnRegresar_Click(object sender, RoutedEventArgs e)
+        {
+            //DatosAIniciar();
             this.Close();
+        }
+
+        private string Contenido()
+        {
+            //string richText;
+            return new TextRange(RtcTxtContenido.Document.ContentStart, RtcTxtContenido.Document.ContentEnd).Text;
         }
     }
 }
