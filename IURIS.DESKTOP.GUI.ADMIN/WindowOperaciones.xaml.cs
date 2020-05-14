@@ -83,5 +83,12 @@ namespace IURIS.DESKTOP.GUI.ADMIN
             if (windowAccesoRestringido.Entro)
                 this.Close();
         }
+
+        private void BtnLeyesDescargadas_Click(object sender, RoutedEventArgs e)
+        {
+            WindowLeyesDescargadas windowLeyesDescargadas = new WindowLeyesDescargadas();
+            this.Close();
+            windowLeyesDescargadas.Show();
+        }
     }
 }

@@ -57,7 +57,7 @@
         </WrapPanel>
 
         <WrapPanel Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="2" Margin="10,5" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button Style="{DynamicResource ButtonStyle1}">
+            <Button x:Name="BtnLeyesDescargadas" Style="{DynamicResource ButtonStyle1}" Click="BtnLeyesDescargadas_Click">
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Image Source="Imagenes/Descargas.png" Width="100" Height="100"></Image>
                     <Label Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold">Leyes descargadas</Label>

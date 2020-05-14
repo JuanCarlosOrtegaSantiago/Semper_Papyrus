@@ -1,0 +1,139 @@
+﻿<Window x:Class="IURIS.DESKTOP.GUI.ADMIN.WindowLeyesDescargadas"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IURIS.DESKTOP.GUI.ADMIN"
+        xmlns:Wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+        
+        mc:Ignorable="d"
+        Title="WindowLeyesDescargadas" Height="600" Width="800" WindowStyle="None" Background="#640404" WindowStartupLocation="CenterScreen" >
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="30"/>
+        </Grid.ColumnDefinitions>
+
+
+        <WrapPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left">
+            <Button x:Name="BtnRegresarAMenuDeOperaciones" Style="{DynamicResource ButtonStyle1}" Click="BtnRegresarAMenuDeOperaciones_Click">
+                <WrapPanel>
+                    <Image Source="Imagenes/Regreso.png" Width="50" Height="35"></Image>
+                </WrapPanel>
+            </Button>
+        </WrapPanel>
+
+        <Label Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="6" FontSize="20" FontWeight="SemiBold" FontStretch="Expanded" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center">Editar Ley</Label>
+
+        <WrapPanel Grid.Row="0" Grid.Column="8"  VerticalAlignment="Center" HorizontalAlignment="Right">
+            <Button x:Name="BtnCambiarDeAlturaMaximisar" Style="{DynamicResource ButtonStyle1}" Click="BtnCambiarDeAlturaMaximisar_Click">
+                <WrapPanel>
+                    <Image x:Name="ImgCambiarAlturaMaximisar" Source="Imagenes/maximize.ico" Width="20" Height="20"></Image>
+                </WrapPanel>
+            </Button>
+            <Button x:Name="BtnCambiarDeAlturaMinimizar" Visibility="Collapsed" Style="{DynamicResource ButtonStyle1}" Click="BtnCambiarDeAlturaMinimizar_Click">
+                <WrapPanel>
+                    <Image x:Name="ImgCambiarAlturaMinimizar" Source="Imagenes/minimize.ico" Width="20" Height="20"></Image>
+                </WrapPanel>
+            </Button>
+        </WrapPanel>
+        <Separator Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="10" VerticalAlignment="Bottom"/>
+
+        <TextBox x:Name="txtbuscar" 
+                 Style="{StaticResource placeHolder}" 
+                 KeyUp="TextBox_KeyUp" 
+                 Grid.Row="2" Grid.Column="1" 
+                 Grid.ColumnSpan="6" 
+                 HorizontalAlignment="Center" 
+                 Tag="Buscar ley..." 
+                 HorizontalContentAlignment="Right" 
+                 VerticalContentAlignment="Center" 
+                 FontSize="20" 
+                 Width="500" Height="30" 
+                 VerticalAlignment="Center"
+                 Margin="20"/>
+
+        <ListView x:Name="ListLeyes" SelectionChanged="ListLeyes_SelectionChanged" Grid.Row="3" Grid.RowSpan="3" HorizontalContentAlignment="Center" MinWidth="400" Grid.Column="1" Grid.ColumnSpan="5" HorizontalAlignment="Center" BorderBrush="Transparent" ItemsSource="{Binding Leyes}" >
+            <ListView.View>
+                <GridView AllowsColumnReorder="True">
+                    <GridViewColumn Header="Codigo" Width="auto" DisplayMemberBinding="{Binding CodigoLey}" />
+                    <GridViewColumn Header="Nombre" Width="auto" DisplayMemberBinding="{Binding NombreLey}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <WrapPanel Orientation="Vertical" Grid.Row="3" Grid.RowSpan="2" Grid.Column="6" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center">
+
+            <Label x:Name="LblGraficaNombreDeLEy" Style="{DynamicResource LabelStyle1}" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+
+        <Wpf:Gauge x:Name="GaugeIOT" Margin="4"  
+                   From="0" ToColor="Black" 
+                   LabelsVisibility="Visible" Width="250" Height="200" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Wpf:Gauge.GaugeActiveFill>
+                <LinearGradientBrush>
+                    <GradientStop Color="White" Offset="0.1" />
+                    <GradientStop Color="PaleVioletRed" Offset="0.6" />
+                    <GradientStop Color="Red" Offset="1.5" />
+                </LinearGradientBrush>
+            </Wpf:Gauge.GaugeActiveFill>
+        </Wpf:Gauge>
+        </WrapPanel>
+        
+
+        <WrapPanel Grid.Row="5" Grid.Column="7" HorizontalAlignment="Center" VerticalAlignment="Center" >
+
+            <Button x:Name="BtnEditarLey" Background="Transparent" Style="{DynamicResource ButtonStyle1}" BorderBrush="White" Width="80" Height="90" Click="BtnEditarLey_Click">
+                <WrapPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Image Source="Imagenes/EditarLey.png" Width="50" Height="50" HorizontalAlignment="Center"></Image>
+                    <Label Style="{DynamicResource LabelStyle1}" FontSize="15">Editar</Label>
+                </WrapPanel>
+            </Button>
+        </WrapPanel>
+
+    </Grid>
+    <!--<Grid>
+        <Grid.RowDefinitions>
+        <RowDefinition Height="0.2*"/>
+        <RowDefinition/>
+
+        </Grid.RowDefinitions>
+    
+        <Viewbox>
+            <Label>My Data</Label>
+        </Viewbox>
+
+
+        <Wpf:Gauge x:Name="GaugeIOT" Margin="4"  Grid.Row="1" Grid.Column="0"
+                   From="0" ToColor="Black" 
+                   LabelsVisibility="Visible" Uses360Mode="False">
+            <Wpf:Gauge.GaugeActiveFill>
+                <LinearGradientBrush>
+                    <GradientStop Color="Red" Offset="0.0" />
+                    <GradientStop Color="#87B569" Offset="0.5" />
+                    <GradientStop Color="#59AF70" Offset="1.0" />
+                </LinearGradientBrush>
+            </Wpf:Gauge.GaugeActiveFill>
+        </Wpf:Gauge>
+
+
+    </Grid>-->
+</Window>
