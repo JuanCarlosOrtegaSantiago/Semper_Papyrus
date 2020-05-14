@@ -32,26 +32,43 @@ namespace IURIS.DESKTOP.GUI.ADMIN
     public partial class WindowLeyesDescargadas : Window
     {
 
-        private string strData;
-        private string Segments;
         IManejadorDeLeyes manejadorDeLeyes;
+
+        Leyes LeyMasDescargada = null;
+        int TotalDeDescargas=0;
+
 
         public WindowLeyesDescargadas()
         {
             InitializeComponent();
             manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
+            LeyMasDescargada = manejadorDeLeyes.Listar.Where(e => e.EsModificacion==false).SingleOrDefault();
 
             if (manejadorDeLeyes.Listar.Count <= 0)
                 if (MessageBox.Show("Aun no tiene leyes agregadas", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning) == MessageBoxResult.OK)
                     this.Close();
-
+            DatosAInicializar();
 
             ListLeyes.ItemsSource = manejadorDeLeyes.MostrarLeyes;
 
             DispatcherTimer timer = new DispatcherTimer();
-            //timer.Interval = TimeSpan.FromSeconds(10);
+            timer.Interval = TimeSpan.FromSeconds(5);
             timer.Tick += timer_Tick;
             timer.Start();
+        }
+
+        private void DatosAInicializar()
+        {
+            ListLeyes.ItemsSource = null;
+            ListLeyes.ItemsSource = manejadorDeLeyes.MostrarLeyes;
+
+            foreach (var item in manejadorDeLeyes.Listar)
+            {
+                if (item.numDescargas > LeyMasDescargada.numDescargas)
+                    LeyMasDescargada = item;
+
+                TotalDeDescargas += item.numDescargas;
+            }
         }
 
         private void TextBox_KeyUp(object sender, KeyEventArgs e)
@@ -125,26 +142,18 @@ namespace IURIS.DESKTOP.GUI.ADMIN
 
 
             //}
-
-
-            try
-            {
-                int start = strData.LastIndexOf("field1");
-                Segments = strData.Substring(start + 9, 4);
-
-            }
-            catch (Exception)
-            {
-
-
-            }
+            
 
             try
             {
-                var convertDouble = Convert.ToDouble(Segments);
-                GaugeIOT.Value = manejadorDeLeyes.Listar.Count;
+                LblGraficaNombreDeLEy.Content = LeyMasDescargada.NombreLey;
+                GaugeIOT.Value= LeyMasDescargada.numDescargas;
+                GaugeIOT.To = TotalDeDescargas;
                 GaugeIOT.From = 0;
-                GaugeIOT.To = 3;
+
+                //GaugeIOT.Value = manejadorDeLeyes.Listar.Where(i=>i.numDescargas!=0).LongCount();
+                //GaugeIOT.From = 0;
+                //GaugeIOT.To = manejadorDeLeyes.Listar.Count;
             }
             catch (Exception)
             {
@@ -158,10 +167,12 @@ namespace IURIS.DESKTOP.GUI.ADMIN
         {
             if (ListLeyes.SelectedItem != null)
             {
-            Leyes leyes = ListLeyes.SelectedItem as Leyes;
+                Leyes leyes = ListLeyes.SelectedItem as Leyes;
 
-            LblGraficaNombreDeLEy.Content = leyes.NombreLey;
-                GaugeIOT.Value = leyes.numDescargas+2;
+                LblGraficaNombreDeLEy.Content = leyes.NombreLey;
+                GaugeIOT.Value = leyes.numDescargas;
+                GaugeIOT.To = TotalDeDescargas;
+
             }
         }
     }
