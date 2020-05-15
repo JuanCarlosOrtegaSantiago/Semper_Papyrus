@@ -3,12 +3,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0086AE17-DE90-4E0D-9AAF-3A044AD79499}</ProjectGuid>
+    <ProjectGuid>{24CE3C36-16B9-426D-AA0C-5961ECF8D88C}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <TemplateGuid>{c9e5eea5-ca05-42a1-839b-61506e0a37df}</TemplateGuid>
+    <TemplateGuid>{9AA2D3C6-3393-45F1-8E7C-5A9901728795}</TemplateGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>IURIS.APP.GUI.Droid</RootNamespace>
-    <AssemblyName>IURIS.APP.GUI.Android</AssemblyName>
+    <RootNamespace>IURIS.APP.GUI.Mobile.Droid</RootNamespace>
+    <AssemblyName>IURIS.APP.GUI.Mobile.Android</AssemblyName>
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidResgenClass>Resource</AndroidResgenClass>
@@ -49,12 +49,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="MongoDB.Bson">
-      <Version>2.10.2</Version>
-    </PackageReference>
-    <PackageReference Include="MongoDB.Driver">
-      <Version>2.10.2</Version>
-    </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="3.4.0.1008975" />
     <PackageReference Include="Xamarin.Android.Support.Design" Version="27.0.2.1" />
     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="27.0.2.1" />
@@ -63,7 +57,6 @@
     <PackageReference Include="Xamarin.Android.Support.v7.MediaRouter" Version="27.0.2.1" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomEntryRenderer.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -90,6 +83,7 @@
     <AndroidResource Include="Resources\mipmap-xxhdpi\launcher_foreground.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\icon.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
+    <AndroidResource Include="Resources\drawable\xamarin_logo.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable-hdpi\" />
@@ -98,9 +92,9 @@
     <Folder Include="Resources\drawable-xxxhdpi\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\IURIS.APP.GUI\IURIS.APP.GUI.csproj">
-      <Project>{6F84A3D4-C88E-4AC1-9B6C-7218171C9980}</Project>
-      <Name>IURIS.APP.GUI</Name>
+    <ProjectReference Include="..\IURIS.APP.GUI.Mobile\IURIS.APP.GUI.Mobile.csproj">
+      <Project>{BD78AB42-2F60-4A5F-94BA-EE1681B4C7F9}</Project>
+      <Name>IURIS.APP.GUI.Mobile</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

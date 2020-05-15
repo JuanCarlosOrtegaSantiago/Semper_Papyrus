@@ -32,6 +32,11 @@ namespace IURIS.BIZ
             return repositorio.Delete(id);
         }
 
+        public bool EncontrarUsuario(string Correo, int contrasenia)
+        {
+            return Listar.Where(e => e.Correo == Correo && e.Contrasenia == contrasenia).Count() == 1? true:false ;
+        }
+
         public bool Modificar(Usuarios entidad)
         {
             return repositorio.Update(entidad);
