@@ -99,7 +99,7 @@
         </WrapPanel>
         
 
-        <WrapPanel Grid.Row="5" Grid.Column="7" HorizontalAlignment="Center" VerticalAlignment="Center" >
+        <!--<WrapPanel Grid.Row="5" Grid.Column="7" HorizontalAlignment="Center" VerticalAlignment="Center" >
 
             <Button x:Name="BtnEditarLey" Background="Transparent" Style="{DynamicResource ButtonStyle1}" BorderBrush="White" Width="80" Height="90" Click="BtnEditarLey_Click">
                 <WrapPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
@@ -107,7 +107,7 @@
                     <Label Style="{DynamicResource LabelStyle1}" FontSize="15">Editar</Label>
                 </WrapPanel>
             </Button>
-        </WrapPanel>
+        </WrapPanel>-->
 
     </Grid>
     <!--<Grid>
