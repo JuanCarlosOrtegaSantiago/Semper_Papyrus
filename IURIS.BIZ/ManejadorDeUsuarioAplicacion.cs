@@ -37,10 +37,12 @@ namespace IURIS.BIZ
             return Listar.Where(e => e.Correo == Correo && e.Contrasenia == contrasenia).Count() == 1? true:false ;
         }
 
-        public bool ExisteCorreo(string Correo)
+        public bool ExisteCorreo(string Email)
         {
-            return Listar.Where(e => e.Correo == Correo).Count() >= 1 ? true : false;
+            return Listar.Where(e => e.Correo == Email).Count() >= 1 ? true : false;
         }
+
+
 
         //public bool ExisteNombre(string Nombre, string ApellidoPaterno, string apellidoMaterno)
         //{
