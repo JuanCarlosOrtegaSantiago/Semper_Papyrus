@@ -21,6 +21,9 @@ namespace IURIS.APP.GUI
 
         IManejadorDeUsuarioAplicacion manejadorDeUsuarioAplicacion;
         IManejadorDeLeyes manejadorDeLeyes;
+        bool CorreoCorrecto =false;
+        private bool TamanioDeContraseniaCorrecta=false;
+        private bool ContraseniasIguales=false;
 
         //List<Usuarios> Usuarios;
         public PageCrearCuenta ()
@@ -46,44 +49,35 @@ namespace IURIS.APP.GUI
                 return;
             }
 
-            if (!email_bien_escrito(EntryCorreoElectronico.Text))
-            {
-                await DisplayAlert("Nuevo reguistro", "Al correo ingresado le faltan datos", "OK");
+            if (!CorreoCorrecto)
                 return;
-            }
+
+            if (!TamanioDeContraseniaCorrecta)
+                return;
+
+
+            //lblFaltantesDeCorreo.IsVisible = false;
+
             if (manejadorDeUsuarioAplicacion.ExisteCorreo(EntryCorreoElectronico.Text))
             {
                 lblCorreoExistente.IsVisible = true;
                 //await DisplayAlert("Nuevo reguistro", "El correo ingresado ya está registrado", "OK");
                 return;
             }
-            else
-            {
-                lblCorreoExistente.IsVisible = false;
-            }
 
-            if (EntryConfirmarContrasenia.Text != EntryContrasenia.Text)
-            {
-                lblContraseniaNoCoinside.IsVisible = true;
+            lblCorreoExistente.IsVisible = false;
+            
+            if (!ContraseniasIguales)
                 return;
-            }
-            else
-            {
-                lblContraseniaNoCoinside.IsVisible = false;
-            }
 
-
-
-
-
-            int numUsuario = manejadorDeUsuarioAplicacion.Listar.Count;
+            int numUsuario = manejadorDeUsuarioAplicacion.Listar.Count+1;
             Usuarios usuarios = new Usuarios()
             {
                 Nombre = EntryNombre.Text,
                 ApellidoPaterno = EntryApellidoPaterno.Text,
                 ApellidoMaterno = EntryApellidoMaterno.Text,
                 Correo = EntryCorreoElectronico.Text,
-                IdApp = numUsuario + 1,
+                IdApp = numUsuario,
                 Contrasenia = int.Parse(EntryContrasenia.Text)
 
             };
@@ -100,7 +94,7 @@ namespace IURIS.APP.GUI
                 return;
             }
             stackCodigoDeUsuario.IsVisible = true;
-            lblCodigoUsuario.Text = numUsuario.ToString();
+            lblCodigoUsuario.Text = usuarios.IdApp.ToString();
             await DisplayAlert("Usuaro creado", "Su reguistro fue exitoso", "OK");
             //await Navigation.PushAsync(new PageInicioDeSesion(), true);
             //await Navigation.PopAsync();
@@ -118,6 +112,7 @@ namespace IURIS.APP.GUI
         {
             String expresion;
             expresion = "\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";
+
             if (Regex.IsMatch(email, expresion))
             
                 return Regex.Replace(email, expresion, String.Empty).Length == 0 ? true : false;
@@ -125,7 +120,28 @@ namespace IURIS.APP.GUI
             else
             
                 return false;
-            
+        }
+
+        private void EntryCorreoElectronico_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+            lblFaltantesDeCorreo.IsVisible = !email_bien_escrito(EntryCorreoElectronico.Text) ? true : false;
+            if (!lblFaltantesDeCorreo.IsVisible)
+                CorreoCorrecto = true;
+        }
+
+        private void EntryContrasenia_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            lblTamanioDeContrasenia.IsVisible = EntryContrasenia.Text.Length < 4 ? true : false;
+            if (!lblTamanioDeContrasenia.IsVisible)
+                TamanioDeContraseniaCorrecta = true;
+        }
+
+        private void EntryConfirmarContrasenia_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            lblContraseniaNoCoinside.IsVisible = EntryConfirmarContrasenia.Text != EntryContrasenia.Text ? true : false;
+            if (!lblContraseniaNoCoinside.IsVisible)
+                ContraseniasIguales = true;
         }
     }
 }

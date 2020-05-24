@@ -41,14 +41,7 @@ namespace IURIS.BIZ
         {
             return Listar.Where(e => e.Correo == Email).Count() >= 1 ? true : false;
         }
-
-
-
-        //public bool ExisteNombre(string Nombre, string ApellidoPaterno, string apellidoMaterno)
-        //{
-        //    return Listar.Where(e => e.Nombre.ToUpper() == Nombre.ToUpper() && e.ApellidoPaterno.ToUpper() == ApellidoPaterno.ToUpper() && e.ApellidoMaterno.ToUpper() == apellidoMaterno.ToUpper()).Count() >= 1 ? true : false;
-        //}
-
+        
         public bool Modificar(Usuarios entidad)
         {
             return repositorio.Update(entidad);

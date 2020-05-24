@@ -9,6 +9,5 @@ namespace IURIS.COMMON.Interfaces
     {
         bool EncontrarUsuario(string Correo, int contrasenia);
         bool ExisteCorreo(string Email);
-        //bool ExisteNombre(string Nombre, string ApellidoPaterno, string apellidoMaterno);
     }
 }
