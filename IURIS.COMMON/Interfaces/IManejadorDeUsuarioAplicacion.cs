@@ -7,7 +7,7 @@ namespace IURIS.COMMON.Interfaces
 {
     public interface IManejadorDeUsuarioAplicacion:IManejadorGenerico<Usuarios>
     {
-        bool EncontrarUsuario(string Correo, int contrasenia);
+        Usuarios EncontrarUsuario(string Correo, int contrasenia);
         bool ExisteCorreo(string Email);
     }
 }

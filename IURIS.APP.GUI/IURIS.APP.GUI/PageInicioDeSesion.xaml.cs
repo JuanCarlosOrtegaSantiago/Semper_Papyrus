@@ -46,7 +46,8 @@ namespace IURIS.APP.GUI
             Intentos++;
             if (Intentos == 1)
             {
-                Navigation.PushAsync(new PageVerLey(), false);
+                Application.Current.MainPage=new NavigationPage(new MasterDetailPage());
+                //Navigation.PushAsync(new MasterDetailPage(), false);
                 Intentos = 0;
             }
         }

@@ -54,23 +54,24 @@ namespace IURIS.APP.GUI
 
         private async void BtnAceptar_Clicked(object sender, EventArgs e)
         {
-            Intentos++;
-            if (Intentos == 1)
-            {
+            //Intentos++;
+            //if (Intentos == 1)
+            //{
 
-                if(!string.IsNullOrWhiteSpace(EntryPasswor.Text) && !string.IsNullOrWhiteSpace(EntryCorreo.Text))
-                {
-                    if (manejadorDeUsuarioAplicacion.EncontrarUsuario(EntryCorreo.Text, int.Parse(EntryPasswor.Text))){
+            //    if(!string.IsNullOrWhiteSpace(EntryPasswor.Text) && !string.IsNullOrWhiteSpace(EntryCorreo.Text))
+            //    {
+            //        Usuarios usuario = manejadorDeUsuarioAplicacion.EncontrarUsuario(EntryCorreo.Text, int.Parse(EntryPasswor.Text));
+            //        if (usuario!=null){
                 await Navigation.PushAsync(new MainPage(), false);
 
-                    }
-                    else
-                    {
-                        await DisplayAlert("Error de usuario", "Por favor verifica los datos ingresados", "OK");
-                    }
-                }
-            }
-                Intentos = 0;
+        //            }
+        //            else
+        //            {
+        //                await DisplayAlert("Error de usuario", "Por favor verifica los datos ingresados", "OK");
+        //            }
+        //        }
+        //    }
+        //        Intentos = 0;
         }
     }
 }

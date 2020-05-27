@@ -32,9 +32,9 @@ namespace IURIS.BIZ
             return repositorio.Delete(id);
         }
 
-        public bool EncontrarUsuario(string Correo, int contrasenia)
+        public Usuarios EncontrarUsuario(string Correo, int contrasenia)
         {
-            return Listar.Where(e => e.Correo == Correo && e.Contrasenia == contrasenia).Count() == 1? true:false ;
+            return Listar.Where(e => e.Correo == Correo && e.Contrasenia == contrasenia).SingleOrDefault();
         }
 
         public bool ExisteCorreo(string Email)

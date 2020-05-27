@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IURIS.APP.GUI.Menu.MasterPage" Title="My Title">
+    <ContentPage.Content>
+        <StackLayout x:Name="MAsterStack" VerticalOptions="FillAndExpand">
+            <StackLayout x:Name="TopStack">
+            <Label Text="this a example of master detail in xamarin forms"
+                FontSize="Large"
+                HorizontalOptions="Center" />
+                
+            </StackLayout>
+            <StackLayout x:Name="MidStack">
+                <ListView x:Name="Listview" SeparatorVisibility="None">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid>
+                                    <Image Source="{Binding IconSource}" Margin="0,10,0,10 "></Image>
+                                    <Label Grid.Column="1" Text="{Binding Titulo}" TextColor="Red" BackgroundColor="Yellow" FontSize="Medium"/>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+            </StackLayout>
+
+            <StackLayout x:Name="BtnStack" VerticalOptions="EndAndExpand" >
+                <Button Text="Logout"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,4 +1,5 @@
 ﻿using IURIS.APP.GUI.Mobile.Models;
+using IURIS.COMMON.Entidades.UsuariosDeAplicacion;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -11,10 +12,12 @@ namespace IURIS.APP.GUI.Mobile.Views
     public partial class MainPage : MasterDetailPage
     {
         Dictionary<int, NavigationPage> MenuPages = new Dictionary<int, NavigationPage>();
+        Usuarios _usuarios;
         public MainPage()
         {
-            InitializeComponent();
 
+            InitializeComponent();
+            //_usuarios = usuarios;
             MasterBehavior = MasterBehavior.Popover;
 
             MenuPages.Add((int)MenuItemType.Browse, (NavigationPage)Detail);
