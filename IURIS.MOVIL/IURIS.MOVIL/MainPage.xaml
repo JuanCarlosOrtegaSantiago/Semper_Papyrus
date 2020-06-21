@@ -6,11 +6,70 @@
              mc:Ignorable="d"
              x:Class="IURIS.MOVIL.MainPage">
 
-    <StackLayout>
-        <!-- Place new controls here -->
-        <Label Text="Welcome to Xamarin.Forms!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
-    </StackLayout>
+    <ScrollView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="100"/>
+            </Grid.RowDefinitions>
+
+            <StackLayout Orientation="Horizontal" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center">
+                <Label Text="IURIS" FontAttributes="Bold" FontSize="40" TextColor="White"></Label>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Start">
+                <Label Text="Bienvenido" FontAttributes="Italic" FontSize="30" TextColor="White"></Label>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" Grid.Row="3" HorizontalOptions="Center" VerticalOptions="Center" >
+                <Image Source="Logo.png" ></Image>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" Grid.Row="4" HorizontalOptions="Center" VerticalOptions="Center">
+                <Label Text="From Semper Papyrus" FontSize="20" TextColor="White"></Label>
+            </StackLayout>
+
+
+            <StackLayout Orientation="Horizontal" Grid.Row="5" HorizontalOptions="Center" VerticalOptions="Center" x:Name="btnEntrar">
+
+                <Frame 
+                    BorderColor="White"
+                    Padding="1,1,1,1"
+                    HasShadow="True"
+                    IsClippedToBounds="True">
+
+                    <Button Text="Entrar" x:Name="BtnEntrar" Clicked="BtnEntrar_Clicked" FontSize="Large" HeightRequest="40" WidthRequest="230" Style="{StaticResource buttonSecundario}"></Button>
+
+                </Frame>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" Grid.Row="6" HorizontalOptions="Center" VerticalOptions="Center" >
+                <Frame
+                    BorderColor="White"
+                    Padding="1,1,1,1"
+                    HasShadow="True"
+                    IsClippedToBounds="True">
+
+                    <Button Text="Crear cuenta" x:Name="btnCrearCuenta" Clicked="BtnCrearCuenta_Clicked" HeightRequest="40" WidthRequest="230"  FontSize="Large" Style="{StaticResource buttonSecundario}"></Button>
+                </Frame>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" Grid.Row="7" HorizontalOptions="Center" VerticalOptions="Center" x:Name="lblCodigoUsuario">
+                <Label Text="Codigo de usuario" FontSize="15" TextColor="White"></Label>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" Grid.Row="8" HorizontalOptions="Center" VerticalOptions="Center" x:Name="lblCodigo">
+                <Label Text="######" FontSize="15" TextColor="White"></Label>
+            </StackLayout>
+        </Grid>
+    </ScrollView>
 
 </ContentPage>

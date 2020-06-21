@@ -6,11 +6,15 @@ namespace IURIS.MOVIL
 {
     public partial class App : Application
     {
+        public static MasterDetailPage masterDetail { get; set; }
         public App()
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            var pagina = new NavigationPage(new MainPage());
+            pagina.BackgroundColor = (Color)App.Current.Resources["PrimaryColor"];
+            pagina.BarBackgroundColor = (Color)App.Current.Resources["PrimaryColor"];
+            MainPage = pagina;
         }
 
         protected override void OnStart()

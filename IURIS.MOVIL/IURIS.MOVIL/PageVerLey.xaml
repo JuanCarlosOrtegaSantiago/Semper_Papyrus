@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="IURIS.MOVIL.PageVerLey">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="10"/>
+            </Grid.ColumnDefinitions>
+            <ListView x:Name="ListTitulos" Grid.Column="1" Grid.Row="1" HasUnevenRows="True" IsPullToRefreshEnabled="true" SelectionMode="None" ItemSelected="ListTitulos_ItemSelected" ItemTapped="ListTitulos_ItemTapped" SeparatorColor="Default" SeparatorVisibility="Default" Header="Titulos" ItemsSource="{Binding Titulo}">
+                <!--<ListView.HeaderTemplate >
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal" Padding="10,5,5,10" BackgroundColor="Yellow">
+                            <Label Text="~~"/>
+                            <Label Text="{Binding NumTitulo}"/>
+                            <Label Text="~~"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </ListView.HeaderTemplate>-->
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <!--<ViewCell>
+                            <ContentView  >-->
+                        <!--Padding="2, 5, 5, 0"-->
+                        <!--<ScrollView>-->
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" >
+                                <!--<Label Text="{Binding NumTitulo}" FontSize="Large" TextColor="Black"></Label>-->
+                                <Label Text="{Binding NombreTitulo}" FontSize="Large" TextColor="Black"></Label>
+                            </StackLayout>
+
+                            <ListView x:Name="lasks" Grid.Column="0" Grid.Row="1" HasUnevenRows="True" ItemsSource="{Binding ListaCapitulos}">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <ContentView >
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="auto"/>
+                                                        <RowDefinition Height="auto"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="auto"/>
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" >
+                                                        <Label Text="{Binding NumCapitulo}" FontSize="Large" TextColor="Black"></Label>
+                                                        <Label Text="{Binding NombreCapitulo}" FontSize="Large" TextColor="Black"></Label>
+                                                    </StackLayout>
+
+                                                    <ListView x:Name="Articulo" Grid.Column="0" Grid.Row="1" HasUnevenRows="False" ItemsSource="{Binding ListaArticulos}" >
+                                                        <ListView.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <ViewCell>
+                                                                    <ContentView>
+                                                                        <Grid>
+                                                                            <Grid.RowDefinitions>
+                                                                                <RowDefinition Height="auto"/>
+                                                                                <RowDefinition Height="auto"/>
+                                                                            </Grid.RowDefinitions>
+                                                                            <Grid.ColumnDefinitions>
+                                                                                <ColumnDefinition Width="auto"/>
+                                                                            </Grid.ColumnDefinitions>
+
+                                                                            <StackLayout Grid.Column="0" Grid.Row="0" Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="Center">
+                                                                                <Label Text="{Binding NumArticulo}" FontSize="Large" TextColor="Black"></Label>
+                                                                                <Label Text="{Binding NombreArticulo}" FontSize="Large" TextColor="Black"></Label>
+
+                                                                            </StackLayout>
+                                                                            <Label Text="{Binding Contenido}" FontSize="Large" TextColor="Black" Grid.Column="0" Grid.Row="1"></Label>
+
+                                                                        </Grid>
+                                                                    </ContentView>
+                                                                </ViewCell>
+                                                            </DataTemplate>
+                                                        </ListView.ItemTemplate>
+                                                    </ListView>
+
+                                                </Grid>
+                                            </ContentView>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+
+                        </Grid>
+                        <!--</ScrollView>-->
+                        <!--</ContentView>
+                        </ViewCell>-->
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
