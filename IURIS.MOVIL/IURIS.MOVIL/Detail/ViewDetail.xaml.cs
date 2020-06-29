@@ -26,6 +26,7 @@ namespace IURIS.MOVIL.Detail
 
             Ley = usuario.MisLeyes.Where(e => e.CodigoLey == "12345ds").SingleOrDefault();
             Title = Ley.NombreLey;
+            ClltionTitulos.ItemsSource = Ley.ListaDeTitulos;
             //ListTitulos.ItemsSource = Ley.ListaDeTitulos;
         }
 
