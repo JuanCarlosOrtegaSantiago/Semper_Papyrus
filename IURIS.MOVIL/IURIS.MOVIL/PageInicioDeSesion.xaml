@@ -38,12 +38,12 @@
                         </StackLayout>
 
                         <StackLayout Orientation="Horizontal" VerticalOptions="Center" Grid.Row="2" Margin="10,0,15,0" >
-                            <Label Text="Correo:" Margin="5,0,0,0" WidthRequest="100" VerticalOptions="Center" HorizontalTextAlignment="End" HorizontalOptions="End" FontSize="20"></Label>
+                            <Label Text="Correo:" Margin="5,0,0,0" WidthRequest="100" VerticalOptions="Center" HorizontalTextAlignment="End" HorizontalOptions="End" FontSize="20" Style="{StaticResource TextoAMostrarColorBlanco}"></Label>
                             <Entry x:Name="EntryCorreo" Placeholder="Ejemplo1234@gmail.com" Style="{StaticResource EntryCrearCuenta}" HorizontalTextAlignment="Center" IsTextPredictionEnabled="False" FontSize="Medium"></Entry>
                         </StackLayout>
 
                         <StackLayout Orientation="Horizontal" VerticalOptions="Center" Grid.Row="3" Margin="10,0,15,0" >
-                            <Label Text="Contraseña:" Margin="5,0,0,0" WidthRequest="100" VerticalOptions="Center" HorizontalTextAlignment="End" HorizontalOptions="End" FontSize="20"></Label>
+                            <Label Text="Contraseña:" Margin="5,0,0,0" WidthRequest="100" VerticalOptions="Center" HorizontalTextAlignment="End" HorizontalOptions="End" FontSize="20" Style="{StaticResource TextoAMostrarColorBlanco}"></Label>
                             <Entry MaxLength="4" Keyboard="Numeric" Placeholder="****" Style="{StaticResource EntryCrearCuenta}" HorizontalTextAlignment="Center" IsTextPredictionEnabled="False" IsPassword="True" FontSize="Medium" x:Name="EntryPasswor"></Entry>
                         </StackLayout>
 

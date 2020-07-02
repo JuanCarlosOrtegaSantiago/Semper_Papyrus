@@ -21,20 +21,27 @@
             </StackLayout>
 
             <StackLayout Grid.Row="1" x:Name="StkClasificacionPersonalizada"  HeightRequest="35" Margin="0,10,0,0" >
-                <Label Margin="15,2" HorizontalOptions="Start" VerticalOptions="Center" x:Name="LblClasificacionPersonalizada" Text="Clasificación personalizada"  Style="{StaticResource LabelCrearCuenta}" TextColor="Black"></Label>
+
+                <Label Style="{StaticResource TextoAMostrarColorRojo}" Margin="15,2" HorizontalOptions="Start" VerticalOptions="Center" x:Name="LblClasificacionPersonalizada" Text="Clasificación personalizada" FontSize="Large"></Label>
+                
                 <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
                 </StackLayout.GestureRecognizers>
+            
             </StackLayout>
             
             <StackLayout Grid.Row="2"  HeightRequest="35">
-                <Label HorizontalOptions="Start" VerticalOptions="Center"  Margin="15,2" Text="Mis apuntes" Style="{StaticResource LabelCrearCuenta}" TextColor="Black"></Label>
+                <Label HorizontalOptions="Start" VerticalOptions="Center"  Margin="15,2" Text="Mis apuntes" Style="{StaticResource TextoAMostrarColorRojo}" FontSize="Large"></Label>
+
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" />
+                </StackLayout.GestureRecognizers>
             </StackLayout>
             <StackLayout Grid.Row="3"  HeightRequest="35">
-                <Label HorizontalOptions="Start" VerticalOptions="Center" Margin="15,0"  Text="Cargar / CambiarLey" Style="{StaticResource LabelCrearCuenta}" TextColor="Black"></Label>
+                <Label HorizontalOptions="Start" VerticalOptions="Center" Margin="15,0"  Text="Cargar / CambiarLey" Style="{StaticResource TextoAMostrarColorRojo}" FontSize="Large"></Label>
             </StackLayout>
             <StackLayout Grid.Row="4"  HeightRequest="35">
-                <Label HorizontalOptions="Start" VerticalOptions="Center" Margin="15,0" Text="Ajustes" Style="{StaticResource LabelCrearCuenta}" TextColor="Black"></Label>
+                <Label HorizontalOptions="Start" VerticalOptions="Center" Margin="15,0" Text="Ajustes" Style="{StaticResource TextoAMostrarColorRojo}" FontSize="Large"></Label>
             </StackLayout>
         </Grid>
     </ContentPage.Content>

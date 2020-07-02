@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace IURIS.MOVIL.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ViewsContenido : ContentPage
+    public partial class MisApuntes : ContentPage
     {
-        public ViewsContenido()
+        public MisApuntes()
         {
             InitializeComponent();
         }

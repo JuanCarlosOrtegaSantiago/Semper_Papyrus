@@ -21,7 +21,7 @@ namespace IURIS.MOVIL
             InitializeComponent();
             usuario = usuarios;
 
-            this.Master = new ViewMaster();
+            this.Master = new ViewMaster(usuario);
             this.Detail = new NavigationPage(new ViewDetail(usuario));
             //Detail = new NavigationPage(new LoginRegister() { BarBackgroundColor = Color.LimeGreen, BarTextColor = Color.White });
 

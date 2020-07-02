@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="IURIS.MOVIL.Views.ViewsMisClasificaciones" Title="Mis Clasificaciones">
+    <!--<ContentPage.Content>-->
+    <StackLayout>
+        <Grid RowSpacing="0">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <StackLayout Grid.Row="0" BackgroundColor="{StaticResource PrimaryColor}">
+
+                <Label Margin="10,0" FontSize="Title" VerticalOptions="Center" Style="{StaticResource TextoAMostrarColorBlanco}" HorizontalOptions="Center">Nueva Clasificación</Label>
+
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+            <!--<Frame BorderColor="Black" 
+                   HeightRequest="10"
+                   WidthRequest="10"
+                    Padding="0,1,0,1"
+                   CornerRadius="10"
+                   Opacity="2"
+                    Grid.Row="0" BackgroundColor="{StaticResource PrimaryColor}"
+                   Margin="5,5,5,0">
+
+
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                </Frame.GestureRecognizers>
+            </Frame>-->
+
+            <Label x:Name="lblNoHayClasificacion" Grid.Row="1" TextColor="Black" FontAttributes="Italic" FontSize="Large" HorizontalOptions="Center" IsVisible="false">Aun no tienes ninguna clasificación</Label>
+
+            <CollectionView x:Name="clltionClasificaciones" Grid.Row="1" SelectionMode="Single" ItemsSource="{Binding Clasificaciones}" >
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50"/>
+                            </Grid.RowDefinitions>
+
+                            <Label Text="{Binding Nombre}" Style="{StaticResource TextoAMostrarColorRojo}" FontSize="Title" VerticalOptions="Center" Padding="15,10"></Label>
+
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+
+    </StackLayout>
+</ContentPage>

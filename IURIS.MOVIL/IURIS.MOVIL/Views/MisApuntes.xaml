@@ -4,23 +4,21 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="IURIS.MOVIL.Views.ViewsContenido">
+             x:Class="IURIS.MOVIL.Views.MisApuntes">
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
+                <RowDefinition />
             </Grid.RowDefinitions>
 
-            <CollectionView x:Name="ClltionTitulos" Grid.Row="0" Margin=" 30" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" SelectionMode="None" ItemsSource="{Binding Titulo}">
+            <StackLayout Grid.Row="0" Margin="0,20,0,0" HorizontalOptions="Center">
+            <Label Style="{StaticResource TextoAMostrarColorRojo}"  VerticalOptions="Center" FontSize="Title" FontAttributes="Bold">MIS APUNTES</Label>
                 
-                <CollectionView.Header>
-                    <Label Text="My evento"></Label>
-                </CollectionView.Header>
-            </CollectionView>
-            
+            </StackLayout>
+            <StackLayout Grid.Row="1" Margin="10">
+                <Entry Placeholder="Escribe tus ideas..." PlaceholderColor="{StaticResource ColorTexto}"></Entry>
+            </StackLayout>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

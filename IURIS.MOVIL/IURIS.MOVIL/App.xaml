@@ -8,11 +8,16 @@
     <Application.Resources>
         <ResourceDictionary>
             <Color x:Key="PrimaryColor">#640404</Color>
+            <Color x:Key="ColorTexto">#650606</Color>
             <Color x:Key="SecundaryColor">#c40505</Color>
 
-            <Style x:Name="TextNormal" TargetType="Label">
+            <Style x:Key="TextoAMostrarColorBlanco" TargetType="Label">
                 <Setter Property="TextColor" Value="White"/>
                 <Setter Property="FontSize" Value="15"/>
+            </Style>
+
+            <Style x:Key="TextoAMostrarColorRojo" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource ColorTexto}"/>
             </Style>
 
             <Style x:Key="buttonPrincipal" TargetType="Button">
@@ -47,6 +52,21 @@
                 <Setter Property="FontSize" Value="Large"/>
                 <Setter Property="HorizontalTextAlignment" Value="Center"/>
                 <Setter Property="HorizontalOptions" Value="Center"/>
+            </Style>
+
+            <Style x:Key="LblMostrarLeyTitulo" TargetType="Label">
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="FontSize" Value="Title"/>
+            </Style>
+
+            <Style x:Key="LblMostrarLeyCapitulo" TargetType="Label">
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="StartAndExpand"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="FontSize" Value="Large"/>
             </Style>
 
         </ResourceDictionary>

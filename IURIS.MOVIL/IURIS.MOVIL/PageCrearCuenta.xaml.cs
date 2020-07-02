@@ -1,6 +1,7 @@
 ﻿using IURIS.BIZ;
 using IURIS.COMMON.Entidades.Ley;
 using IURIS.COMMON.Entidades.UsuariosDeAplicacion;
+using IURIS.COMMON.Entidades.UsuariosDeAplicacion.ComponentesDeUsuario;
 using IURIS.COMMON.Interfaces;
 using IURIS.DAL;
 using System;
@@ -77,13 +78,14 @@ namespace IURIS.MOVIL
                 ApellidoMaterno = EntryApellidoMaterno.Text,
                 Correo = EntryCorreoElectronico.Text,
                 IdApp = numUsuario,
-                Contrasenia = int.Parse(EntryContrasenia.Text)
+                Contrasenia = int.Parse(EntryContrasenia.Text),
 
             };
             Leyes leyes = manejadorDeLeyes.BuscarLey("MiEjemplo");
             List<Leyes> Mleyes = new List<Leyes>();
             Mleyes.Add(leyes);
             usuarios.MisLeyes = Mleyes;
+            usuarios.Clasificaciones = new List<Clasificacion>();
 
 
             if (!manejadorDeUsuarioAplicacion.AGREGAR(usuarios))
