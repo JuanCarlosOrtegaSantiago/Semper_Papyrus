@@ -67,7 +67,7 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Button Grid.Column="0" BackgroundColor="Transparent" Text="Ok" x:Name="btnOK" Clicked="BtnOK_Clicked" Style="{StaticResource buttonPrincipal}" ></Button>
+                            <Button Grid.Column="0" BackgroundColor="Transparent" Text="Ok" FontSize="Large" x:Name="btnOK" Clicked="BtnOK_Clicked" Style="{StaticResource buttonPrincipal}" ></Button>
 
                             <Frame
                             Grid.Column="1" 
@@ -77,7 +77,7 @@
                     IsClippedToBounds="True">
 
 
-                                <Button BackgroundColor="{StaticResource PrimaryColor}"  Text="Cancelar" x:Name="btnCanselar" Clicked="BtnCanselar_Clicked" Style="{StaticResource buttonPrincipal}">
+                                <Button BackgroundColor="{StaticResource PrimaryColor}" FontSize="Large" Text="Cancelar" x:Name="btnCanselar" Clicked="BtnCanselar_Clicked" Style="{StaticResource buttonPrincipal}">
                                 </Button>
                             </Frame>
                         </Grid>

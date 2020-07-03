@@ -27,6 +27,11 @@ namespace IURIS.BIZ
             return Listar.Where(e => e.id == Id).SingleOrDefault();
         }
 
+        public Usuarios BuscarUsuarioParaContrasenia(string Correo, string Nombre, string ApellidoPaterno, string ApellidoMaterno)
+        {
+            return Listar.Where(e => e.Nombre.ToUpper() == Nombre.ToUpper() && e.ApellidoMaterno.ToUpper() == ApellidoMaterno.ToUpper() && e.ApellidoPaterno.ToUpper() == ApellidoPaterno.ToUpper() && e.Correo == Correo).SingleOrDefault();
+        }
+
         public bool Eliminar(ObjectId id)
         {
             return repositorio.Delete(id);
@@ -45,6 +50,11 @@ namespace IURIS.BIZ
         public bool Modificar(Usuarios entidad)
         {
             return repositorio.Update(entidad);
+        }
+
+        public Usuarios NoRecuerdoMiContrasenia(string Nombre, string ApelidoPaterno, string ApellidoMaterno, string Correo)
+        {
+            return Listar.Where(e => e.Nombre.ToUpper() == Nombre.ToUpper() && e.ApellidoPaterno.ToUpper()==ApelidoPaterno.ToUpper()&& e.ApellidoMaterno.ToUpper()==ApellidoMaterno.ToUpper() && e.Correo==Correo).SingleOrDefault();
         }
     }
 }

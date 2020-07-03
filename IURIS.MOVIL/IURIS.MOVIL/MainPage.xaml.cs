@@ -24,6 +24,7 @@ namespace IURIS.MOVIL
             Intentos++;
             if (Intentos == 1)
             {
+                Navigation.PopAsync();
                 Navigation.PushAsync(new PageCrearCuenta(), false);
                 Intentos = 0;
             }
@@ -35,12 +36,13 @@ namespace IURIS.MOVIL
         //    lblCodigoUsuario.IsVisible = false;
         //}
 
-        private void BtnEntrar_Clicked(object sender, EventArgs e)
+        private async void BtnEntrar_Clicked(object sender, EventArgs e)
         {
             Intentos++;
             if (Intentos == 1)
             {
-                Navigation.PushAsync(new PageInicioDeSesion(), false);
+                await Navigation.PopAsync();
+                await Navigation.PushAsync(new PageInicioDeSesion(), false);
                 Intentos = 0;
             }
         }

@@ -26,13 +26,13 @@ namespace IURIS.MOVIL
             manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
         }
 
-        private void BtnCanselar_Clicked(object sender, EventArgs e)
+        private async void BtnCanselar_Clicked(object sender, EventArgs e)
         {
             Intentos++;
             if (Intentos == 1)
             {
-                Navigation.PushAsync(new MainPage(), true);
-                //Navigation.PopAsync();
+                await Navigation.PopAsync();
+                await Navigation.PushAsync(new MainPage(), true);
                 Intentos = 0;
             }
         }
