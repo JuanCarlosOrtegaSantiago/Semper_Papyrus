@@ -1,4 +1,5 @@
 ﻿using IURIS.COMMON.Entidades.UsuariosDeAplicacion;
+using IURIS.MOVIL.Detail;
 using IURIS.MOVIL.Views;
 using System;
 using System.Collections.Generic;
@@ -34,16 +35,27 @@ namespace IURIS.MOVIL.Master
 
         //}
 
-        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             App.masterDetail.IsPresented = false;
-            await App.masterDetail.Detail.Navigation.PushAsync(new ViewsMisClasificaciones(User));
+            App.masterDetail.Detail = new NavigationPage(new ViewsMisClasificaciones(User));
+
+            //await App.masterDetail.Detail.Navigation.PushAsync(new ViewsMisClasificaciones(User));
         }
 
-        private async void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
+        private  void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
         {
             App.masterDetail.IsPresented = false;
-            await App.masterDetail.Detail.Navigation.PushAsync(new MisApuntes());
+            App.masterDetail.Detail = new NavigationPage(new MisApuntes());
+            //await App.masterDetail.Detail.Navigation.PushAsync(new MisApuntes());
+        }
+
+        private void TapGestureRecognizer_Tapped_2(object sender, EventArgs e)
+        {
+
+            //revisar para que no inicie de 0
+            App.masterDetail.IsPresented = false;
+            App.masterDetail.Detail =  new NavigationPage(new ViewDetail(User));
         }
     }
 }

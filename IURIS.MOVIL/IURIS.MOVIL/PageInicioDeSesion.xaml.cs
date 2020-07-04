@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -58,6 +59,12 @@ namespace IURIS.MOVIL
 
                 if (!string.IsNullOrWhiteSpace(EntryPasswor.Text) && !string.IsNullOrWhiteSpace(EntryCorreo.Text))
                 {
+                    if (Connectivity.NetworkAccess == NetworkAccess.None)
+                    {
+                        await DisplayAlert("Error", "Sin conexión a internet", "Aceptar");
+                        return;
+                    }
+
                     Usuarios usuario = manejadorDeUsuarioAplicacion.EncontrarUsuario(EntryCorreo.Text, int.Parse(EntryPasswor.Text));
                     if (usuario!=null)
                     {

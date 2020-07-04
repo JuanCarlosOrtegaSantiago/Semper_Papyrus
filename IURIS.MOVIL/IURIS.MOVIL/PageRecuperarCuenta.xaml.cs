@@ -32,27 +32,11 @@ namespace IURIS.MOVIL
                 return;
             }
 
-            //if (EntryNumeroDeTelefono.Text.Length < 10)
-            //{
-            //    await DisplayAlert("Error", "Faltan dijitos al numero de telefono", "Aceptar");
-            //    return;
-            //}
-
             User = manejadorDeUsuarioAplicacion.NoRecuerdoMiContrasenia(EntryNombre.Text, EntryApellidoPaterno.Text, EntryApellidoMaterno.Text, EntryCorreoElectronico.Text);
 
             if ( User!= null)
             {
-                //try
-                //{
-                //    var message = new SmsMessage(User.Contrasenia.ToString(), new[] { EntryNumeroDeTelefono.Text });
-                //    await Sms.ComposeAsync(message);
 
-                //}
-                //catch (Exception ex)
-                //{
-                //    // Other error has occurred.
-                //await DisplayAlert("Usuario", "Ocurrio un error", "Aceptar");
-                //}
                 string Nombre = string.Format("{0} {1}\ntu contraseña es: {2}", EntryNombre.Text, EntryApellidoPaterno.Text, User.Contrasenia.ToString());
                 await DisplayAlert("Usuario", Nombre, "Aceptar");
                 await Navigation.PopAsync();
@@ -65,22 +49,6 @@ namespace IURIS.MOVIL
             }
             
         }
-            //public async Task SendSms(string messageText, string recipient)
-            //{
-            //    try
-            //    {
-            //        var message = new SmsMessage(messageText, new[] { recipient });
-            //        await Sms.ComposeAsync(message);
-            //    }
-            //    catch (FeatureNotSupportedException ex)
-            //    {
-            //        // Sms is not supported on this device.
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        // Other error has occurred.
-            //    }
-            //}
-    
+           
     }
 }
