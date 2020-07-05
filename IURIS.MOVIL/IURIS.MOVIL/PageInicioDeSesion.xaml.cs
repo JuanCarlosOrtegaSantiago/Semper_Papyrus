@@ -2,6 +2,7 @@
 using IURIS.COMMON.Entidades.UsuariosDeAplicacion;
 using IURIS.COMMON.Interfaces;
 using IURIS.DAL;
+using IURIS.MOVIL.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,16 @@ namespace IURIS.MOVIL
         {
             InitializeComponent();
             manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
+
+            DatosAIniciar();
+        }
+
+        private void DatosAIniciar()
+        {
+            if (Settings.Email != "")
+            {
+                EntryCorreo.Text = Settings.Email;
+            }
         }
 
         private async void BtnCanselar_Clicked(object sender, EventArgs e)
@@ -68,6 +79,8 @@ namespace IURIS.MOVIL
                     Usuarios usuario = manejadorDeUsuarioAplicacion.EncontrarUsuario(EntryCorreo.Text, int.Parse(EntryPasswor.Text));
                     if (usuario!=null)
                     {
+                        Settings.NumUsuario = usuario.IdApp.ToString();
+                        Settings.Email = usuario.Correo;
                         await Navigation.PushAsync(new FirtsView(usuario), false);
 
                     }

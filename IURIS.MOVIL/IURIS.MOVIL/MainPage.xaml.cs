@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IURIS.MOVIL.Utils;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -17,6 +18,16 @@ namespace IURIS.MOVIL
         public MainPage()
         {
             InitializeComponent();
+
+            DatosAIniciar();
+        }
+
+        private void DatosAIniciar()
+        {
+            if(Settings.NumUsuario !="")
+            {
+                lblCodigoUsuario.Text = Settings.NumUsuario;
+            }
         }
 
         private void BtnCrearCuenta_Clicked(object sender, EventArgs e)
