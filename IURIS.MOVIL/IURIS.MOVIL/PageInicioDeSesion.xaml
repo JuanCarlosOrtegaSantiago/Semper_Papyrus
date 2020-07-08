@@ -8,16 +8,14 @@
     <ContentPage.Content>
         <ScrollView>
 
-            <Grid>
+            <Grid >
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="50"/>
+                    <!--<RowDefinition Height="50"/>-->
                     <RowDefinition />
                     <RowDefinition Height="50"/>
                 </Grid.RowDefinitions>
 
-                <Label Text="Inicio de sesión" TextColor="White" FontSize="32"  VerticalOptions="End" VerticalTextAlignment="End" HorizontalOptions="Center" Grid.Row="0"></Label>
-
-                <StackLayout Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center">
+                <StackLayout Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto"/>
@@ -26,27 +24,46 @@
                             <RowDefinition Height="auto"/>
                             <RowDefinition Height="auto"/>
                             <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
                         </Grid.RowDefinitions>
 
-                        <StackLayout HorizontalOptions="Center" Grid.Row="0">
+                        <StackLayout Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Start">
+                            <Label Text="IURIS" FontAttributes="Bold" FontSize="40" TextColor="White"></Label>
+                        </StackLayout>
+                        
+                        <StackLayout HorizontalOptions="Center" Grid.Row="1" Margin="0,30,0,0">
                             <Image Source="Logo.png" ></Image>
                         </StackLayout>
 
-                        <StackLayout Orientation="Horizontal" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center">
+                        <StackLayout Orientation="Horizontal" Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center">
                             <Label Text="From Semper Papyrus" FontSize="30" TextColor="White"></Label>
                         </StackLayout>
 
-                        <StackLayout Orientation="Horizontal" VerticalOptions="Center" Grid.Row="2" Margin="10,30,15,0" >
+                        <StackLayout Orientation="Horizontal" Grid.Row="3" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Label Text="Inicio de sesión" TextColor="White" FontSize="Large"  VerticalOptions="End" VerticalTextAlignment="End" HorizontalOptions="Center" Grid.Row="0"></Label>
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal" VerticalOptions="Center" Grid.Row="4" Margin="10,10,15,0" >
                             <Label Text="Correo:" Margin="5,0,0,0" WidthRequest="100" VerticalOptions="Center" HorizontalTextAlignment="End" HorizontalOptions="End" FontSize="20" Style="{StaticResource TextoAMostrarColorBlanco}"></Label>
                             <Entry x:Name="EntryCorreo" Placeholder="Ejemplo1234@gmail.com" Style="{StaticResource EntryCrearCuenta}" HorizontalTextAlignment="Center" IsTextPredictionEnabled="False" FontSize="Medium"></Entry>
                         </StackLayout>
 
-                        <StackLayout Orientation="Horizontal" VerticalOptions="Center" Grid.Row="3" Margin="10,0,15,0" >
+                        <StackLayout Orientation="Horizontal" VerticalOptions="Center" Grid.Row="5" Margin="10,0,15,0" >
                             <Label Text="Contraseña:" Margin="5,0,0,0" WidthRequest="100" VerticalOptions="Center" HorizontalTextAlignment="End" HorizontalOptions="End" FontSize="20" Style="{StaticResource TextoAMostrarColorBlanco}"></Label>
                             <Entry MaxLength="4" Keyboard="Numeric" Placeholder="****" Style="{StaticResource EntryCrearCuenta}" HorizontalTextAlignment="Center" IsTextPredictionEnabled="False" IsPassword="True" FontSize="Medium" x:Name="EntryPasswor"></Entry>
                         </StackLayout>
 
-                        <StackLayout Grid.Row="4" Margin="20,20,20,0">
+                        <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="6" Margin="10,0,15,0" >
+                            <CheckBox x:Name="CheckRecuerdame" Color="White" CheckedChanged="CheckRecuerdame_CheckedChanged"></CheckBox>
+                            <Label Text="Recuerdame" Margin="5,0,0,0" VerticalOptions="Center" HorizontalTextAlignment="End" HorizontalOptions="End" FontSize="20" Style="{StaticResource TextoAMostrarColorBlanco}"></Label>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="7" Margin="20,20,20,0">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -76,7 +93,7 @@
                             </Grid>
 
                         </StackLayout>
-                        <StackLayout Grid.Row="5" VerticalOptions="End" x:Name="stakNoRecuerdoMiContrasenia" Margin="0,5,0,0">
+                        <StackLayout Grid.Row="8" VerticalOptions="End" x:Name="stakNoRecuerdoMiContrasenia" Margin="0,5,0,0">
                             <Label TextColor="White" HorizontalTextAlignment="Center" FontSize="Medium" x:Name="LblNoRecuerdoMiContrasenia" >
                                 <Label.FormattedText>
                                     <FormattedString>

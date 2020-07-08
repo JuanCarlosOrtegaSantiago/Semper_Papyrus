@@ -22,6 +22,9 @@ namespace IURIS.MOVIL
 
         IManejadorDeUsuarioAplicacion manejadorDeUsuarioAplicacion;
 
+        bool Recuerdame = false;
+        
+
         public PageInicioDeSesion()
         {
             InitializeComponent();
@@ -32,10 +35,16 @@ namespace IURIS.MOVIL
 
         private void DatosAIniciar()
         {
-            if (Settings.Email != "")
+            if (Settings.Recuerdame)
             {
-                EntryCorreo.Text = Settings.Email;
+                if (Settings.Email != "")
+                    EntryCorreo.Text = Settings.Email;
+                if (Settings.Contrasenia != "")
+                    EntryPasswor.Text = Settings.Contrasenia;
+                CheckRecuerdame.IsChecked = Settings.Recuerdame;
             }
+
+
         }
 
         private async void BtnCanselar_Clicked(object sender, EventArgs e)
@@ -79,8 +88,14 @@ namespace IURIS.MOVIL
                     Usuarios usuario = manejadorDeUsuarioAplicacion.EncontrarUsuario(EntryCorreo.Text, int.Parse(EntryPasswor.Text));
                     if (usuario!=null)
                     {
+                        if (Recuerdame)
+                        {
+                            Settings.Email = usuario.Correo;
+                            Settings.Contrasenia = usuario.Contrasenia.ToString();
+                        }
+
+                            Settings.Recuerdame = Recuerdame;
                         Settings.NumUsuario = usuario.IdApp.ToString();
-                        Settings.Email = usuario.Correo;
                         await Navigation.PushAsync(new FirtsView(usuario), false);
 
                     }
@@ -91,6 +106,21 @@ namespace IURIS.MOVIL
                 }
             }
             Intentos = 0;
+        }
+
+        private void CheckRecuerdame_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+
+            Recuerdame = CheckRecuerdame.IsChecked ? true : false;
+            //Settings.Recuerdame = CheckRecuerdame.IsChecked ? true : false;
+
+        }
+
+        private void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
+        {
+
+            CheckRecuerdame.IsChecked = CheckRecuerdame.IsChecked ? false : true;
+            Recuerdame = CheckRecuerdame.IsChecked ? true : false;
         }
     }
 }

@@ -28,11 +28,11 @@
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal" VerticalOptions="Center" Grid.Row="2" Margin="10,0,15,0" >
-                    <Entry x:Name="EntryApellidoPaterno" Placeholder="Apellido Paterno..." Style="{StaticResource EntryCrearCuenta}" IsTextPredictionEnabled="True"></Entry>
+                    <Entry x:Name="EntryApellidoPaterno" Placeholder="Apellido paterno..." Style="{StaticResource EntryCrearCuenta}" IsTextPredictionEnabled="True"></Entry>
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal" VerticalOptions="Center" Grid.Row="3" Margin="10,0,15,0" >
-                    <Entry x:Name="EntryApellidoMaterno" Placeholder="Apellido Materno..." Style="{StaticResource EntryCrearCuenta}" IsTextPredictionEnabled="True"></Entry>
+                    <Entry x:Name="EntryApellidoMaterno" Placeholder="Apellido materno..." Style="{StaticResource EntryCrearCuenta}" IsTextPredictionEnabled="True"></Entry>
                 </StackLayout>
 
                 <StackLayout Orientation="Vertical" VerticalOptions="Center" Grid.Row="4" Margin="10,0,15,0" >
@@ -44,11 +44,10 @@
                 <StackLayout Orientation="Vertical" VerticalOptions="Center" Grid.Row="5" Margin="10,0,15,0" >
                     <Entry x:Name="EntryContrasenia" TextChanged="EntryContrasenia_TextChanged" MaxLength="4" Keyboard="Numeric" Placeholder="Contraseña..." Style="{StaticResource EntryCrearCuenta}"></Entry>
                     <Label x:Name="lblTamanioDeContrasenia" TextColor="White" FontSize="Medium" Text="Contraseña muy corta" IsVisible="False"></Label>
-
                 </StackLayout>
 
                 <StackLayout Orientation="Vertical" VerticalOptions="Center" Grid.Row="6" Margin="10,0,15,0" >
-                    <Entry x:Name="EntryConfirmarContrasenia" TextChanged="EntryConfirmarContrasenia_TextChanged" MaxLength="4" Keyboard="Numeric" Placeholder="Confirmar Contraseña..." Style="{StaticResource EntryCrearCuenta}" ></Entry>
+                    <Entry x:Name="EntryConfirmarContrasenia" TextChanged="EntryConfirmarContrasenia_TextChanged" MaxLength="4" Keyboard="Numeric" Placeholder="Confirmar contraseña..." Style="{StaticResource EntryCrearCuenta}" ></Entry>
                     <Label x:Name="lblContraseniaNoCoinside" TextColor="White" FontSize="Medium" Text="Las contraseñas no coinsiden" IsVisible="False"></Label>
                 </StackLayout>
 

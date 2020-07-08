@@ -104,8 +104,8 @@ namespace IURIS.MOVIL
 
         private void BtnCanselar_Clicked(object sender, EventArgs e)
         {
-            //Navigation.PushAsync(new PageIniciandoApp(), true);
-            Navigation.PopAsync();
+            Navigation.PushAsync(new MainPage(), true);
+            //Navigation.PopAsync();
 
         }
 
@@ -136,6 +136,10 @@ namespace IURIS.MOVIL
             lblTamanioDeContrasenia.IsVisible = EntryContrasenia.Text.Length < 4 ? true : false;
             if (!lblTamanioDeContrasenia.IsVisible)
                 TamanioDeContraseniaCorrecta = true;
+
+            lblContraseniaNoCoinside.IsVisible = EntryConfirmarContrasenia.Text != EntryContrasenia.Text ? true : false;
+            if (!lblContraseniaNoCoinside.IsVisible)
+                ContraseniasIguales = true;
         }
 
         private void EntryConfirmarContrasenia_TextChanged(object sender, TextChangedEventArgs e)

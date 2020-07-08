@@ -13,7 +13,10 @@ namespace IURIS.MOVIL.Utils
         #region Settings Constants
         private const string NumUserSettingsKey = "Last_Num_key";
         private const string CorreoUserSettingsKey = "Last_Correo_key";
+        private const string ContraseniaUserSettingsKey = "Last_Cotrasenia_key";
+        private const bool RecuerdameUserSettingsKey = false;
         private static readonly string SettingsDefault = string.Empty;
+        private static readonly bool SettingsDefaultiBool = default;
         #endregion
 
         public static string NumUsuario
@@ -38,6 +41,34 @@ namespace IURIS.MOVIL.Utils
             {
 
                 Appsettings.AddOrUpdateValue(CorreoUserSettingsKey, value);
+
+            }
+        }
+
+        public static string Contrasenia
+        {
+            get
+            {
+                return Appsettings.GetValueOrDefault(ContraseniaUserSettingsKey, SettingsDefault);
+            }
+            set
+            {
+
+                Appsettings.AddOrUpdateValue(ContraseniaUserSettingsKey, value);
+
+            }
+        }
+
+        public static bool Recuerdame
+        {
+            get
+            {
+                return Appsettings.GetValueOrDefault(RecuerdameUserSettingsKey.ToString(), SettingsDefaultiBool);
+            }
+            set
+            {
+
+                Appsettings.AddOrUpdateValue(RecuerdameUserSettingsKey.ToString(), value);
 
             }
         }

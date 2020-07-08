@@ -4,7 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="IURIS.MOVIL.Views.ViewsMisClasificaciones" Title="Mis Clasificaciones">
+             x:Class="IURIS.MOVIL.Views.ViewsMisClasificaciones" Title="Mis clasificaciones">
     <!--<ContentPage.Content>-->
     <StackLayout>
         <Grid RowSpacing="0">
@@ -15,7 +15,7 @@
             </Grid.RowDefinitions>
             <StackLayout Grid.Row="0" BackgroundColor="{StaticResource PrimaryColor}">
 
-                <Label Margin="10,0" FontSize="Title" VerticalOptions="Center" Style="{StaticResource TextoAMostrarColorBlanco}" HorizontalOptions="Center">Nueva Clasificación</Label>
+                <Label Margin="10,0" FontSize="Title" VerticalOptions="Center" Style="{StaticResource TextoAMostrarColorBlanco}" HorizontalOptions="Center">Nueva clasificación</Label>
 
                 <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
