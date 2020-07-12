@@ -36,9 +36,15 @@
                 </Frame.GestureRecognizers>
             </Frame>-->
 
-            <Label x:Name="lblNoHayClasificacion" Grid.Row="1" TextColor="Black" FontAttributes="Italic" FontSize="Large" HorizontalOptions="Center" IsVisible="false">Aun no tienes ninguna clasificación</Label>
 
             <CollectionView x:Name="clltionClasificaciones" Grid.Row="1" SelectionMode="Single" ItemsSource="{Binding Clasificaciones}" >
+                
+                <CollectionView.EmptyView>
+                    <StackLayout>
+            <Label TextColor="Black" FontAttributes="Italic" FontSize="Large" HorizontalOptions="Center">Aun no tienes ninguna clasificación</Label>
+                        
+                    </StackLayout>
+                </CollectionView.EmptyView>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid>

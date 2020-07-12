@@ -10,7 +10,7 @@ namespace IURIS.MOVIL
         public App()
         {
             InitializeComponent();
-
+            Device.SetFlags(new[] { "Expander_Experimental" });
             var pagina = new NavigationPage(new MainPage());
             pagina.BackgroundColor = (Color)App.Current.Resources["PrimaryColor"];
             pagina.BarBackgroundColor = (Color)App.Current.Resources["PrimaryColor"];

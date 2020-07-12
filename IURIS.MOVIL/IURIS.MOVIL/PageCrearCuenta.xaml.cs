@@ -81,7 +81,7 @@ namespace IURIS.MOVIL
                 Contrasenia = int.Parse(EntryContrasenia.Text),
 
             };
-            Leyes leyes = manejadorDeLeyes.BuscarLey("MiEjemplo");
+            Leyes leyes = manejadorDeLeyes.BuscarLey("CÓDIGO NACIONAL DE PROCEDIMIENTOS PENALES");
             List<Leyes> Mleyes = new List<Leyes>();
             Mleyes.Add(leyes);
             usuarios.MisLeyes = Mleyes;

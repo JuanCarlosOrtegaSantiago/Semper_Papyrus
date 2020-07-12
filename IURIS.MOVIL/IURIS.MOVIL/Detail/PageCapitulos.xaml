@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="IURIS.MOVIL.Detail.PageCapitulos">
+    <ContentPage.Content>
+        <CollectionView x:Name="ClltionCapitulos" SelectionMode="Single" ItemsSource="{Binding Titulo}" SelectionChanged="ClltionCapitulos_SelectionChanged">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <ContentView>
+
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" VerticalOptions="Center" Margin="10,5" >
+                            <Label Text="{Binding NumCapitulo}" FontSize="Large" TextColor="Black"></Label>
+                            <Label Text=" - " FontSize="Large" TextColor="Black"></Label>
+                            <Label Text="{Binding NombreCapitulo}" FontSize="Large" TextColor="Black"></Label>
+                        </StackLayout>
+
+
+                    </ContentView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </ContentPage.Content>
+</ContentPage>

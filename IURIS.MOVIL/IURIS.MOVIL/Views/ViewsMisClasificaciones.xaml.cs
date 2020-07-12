@@ -32,7 +32,6 @@ namespace IURIS.MOVIL.Views
         private void DatosAInicializar()
         {
 
-            lblNoHayClasificacion.IsVisible = User.Clasificaciones.Count <= 0 ? true : false;
             ActualizarDatos();
 
         }

@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             mc:Ignorable="d"
+             x:Class="IURIS.MOVIL.Detail.PageMotrarCapitulosConCodigos">
+    <ContentPage.Content>
+        <Grid>
+
+            <CollectionView x:Name="clltionCapitulos" ItemsSource="{Binding ListaCapitulos}" >
+            <!--este es donde se expande-->
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <ContentView>
+            <Expander >
+                <Expander.Header>
+                           
+                            <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" Margin="5,10" >
+                                            <Label Text="{Binding NumCapitulo}" HorizontalOptions="Center"  FontSize="Large" TextColor="Black"></Label>
+                                            <Label Text="{Binding NombreCapitulo}" HorizontalOptions="Center"  FontSize="Large" TextColor="Black"></Label>
+                            </StackLayout>
+
+                        <!--<FlexLayout Direction="Column">
+                    
+                    
+                    
+                        </FlexLayout>-->
+                    
+                </Expander.Header>
+
+
+                                <CollectionView SelectionMode="Single" ItemsSource="{Binding ListaArticulos}" >
+                                    <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                            <ContentView>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="auto"/>
+                                                <RowDefinition Height="auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="5"/>
+                                                <ColumnDefinition Width="auto"/>
+                                                <ColumnDefinition Width="5"/>
+                                            </Grid.ColumnDefinitions>
+                                            <StackLayout Grid.Column="1" Grid.Row="0" Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="Center">
+                                                <Label Text="{Binding NumArticulo}" FontSize="Large" TextColor="Black"></Label>
+                                                <Label Text="{Binding NombreArticulo}" FontSize="Large" TextColor="Black"></Label>
+
+                                            </StackLayout>
+
+                                            <Label Text="{Binding Contenido}" FontSize="Large" TextColor="Black" Grid.Column="1" Grid.Row="1"></Label>
+
+                                        </Grid>
+                                                
+                                            </ContentView>
+                                                    
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+            </Expander>
+                    </ContentView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+            <pv:PancakeView HorizontalOptions="End" VerticalOptions="End" Margin="30" Padding="15">
+                
+                <pv:PancakeView.BackgroundGradientStops>
+                    <pv:GradientStopCollection>
+                        <pv:GradientStop Color="White" Offset="0"/>
+                        <pv:GradientStop Color="White" Offset="1"/>
+                    </pv:GradientStopCollection>
+                </pv:PancakeView.BackgroundGradientStops>
+                <Expander Rotation="180" HorizontalOptions="Start" VerticalOptions="End">
+                    <Expander.Header>
+                        <Image Source="Mas.png" WidthRequest="40" HeightRequest="40" Rotation="180"/>
+                    </Expander.Header>
+                    <StackLayout>
+                        <ImageButton Source="Admin.png" HeightRequest="40" WidthRequest="40" BackgroundColor="Transparent" Rotation="180"/>
+                        <ImageButton Source="EditarPerfil.png" HeightRequest="40" WidthRequest="40" BackgroundColor="Transparent" Rotation="180"/>
+                        <ImageButton Source="Usuarios.png" HeightRequest="40" WidthRequest="40" BackgroundColor="Transparent" Rotation="180"/>
+                    </StackLayout>
+                </Expander>
+
+            </pv:PancakeView>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
