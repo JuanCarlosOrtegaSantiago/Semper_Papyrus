@@ -6,38 +6,53 @@
              mc:Ignorable="d"
              x:Class="IURIS.MOVIL.Detail.ViewDetail" >
 
+    <NavigationPage.TitleView>
+        <FlexLayout  >
+            <Label x:Name="lblTitle" Style="{StaticResource TextoAMostrarColorBlanco}"/>
+            <Expander Rotation="180" HorizontalOptions="End"  ExpandAnimationLength="2" >
+                <Expander.Header>
+                    <Image Source="Buscador.png" WidthRequest="30" HeightRequest="30" Rotation="180"/>
+                </Expander.Header>
+                <StackLayout>
+            <SearchBar Rotation="180" BackgroundColor="White" />
+                </StackLayout>
+            </Expander>
+        </FlexLayout>
+    </NavigationPage.TitleView>
+
+
     <ContentPage.Content>
 
         <Grid>
             <CollectionView Grid.Row="0" x:Name="ClltionTitulos" SelectionMode="Single" ItemsSource="{Binding Titulo}" SelectionChanged="ClltionTitulos_SelectionChanged">
-
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" SnapPointsAlignment="Center"/>
+                </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <ContentView>
 
-                            <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" VerticalOptions="Center" Margin="10,5" >
-                                <Label Text="{Binding NumTitulo}" FontSize="Large" TextColor="Black"></Label>
-                                <Label Text=" - " FontSize="Large" TextColor="Black"></Label>
-                                <Label Text="{Binding NombreTitulo}" FontSize="Large" TextColor="Black"></Label>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Margin="10,5" >
+                                <Label Style="{StaticResource TextoAMostrarColorRojo}">
+                                    <Label.Text>
+                                        <MultiBinding StringFormat="{}{0} - {1}">
+                                            <Binding Path="NumTitulo" />
+                                            <Binding Path="NombreTitulo" />
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
                             </StackLayout>
-
 
                         </ContentView>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-            
-        <pv:PancakeView HorizontalOptions="End" VerticalOptions="End" Margin="30" Padding="15">
-                <!--<pv:PancakeView.Clip>
-                    <EllipseGeometry 
-               RadiusX="100"
-               RadiusY="100"
-               Center="180,180" />
-                </pv:PancakeView.Clip>-->
+
+            <pv:PancakeView HorizontalOptions="End" VerticalOptions="End" Margin="40" Padding="15" CornerRadius="15">
                 <pv:PancakeView.BackgroundGradientStops>
                     <pv:GradientStopCollection>
-                        <pv:GradientStop Color="Transparent" Offset="0"/>
-                        <pv:GradientStop Color="Transparent" Offset="1"/>
+                        <pv:GradientStop Color="White" Offset="0"/>
+                        <pv:GradientStop Color="White" Offset="1"/>
                     </pv:GradientStopCollection>
                 </pv:PancakeView.BackgroundGradientStops>
                 <Expander Rotation="180" HorizontalOptions="Start" VerticalOptions="End">
@@ -45,9 +60,9 @@
                         <Image Source="Mas.png" WidthRequest="30" HeightRequest="30" Rotation="180"/>
                     </Expander.Header>
                     <StackLayout>
-                        <ImageButton Source="Admin.png" HeightRequest="30" WidthRequest="30" BackgroundColor="Transparent" Rotation="180"/>
-                        <ImageButton Source="EditarPerfil.png" HeightRequest="30" WidthRequest="30" BackgroundColor="Transparent" Rotation="180"/>
-                        <ImageButton Source="Usuarios.png" HeightRequest="30" WidthRequest="30" BackgroundColor="Transparent" Rotation="180"/>
+                        <Image Source="Admin.png" HeightRequest="20" WidthRequest="20" BackgroundColor="Transparent" Rotation="180"/>
+                        <Image Source="EditarPerfil.png" HeightRequest="20" WidthRequest="20" BackgroundColor="Transparent" Rotation="180"/>
+                        <Image Source="Usuarios.png" HeightRequest="20" WidthRequest="20" BackgroundColor="Transparent" Rotation="180"/>
                     </StackLayout>
                 </Expander>
             

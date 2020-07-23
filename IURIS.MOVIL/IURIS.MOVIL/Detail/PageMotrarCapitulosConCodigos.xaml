@@ -6,67 +6,58 @@
              mc:Ignorable="d"
              x:Class="IURIS.MOVIL.Detail.PageMotrarCapitulosConCodigos">
     <ContentPage.Content>
-        <Grid>
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height=".12*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-            <CollectionView x:Name="clltionCapitulos" ItemsSource="{Binding ListaCapitulos}" >
-            <!--este es donde se expande-->
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <ContentView>
-            <Expander >
-                <Expander.Header>
-                           
-                            <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" Margin="5,10" >
-                                            <Label Text="{Binding NumCapitulo}" HorizontalOptions="Center"  FontSize="Large" TextColor="Black"></Label>
-                                            <Label Text="{Binding NombreCapitulo}" HorizontalOptions="Center"  FontSize="Large" TextColor="Black"></Label>
+            <CollectionView Grid.Row="0" x:Name="clltionCapitulos"  SelectionMode="Single" ItemsSource="{Binding ListaCapitulos}" SelectionChanged="clltionCapitulos_SelectionChanged" ItemSizingStrategy="MeasureFirstItem" Margin="0,10">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10" SnapPointsAlignment="Center"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <ContentView>
+
+                            <StackLayout Grid.Row="0" Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" >
+                                <Label Text="{Binding NumCapitulo}" FontSize="Large" Style="{StaticResource TextoAMostrarColorRojo}" HorizontalOptions="Center"></Label>
+                                <Label Text="{Binding NombreCapitulo}" FontSize="Large" Style="{StaticResource TextoAMostrarColorRojo}" HorizontalOptions="Center"></Label>
                             </StackLayout>
+                        </ContentView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            
+            
+            <CollectionView x:Name="cllctionArticulos" Grid.Row="1" SelectionMode="Single" ItemsSource="{Binding ListaArticulos}" >
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid RowDefinitions="auto,auto" ColumnDefinitions="*,auto">
+                            <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="Center">
+                                <Label Text="{Binding NumArticulo}" FontSize="Title" TextColor="Black"></Label>
+                                <Label Text="{Binding NombreArticulo}" FontSize="Title" TextColor="Black"></Label>
 
-                        <!--<FlexLayout Direction="Column">
-                    
-                    
-                    
-                        </FlexLayout>-->
-                    
-                </Expander.Header>
+                            </StackLayout>
+                            
+                            <Expander Grid.Row="0" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Start"  Margin="10,5" Padding="10">
+                                <Expander.Header>
+                                    <Image Source="favicon.ico" WidthRequest="25" HeightRequest="25" Rotation="180"/>
+                                </Expander.Header>
+                                <StackLayout>
+                                    
+                                <Label Text="Elejido" FontSize="Large" TextColor="Black"></Label>
+                                </StackLayout>
+                            </Expander>
 
+                            <Label Text="{Binding Contenido}" FontSize="Subtitle" TextColor="Black" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,10"></Label>
 
-                                <CollectionView SelectionMode="Single" ItemsSource="{Binding ListaArticulos}" >
-                                    <CollectionView.ItemTemplate>
-                                    <DataTemplate>
-                                            <ContentView>
-                                        <Grid>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="auto"/>
-                                                <RowDefinition Height="auto"/>
-                                            </Grid.RowDefinitions>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="5"/>
-                                                <ColumnDefinition Width="auto"/>
-                                                <ColumnDefinition Width="5"/>
-                                            </Grid.ColumnDefinitions>
-                                            <StackLayout Grid.Column="1" Grid.Row="0" Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="Center">
-                                                <Label Text="{Binding NumArticulo}" FontSize="Large" TextColor="Black"></Label>
-                                                <Label Text="{Binding NombreArticulo}" FontSize="Large" TextColor="Black"></Label>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
-                                            </StackLayout>
-
-                                            <Label Text="{Binding Contenido}" FontSize="Large" TextColor="Black" Grid.Column="1" Grid.Row="1"></Label>
-
-                                        </Grid>
-                                                
-                                            </ContentView>
-                                                    
-                                    </DataTemplate>
-                                </CollectionView.ItemTemplate>
-                            </CollectionView>
-            </Expander>
-                    </ContentView>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-
-            <pv:PancakeView HorizontalOptions="End" VerticalOptions="End" Margin="30" Padding="15">
-                
+            <!--<pv:PancakeView HorizontalOptions="End" VerticalOptions="End" Margin="30" Padding="15">
                 <pv:PancakeView.BackgroundGradientStops>
                     <pv:GradientStopCollection>
                         <pv:GradientStop Color="White" Offset="0"/>
@@ -75,17 +66,16 @@
                 </pv:PancakeView.BackgroundGradientStops>
                 <Expander Rotation="180" HorizontalOptions="Start" VerticalOptions="End">
                     <Expander.Header>
-                        <Image Source="Mas.png" WidthRequest="40" HeightRequest="40" Rotation="180"/>
+                        <Image Source="Mas.png" WidthRequest="30" HeightRequest="30" Rotation="180"/>
                     </Expander.Header>
                     <StackLayout>
-                        <ImageButton Source="Admin.png" HeightRequest="40" WidthRequest="40" BackgroundColor="Transparent" Rotation="180"/>
-                        <ImageButton Source="EditarPerfil.png" HeightRequest="40" WidthRequest="40" BackgroundColor="Transparent" Rotation="180"/>
-                        <ImageButton Source="Usuarios.png" HeightRequest="40" WidthRequest="40" BackgroundColor="Transparent" Rotation="180"/>
+                        <ImageButton Source="Admin.png" HeightRequest="30" WidthRequest="30" BackgroundColor="Transparent" Rotation="180"/>
+                        <ImageButton Source="EditarPerfil.png" HeightRequest="30" WidthRequest="30" BackgroundColor="Transparent" Rotation="180"/>
+                        <ImageButton Source="Usuarios.png" HeightRequest="30" WidthRequest="30" BackgroundColor="Transparent" Rotation="180"/>
                     </StackLayout>
                 </Expander>
 
-            </pv:PancakeView>
-
+            </pv:PancakeView>-->
         </Grid>
     </ContentPage.Content>
 </ContentPage>

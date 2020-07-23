@@ -27,5 +27,15 @@ namespace IURIS.MOVIL.Detail
             clltionCapitulos.ItemsSource = null;
             clltionCapitulos.ItemsSource = _titulo.ListaCapitulos;
         }
+
+        private void clltionCapitulos_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Capitulo capitulo = clltionCapitulos.SelectedItem as Capitulo;
+            if ( capitulo != null)
+            {
+                cllctionArticulos.ItemsSource = null;
+                cllctionArticulos.ItemsSource = capitulo.ListaArticulos;
+            }
+        }
     }
 }

@@ -24,10 +24,10 @@ namespace IURIS.MOVIL.Detail
         {
             InitializeComponent();
             this.usuario = usuarios;
-            this.BindingContext = this;
+            this.BindingContext = Ley;
 
             Ley = usuario.MisLeyes.Where(e => e.CodigoLey == "cnpp1").SingleOrDefault();
-            Title = Ley.NombreLey;
+            lblTitle.Text = Ley.NombreLey;
             ClltionTitulos.ItemsSource = Ley.ListaDeTitulos;
             ClltionTitulos.SelectedItem = null;
 
