@@ -2,25 +2,38 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:Local="clr-namespace:IURIS.MOVIL.Modelos_y_clases"
              mc:Ignorable="d"
              x:Class="IURIS.MOVIL.Detail.ViewDetail" >
 
     <NavigationPage.TitleView>
-        <FlexLayout  >
-            <Label x:Name="lblTitle" Style="{StaticResource TextoAMostrarColorBlanco}"/>
-            <Expander Rotation="180" HorizontalOptions="End"  ExpandAnimationLength="2" >
-                <Expander.Header>
-                    <Image Source="Buscador.png" WidthRequest="30" HeightRequest="30" Rotation="180"/>
-                </Expander.Header>
-                <StackLayout>
-            <SearchBar Rotation="180" BackgroundColor="White" />
-                </StackLayout>
-            </Expander>
-        </FlexLayout>
+        <Grid ColumnDefinitions="*,Auto" ColumnSpacing="5" >
+            <FlexLayout Grid.Column="0" >
+                
+            <Local:CustomLabel x:Name="lblTitle" Style="{StaticResource TextoAMostrarColorBlanco}"/>
+            </FlexLayout>
+            <Image Grid.Column="1" Source="Buscador.png" WidthRequest="20" HorizontalOptions="End" HeightRequest="20" Margin="10,0,20,0"/>
+        </Grid>
     </NavigationPage.TitleView>
 
-
+    <ContentPage.Resources>
+        <Style TargetType="Grid">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="LightSkyBlue" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+    
     <ContentPage.Content>
 
         <Grid>
@@ -48,7 +61,7 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
-            <pv:PancakeView HorizontalOptions="End" VerticalOptions="End" Margin="40" Padding="15" CornerRadius="15">
+            <!--<pv:PancakeView HorizontalOptions="End" VerticalOptions="End" Margin="30" Padding="10" CornerRadius="15">
                 <pv:PancakeView.BackgroundGradientStops>
                     <pv:GradientStopCollection>
                         <pv:GradientStop Color="White" Offset="0"/>
@@ -66,7 +79,7 @@
                     </StackLayout>
                 </Expander>
             
-            </pv:PancakeView>
+            </pv:PancakeView>-->
             
         </Grid>
 
