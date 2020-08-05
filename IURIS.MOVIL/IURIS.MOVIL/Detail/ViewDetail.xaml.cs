@@ -1,6 +1,7 @@
 ﻿using IURIS.COMMON.Entidades.Ley;
 using IURIS.COMMON.Entidades.Ley.ComponentesDeLey;
 using IURIS.COMMON.Entidades.UsuariosDeAplicacion;
+using IURIS.MOVIL.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -26,28 +27,86 @@ namespace IURIS.MOVIL.Detail
             this.usuario = usuarios;
             this.BindingContext = Ley;
 
-            Ley = usuario.MisLeyes.Where(e => e.CodigoLey == "cnpp1").SingleOrDefault();
-            lblTitle.Text = Ley.NombreLey;
-            ClltionTitulos.ItemsSource = Ley.ListaDeTitulos;
-            ClltionTitulos.SelectedItem = null;
-
-            //ListTitulos.ItemsSource = Ley.ListaDeTitulos;
+            
+            DatosAInicializar();
+            //MostrarSearch(false);
         }
 
-        public ObservableCollection<Album> MyImagenes { get; set; }
-
-        private void ClltionTitulos_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void DatosAInicializar()
         {
-            Titulo titulo = ClltionTitulos.SelectedItem as Titulo;
+            Ley = usuario.MisLeyes.Where(e => e.CodigoLey == "cnpp1").SingleOrDefault();
+            lblTitle.Text = Ley.NombreLey;
 
-            Navigation.PushAsync(new PageMotrarCapitulosConCodigos(titulo));
+            ActualizarDatos(Ley.ListaDeTitulos);
+
+            ClltionTitulos.SelectedItem = null;
+        }
+
+        private void ActualizarDatos(List<Titulo> _MiLista)
+        {
+            ClltionTitulos.SelectedItem = null;
+
+            ClltionTitulos.ItemsSource = null;
+            ClltionTitulos.ItemsSource = _MiLista;
+        }
+
+        private void MostrarSearch(bool v)
+        {
+            SearchViewDetailTitle.IsVisible = v;
+;            tituloLey.IsVisible = !v;
+            IMGBuscador.IsVisible = !v;
+
+            //SearchViewDetail.IsVisible = v;
+        }
+
+        private async void ClltionTitulos_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+            Titulo titulo = ClltionTitulos.SelectedItem as Titulo;
+            if (titulo != null) { 
+
+            MostrarSearch(false);
+            await Navigation.PushAsync(new PageMotrarCapitulosConCodigos(titulo,usuario),false);
+            }
             //Navigation.PushAsync(new PageCapitulos(titulo));
         }
 
-        public class Album
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
-            public string Image { get; set; }
-            public string Description { get; set; }
+            //Navigation.PushAsync(new ViewBuscador(Ley), true);
+            MostrarSearch(true);
+
+        }
+
+
+        private void BuscarTexto(TextChangedEventArgs TextChange)
+        {
+            if (SearchViewDetailTitle.Text != null)
+            {
+
+            List<Titulo> titulos = new List<Titulo>();
+
+             titulos= Ley.ListaDeTitulos.ToList().Where(e => e.NumTitulo.ToUpper().Contains(TextChange.NewTextValue.ToUpper()) == true || e.NombreTitulo.ToUpper().Contains(TextChange.NewTextValue.ToUpper()) == true).ToList();
+
+            ActualizarDatos(titulos);
+            }
+
+        }
+
+        private void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
+        {
+            MostrarSearch(false);
+        }
+
+        private void SearchViewDetailTitle_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            BuscarTexto(e);
+        }
+
+        private void SearchViewDetailTitle_SearchButtonPressed(object sender, EventArgs e)
+        {
+            MostrarSearch(false);
+            SearchViewDetailTitle.Text = null;
         }
 
         //private void ListTitulos_ItemSelected(object sender, SelectedItemChangedEventArgs e)

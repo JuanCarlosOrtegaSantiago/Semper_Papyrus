@@ -7,13 +7,36 @@
              x:Class="IURIS.MOVIL.Detail.ViewDetail" >
 
     <NavigationPage.TitleView>
-        <Grid ColumnDefinitions="*,Auto" ColumnSpacing="5" >
-            <FlexLayout Grid.Column="0" >
+        <FlexLayout>
+            
+            <SearchBar 
                 
-            <Local:CustomLabel x:Name="lblTitle" Style="{StaticResource TextoAMostrarColorBlanco}"/>
+                x:Name="SearchViewDetailTitle" 
+                VerticalOptions="Center"
+                HorizontalOptions="EndAndExpand"
+                Placeholder="Titulo, palabras clave..." 
+                PlaceholderColor="White"
+                TextColor="White"
+                CancelButtonColor="White"
+                BackgroundColor="Transparent"
+                TextChanged="SearchViewDetailTitle_TextChanged"
+                SearchButtonPressed="SearchViewDetailTitle_SearchButtonPressed"
+                IsVisible="false"
+                Margin="-50,0,0,0"/>
+
+        <Grid ColumnDefinitions="*,Auto" ColumnSpacing="5" >
+            <FlexLayout Grid.Column="0" x:Name="tituloLey">
+
+                <Local:CustomLabel x:Name="lblTitle" Style="{StaticResource TextoAMostrarColorBlanco}"/>
             </FlexLayout>
-            <Image Grid.Column="1" Source="Buscador.png" WidthRequest="20" HorizontalOptions="End" HeightRequest="20" Margin="10,0,20,0"/>
+            
+            <Image x:Name="IMGBuscador" Grid.Column="1" Source="Buscador.png" WidthRequest="20" HorizontalOptions="End" HeightRequest="20" Margin="10,0,20,0">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                </Image.GestureRecognizers>
+            </Image>
         </Grid>
+        </FlexLayout>
     </NavigationPage.TitleView>
 
     <ContentPage.Resources>
@@ -33,34 +56,40 @@
             </Setter>
         </Style>
     </ContentPage.Resources>
-    
+
     <ContentPage.Content>
 
-        <Grid>
-            <CollectionView Grid.Row="0" x:Name="ClltionTitulos" SelectionMode="Single" ItemsSource="{Binding Titulo}" SelectionChanged="ClltionTitulos_SelectionChanged">
+        <Grid >
+                    <CollectionView x:Name="ClltionTitulos" SelectionMode="Single" ItemsSource="{Binding Titulo}" SelectionChanged="ClltionTitulos_SelectionChanged">
+                <CollectionView.EmptyView>
+                    <StackLayout>
+                        <Label TextColor="Black" FontAttributes="Bold"  FontSize="Large" HorizontalOptions="Center">No se encontraron datos</Label>
+                    </StackLayout>
+                </CollectionView.EmptyView>
                 <CollectionView.ItemsLayout>
-                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" SnapPointsAlignment="Center"/>
-                </CollectionView.ItemsLayout>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <ContentView>
+                            <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" SnapPointsAlignment="Center"/>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <ContentView >
 
-                            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Margin="10,5" >
-                                <Label Style="{StaticResource TextoAMostrarColorRojo}">
-                                    <Label.Text>
-                                        <MultiBinding StringFormat="{}{0} - {1}">
-                                            <Binding Path="NumTitulo" />
-                                            <Binding Path="NombreTitulo" />
-                                        </MultiBinding>
-                                    </Label.Text>
-                                </Label>
-                            </StackLayout>
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Margin="10,5" >
+                                        <Label Style="{StaticResource TextoAMostrarColorRojo}" >
+                                            <Label.Text>
+                                                <MultiBinding StringFormat="{}{0} - {1}">
+                                                    <Binding Path="NumTitulo" />
+                                                    <Binding Path="NombreTitulo" />
+                                                </MultiBinding>
+                                            </Label.Text>
+                                        </Label>
 
-                        </ContentView>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                                    </StackLayout>
 
+                                </ContentView>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+
+                    </CollectionView>
             <!--<pv:PancakeView HorizontalOptions="End" VerticalOptions="End" Margin="30" Padding="10" CornerRadius="15">
                 <pv:PancakeView.BackgroundGradientStops>
                     <pv:GradientStopCollection>
@@ -80,7 +109,6 @@
                 </Expander>
             
             </pv:PancakeView>-->
-            
         </Grid>
 
     </ContentPage.Content>

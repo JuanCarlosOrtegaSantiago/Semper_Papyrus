@@ -37,12 +37,12 @@
             </Frame>-->
 
 
-            <CollectionView x:Name="clltionClasificaciones" Grid.Row="1" SelectionMode="Single" ItemsSource="{Binding Clasificaciones}" >
-                
+            <CollectionView x:Name="clltionClasificaciones" Grid.Row="1" SelectionMode="Single" ItemsSource="{Binding Clasificaciones}" SelectionChanged="clltionClasificaciones_SelectionChanged" >
+
                 <CollectionView.EmptyView>
                     <StackLayout>
-            <Label TextColor="Black" FontAttributes="Italic" FontSize="Large" HorizontalOptions="Center">Aun no tienes ninguna clasificación</Label>
-                        
+                        <Label TextColor="Black" FontAttributes="Italic" FontSize="Large" HorizontalOptions="Center">Aun no tienes ninguna clasificación</Label>
+
                     </StackLayout>
                 </CollectionView.EmptyView>
                 <CollectionView.ItemTemplate>

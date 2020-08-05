@@ -102,10 +102,10 @@ namespace IURIS.MOVIL
 
         }
 
-        private void BtnCanselar_Clicked(object sender, EventArgs e)
+        private async void BtnCanselar_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new MainPage(), true);
-            //Navigation.PopAsync();
+           await Navigation.PopAsync();
+           await Navigation.PushAsync(new MainPage(), true);
 
         }
 

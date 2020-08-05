@@ -1,4 +1,5 @@
 ﻿using IURIS.BIZ;
+using IURIS.COMMON.Entidades.Ley.ComponentesDeLey;
 using IURIS.COMMON.Entidades.UsuariosDeAplicacion;
 using IURIS.COMMON.Entidades.UsuariosDeAplicacion.ComponentesDeUsuario;
 using IURIS.COMMON.Interfaces;
@@ -20,11 +21,14 @@ namespace IURIS.MOVIL.Views
     public partial class ViewsMisClasificaciones : ContentPage
     {
         IManejadorDeUsuarioAplicacion manejadorDeUsuarioAplicacion;
-        Usuarios User;
-        public ViewsMisClasificaciones(Usuarios Usuario)
+        Usuarios _User;
+        Articulo _Articulo;
+
+        public ViewsMisClasificaciones(Usuarios Usuario,Articulo articulo)
         {
             InitializeComponent();
-            User = Usuario;
+            _User = Usuario;
+            _Articulo = articulo;
 
             DatosAInicializar();
         }
@@ -40,7 +44,7 @@ namespace IURIS.MOVIL.Views
         void ActualizarDatos()
         {
             clltionClasificaciones.ItemsSource = null;
-            clltionClasificaciones.ItemsSource = User.Clasificaciones;
+            clltionClasificaciones.ItemsSource = _User.Clasificaciones;
         }
 
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
@@ -48,21 +52,22 @@ namespace IURIS.MOVIL.Views
 
             Clasificacion clasificacion = new Clasificacion()
             {
-                Nombre = await DisplayPromptAsync("", "", accept: "Aceptar", cancel: "Cancelar", placeholder: "Nombre de la nueva clasificación")
+                Nombre = await DisplayPromptAsync("", "", accept: "Aceptar", cancel: "Cancelar", placeholder: "Nombre de la nueva clasificación"),
+                MisArticulos = new List<Articulo>()
             };
 
             if (string.IsNullOrWhiteSpace(clasificacion.Nombre))
                 return;
 
 
-            User.Clasificaciones.Add(clasificacion);
+            _User.Clasificaciones.Add(clasificacion);
 
             manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
 
             try
             {
 
-            if (manejadorDeUsuarioAplicacion.Modificar(User))
+            if (manejadorDeUsuarioAplicacion.Modificar(_User))
             DatosAInicializar();
 
             }
@@ -74,5 +79,40 @@ namespace IURIS.MOVIL.Views
             }
         }
 
+        private async void clltionClasificaciones_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+                Clasificacion clasificacion = (Clasificacion)clltionClasificaciones.SelectedItem;
+            if (_Articulo != null)
+            {
+
+                clasificacion.MisArticulos.Add(_Articulo);
+
+                manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
+
+                try
+                {
+
+                    if (manejadorDeUsuarioAplicacion.Modificar(_User))
+                    {
+                        await DisplayAlert("Corecto", "Agregacion satisfactoria", "Aceptar");
+                        _Articulo = null;
+                    }
+                    else
+                    {
+
+                        await DisplayAlert("Error", "Por favor intenta mas tarde", "Aceptar");
+                    }
+
+                }
+                catch (Exception ex)
+                {
+
+                    await DisplayAlert("Error", "Por el momento no se peude agregar su clasificacion\n por favor intente mas tarde\nError:" + ex.Message, "Aceptar");
+                    return;
+                }
+
+            }
+                await Navigation.PushAsync(new ViewMiClasificacionPersonalizada(clasificacion, _User));
+        }
     }
 }
