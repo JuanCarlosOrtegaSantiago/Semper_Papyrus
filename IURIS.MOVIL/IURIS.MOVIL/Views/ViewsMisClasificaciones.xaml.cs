@@ -6,6 +6,8 @@ using IURIS.COMMON.Interfaces;
 using IURIS.DAL;
 using IURIS.MOVIL.Detail;
 using IURIS.MOVIL.Modelos_y_clases;
+using IURIS.MOVIL.Views.ViewsVentanasEmergentes;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,18 +25,24 @@ namespace IURIS.MOVIL.Views
         IManejadorDeUsuarioAplicacion manejadorDeUsuarioAplicacion;
         Usuarios _User;
         Articulo _Articulo;
+        public bool nuevoArticulo = false;
 
         public ViewsMisClasificaciones(Usuarios Usuario,Articulo articulo)
         {
             InitializeComponent();
-            _User = Usuario;
+            manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
+
             _Articulo = articulo;
 
-            DatosAInicializar();
+            DatosAInicializar(Usuario);
         }
 
-        private void DatosAInicializar()
+        private void DatosAInicializar(Usuarios usuarios)
         {
+
+
+            _User = manejadorDeUsuarioAplicacion.EncontrarUsuario(usuarios.Correo, usuarios.Contrasenia);
+
 
             ActualizarDatos();
 
@@ -50,33 +58,36 @@ namespace IURIS.MOVIL.Views
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
 
-            Clasificacion clasificacion = new Clasificacion()
-            {
-                Nombre = await DisplayPromptAsync("", "", accept: "Aceptar", cancel: "Cancelar", placeholder: "Nombre de la nueva clasificación"),
-                MisArticulos = new List<Articulo>()
-            };
+            WindowOfEmergencyNuevaClasificacion pantalla = new WindowOfEmergencyNuevaClasificacion(_User);
+            await PopupNavigation.Instance.PushAsync(pantalla);
 
-            if (string.IsNullOrWhiteSpace(clasificacion.Nombre))
-                return;
+            //Clasificacion clasificacion = new Clasificacion()
+            //{
+            //    Nombre = await DisplayPromptAsync("", "", accept: "Aceptar", cancel: "Cancelar", placeholder: "Nombre de la nueva clasificación"),
+            //    MisArticulos = new List<Articulo>()
+            //};
+
+            //if (string.IsNullOrWhiteSpace(clasificacion.Nombre))
+            //    return;
 
 
-            _User.Clasificaciones.Add(clasificacion);
+            //_User.Clasificaciones.Add(clasificacion);
 
-            manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
+            //manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
 
-            try
-            {
+            //try
+            //{
 
-            if (manejadorDeUsuarioAplicacion.Modificar(_User))
-            DatosAInicializar();
+            //    if (manejadorDeUsuarioAplicacion.Modificar(_User))
+            DatosAInicializar(_User);
 
-            }
-            catch (Exception ex)
-            {
+            //}
+            //catch (Exception ex)
+            //{
 
-                await DisplayAlert("Error", "Por el momento no se peude agregar su clasificacion\n por favor intente mas tarde\nError:"+ex.Message, "Aceptar");
-                return;
-            }
+            //    await DisplayAlert("Error", "Por el momento no se peude agregar su clasificacion\n por favor intente mas tarde\nError:" + ex.Message, "Aceptar");
+            //    return;
+            //}
         }
 
         private async void clltionClasificaciones_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -94,7 +105,7 @@ namespace IURIS.MOVIL.Views
 
                     if (manejadorDeUsuarioAplicacion.Modificar(_User))
                     {
-                        await DisplayAlert("Corecto", "Agregacion satisfactoria", "Aceptar");
+                        await DisplayAlert("Hecho", "Agregado correctamente", "Aceptar");
                         _Articulo = null;
                     }
                     else
@@ -112,7 +123,7 @@ namespace IURIS.MOVIL.Views
                 }
 
             }
-                await Navigation.PushAsync(new ViewMiClasificacionPersonalizada(clasificacion, _User));
+                await Navigation.PushAsync(new ViewMiClasificacionPersonalizada(clasificacion, _User), false);
         }
     }
 }

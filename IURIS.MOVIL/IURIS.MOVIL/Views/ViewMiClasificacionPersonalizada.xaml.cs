@@ -72,7 +72,7 @@ namespace IURIS.MOVIL.Views
 
                 if (manejadorDeUsuarioAplicacion.Modificar(_Usuarios))
                 {
-                    await DisplayAlert("Corecto", "Se eliminaron los elementos", "Aceptar");
+                    await DisplayAlert("Hecho", "Se eliminaron los elementos", "Aceptar");
                     IMGBasura.IsVisible = true;
                     ActualizarTabla();
                 }
@@ -91,5 +91,11 @@ namespace IURIS.MOVIL.Views
 
 
         }
+
+        //private async void Expander_Tapped(object sender, EventArgs e)
+        //{
+        //            await DisplayAlert("se", "Se selecciono", "Aceptar");
+
+        //}
     }
 }

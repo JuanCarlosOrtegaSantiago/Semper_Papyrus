@@ -27,7 +27,7 @@
         <Grid ColumnDefinitions="*,Auto" ColumnSpacing="5" >
             <FlexLayout Grid.Column="0" x:Name="tituloLey">
 
-                <Local:CustomLabel x:Name="lblTitle" Style="{StaticResource TextoAMostrarColorBlanco}"/>
+                    <Local:CustomLabel x:Name="lblTitle" Style="{StaticResource TextoAMostrarColorBlanco}" HorizontalTextAlignment="Center" HorizontalOptions="Center"/>
             </FlexLayout>
             
             <Image x:Name="IMGBuscador" Grid.Column="1" Source="Buscador.png" WidthRequest="20" HorizontalOptions="End" HeightRequest="20" Margin="10,0,20,0">
@@ -63,7 +63,7 @@
                     <CollectionView x:Name="ClltionTitulos" SelectionMode="Single" ItemsSource="{Binding Titulo}" SelectionChanged="ClltionTitulos_SelectionChanged">
                 <CollectionView.EmptyView>
                     <StackLayout>
-                        <Label TextColor="Black" FontAttributes="Bold"  FontSize="Large" HorizontalOptions="Center">No se encontraron datos</Label>
+                        <Label FontAttributes="Bold"  FontSize="Large" HorizontalOptions="Center" Style="{StaticResource TextoAMostrarColorRojo}">No se encontraron datos</Label>
                     </StackLayout>
                 </CollectionView.EmptyView>
                 <CollectionView.ItemsLayout>

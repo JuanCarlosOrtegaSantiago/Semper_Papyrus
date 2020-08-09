@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:IURIS.MOVIL.Modelos_y_clases"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:IURIS.MOVIL.Modelos_y_clases" xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              mc:Ignorable="d"
              x:Class="IURIS.MOVIL.Views.ViewMiClasificacionPersonalizada">
 
@@ -32,11 +32,14 @@
                     <Label TextColor="Black" FontAttributes="Bold"  FontSize="Large" HorizontalOptions="Center">No se encontraron datos</Label>
                 </StackLayout>
             </CollectionView.EmptyView>
-                
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
+            </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-
-                    <Expander HorizontalOptions="Start" VerticalOptions="Center">
+                    <pv:PancakeView  HorizontalOptions="FillAndExpand" >
+                        
+                        <Expander HorizontalOptions="Start" VerticalOptions="Center" >
                         
                         <Expander.Header>
                     
@@ -54,12 +57,15 @@
                             </StackLayout>
                         
                         </Expander.Header>
-                        
+                            <Expander.Content>
+                                
                         <StackLayout>
                             <local:CustomLabel Text="{Binding Contenido}" FontSize="Subtitle" Style="{StaticResource TextoAMostrarColorRojo}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,10"></local:CustomLabel>
                         </StackLayout>
+                            </Expander.Content>
                     
                     </Expander>
+                    </pv:PancakeView>
 
                 </DataTemplate>
             </CollectionView.ItemTemplate>
