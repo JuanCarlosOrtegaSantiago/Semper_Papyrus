@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:Local="clr-namespace:IURIS.MOVIL.Modelos_y_clases"
              mc:Ignorable="d"
              x:Class="IURIS.MOVIL.PageInicioDeSesion"  NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
@@ -47,12 +47,12 @@
 
                         <StackLayout Orientation="Horizontal" VerticalOptions="Center" Grid.Row="4" Margin="10,10,15,0" >
                             <Label Text="Correo:" Margin="5,0,0,0" WidthRequest="100" VerticalOptions="Center" HorizontalTextAlignment="End" HorizontalOptions="End" FontSize="20" Style="{StaticResource TextoAMostrarColorBlanco}"></Label>
-                            <Entry x:Name="EntryCorreo" Placeholder="Ejemplo1234@gmail.com" Style="{StaticResource EntryCrearCuenta}" HorizontalTextAlignment="Center" IsTextPredictionEnabled="False" FontSize="Medium"></Entry>
+                            <Local:CustomEntry x:Name="EntryCorreo" Placeholder="Ejemplo1234@gmail.com" ReturnType="Next" Style="{StaticResource EntryCrearCuenta}" HorizontalTextAlignment="Center" IsTextPredictionEnabled="False" FontSize="Medium"></Local:CustomEntry>
                         </StackLayout>
 
                         <StackLayout Orientation="Horizontal" VerticalOptions="Center" Grid.Row="5" Margin="10,0,15,0" >
                             <Label Text="Contraseña:" Margin="5,0,0,0" WidthRequest="100" VerticalOptions="Center" HorizontalTextAlignment="End" HorizontalOptions="End" FontSize="20" Style="{StaticResource TextoAMostrarColorBlanco}"></Label>
-                            <Entry MaxLength="4" Keyboard="Numeric" Placeholder="****" Style="{StaticResource EntryCrearCuenta}" HorizontalTextAlignment="Center" IsTextPredictionEnabled="False" IsPassword="True" FontSize="Medium" x:Name="EntryPasswor"></Entry>
+                            <Local:CustomEntry MaxLength="4" Keyboard="Numeric" Placeholder="****" Style="{StaticResource EntryCrearCuenta}" HorizontalTextAlignment="Center" IsTextPredictionEnabled="False" IsPassword="True" FontSize="Medium" x:Name="EntryPasswor"></Local:CustomEntry>
                         </StackLayout>
 
                         <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="6" Margin="10,0,15,0" >

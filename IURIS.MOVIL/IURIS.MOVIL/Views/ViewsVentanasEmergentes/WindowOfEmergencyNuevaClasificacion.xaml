@@ -3,8 +3,8 @@
                   xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:Local="clr-namespace:IURIS.MOVIL.Modelos_y_clases"
+                  mc:Ignorable="d"
              x:Class="IURIS.MOVIL.Views.ViewsVentanasEmergentes.WindowOfEmergencyNuevaClasificacion">
     <Frame BackgroundColor="{StaticResource PrimaryColor}"
            Margin="24"
@@ -13,7 +13,7 @@
            VerticalOptions="Center"
            CornerRadius="5">
         <Grid RowDefinitions="*,auto" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="-1">
-            <Entry x:Name="EntryNuevaClasificacion" Grid.Row="0" Placeholder="Nueva clasificación ..." HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" Style="{StaticResource EntryCrearCuenta}" ></Entry>
+            <Local:CustomEntry x:Name="EntryNuevaClasificacion" Grid.Row="0" Placeholder="Nueva clasificación ..." HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start" Style="{StaticResource EntryCrearCuenta}" ></Local:CustomEntry>
             <Frame Grid.Row="1" BorderColor="White"  
                     HasShadow="False"
                     IsClippedToBounds="True"

@@ -67,6 +67,8 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomEntryAndroid.cs" />
+    <Compile Include="CustomEntryBlancoAndroid.cs" />
     <Compile Include="CustomLabelAndriod.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
