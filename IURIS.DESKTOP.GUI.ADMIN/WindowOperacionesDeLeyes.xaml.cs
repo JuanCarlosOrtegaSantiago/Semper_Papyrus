@@ -1,5 +1,6 @@
 ﻿using IURIS.BIZ;
 using IURIS.COMMON.Entidades.Ley;
+using IURIS.COMMON.Entidades.Ley.ClasificacionDeLey;
 using IURIS.COMMON.Entidades.Ley.ComponentesDeLey;
 using IURIS.COMMON.Interfaces;
 using IURIS.DAL;
@@ -31,15 +32,42 @@ namespace IURIS.DESKTOP.GUI.ADMIN
         Leyes ley;
         bool CodigoExistente=false;
         IManejadorDeLeyes manejadorDeLeyes;
+        IManejadorDeClasificaciones manejadorDeClasificaciones;
+        static TimeoutException ExSinInternet = new TimeoutException();
+        public bool HayInternet = true;
 
-        
 
         public WindowOperacionesDeLeyes()
         {
             InitializeComponent();
-            manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
+
+            try
+            {
+                manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
+                manejadorDeClasificaciones = new ManejadorDeClasificaciones(new RepositorioGenerico<Clasificacion>());
+
+            }
+            catch (Exception ex)
+            {
+
+                if (ex.HResult == ExSinInternet.HResult)
+                    NoHayInternet();
+            }
+
+            DatosAInicializar();
+        }
+
+        private void NoHayInternet()
+        {
+            MessageBox.Show("Revisa tu conexion a internet", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
+
+        private void DatosAInicializar()
+        {
             EstadoDeCajas(false);
 
+            CmbxClasificacion.ItemsSource = null;
+            CmbxClasificacion.ItemsSource = manejadorDeClasificaciones.Listar;
         }
 
         private void EstadoDeCajas(bool v)
@@ -55,7 +83,8 @@ namespace IURIS.DESKTOP.GUI.ADMIN
             txtNumArticulo.IsEnabled = v;
             txtNumCapitulo.IsEnabled = v;
             txtNumTitulo.IsEnabled = v;
-            //Hanilitar botones
+            CmbxClasificacion.IsEnabled = v;
+            //Habilitar botones
             BtnAgregarArticulo.IsEnabled = v;
             BtnAgregarCapitulo.IsEnabled = v;
             BtnAgregarTitulo.IsEnabled = v;
@@ -119,10 +148,21 @@ namespace IURIS.DESKTOP.GUI.ADMIN
 
         private void BtnBuscarCodgio_Click(object sender, RoutedEventArgs e)
         {
-            if (manejadorDeLeyes.BuscarPorCodigo(txtCodigo.Text))
+            try
             {
-                WrpLblCodigoAsociado.Visibility = Visibility.Visible;
-                CodigoExistente = true;
+                if (manejadorDeLeyes.BuscarPorCodigo(txtCodigo.Text))
+                {
+                    WrpLblCodigoAsociado.Visibility = Visibility.Visible;
+                    CodigoExistente = true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                if (ex.HResult == ExSinInternet.HResult)
+                    NoHayInternet();
+
             }
         }
 
@@ -262,7 +302,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
 
         private void BtnSubirLey_Click(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(txtCodigo.Text) && !string.IsNullOrWhiteSpace(TxtNombreDeLey.Text) && titulos != null)
+            if (!string.IsNullOrWhiteSpace(txtCodigo.Text) && !string.IsNullOrWhiteSpace(TxtNombreDeLey.Text) && titulos != null && CmbxClasificacion.SelectedItem!=null)
             {
 
                 if (MessageBox.Show("Esta seguro de subir la informacion", "", MessageBoxButton.YesNo, MessageBoxImage.Exclamation, MessageBoxResult.No) == MessageBoxResult.Yes)
@@ -276,12 +316,23 @@ namespace IURIS.DESKTOP.GUI.ADMIN
                             NombreLey = TxtNombreDeLey.Text,
                             numDescargas = 0,
                             UltimaFechaDeModificacion = DateTime.Now.Date,
-                            EsModificacion = false
+                            EsModificacion = false,
+                            Clasificacion = (Clasificacion)CmbxClasificacion.SelectedItem
                         };
-                        if (manejadorDeLeyes.AGREGAR(ley))
+                        try
                         {
-                            MessageBox.Show("La ley ha subida con exito", "Correcto", MessageBoxButton.OK, MessageBoxImage.Information);
-                            EstadoDeCajas(false);
+                            if (manejadorDeLeyes.AGREGAR(ley))
+                            {
+                                MessageBox.Show("La ley ha subida con exito", "Correcto", MessageBoxButton.OK, MessageBoxImage.Information);
+                                EstadoDeCajas(false);
+                            }
+
+                        }
+                        catch (Exception ex)
+                        {
+
+                            if (ex.HResult == ExSinInternet.HResult)
+                                NoHayInternet();
                         }
                     }
                     else

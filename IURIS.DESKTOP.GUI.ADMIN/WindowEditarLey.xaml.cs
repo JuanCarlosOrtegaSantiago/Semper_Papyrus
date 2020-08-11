@@ -1,5 +1,6 @@
 ﻿using IURIS.BIZ;
 using IURIS.COMMON.Entidades.Ley;
+using IURIS.COMMON.Entidades.Ley.ClasificacionDeLey;
 using IURIS.COMMON.Entidades.Ley.ComponentesDeLey;
 using IURIS.COMMON.Interfaces;
 using IURIS.DAL;
@@ -35,31 +36,38 @@ namespace IURIS.DESKTOP.GUI.ADMIN
         Articulo _articulo=null;
 
         IManejadorDeLeyes manejadorDeLeyes;
+        IManejadorDeClasificaciones manejadorDeClasificaciones;
 
         public WindowEditarLey(Leyes Ley)
         {
             InitializeComponent();
-            manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
-
-            this.WindowState = WindowState.Maximized;
             CopiaLey = Ley;
+            manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
+            manejadorDeClasificaciones = new ManejadorDeClasificaciones(new RepositorioGenerico<Clasificacion>());
+
+            DatosAInicializar();
+
+        }
+
+        private void DatosAInicializar()
+        {
+            ActualizarLista();
 
             LblEditarLey.Content = string.Format("Editar ley {0}", CopiaLey.NombreLey);
             txtCodigo.Text = CopiaLey.CodigoLey;
             txtNombre.Text = CopiaLey.NombreLey;
-
             
-            ActualizarLista();
+            this.WindowState = WindowState.Maximized;
 
-            //foreach (ListView item in ListTitulos.SelectedItems)
-            //{
-            //    item.SelectedItem = false;
-            //}
+            //CmbxClasificacion.SelectedItem = CmbxClasificacion.Items.GetItemAt(1);
+            CmbxClasificacion.Text = CopiaLey.Clasificacion.Nombre;
 
         }
 
         private void ActualizarLista()
         {
+            CmbxClasificacion.ItemsSource = null;
+            CmbxClasificacion.ItemsSource = manejadorDeClasificaciones.Listar;
             ListTitulos.ItemsSource = null;
             ListTitulos.ItemsSource = CopiaLey.ListaDeTitulos;
         }
@@ -81,9 +89,10 @@ namespace IURIS.DESKTOP.GUI.ADMIN
         {
             if (MessageBox.Show("¿Realmente decea salir?", "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.No) == MessageBoxResult.Yes)
             {
-                WindowMostrarListaDeLeyes windowMostrarListaDeLeyes= new  WindowMostrarListaDeLeyes();
+
+                WindowMostrarClasificaciones windowMostrarClasificaciones = new WindowMostrarClasificaciones();
                 this.Close();
-                windowMostrarListaDeLeyes.Show();
+                windowMostrarClasificaciones.Show();
 
             }
         }
@@ -99,6 +108,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
 
                     CopiaLey.NombreLey = txtNombre.Text != CopiaLey.NombreLey ? txtNombre.Text : CopiaLey.NombreLey;
                     CopiaLey.CodigoLey = txtCodigo.Text != CopiaLey.CodigoLey ? txtCodigo.Text : CopiaLey.CodigoLey;
+                    CopiaLey.Clasificacion = (Clasificacion)CmbxClasificacion.SelectedItem;
 
                     while (CopiaLey.EsModificacion)
                     {
@@ -112,9 +122,9 @@ namespace IURIS.DESKTOP.GUI.ADMIN
                     {
 
                         MessageBox.Show("Ley modificada satisfactoriamente", "Carga correcta", MessageBoxButton.OK, MessageBoxImage.Information);
-                        WindowMostrarListaDeLeyes windowMostrarListaDeLeyes = new WindowMostrarListaDeLeyes();
+                        WindowMostrarClasificaciones windowMostrarClasificaciones = new WindowMostrarClasificaciones();
                         this.Close();
-                        windowMostrarListaDeLeyes.Show();
+                        windowMostrarClasificaciones.Show();
                     }
                     else
                     {

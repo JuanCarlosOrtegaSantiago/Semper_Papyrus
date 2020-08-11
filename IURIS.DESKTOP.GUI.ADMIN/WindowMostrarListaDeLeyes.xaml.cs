@@ -1,5 +1,6 @@
 ﻿using IURIS.BIZ;
 using IURIS.COMMON.Entidades.Ley;
+using IURIS.COMMON.Entidades.Ley.ClasificacionDeLey;
 using IURIS.COMMON.Interfaces;
 using IURIS.DAL;
 using System;
@@ -24,7 +25,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
     public partial class WindowMostrarListaDeLeyes : Window
     {
         IManejadorDeLeyes manejadorDeLeyes;
-        public WindowMostrarListaDeLeyes()
+        public WindowMostrarListaDeLeyes(Clasificacion clasificacion)
         {
             InitializeComponent();
             manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
@@ -33,7 +34,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
                 if (MessageBox.Show("Aun no tiene leyes agregadas", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning) == MessageBoxResult.OK)
                     this.Close();
 
-            ListLeyes.ItemsSource = manejadorDeLeyes.MostrarLeyes;
+            ListLeyes.ItemsSource = manejadorDeLeyes.BuscarEnLeyesPorClasificacion(clasificacion);
         }
 
         private void TextBox_KeyUp(object sender, KeyEventArgs e)

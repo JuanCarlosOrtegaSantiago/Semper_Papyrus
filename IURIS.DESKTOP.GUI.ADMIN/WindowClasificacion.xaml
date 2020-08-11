@@ -1,0 +1,93 @@
+﻿<Window x:Class="IURIS.DESKTOP.GUI.ADMIN.WindowClasificacion"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IURIS.DESKTOP.GUI.ADMIN"
+        mc:Ignorable="d"
+        Title="WindowUsuarios" Background="#640404"  Height="450" Width="800" WindowStyle="None" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+
+        <WrapPanel x:Name="WrpAgregarNuevaClasificacion" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3" Grid.RowSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Collapsed">
+            <WrapPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,10">
+                <Label Style="{DynamicResource LabelStyle1}">Nombre:</Label>
+                <TextBox x:Name="TxtNombreClasificacion" Width="250" VerticalContentAlignment="Center" Height="40" FontSize="25"></TextBox>
+            </WrapPanel>
+
+            <!--<WrapPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,10">
+                <Label Style="{DynamicResource LabelStyle1}">Correo:</Label>
+                <TextBox x:Name="txtCorreo" Width="250" VerticalContentAlignment="Center" Height="40" FontSize="25"></TextBox>
+            </WrapPanel>
+
+            <WrapPanel Orientation="Horizontal"  VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,10">
+                <Label Style="{DynamicResource LabelStyle1}">Contraseña:</Label>
+                <TextBox x:Name="txtContrasenia" Width="250" VerticalContentAlignment="Center" Height="40" FontSize="25"></TextBox>
+            </WrapPanel>
+
+            <WrapPanel Orientation="Horizontal"  VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,10">
+                <Label Style="{DynamicResource LabelStyle1}">Repetir:</Label>
+                <TextBox x:Name="TxtRepetirContrasenia" Width="250" VerticalContentAlignment="Center" Height="40" FontSize="25"></TextBox>
+            </WrapPanel>-->
+        </WrapPanel>
+
+        <ListView x:Name="DTGClasificaciones" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="5" Background="Transparent" BorderBrush="Transparent" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="10,5">
+                        <!--<Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>-->
+
+                        <Label FontSize="15" HorizontalContentAlignment="Right" Content="{Binding Nombre}" Style="{DynamicResource LabelStyle1}" />
+                            <!--<Label HorizontalAlignment="Left" Style="{DynamicResource LabelStyle1}" Margin="4,0" FontSize="15">Nombre:</Label>
+                            <Label HorizontalAlignment="Left" Style="{DynamicResource LabelStyle1}" Margin="4,0" FontSize="15">Nombre:</Label>-->
+                        <!--<WrapPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        </WrapPanel>-->
+                        <!--<WrapPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <Label HorizontalAlignment="Left" Style="{DynamicResource LabelStyle1}" Margin="12,0,5,0" FontSize="15">Correo:</Label>
+                            <Label FontSize="15" HorizontalContentAlignment="Right" Content="{Binding Correo}" Style="{DynamicResource LabelStyle1}" />
+                        </WrapPanel>-->
+
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <WrapPanel Orientation="Vertical" Grid.Row="1" Grid.Column="5" Grid.RowSpan="5" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Image Source="Imagenes/Logo.png" Height="240" Width="240"></Image>
+        </WrapPanel>
+
+        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="6">
+            <Button Style="{DynamicResource ButtonStyle1}" Width="100" Height="30" Margin="10" FontWeight="Bold" BorderBrush="White" FontSize="15" x:Name="BtnNuevo" Click="BtnNuevo_Click">Nuevo</Button>
+            <Button Style="{DynamicResource ButtonStyle1}" Width="100" Height="30" Margin="10" FontWeight="Bold" BorderBrush="White" FontSize="15" x:Name="BtnGuardar" Click="BtnGuardar_Click">Guardar</Button>
+            <Button Style="{DynamicResource ButtonStyle1}" Width="100" Height="30" Margin="10" FontWeight="Bold" BorderBrush="White" FontSize="15" x:Name="BtnCancelar" Click="BtnCancelar_Click">Cancelar</Button>
+            <Button Style="{DynamicResource ButtonStyle1}" Width="100" Height="30" Margin="10" FontWeight="Bold" BorderBrush="White" FontSize="15" x:Name="BtnEliminar" Click="BtnEliminar_Click">Eliminar</Button>
+            <Button Style="{DynamicResource ButtonStyle1}" Width="100" Height="30" Margin="10" FontWeight="Bold" BorderBrush="White" FontSize="15" x:Name="BtnRegresar" Click="BtnRegresar_Click">Regresar</Button>
+        </WrapPanel>
+
+    </Grid>
+</Window>

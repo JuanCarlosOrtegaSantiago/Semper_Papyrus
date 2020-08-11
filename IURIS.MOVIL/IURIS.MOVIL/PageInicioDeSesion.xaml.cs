@@ -1,4 +1,5 @@
-﻿using IURIS.BIZ;
+﻿using Android.Widget;
+using IURIS.BIZ;
 using IURIS.COMMON.Entidades.UsuariosDeAplicacion;
 using IURIS.COMMON.Interfaces;
 using IURIS.DAL;
@@ -96,6 +97,7 @@ namespace IURIS.MOVIL
 
                             Settings.Recuerdame = Recuerdame;
                         Settings.NumUsuario = usuario.IdApp.ToString();
+                        //Toast.MakeText(context,3,  ToastLength.Long).Show();
                         await Navigation.PushAsync(new FirtsView(usuario), false);
 
                     }

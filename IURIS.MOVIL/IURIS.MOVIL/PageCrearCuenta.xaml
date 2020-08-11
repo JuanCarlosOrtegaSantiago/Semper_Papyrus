@@ -47,7 +47,7 @@
                 </StackLayout>
 
                 <StackLayout Orientation="Vertical" VerticalOptions="Center" Grid.Row="6" Margin="10,0,15,0" >
-                    <local:CustomEntry x:Name="EntryConfirmarContrasenia" TextChanged="EntryConfirmarContrasenia_TextChanged" MaxLength="4" Keyboard="Numeric" Placeholder="Confirmar contraseña..." ClearButtonVisibility="WhileEditing" Style="{StaticResource EntryCrearCuenta}" ></local:CustomEntry>
+                    <local:CustomEntry x:Name="EntryConfirmarContrasenia" TextChanged="EntryConfirmarContrasenia_TextChanged" MaxLength="4" Keyboard="Numeric" Placeholder="Confirmar contraseña..." ClearButtonVisibility="WhileEditing" Completed="BtnOK_Clicked" Style="{StaticResource EntryCrearCuenta}" ></local:CustomEntry>
                     <Label x:Name="lblContraseniaNoCoinside" TextColor="White" FontSize="Medium" Text="Las contraseñas no coinsiden" IsVisible="False"></Label>
                 </StackLayout>
 

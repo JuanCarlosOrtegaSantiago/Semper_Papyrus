@@ -52,7 +52,7 @@
 
                         <StackLayout Orientation="Horizontal" VerticalOptions="Center" Grid.Row="5" Margin="10,0,15,0" >
                             <Label Text="Contraseña:" Margin="5,0,0,0" WidthRequest="100" VerticalOptions="Center" HorizontalTextAlignment="End" HorizontalOptions="End" FontSize="20" Style="{StaticResource TextoAMostrarColorBlanco}"></Label>
-                            <Local:CustomEntry MaxLength="4" Keyboard="Numeric" Placeholder="****" Style="{StaticResource EntryCrearCuenta}" HorizontalTextAlignment="Center" IsTextPredictionEnabled="False" IsPassword="True" FontSize="Medium" x:Name="EntryPasswor"></Local:CustomEntry>
+                            <Local:CustomEntry MaxLength="4" Keyboard="Numeric" Placeholder="****" Style="{StaticResource EntryCrearCuenta}" HorizontalTextAlignment="Center" IsTextPredictionEnabled="False" IsPassword="True" FontSize="Medium" x:Name="EntryPasswor" Completed="BtnAceptar_Clicked"></Local:CustomEntry>
                         </StackLayout>
 
                         <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="6" Margin="10,0,15,0" >

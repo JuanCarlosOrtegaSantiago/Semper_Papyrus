@@ -32,7 +32,7 @@
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal" VerticalOptions="Center" Grid.Row="4" Margin="10,0,15,0" >
-                    <local:CustomEntry x:Name="EntryCorreoElectronico" Placeholder="Correo electrónico..." Style="{StaticResource EntryCrearCuenta}" Margin="5,0,0,0" ReturnType="Next" ></local:CustomEntry>
+                    <local:CustomEntry x:Name="EntryCorreoElectronico" Placeholder="Correo electrónico..." Style="{StaticResource EntryCrearCuenta}" Margin="5,0,0,0" Completed="btnBuscar_Clicked" ></local:CustomEntry>
                 </StackLayout>
 
                 <!--<StackLayout Orientation="Horizontal" VerticalOptions="Center" Grid.Row="5" Margin="10,0,15,0" >

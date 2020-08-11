@@ -13,7 +13,7 @@
            VerticalOptions="Center"
            CornerRadius="5">
         <Grid RowDefinitions="*,auto" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="-1">
-            <Local:CustomEntry x:Name="EntryNuevaClasificacion" Grid.Row="0" Placeholder="Nueva clasificación ..." HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start" Style="{StaticResource EntryCrearCuenta}" ></Local:CustomEntry>
+            <Local:CustomEntry x:Name="EntryNuevaClasificacion" Grid.Row="0" Placeholder="Nueva clasificación ..." HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start" Style="{StaticResource EntryCrearCuenta}" Completed="BtnAceptar_Clicked"></Local:CustomEntry>
             <Frame Grid.Row="1" BorderColor="White"  
                     HasShadow="False"
                     IsClippedToBounds="True"

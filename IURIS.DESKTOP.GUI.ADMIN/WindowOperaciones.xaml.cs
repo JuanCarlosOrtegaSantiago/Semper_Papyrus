@@ -60,10 +60,17 @@ namespace IURIS.DESKTOP.GUI.ADMIN
 
         private void BtnModificarLey_Click(object sender, RoutedEventArgs e)
         {
-            WindowMostrarListaDeLeyes windowMostrarListaDeLeyes= new WindowMostrarListaDeLeyes();
+            WindowMostrarClasificaciones windowMostrarClasificaciones= new  WindowMostrarClasificaciones();
             //WindowOperacionesDeLeyes windowOperacionesDeLeyes = new WindowOperacionesDeLeyes(EsNuevaLey);
-            this.Close();
-            windowMostrarListaDeLeyes.Show();
+            if (windowMostrarClasificaciones.HayInternet)
+            {
+                this.Close();
+                windowMostrarClasificaciones.Show();
+            }
+            else
+            {
+                MessageBox.Show("Revisa tu conexion a internet", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         private void BtnSalir_Click(object sender, RoutedEventArgs e)
@@ -89,6 +96,13 @@ namespace IURIS.DESKTOP.GUI.ADMIN
             WindowLeyesDescargadas windowLeyesDescargadas = new WindowLeyesDescargadas();
             this.Close();
             windowLeyesDescargadas.Show();
+        }
+
+        private void BtnClasificaciones_Click(object sender, RoutedEventArgs e)
+        {
+            WindowClasificacion windowClasificacion = new WindowClasificacion();
+            this.Close();
+            windowClasificacion.Show();
         }
     }
 }

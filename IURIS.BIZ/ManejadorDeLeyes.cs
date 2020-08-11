@@ -1,4 +1,5 @@
 ﻿using IURIS.COMMON.Entidades.Ley;
+using IURIS.COMMON.Entidades.Ley.ClasificacionDeLey;
 using IURIS.COMMON.Interfaces;
 using IURIS.DAL;
 using MongoDB.Bson;
@@ -28,6 +29,11 @@ namespace IURIS.BIZ
         public List<Leyes> BuscarEnLeyes(string BuscarLey)
         {
             return repositorio.Read.Where(e => e.NombreLey.ToUpper().Contains(BuscarLey.ToUpper()) == true || e.CodigoLey.ToUpper().Contains(BuscarLey.ToUpper()) == true).OrderByDescending(e => e.UltimaFechaDeModificacion).ToList();
+        }
+
+        public List<Leyes> BuscarEnLeyesPorClasificacion(Clasificacion clasificacion)
+        {
+            return repositorio.Read.Where(e => e.Clasificacion == clasificacion).ToList();
         }
 
         public Leyes BuscarLey(string NombreDeLEy)

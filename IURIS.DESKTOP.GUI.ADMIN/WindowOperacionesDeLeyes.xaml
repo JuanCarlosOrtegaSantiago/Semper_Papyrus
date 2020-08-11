@@ -66,7 +66,7 @@
         <Separator Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="14" VerticalAlignment="Bottom"/>
 
         <!--comienza con los cuadros para ediciones-->
-        <WrapPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="8" VerticalAlignment="Center" Margin="0,2">
+        <WrapPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="11" VerticalAlignment="Center" Margin="0,2">
             <WrapPanel Orientation="Vertical" Margin="10,0">
 
                 <Label VerticalAlignment="Center" VerticalContentAlignment="Center" Style="{DynamicResource LabelStyle1}">Nombre de la ley:</Label>
@@ -97,6 +97,17 @@
 
                 </WrapPanel>
 
+            </WrapPanel>
+
+            <WrapPanel Orientation="Vertical" HorizontalAlignment="Right" Margin="10,0">
+
+                <Label VerticalAlignment="Center" VerticalContentAlignment="Center" Style="{DynamicResource LabelStyle1}">Nombre de clasificación:</Label>
+                <ComboBox x:Name="CmbxClasificacion" Width="350" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"></ComboBox>
+                <!--<Expander  Foreground="White" FontSize="15" Margin="0,10">
+                    <Expander.Header>
+                    </Expander.Header>
+                        <TextBox x:Name="TxtNombreDeClasificacion"  Width="350" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"></TextBox>
+                </Expander>-->
             </WrapPanel>
         </WrapPanel>
 
@@ -215,7 +226,7 @@
 
         </WrapPanel>
 
-        <WrapPanel Grid.Row="3" Grid.Column="9" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2">
+        <WrapPanel Grid.Row="4" Grid.Column="9" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2">
             <Button x:Name="BtnSubirLey" Background="Transparent" Style="{DynamicResource ButtonStyle1}" BorderBrush="White" Width="100" Height="100" Click="BtnSubirLey_Click">
                 <WrapPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <Image Source="Imagenes/Subir.png" Width="50" Height="50"></Image>
@@ -224,7 +235,7 @@
             </Button>
         </WrapPanel>
         
-        <WrapPanel Grid.Row="4" Grid.Column="9" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2">
+        <WrapPanel Grid.Row="5" Grid.Column="9" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2">
             <Button x:Name="BtnNuevaLey" Background="Transparent" Style="{DynamicResource ButtonStyle1}" BorderBrush="White" Width="100" Height="100" Click="BtnNuevaLey_Click">
                 <WrapPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <Image Source="Imagenes/Nuevo.png" Width="50" Height="50"></Image>
@@ -233,7 +244,7 @@
             </Button>
         </WrapPanel>
 
-        <WrapPanel Grid.Row="5" Grid.Column="9" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2">
+        <WrapPanel Grid.Row="6" Grid.Column="9" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="2">
             <Button x:Name="BtnCancelar" Background="Transparent" Style="{DynamicResource ButtonStyle1}" BorderBrush="White" Width="100" Height="100" Click="BtnCancelar_Click">
                 <WrapPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <Image Source="Imagenes/cancelar.png" Width="50" Height="50"></Image>

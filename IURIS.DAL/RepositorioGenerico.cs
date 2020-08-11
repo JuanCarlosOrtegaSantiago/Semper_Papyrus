@@ -22,7 +22,16 @@ namespace IURIS.DAL
 
         private IMongoCollection<T> Collection()
         {
+            try
+            {
             return db.GetCollection<T>(typeof(T).Name);
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public List<T> Read => Collection().AsQueryable().ToList();

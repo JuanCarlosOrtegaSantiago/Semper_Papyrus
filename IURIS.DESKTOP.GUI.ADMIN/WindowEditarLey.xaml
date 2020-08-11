@@ -49,26 +49,35 @@
 
         <!--comienza con los cuadros para ediciones-->
 
-        <WrapPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="15,0">
+        <WrapPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Left">
             <WrapPanel Orientation="Horizontal" VerticalAlignment="Center">
 
-                <WrapPanel Orientation="Horizontal" Margin="20,0" VerticalAlignment="Center">
+                <WrapPanel Orientation="Horizontal" Margin="10,0" VerticalAlignment="Center">
                 <Label Style="{DynamicResource LabelStyle1}" >Nombre</Label>
             </WrapPanel>
                 <TextBox x:Name="txtNombre" Width="250" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"></TextBox>
             </WrapPanel>
+            
             <WrapPanel Orientation="Horizontal" VerticalAlignment="Center">
-                
-            <WrapPanel Orientation="Horizontal" Margin="20,0" VerticalAlignment="Center">
-                <Label Style="{DynamicResource LabelStyle1}" >Codigo</Label>
+
+                <WrapPanel Orientation="Horizontal" Margin="10,0" VerticalAlignment="Center">
+                    <Label Style="{DynamicResource LabelStyle1}" >Codigo</Label>
+                </WrapPanel>
+                <TextBox x:Name="txtCodigo" Width="200" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"></TextBox>
             </WrapPanel>
-                <TextBox x:Name="txtCodigo" Width="250" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"></TextBox>
+            
+            <WrapPanel Orientation="Horizontal" VerticalAlignment="Center">
+
+                <WrapPanel Orientation="Horizontal" Margin="10,0" VerticalAlignment="Center">
+                    <Label Style="{DynamicResource LabelStyle1}" >Clasificación</Label>
+                </WrapPanel>
+                <ComboBox x:Name="CmbxClasificacion" Width="200" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"></ComboBox>
             </WrapPanel>
 
 
         </WrapPanel>
         
-            <Button x:Name="BtnAdd" Click="BtnAdd_Click" Grid.Row="2" Grid.Column="3" Width="40" Height="40" Style="{DynamicResource ButtonStyle1}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="150,0">
+            <Button x:Name="BtnAdd" Click="BtnAdd_Click" Grid.Row="2" Grid.Column="3" Width="40" Height="40" Style="{DynamicResource ButtonStyle1}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="50,0">
                 <Image Source="Imagenes/add.png" Width="40" Height="40" VerticalAlignment="Center" HorizontalAlignment="Center" ></Image>
             </Button>
         
