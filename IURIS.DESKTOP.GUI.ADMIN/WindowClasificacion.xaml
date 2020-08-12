@@ -86,6 +86,7 @@
             <Button Style="{DynamicResource ButtonStyle1}" Width="100" Height="30" Margin="10" FontWeight="Bold" BorderBrush="White" FontSize="15" x:Name="BtnGuardar" Click="BtnGuardar_Click">Guardar</Button>
             <Button Style="{DynamicResource ButtonStyle1}" Width="100" Height="30" Margin="10" FontWeight="Bold" BorderBrush="White" FontSize="15" x:Name="BtnCancelar" Click="BtnCancelar_Click">Cancelar</Button>
             <Button Style="{DynamicResource ButtonStyle1}" Width="100" Height="30" Margin="10" FontWeight="Bold" BorderBrush="White" FontSize="15" x:Name="BtnEliminar" Click="BtnEliminar_Click">Eliminar</Button>
+            <Button Style="{DynamicResource ButtonStyle1}" Width="100" Height="30" Margin="10" FontWeight="Bold" BorderBrush="White" FontSize="15" x:Name="BtnEditar" Click="BtnEditar_Click" >Editar</Button>
             <Button Style="{DynamicResource ButtonStyle1}" Width="100" Height="30" Margin="10" FontWeight="Bold" BorderBrush="White" FontSize="15" x:Name="BtnRegresar" Click="BtnRegresar_Click">Regresar</Button>
         </WrapPanel>
 

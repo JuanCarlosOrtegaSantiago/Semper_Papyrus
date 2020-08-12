@@ -1,4 +1,5 @@
 ﻿using IURIS.BIZ;
+using IURIS.COMMON.Entidades.Ley;
 using IURIS.COMMON.Entidades.Ley.ClasificacionDeLey;
 using IURIS.COMMON.Entidades.UsuarioGlobal;
 using IURIS.COMMON.Interfaces;
@@ -25,13 +26,16 @@ namespace IURIS.DESKTOP.GUI.ADMIN
     public partial class WindowClasificacion : Window
     {
         IManejadorDeClasificaciones ManejadorDeClasificaciones;
-        UsuarioGlobal UsuarioGlobal;
+        IManejadorDeLeyes manejadorDeLeyes;
+        bool EsEditar = false;
+        public Clasificacion clasificacion = null;
         public WindowClasificacion()
         {
             InitializeComponent();
 
             //UsuarioGlobal = usuarioGlobal;
             ManejadorDeClasificaciones = new ManejadorDeClasificaciones(new RepositorioGenerico<Clasificacion>());
+            manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
 
             CargarDatos();
             CamposHabilitados(false);
@@ -70,30 +74,77 @@ namespace IURIS.DESKTOP.GUI.ADMIN
 
         private void BtnGuardar_Click(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(TxtNombreClasificacion.Text))
+            if (!EsEditar)
             {
-                Clasificacion clasificacion = new Clasificacion()
+
+                if (!string.IsNullOrWhiteSpace(TxtNombreClasificacion.Text))
                 {
-                    Nombre = TxtNombreClasificacion.Text
-                };
-                if (ManejadorDeClasificaciones.AGREGAR(clasificacion))
-                {
-                    MessageBox.Show("La clasificación se agrego correctamente", "", MessageBoxButton.OK, MessageBoxImage.Information);
-                    CamposHabilitados(false);
-                    LimpiarCampos();
-                    CargarDatos();
-                    WrpAgregarNuevaClasificacion.Visibility = Visibility.Collapsed;
-                    DTGClasificaciones.Visibility = Visibility.Visible;
+                    Clasificacion clasificacion = new Clasificacion()
+                    {
+                        Nombre = TxtNombreClasificacion.Text
+                    };
+                    if (ManejadorDeClasificaciones.AGREGAR(clasificacion))
+                    {
+                        MessageBox.Show("La clasificación se agrego correctamente", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                        CamposHabilitados(false);
+                        LimpiarCampos();
+                        CargarDatos();
+                        WrpAgregarNuevaClasificacion.Visibility = Visibility.Collapsed;
+                        DTGClasificaciones.Visibility = Visibility.Visible;
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo agregar la nueva clasificación ", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("No se pudo agregar la nueva clasificación ", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-
+                    MessageBox.Show("Faltan datos por llenar", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             else
             {
-                MessageBox.Show("Faltan datos por llenar", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                if (!string.IsNullOrWhiteSpace(TxtNombreClasificacion.Text))
+                {
+                    clasificacion.Nombre = TxtNombreClasificacion.Text;
+                    if (ManejadorDeClasificaciones.Modificar(clasificacion))
+                    {
+                        MessageBox.Show("La clasificación se modifico correctamente", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                        CamposHabilitados(false);
+                        LimpiarCampos();
+                        CargarDatos();
+                        WrpAgregarNuevaClasificacion.Visibility = Visibility.Collapsed;
+                        DTGClasificaciones.Visibility = Visibility.Visible;
+
+                        int leyes = 0;
+                        while (leyes <= manejadorDeLeyes.Listar.Count())
+                        {
+
+                            foreach (var item in manejadorDeLeyes.Listar)
+                            {
+                                leyes++;
+                                if (item.Clasificacion.id == clasificacion.id)
+                                {
+                                    item.Clasificacion = clasificacion;
+                                    manejadorDeLeyes.Modificar(item);
+                                }
+                            }
+                        }
+                        clasificacion = null;
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo modificar la clasificación ", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Faltan datos por llenar", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
 
@@ -138,6 +189,28 @@ namespace IURIS.DESKTOP.GUI.ADMIN
                 WindowOperaciones windowOperaciones = new WindowOperaciones();
                 this.Close();
                 windowOperaciones.Show();
+            }
+        }
+
+        private void BtnEditar_Click(object sender, RoutedEventArgs e)
+        {
+            clasificacion = (Clasificacion)DTGClasificaciones.SelectedItem;
+
+            if (clasificacion != null)
+            {
+                CamposHabilitados(true);
+
+                WrpAgregarNuevaClasificacion.Visibility = Visibility.Visible;
+                DTGClasificaciones.Visibility = Visibility.Collapsed;
+
+                TxtNombreClasificacion.Text = clasificacion.Nombre;
+
+                EsEditar = true;
+            }
+            else
+            {
+                MessageBox.Show("No has seleccionado ningun elemento", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
             }
         }
     }

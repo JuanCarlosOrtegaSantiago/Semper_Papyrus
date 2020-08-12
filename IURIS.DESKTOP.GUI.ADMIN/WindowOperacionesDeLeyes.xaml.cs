@@ -109,6 +109,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
             txtNumArticulo.Clear();
             txtNumCapitulo.Clear();
             txtNumTitulo.Clear();
+            CmbxClasificacion.SelectedItem = null;
         }
 
         private void BtnCambiarDeAlturaMinimizar_Click(object sender, RoutedEventArgs e)

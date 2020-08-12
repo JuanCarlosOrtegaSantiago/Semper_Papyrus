@@ -42,7 +42,8 @@ namespace IURIS.DESKTOP.GUI.ADMIN
         {
             InitializeComponent();
             manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
-            LeyMasDescargada = manejadorDeLeyes.Listar.Where(e => e.EsModificacion==false).SingleOrDefault();
+            //LeyMasDescargada = manejadorDeLeyes.Listar.Where(e => e.EsModificacion==false).SingleOrDefault();
+            LeyMasDescargada = manejadorDeLeyes.Listar.Where(e => e.EsModificacion==false).FirstOrDefault();
 
             if (manejadorDeLeyes.Listar.Count <= 0)
                 if (MessageBox.Show("Aun no tiene leyes agregadas", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning) == MessageBoxResult.OK)

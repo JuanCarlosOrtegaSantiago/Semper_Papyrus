@@ -59,5 +59,12 @@ namespace IURIS.DESKTOP.GUI.ADMIN
                 windowMostrarListaDeLeyes.Show();
             }
         }
+
+        private void BtnRegresarAMenuDeOperaciones_Click(object sender, RoutedEventArgs e)
+        {
+            WindowOperaciones windowOperaciones = new WindowOperaciones();
+            this.Close();
+            windowOperaciones.Show();
+        }
     }
 }
