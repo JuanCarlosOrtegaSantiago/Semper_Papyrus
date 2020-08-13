@@ -25,10 +25,14 @@ namespace IURIS.DESKTOP.GUI.ADMIN
     /// </summary>
     public partial class WindowClasificacion : Window
     {
-        IManejadorDeClasificaciones ManejadorDeClasificaciones;
-        IManejadorDeLeyes manejadorDeLeyes;
+        readonly IManejadorDeClasificaciones ManejadorDeClasificaciones;
+        readonly IManejadorDeLeyes manejadorDeLeyes;
         bool EsEditar = false;
         public Clasificacion clasificacion = null;
+        public bool NoHayClasificacion_Agregar = false;
+        public bool SeAgregoUnaClasificacion = false;
+
+
         public WindowClasificacion()
         {
             InitializeComponent();
@@ -91,7 +95,8 @@ namespace IURIS.DESKTOP.GUI.ADMIN
                         CargarDatos();
                         WrpAgregarNuevaClasificacion.Visibility = Visibility.Collapsed;
                         DTGClasificaciones.Visibility = Visibility.Visible;
-
+                        if (NoHayClasificacion_Agregar)
+                            SeAgregoUnaClasificacion = true;
                     }
                     else
                     {
@@ -163,14 +168,24 @@ namespace IURIS.DESKTOP.GUI.ADMIN
             {
                 if (MessageBox.Show("Realmente decea eliminar " + clasificacion.Nombre, "", MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.No) == MessageBoxResult.Yes)
                 {
-                    if (ManejadorDeClasificaciones.Eliminar(clasificacion.id))
+                    if (manejadorDeLeyes.Listar.Where(w => w.Clasificacion.Nombre == clasificacion.Nombre).Count() >= 1)
                     {
-                        MessageBox.Show("La clasificación se elimino correctamente", "", MessageBoxButton.OK, MessageBoxImage.Information);
-                        CargarDatos();
-                        CamposHabilitados(false);
-                        WrpAgregarNuevaClasificacion.Visibility = Visibility.Collapsed;
-                        DTGClasificaciones.Visibility = Visibility.Visible;
+                        MessageBox.Show("No se puede eliminar la clasificacion\nya que tiene leyes con esta clasificación", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+
                     }
+                    else
+                    {
+                        if (ManejadorDeClasificaciones.Eliminar(clasificacion.id))
+                        {
+                            MessageBox.Show("La clasificación se elimino correctamente", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                            CargarDatos();
+                            CamposHabilitados(false);
+                            WrpAgregarNuevaClasificacion.Visibility = Visibility.Collapsed;
+                            DTGClasificaciones.Visibility = Visibility.Visible;
+                        }
+
+                    }
+
                 }
             }
             else
@@ -182,13 +197,19 @@ namespace IURIS.DESKTOP.GUI.ADMIN
 
         private void BtnRegresar_Click(object sender, RoutedEventArgs e)
         {
-
-            if (MessageBox.Show("¿Esta seguro de regresar?", "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No) == MessageBoxResult.Yes)
+            if (NoHayClasificacion_Agregar)
             {
-
-                WindowOperaciones windowOperaciones = new WindowOperaciones();
                 this.Close();
-                windowOperaciones.Show();
+            }
+            else
+            {
+                if (MessageBox.Show("¿Esta seguro de regresar?", "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No) == MessageBoxResult.Yes)
+                {
+                    WindowOperaciones windowOperaciones = new WindowOperaciones();
+                    this.Close();
+                    windowOperaciones.Show();
+                }
+
             }
         }
 

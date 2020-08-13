@@ -5,9 +5,8 @@ using System.Text;
 
 namespace IURIS.COMMON.Entidades.UsuariosDeAplicacion.ComponentesDeUsuario
 {
-    public class Clasificacion
+    public class Clasificacion:BaseComponentes
     {
-        public string Nombre { get; set; }
         public List<Articulo> MisArticulos{ get; set; }
     }
 }

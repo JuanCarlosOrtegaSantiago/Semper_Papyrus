@@ -31,11 +31,9 @@ namespace IURIS.DESKTOP.GUI.ADMIN
         List<Titulo> titulos;
         Leyes ley;
         bool CodigoExistente=false;
-        IManejadorDeLeyes manejadorDeLeyes;
-        IManejadorDeClasificaciones manejadorDeClasificaciones;
-        static TimeoutException ExSinInternet = new TimeoutException();
+        readonly IManejadorDeLeyes manejadorDeLeyes;
+        readonly IManejadorDeClasificaciones manejadorDeClasificaciones;
         public bool HayInternet = true;
-
 
         public WindowOperacionesDeLeyes()
         {
@@ -45,29 +43,48 @@ namespace IURIS.DESKTOP.GUI.ADMIN
             {
                 manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
                 manejadorDeClasificaciones = new ManejadorDeClasificaciones(new RepositorioGenerico<Clasificacion>());
+                DatosAInicializar();
 
+            }
+            catch (TimeoutException)
+            {
+
+                    MensajeDeExcepcion("Revisa tu conexion a internet");
             }
             catch (Exception ex)
             {
-
-                if (ex.HResult == ExSinInternet.HResult)
-                    NoHayInternet();
+                MensajeDeExcepcion(ex.Message);
             }
 
-            DatosAInicializar();
         }
 
-        private void NoHayInternet()
+        private void MensajeDeExcepcion(string Contenido)
         {
-            MessageBox.Show("Revisa tu conexion a internet", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            MessageBox.Show(Contenido, "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
         private void DatosAInicializar()
         {
             EstadoDeCajas(false);
+            CargarDatosAlCombo();
+        }
 
+        private void CargarDatosAlCombo()
+        {
             CmbxClasificacion.ItemsSource = null;
-            CmbxClasificacion.ItemsSource = manejadorDeClasificaciones.Listar;
+
+            if (manejadorDeClasificaciones.Listar.Count() <= 0)
+            {
+                List<string> vs = new List<string>
+                {
+                    "Agregar Nueva Clasificación"
+                };
+                CmbxClasificacion.ItemsSource = vs;
+            }
+            else
+            {
+                CmbxClasificacion.ItemsSource = manejadorDeClasificaciones.Listar;
+            }
         }
 
         private void EstadoDeCajas(bool v)
@@ -158,12 +175,14 @@ namespace IURIS.DESKTOP.GUI.ADMIN
                 }
 
             }
-            catch (Exception ex)
+            catch (TimeoutException)
             {
 
-                if (ex.HResult == ExSinInternet.HResult)
-                    NoHayInternet();
-
+                MensajeDeExcepcion("Revisa tu conexion a internet");
+            }
+            catch (Exception ex)
+            {
+                MensajeDeExcepcion(ex.Message);
             }
         }
 
@@ -188,8 +207,10 @@ namespace IURIS.DESKTOP.GUI.ADMIN
 
         private void LimpiarCajaDeContenido()
         {
-            TextRange textRange = new TextRange(RtcTxtContenido.Document.ContentStart, RtcTxtContenido.Document.ContentEnd);
-            textRange.Text = "";
+            _ = new TextRange(RtcTxtContenido.Document.ContentStart, RtcTxtContenido.Document.ContentEnd)
+            {
+                Text = ""
+            };
         }
 
         private void BtnAgregarArticulo_Click(object sender, RoutedEventArgs e)
@@ -329,11 +350,14 @@ namespace IURIS.DESKTOP.GUI.ADMIN
                             }
 
                         }
-                        catch (Exception ex)
+                        catch (TimeoutException)
                         {
 
-                            if (ex.HResult == ExSinInternet.HResult)
-                                NoHayInternet();
+                            MensajeDeExcepcion("Revisa tu conexion a internet");
+                        }
+                        catch (Exception ex)
+                        {
+                            MensajeDeExcepcion(ex.Message);
                         }
                     }
                     else
@@ -349,6 +373,26 @@ namespace IURIS.DESKTOP.GUI.ADMIN
                     MessageBox.Show("No tienes titulos agregados", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 else
                     MessageBox.Show("Faltan datos por llenar", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        private void CmbxClasificacion_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (CmbxClasificacion.SelectedItem != null)
+            {
+                if (CmbxClasificacion.SelectedItem.ToString() == "Agregar Nueva Clasificación")
+                {
+                    WindowClasificacion clasificacion = new WindowClasificacion
+                    {
+                        NoHayClasificacion_Agregar = true
+                    };
+                    clasificacion.ShowDialog();
+                    if (clasificacion.SeAgregoUnaClasificacion)
+                    {
+                        CargarDatosAlCombo();
+                    }
+                }
+
             }
         }
     }

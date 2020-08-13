@@ -109,8 +109,8 @@
 
                                 </StackLayout>
 
-
                                 <local:CustomLabel Text="{Binding Contenido}" FontSize="Subtitle"  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,10" Style="{StaticResource TextoAMostrarColorRojo}"></local:CustomLabel>
+                                <!--<Editor AutoSize="TextChanges" Text="{Binding Contenido}" IsReadOnly="True" FontSize="Subtitle"    Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,10" Style="{StaticResource TextoAMostrarColorRojo}"></Editor>-->
                             </Grid>
 
                             <Expander x:Name="expanderGeneric" HorizontalOptions="End" VerticalOptions="Start"  Margin="10,5" Padding="10">

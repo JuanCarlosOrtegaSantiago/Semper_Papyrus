@@ -23,6 +23,8 @@ using IURIS.COMMON.Interfaces;
 using IURIS.DAL;
 using IURIS.COMMON.Entidades.Ley;
 using IURIS.BIZ;
+using MongoDB.Driver;
+using System.Net.Sockets;
 
 namespace IURIS.DESKTOP.GUI.ADMIN
 {
@@ -36,26 +38,45 @@ namespace IURIS.DESKTOP.GUI.ADMIN
 
         Leyes LeyMasDescargada = null;
         int TotalDeDescargas=0;
-
+        static TimeoutException ExSinInternet = new TimeoutException();
+        MongoConnectionException mongoConnectionException;
+        IOException iOException;
+        SocketException socketException;
 
         public WindowLeyesDescargadas()
         {
             InitializeComponent();
-            manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
-            //LeyMasDescargada = manejadorDeLeyes.Listar.Where(e => e.EsModificacion==false).SingleOrDefault();
-            LeyMasDescargada = manejadorDeLeyes.Listar.Where(e => e.EsModificacion==false).FirstOrDefault();
 
-            if (manejadorDeLeyes.Listar.Count <= 0)
-                if (MessageBox.Show("Aun no tiene leyes agregadas", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning) == MessageBoxResult.OK)
-                    this.Close();
-            DatosAInicializar();
+            try
+            {
+                manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
+                //LeyMasDescargada = manejadorDeLeyes.Listar.Where(e => e.EsModificacion==false).SingleOrDefault();
+                LeyMasDescargada = manejadorDeLeyes.Listar.Where(e => e.EsModificacion == false).FirstOrDefault();
 
-            ListLeyes.ItemsSource = manejadorDeLeyes.MostrarLeyes;
+                if (manejadorDeLeyes.Listar.Count <= 0)
+                    if (MessageBox.Show("Aun no tiene leyes agregadas", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning) == MessageBoxResult.OK)
+                        this.Close();
+                
+                DatosAInicializar();
 
-            DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(5);
-            timer.Tick += timer_Tick;
-            timer.Start();
+                ListLeyes.ItemsSource = manejadorDeLeyes.MostrarLeyes;
+
+                //DispatcherTimer timer = new DispatcherTimer();
+                //timer.Interval = TimeSpan.FromSeconds(5);
+                //timer.Tick += timer_Tick;
+                //timer.Start();
+            }
+            catch (Exception ex)
+            {
+
+                if (ex.HResult == ExSinInternet.HResult || ex.HResult == mongoConnectionException.HResult || ex.HResult == iOException.HResult || ex.HResult == socketException.HResult)
+                    NoHayInternet();
+                
+            }
+        }
+        private void NoHayInternet()
+        {
+            MessageBox.Show("Revisa tu conexion a internet", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
         private void DatosAInicializar()
