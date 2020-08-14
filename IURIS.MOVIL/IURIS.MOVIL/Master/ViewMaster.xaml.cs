@@ -46,7 +46,7 @@ namespace IURIS.MOVIL.Master
         private  void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
         {
             App.masterDetail.IsPresented = false;
-            App.masterDetail.Detail = new NavigationPage(new MisApuntes());
+            App.masterDetail.Detail = new NavigationPage(new MisApuntes(User,null));
             //await App.masterDetail.Detail.Navigation.PushAsync(new MisApuntes());
         }
 

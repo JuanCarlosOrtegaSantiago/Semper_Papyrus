@@ -26,10 +26,12 @@ namespace IURIS.MOVIL.Droid
         }
         protected override void OnElementChanged(ElementChangedEventArgs<Label> e)
         {
-            base.OnElementChanged(e);   
-            if(Control != null)
+            base.OnElementChanged(e);
+            if (Control != null)
             {
-                Control.JustificationMode = JustificationMode.InterWord;
+                //Control.SetTextIsSelectable(true);
+                    Control.JustificationMode = JustificationMode.InterWord;
+
             }
         }
     }

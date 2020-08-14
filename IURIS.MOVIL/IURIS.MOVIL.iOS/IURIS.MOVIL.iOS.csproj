@@ -71,6 +71,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="CustmLabelios.cs" />
+    <Compile Include="CustomEditorIOS.cs" />
     <Compile Include="CustomEntryIOS.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />

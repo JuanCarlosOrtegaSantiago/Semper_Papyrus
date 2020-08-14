@@ -67,6 +67,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomEditorAndroid.cs" />
     <Compile Include="CustomEntryAndroid.cs" />
     <Compile Include="CustomEntryBlancoAndroid.cs" />
     <Compile Include="CustomLabelAndriod.cs" />
@@ -141,6 +142,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\menos.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\IconGuardar.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>

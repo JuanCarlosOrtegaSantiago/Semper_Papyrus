@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="IURIS.MOVIL.Views.ViewsApuntes.ViewsMisApuntes">
+    <StackLayout>
+        <Grid RowSpacing="0">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <StackLayout Grid.Row="0" BackgroundColor="{StaticResource PrimaryColor}">
+
+                <Label Margin="10,0" FontSize="Title" VerticalOptions="Center" Style="{StaticResource TextoAMostrarColorBlanco}" HorizontalOptions="Center">Apuntes guardados</Label>
+            </StackLayout>
+
+            <CollectionView x:Name="clltionApuntes" Grid.Row="1" SelectionMode="Single" ItemsSource="{Binding Apuntes}" SelectionChanged="clltionApuntes_SelectionChanged">
+
+                <CollectionView.EmptyView>
+                    <StackLayout>
+                        <Label FontAttributes="Italic" FontSize="Large" HorizontalOptions="Center" Style="{StaticResource TextoAMostrarColorRojo}">Aun no tienes ninguna clasificación</Label>
+
+                    </StackLayout>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50"/>
+                            </Grid.RowDefinitions>
+
+                            <Label Text="{Binding Nombre}" Style="{StaticResource TextoAMostrarColorRojo}" FontSize="Title" VerticalOptions="Center" Padding="15,10"></Label>
+
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+
+    </StackLayout>
+</ContentPage>

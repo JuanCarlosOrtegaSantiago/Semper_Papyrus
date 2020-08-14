@@ -151,5 +151,11 @@ namespace IURIS.MOVIL.Detail
             else
                 return;
         }
+
+        private async void TapGestureRecognizer_Tapped_2(object sender, EventArgs e)
+        {
+            if (_ArticuloSeleccionado)
+                await Navigation.PushAsync(new MisApuntes(_Usuario, null));
+        }
     }
 }

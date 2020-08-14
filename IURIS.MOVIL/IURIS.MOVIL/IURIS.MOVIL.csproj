@@ -64,16 +64,22 @@
     <EmbeddedResource Update="PageRecuperarCuenta.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\MisApuntes.xaml">
+    <EmbeddedResource Update="Views\ViewsApuntes\MisApuntes.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ViewBuscador.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ViewMiClasificacionPersonalizada.xaml">
+    <EmbeddedResource Update="Views\ViewsApuntes\ViewsMisApuntes.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ViewsMisClasificaciones.xaml">
+    <EmbeddedResource Update="Views\ViewsClasificaciones\ViewMiClasificacionPersonalizada.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ViewsClasificaciones\ViewsMisClasificaciones.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ViewsVentanasEmergentes\WindowOfEmergencyNombreDeApunte.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ViewsVentanasEmergentes\WindowOfEmergencyNuevaClasificacion.xaml">
