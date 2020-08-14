@@ -152,10 +152,21 @@ namespace IURIS.MOVIL.Detail
                 return;
         }
 
-        private async void TapGestureRecognizer_Tapped_2(object sender, EventArgs e)
+        private async void LblApuntes(object sender, EventArgs e)
         {
             if (_ArticuloSeleccionado)
                 await Navigation.PushAsync(new MisApuntes(_Usuario, null));
+        }
+
+        private void LblCrearNota(object sender, EventArgs e)
+        {
+            if (_ArticuloSeleccionado)
+            {
+                Articulo articulo = (Articulo)cllctionArticulos.SelectedItem;
+
+                articulo.NotaAdjunta = true;
+            }
+                
         }
     }
 }
