@@ -57,7 +57,7 @@
 
                         <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="6" Margin="10,0,15,0" >
                             <CheckBox x:Name="CheckRecuerdame" Color="White" CheckedChanged="CheckRecuerdame_CheckedChanged"></CheckBox>
-                            <Label Text="Recuerdar usuario" Margin="5,0,0,0" VerticalOptions="Center" HorizontalTextAlignment="End" HorizontalOptions="End" FontSize="20" Style="{StaticResource TextoAMostrarColorBlanco}"></Label>
+                            <Label Text="Recordar usuario" Margin="5,0,0,0" VerticalOptions="Center" HorizontalTextAlignment="End" HorizontalOptions="End" FontSize="20" Style="{StaticResource TextoAMostrarColorBlanco}"></Label>
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
                             </StackLayout.GestureRecognizers>

@@ -3,21 +3,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:Local="clr-namespace:IURIS.MOVIL.Modelos_y_clases"
-             mc:Ignorable="d"
-             x:Class="IURIS.MOVIL.Views.ViewsVentanasEmergentes.WindowOfEmergencyNombreDeApunte">
-    
+                  mc:Ignorable="d"
+             x:Class="IURIS.MOVIL.Views.ViewsVentanasEmergentes.WindowOfEmergencyCrearNota">
     <Frame BackgroundColor="{StaticResource PrimaryColor}"
-           Margin="24"
-           Padding="12"
-           HorizontalOptions="Center"
+           Padding="6"
+           Margin="20"
+           HorizontalOptions="FillAndExpand"
            VerticalOptions="Center"
-           CornerRadius="5">
-        <Grid RowDefinitions="*,auto" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="-1">
-            <Local:CustomEntry x:Name="EntryNombreApunte" Grid.Row="0" Placeholder="Nombre del apunte" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start" Style="{StaticResource EntryCrearCuenta}" Completed="BtnGuardar_Clicked"></Local:CustomEntry>
+           CornerRadius="5" >
+
+        <Grid RowDefinitions="*,auto" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+            <Local:CustomEditor x:Name="EntryNombreApunte" AutoSize="TextChanges" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Placeholder="Escribe una nota o comentario" HorizontalOptions="FillAndExpand" Style="{StaticResource EntryCrearCuenta}" MaxLength="140" Completed="BtnGuardar_Clicked"></Local:CustomEditor>
             <Frame Grid.Row="1" BorderColor="White"  
                     HasShadow="False"
                     IsClippedToBounds="True"
-                    Padding="0,1,0,0">
+                    Padding="0,1,0,0"
+                   HorizontalOptions="FillAndExpand" >
 
                 <StackLayout Orientation="Horizontal" Spacing="-1" BackgroundColor="{StaticResource PrimaryColor}" >
                     <Frame Grid.Row="1" BorderColor="White"  
@@ -41,6 +42,8 @@
                     </Frame>
                 </StackLayout>
             </Frame>
+            <!--<Button x:Name="BtnGuardar" Grid.Row="1" Grid.Column="0" Text="Guardar" BackgroundColor="White" TextColor="{StaticResource  ColorTexto}" HorizontalOptions="Start" Margin="20,0" Clicked="BtnGuardar_Clicked"></Button>
+            <Button x:Name="BtnCancelar" Grid.Row="1" Grid.Column="1" Text="Cancelar" BackgroundColor="White" TextColor="{StaticResource  ColorTexto}" HorizontalOptions="End" Margin="20,0" Clicked="BtnCancelar_Clicked"></Button>-->
         </Grid>
     </Frame>
 </Pages:PopupPage>

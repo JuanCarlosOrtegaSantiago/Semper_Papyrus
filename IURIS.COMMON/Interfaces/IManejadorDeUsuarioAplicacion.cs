@@ -1,4 +1,5 @@
-﻿using IURIS.COMMON.Entidades.UsuariosDeAplicacion;
+﻿using IURIS.COMMON.Entidades.Ley.ComponentesDeLey;
+using IURIS.COMMON.Entidades.UsuariosDeAplicacion;
 using System;
 using System.Collections.Generic;
 using System.Text;

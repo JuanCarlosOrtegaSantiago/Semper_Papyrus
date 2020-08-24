@@ -51,8 +51,11 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
                 manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
                 if (manejadorDeUsuarioAplicacion.Modificar(_User))
                 {
-                    await Navigation.PushAsync(new ViewsMisApuntes(_User), false);
+                    await DisplayAlert("", "Apunte agregado correctamente", "Ok");
+                    //await Navigation.PushAsync(new ViewsMisApuntes(_User), false);
                     await PopupNavigation.Instance.PopAsync(false);
+                    App.masterDetail.IsPresented = false;
+                    App.masterDetail.Detail = new NavigationPage(new MisApuntes(_User, null));
                 }
 
             }

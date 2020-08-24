@@ -29,8 +29,10 @@ namespace IURIS.MOVIL.Droid
             base.OnElementChanged(e);
             if (Control != null)
             {
+                //Control.JustificationMode = JustificationMode.InterWord;
                 //Control.SetTextIsSelectable(true);
-                    Control.JustificationMode = JustificationMode.InterWord;
+                Control.Selected = true;
+                //Control.SetSelectAllOnFocus(true);
 
             }
         }

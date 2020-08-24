@@ -79,6 +79,9 @@
     <EmbeddedResource Update="Views\ViewsClasificaciones\ViewsMisClasificaciones.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\ViewsVentanasEmergentes\WindowOfEmergencyCrearNota.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\ViewsVentanasEmergentes\WindowOfEmergencyNombreDeApunte.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

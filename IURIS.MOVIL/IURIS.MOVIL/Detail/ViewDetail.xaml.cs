@@ -66,7 +66,7 @@ namespace IURIS.MOVIL.Detail
             if (titulo != null) { 
 
             MostrarSearch(false);
-            await Navigation.PushAsync(new PageMotrarCapitulosConCodigos(titulo,usuario),false);
+            await Navigation.PushAsync(new PageMotrarCapitulosConCodigos(titulo,usuario,Ley),false);
             }
             //Navigation.PushAsync(new PageCapitulos(titulo));
         }

@@ -8,7 +8,7 @@
 
     <NavigationPage.TitleView>
             <Grid ColumnDefinitions="Auto,*" >
-                <Label Grid.Column="0" Style="{StaticResource TextoAMostrarColorBlanco}" Text="Apuntes" HorizontalTextAlignment="Center" HorizontalOptions="Start" VerticalOptions="Center"/>
+                <Label Grid.Column="0" Style="{StaticResource TextoAMostrarColorBlanco}" Text="Apuntes" FontSize="Title" HorizontalTextAlignment="Center" HorizontalOptions="Start" VerticalOptions="Center"/>
             <StackLayout Orientation="Horizontal" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Center">
                 <Image x:Name="IMGGuardar" Source="IconGuardar.png" WidthRequest="20" HorizontalOptions="End" VerticalOptions="Center" HeightRequest="20" Margin="10,0" >
                     <Image.GestureRecognizers>
@@ -36,7 +36,7 @@
                 
             </StackLayout>
             <StackLayout Grid.Row="1" Margin="10">
-                <Local:CustomEditor x:Name="TxtMiApunte" Placeholder="Escribe tus ideas..." PlaceholderColor="{StaticResource ColorTexto}" TextColor="{StaticResource ColorTexto}" AutoSize="TextChanges" MaxLength="1000" ></Local:CustomEditor>
+                <Local:CustomEditor x:Name="TxtMiApunte" Placeholder="Escribe tus ideas..." PlaceholderColor="{StaticResource ColorTexto}" TextColor="{StaticResource ColorTexto}" AutoSize="TextChanges" MaxLength="2000" ></Local:CustomEditor>
             </StackLayout>
         </Grid>
     </ContentPage.Content>

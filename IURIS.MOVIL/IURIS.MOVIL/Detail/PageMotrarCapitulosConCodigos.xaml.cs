@@ -1,12 +1,15 @@
-﻿using IURIS.COMMON.Entidades.Ley.ComponentesDeLey;
+﻿using IURIS.COMMON.Entidades.Ley;
+using IURIS.COMMON.Entidades.Ley.ComponentesDeLey;
 using IURIS.COMMON.Entidades.UsuariosDeAplicacion;
 using IURIS.MOVIL.Views;
+using IURIS.MOVIL.Views.ViewsVentanasEmergentes;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -17,23 +20,91 @@ namespace IURIS.MOVIL.Detail
     {
         Titulo _titulo;
         Usuarios _Usuario;
+        Leyes _ley;
         public bool _ArticuloSeleccionado;
-        public PageMotrarCapitulosConCodigos(Titulo titulo, Usuarios usuarios)
+        //public ICommand RefreshCommand { get; }
+        bool isRefreshing;
+
+
+        public PageMotrarCapitulosConCodigos(Titulo titulo, Usuarios usuarios, Leyes ley)
         {
             InitializeComponent();
+            BindingContext = this;
             
             _titulo = titulo;
             _Usuario = usuarios;
+            _ley = ley;
+            //RefreshCommand = new Command(ExecuteRefreshCommand);
 
             DatosAInicializar();
         }
 
+        public bool IsRefreshing
+        {
+            get => isRefreshing;
+            set
+            {
+                isRefreshing = value;
+                OnPropertyChanged(nameof(IsRefreshing));
+            }
+        }
 
+        //void ExecuteRefreshCommand()
+        //{
+
+        //    if (IsRefreshing)
+        //        return;
+
+        //    IsRefreshing = true;
+
+        //    Capitulo capitulo = clltionCapitulos.SelectedItem as Capitulo;
+        //    if (capitulo != null)
+        //    {
+        //        ActualizarDatosArticulo(capitulo.ListaArticulos);
+        //    }
+        //    // Stop refreshing
+
+        //    IsRefreshing = false;
+
+        //    //if (IsRefreshing)
+        //    //{
+
+        //    //IsRefreshing = false;
+
+        //}
+
+        public ICommand RefreshCommand
+        {
+            get
+            {
+                return new Command(async () =>
+                {
+                    try
+                    {
+
+                        Capitulo capitulo = clltionCapitulos.SelectedItem as Capitulo;
+                        if (capitulo != null)
+                        {
+                            ActualizarDatosArticulo(capitulo.ListaArticulos);
+                        }
+
+                        await Task.Delay(5000); // Only to demonstrate refresh views..
+
+                        //Acr.UserDialogs.UserDialogs.Instance.Toast("Items refreshed");
+                    }
+                    finally
+                    {
+                        IsRefreshing = false;
+                    }
+                });
+            }
+        }
         private void DatosAInicializar()
         {
             
 
             lblTitle.Text = _titulo.NombreTitulo;
+            lblNumTitle.Text = _titulo.NumTitulo;//Cambiar por el codigo
 
             ActualizarDatosCapitulo(_titulo.ListaCapitulos);
 
@@ -119,10 +190,7 @@ namespace IURIS.MOVIL.Detail
 
         private void cllctionArticulos_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (cllctionArticulos.SelectedItem != null)
-            {
-
-            }
+            _ArticuloSeleccionado = cllctionArticulos.SelectedItem != null ? true : false;
             //expanderGeneric.
             //Articulo articulo = cllctionArticulos.SelectedItem as Articulo;
             //if (articulo != null)
@@ -143,14 +211,14 @@ namespace IURIS.MOVIL.Detail
             }
         }
 
-        private void EsArticuloSeleccionado(object sender, EventArgs e)
-        {
-            Articulo articulo = cllctionArticulos.SelectedItem as Articulo;
-            if (articulo != null)
-                _ArticuloSeleccionado = true;
-            else
-                return;
-        }
+        //private void EsArticuloSeleccionado(object sender, EventArgs e)
+        //{
+        //    Articulo articulo = cllctionArticulos.SelectedItem as Articulo;
+        //    if (articulo != null)
+        //        _ArticuloSeleccionado = true;
+        //    else
+        //        return;
+        //}
 
         private async void LblApuntes(object sender, EventArgs e)
         {
@@ -158,15 +226,30 @@ namespace IURIS.MOVIL.Detail
                 await Navigation.PushAsync(new MisApuntes(_Usuario, null));
         }
 
-        private void LblCrearNota(object sender, EventArgs e)
+        private async void LblCrearNota(object sender, EventArgs e)
         {
             if (_ArticuloSeleccionado)
             {
                 Articulo articulo = (Articulo)cllctionArticulos.SelectedItem;
+                Capitulo capitulo = (Capitulo)clltionCapitulos.SelectedItem;
 
-                articulo.NotaAdjunta = true;
+                if (!articulo.NotaAdjunta)
+                    await PopupNavigation.Instance.PushAsync(new WindowOfEmergencyCrearNota(_titulo,_Usuario, articulo, _ley,capitulo),false);
             }
                 
+        }
+
+        private async void TapGestureRecognizer_Tapped_2(object sender, EventArgs e)
+        {
+            if (_ArticuloSeleccionado)
+            {
+                Articulo articulo = (Articulo)cllctionArticulos.SelectedItem;
+                Capitulo capitulo = (Capitulo)clltionCapitulos.SelectedItem;
+
+                if (articulo.NotaAdjunta)
+                    await PopupNavigation.Instance.PushAsync(new WindowOfEmergencyCrearNota(_titulo, _Usuario, articulo, _ley, capitulo), false);
+            }
+
         }
     }
 }
