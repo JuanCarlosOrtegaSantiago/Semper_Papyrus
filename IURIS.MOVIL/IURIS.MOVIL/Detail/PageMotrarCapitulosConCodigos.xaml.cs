@@ -18,9 +18,9 @@ namespace IURIS.MOVIL.Detail
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PageMotrarCapitulosConCodigos : ContentPage
     {
-        Titulo _titulo;
-        Usuarios _Usuario;
-        Leyes _ley;
+        readonly Titulo _titulo;
+        readonly Usuarios _Usuario;
+        readonly Leyes _ley;
         public bool _ArticuloSeleccionado;
         //public ICommand RefreshCommand { get; }
         bool isRefreshing;
@@ -81,9 +81,7 @@ namespace IURIS.MOVIL.Detail
                 {
                     try
                     {
-
-                        Capitulo capitulo = clltionCapitulos.SelectedItem as Capitulo;
-                        if (capitulo != null)
+                        if (clltionCapitulos.SelectedItem is Capitulo capitulo)
                         {
                             ActualizarDatosArticulo(capitulo.ListaArticulos);
                         }
@@ -120,11 +118,15 @@ namespace IURIS.MOVIL.Detail
 
         private void clltionCapitulos_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Capitulo capitulo = clltionCapitulos.SelectedItem as Capitulo;
-            if ( capitulo != null)
+            if (clltionCapitulos.SelectedItem is Capitulo capitulo)
             {
                 ActualizarDatosArticulo(capitulo.ListaArticulos);
             }
+            //Capitulo capitulo = clltionCapitulos.SelectedItem as Capitulo;
+            //if (capitulo != null)
+            //{
+            //    ActualizarDatosArticulo(capitulo.ListaArticulos);
+            //}
         }
 
         private void ActualizarDatosArticulo(List<Articulo> listaArticulos)
@@ -190,7 +192,7 @@ namespace IURIS.MOVIL.Detail
 
         private void cllctionArticulos_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            _ArticuloSeleccionado = cllctionArticulos.SelectedItem != null ? true : false;
+            _ArticuloSeleccionado = cllctionArticulos.SelectedItem != null;
             //expanderGeneric.
             //Articulo articulo = cllctionArticulos.SelectedItem as Articulo;
             //if (articulo != null)

@@ -21,8 +21,8 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
     public partial class WindowOfEmergencyNombreDeApunte : PopupPage
     {
         IManejadorDeUsuarioAplicacion manejadorDeUsuarioAplicacion;
-        Usuarios _User;
-        string _TextoApunte;
+        readonly Usuarios _User;
+        readonly string _TextoApunte;
         public WindowOfEmergencyNombreDeApunte(Usuarios usuarios, string TextoApunte)
         {
             InitializeComponent();

@@ -20,7 +20,7 @@ namespace IURIS.MOVIL.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MisApuntes : ContentPage
     {
-        Usuarios _User;
+        readonly Usuarios _User;
         public Apunte _Apunte;
         public Apunte _ApunteCopia;
         IManejadorDeUsuarioAplicacion manejadorDeUsuarioAplicacion;

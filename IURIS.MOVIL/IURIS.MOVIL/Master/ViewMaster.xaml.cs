@@ -15,7 +15,7 @@ namespace IURIS.MOVIL.Master
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ViewMaster : ContentPage
     {
-        Usuarios User;
+        readonly Usuarios User;
         public ViewMaster(Usuarios usuarios)
         {
             InitializeComponent();

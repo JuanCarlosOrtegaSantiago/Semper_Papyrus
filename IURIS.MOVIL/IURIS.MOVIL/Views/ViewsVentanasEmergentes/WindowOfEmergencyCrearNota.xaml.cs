@@ -21,12 +21,12 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class WindowOfEmergencyCrearNota : PopupPage
     {
-        IManejadorDeUsuarioAplicacion manejadorDeUsuarioAplicacion;
-        Titulo _Titulo;
-        Usuarios _User;
-        Articulo _Articulo;
-        Leyes _Ley;
-        Capitulo _Capitulo;
+        readonly IManejadorDeUsuarioAplicacion manejadorDeUsuarioAplicacion;
+        readonly Titulo _Titulo;
+        readonly Usuarios _User;
+        readonly Articulo _Articulo;
+        readonly Leyes _Ley;
+        readonly Capitulo _Capitulo;
 
         Titulo _titulo = null;
         Capitulo _capitulo = null;
