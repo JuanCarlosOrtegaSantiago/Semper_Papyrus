@@ -55,7 +55,8 @@ namespace IURIS.MOVIL.Detail
             SearchViewDetailTitle.IsVisible = v;
 ;            tituloLey.IsVisible = !v;
             IMGBuscador.IsVisible = !v;
-
+            lblNumResultados.IsVisible = v;
+            lblNumResultados.Text = null;
             //SearchViewDetail.IsVisible = v;
         }
 
@@ -89,14 +90,12 @@ namespace IURIS.MOVIL.Detail
              titulos= Ley.ListaDeTitulos.ToList().Where(e => e.NumTitulo.ToUpper().Contains(TextChange.NewTextValue.ToUpper()) == true || e.NombreTitulo.ToUpper().Contains(TextChange.NewTextValue.ToUpper()) == true).ToList();
 
             ActualizarDatos(titulos);
+            lblNumResultados.Text = TextChange.NewTextValue == "" ? "" : titulos.Count.ToString();
             }
 
+
         }
 
-        private void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
-        {
-            MostrarSearch(false);
-        }
 
         private void SearchViewDetailTitle_TextChanged(object sender, TextChangedEventArgs e)
         {

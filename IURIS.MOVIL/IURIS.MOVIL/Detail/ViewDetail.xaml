@@ -7,7 +7,7 @@
              x:Class="IURIS.MOVIL.Detail.ViewDetail" >
 
     <NavigationPage.TitleView>
-        <FlexLayout>
+        <FlexLayout VerticalOptions="Center">
             
             <SearchBar 
                 
@@ -24,7 +24,9 @@
                 IsVisible="false"
                 Margin="-50,0,0,0"/>
 
-        <Grid ColumnDefinitions="*,Auto" ColumnSpacing="5" >
+            <Label x:Name="lblNumResultados" HorizontalOptions="End" Margin="0,0,10,0" IsVisible="false" Style="{StaticResource TextoAMostrarColorBlanco}" VerticalOptions="Center" VerticalTextAlignment="Center" FontSize="Body"></Label>
+
+            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="5" >
             <FlexLayout Grid.Column="0" x:Name="tituloLey">
 
                     <Local:CustomLabel x:Name="lblTitle" Style="{StaticResource TextoAMostrarColorBlanco}" HorizontalTextAlignment="Center" HorizontalOptions="Center"/>

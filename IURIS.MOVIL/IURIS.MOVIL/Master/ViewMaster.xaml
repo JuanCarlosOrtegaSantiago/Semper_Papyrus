@@ -50,6 +50,9 @@
             </StackLayout>
             <StackLayout Grid.Row="4"  HeightRequest="35">
                 <Label HorizontalOptions="Start" VerticalOptions="Center" Margin="15,0"  Text="Cargar / cambiar ley" Style="{StaticResource TextoAMostrarColorRojo}" FontSize="Large"></Label>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_3" />
+                    </StackLayout.GestureRecognizers>
             </StackLayout>
             <StackLayout Grid.Row="5"  HeightRequest="35">
                 <Label HorizontalOptions="Start" VerticalOptions="Center" Margin="15,0" Text="Ajustes" Style="{StaticResource TextoAMostrarColorRojo}" FontSize="Large"></Label>

@@ -1,6 +1,7 @@
 ﻿using IURIS.COMMON.Entidades.UsuariosDeAplicacion;
 using IURIS.MOVIL.Detail;
 using IURIS.MOVIL.Views;
+using IURIS.MOVIL.Views.ViewsCargarLey;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,6 +57,12 @@ namespace IURIS.MOVIL.Master
             //revisar para que no inicie de 0
             App.masterDetail.IsPresented = false;
             App.masterDetail.Detail =  new NavigationPage(new ViewDetail(User));
+        }
+
+        private void TapGestureRecognizer_Tapped_3(object sender, EventArgs e)
+        {
+            App.masterDetail.IsPresented = false;
+            App.masterDetail.Detail = new NavigationPage(new ViewCargarLey(User));
         }
     }
 }

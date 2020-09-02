@@ -67,10 +67,10 @@
     <EmbeddedResource Update="Views\ViewsApuntes\MisApuntes.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ViewBuscador.xaml">
+    <EmbeddedResource Update="Views\ViewsApuntes\ViewsMisApuntes.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ViewsApuntes\ViewsMisApuntes.xaml">
+    <EmbeddedResource Update="Views\ViewsCargarLey\ViewCargarLey.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ViewsClasificaciones\ViewMiClasificacionPersonalizada.xaml">

@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:Local="clr-namespace:IURIS.MOVIL.Modelos_y_clases"
+             mc:Ignorable="d"
+             x:Class="IURIS.MOVIL.Views.ViewsCargarLey.ViewCargarLey">
+
+    <NavigationPage.TitleView>
+
+
+
+        <Grid ColumnDefinitions="*,Auto" >
+
+            <StackLayout Orientation="Horizontal" Grid.Column="0" BackgroundColor="{StaticResource PrimaryColor}">
+                <Image Source="Logo.png" Margin="0,5,5,5" VerticalOptions="Center" WidthRequest="40" HeightRequest="40"></Image>
+                <Label Text="IURIS" Style="{StaticResource LabelCrearCuenta}" FontAttributes="Bold" FontSize="Title" Margin="15,0" VerticalOptions="Center" ></Label>
+            </StackLayout>
+
+            <Image x:Name="IMGBorrar" Source="BBasura.png" WidthRequest="20" HorizontalOptions="End" VerticalOptions="Center" HeightRequest="20" Margin="20,0" >
+            </Image>
+                <!--<Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
+                </Image.GestureRecognizers>-->
+
+        </Grid>
+    </NavigationPage.TitleView>
+
+    <ContentPage.Content>
+        <Grid RowDefinitions="auto,*" RowSpacing="0">
+            <StackLayout Grid.Row="0" Orientation="Horizontal" Margin="0,5,0,0">
+
+                <Local:CustomEntry TextColor="{StaticResource PrimaryColor}" Placeholder="  Introducir codigo" PlaceholderColor="{StaticResource PrimaryColor}" Margin="10,0" FontSize="Large" HorizontalOptions="FillAndExpand"></Local:CustomEntry>
+                <Image Source="refresh.png" WidthRequest="35" HorizontalOptions="End" VerticalOptions="Center" HeightRequest="35" Margin="0,0,20,0" ></Image>
+                
+            </StackLayout>
+
+
+            <CollectionView Grid.Row="1" x:Name="clltionLeyes" SelectionMode="Single" ItemsSource="{Binding MisLeyes}" Margin="10,0,0,10">
+            <CollectionView.EmptyView>
+                <StackLayout>
+                    <Label FontAttributes="Bold"  FontSize="Large" HorizontalOptions="Center" Style="{StaticResource TextoAMostrarColorRojo}">No se encontraron datos</Label>
+                </StackLayout>
+            </CollectionView.EmptyView>
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="5" SnapPointsAlignment="Center"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <ContentView>
+
+                        <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Margin="10,0">
+                            <Label Text="{Binding NombreLey}" FontSize="Large" Style="{StaticResource TextoAMostrarColorRojo}" HorizontalOptions="Center"></Label>
+                            <Label Text="{Binding CodigoLey}" FontSize="Large" Style="{StaticResource TextoAMostrarColorRojo}" HorizontalOptions="Start"></Label>
+                        </StackLayout>
+                    </ContentView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

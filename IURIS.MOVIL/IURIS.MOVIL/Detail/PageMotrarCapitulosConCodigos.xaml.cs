@@ -22,6 +22,7 @@ namespace IURIS.MOVIL.Detail
         readonly Usuarios _Usuario;
         readonly Leyes _ley;
         public bool _ArticuloSeleccionado;
+        static int _NumRecultadosEncontrados = 0;
         //public ICommand RefreshCommand { get; }
         bool isRefreshing;
 
@@ -150,18 +151,30 @@ namespace IURIS.MOVIL.Detail
             if (SearchViewDetailTitle.Text != null)
             {
                 List<Articulo> _ListaArticulos= new List<Articulo>();
+                List<Articulo> _ListaArticulosGenerico= new List<Articulo>();
 
                 List<Capitulo> _ListaCapitulos = new List<Capitulo>();
 
-                _ListaCapitulos = _titulo.ListaCapitulos.ToList().Where(e => e.NumCapitulo.ToUpper().Contains(TextChange.NewTextValue.ToUpper()) == true || e.NombreCapitulo.ToUpper().Contains(TextChange.NewTextValue.ToUpper()) == true).ToList();
-
                 foreach (var item in _titulo.ListaCapitulos)
                 {
-                    _ListaArticulos = item.ListaArticulos.ToList().Where(e => e.NumArticulo.ToUpper().Contains(TextChange.NewTextValue.ToUpper()) == true || e.NombreArticulo.ToUpper().Contains(TextChange.NewTextValue.ToUpper()) == true || e.Contenido.ToUpper().Contains(TextChange.NewTextValue.ToUpper()) == true).ToList();
+                    _ListaArticulosGenerico = item.ListaArticulos.ToList().Where(e => e.NumArticulo.ToUpper().Contains(TextChange.NewTextValue.ToUpper()) == true || e.NombreArticulo.ToUpper().Contains(TextChange.NewTextValue.ToUpper()) == true || e.Contenido.ToUpper().Contains(TextChange.NewTextValue.ToUpper()) == true).ToList();
+
+                foreach (var ati in _ListaArticulosGenerico)
+                {
+                    _ListaArticulos.Add(ati);
                 }
+                }
+
+                
+                _ListaCapitulos = _titulo.ListaCapitulos.ToList().Where(e => e.NumCapitulo.ToUpper().Contains(TextChange.NewTextValue.ToUpper()) == true || e.NombreCapitulo.ToUpper().Contains(TextChange.NewTextValue.ToUpper()) == true).ToList();
+
 
                 ActualizarDatosCapitulo(_ListaCapitulos);
                 ActualizarDatosArticulo(_ListaArticulos);
+
+                _NumRecultadosEncontrados = _ListaArticulos.Count + _ListaCapitulos.Count;
+
+                lblNumResultados.Text = TextChange.NewTextValue == ""? "" : _NumRecultadosEncontrados.ToString();
             }
 
         }
@@ -185,6 +198,8 @@ namespace IURIS.MOVIL.Detail
         private void MostrarSearch(bool v)
         {
             SearchViewDetailTitle.IsVisible = v;
+            lblNumResultados.IsVisible = v;
+            lblNumResultados.Text = null;
             GridTituloEIMGBuscador.IsVisible = !v;
 
             //SearchViewDetail.IsVisible = v;

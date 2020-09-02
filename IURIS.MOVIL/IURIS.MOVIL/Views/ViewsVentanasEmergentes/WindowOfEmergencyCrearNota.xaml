@@ -13,7 +13,7 @@
            CornerRadius="5" >
 
         <Grid RowDefinitions="*,auto" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
-            <Local:CustomEditor x:Name="EntryNombreApunte" AutoSize="TextChanges" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Placeholder="Escribe una nota o comentario" HorizontalOptions="FillAndExpand" Style="{StaticResource EntryCrearCuenta}" MaxLength="140" Completed="BtnGuardar_Clicked"></Local:CustomEditor>
+            <Local:CustomEditor x:Name="EntryNombreApunte" AutoSize="TextChanges" Grid.Row="0" Placeholder="Escribe una nota o comentario" HorizontalOptions="FillAndExpand" Style="{StaticResource EntryCrearCuenta}" MaxLength="140" Completed="BtnGuardar_Clicked"></Local:CustomEditor>
             <Frame Grid.Row="1" BorderColor="White"  
                     HasShadow="False"
                     IsClippedToBounds="True"
