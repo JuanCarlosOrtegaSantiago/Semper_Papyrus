@@ -104,30 +104,41 @@
                     <DataTemplate>
                         <Grid>
                             <Grid RowDefinitions="auto,auto" ColumnDefinitions="*,auto" Margin="0,5">
-                                <StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="Start">
+                                    <StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="Start" Margin="0,0,30,0" Spacing="0">
 
-                                        <Image Source="LapizNota.png" WidthRequest="20" HeightRequest="20" IsVisible="{Binding NotaAdjunta}" Margin="5,0">
+                                        <Image Source="LapizNota.png" WidthRequest="20" HeightRequest="20" IsVisible="{Binding NotaAdjunta}" Margin="0,0,5,0">
                                             <Image.GestureRecognizers>
                                                 <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_2"/>
                                             </Image.GestureRecognizers>
-                                    </Image>
+                                        </Image>
+                                        <StackLayout Orientation="Horizontal" Spacing="5">
 
-                                        <Label Text="{Binding NumArticulo}" FontSize="17" HorizontalOptions="Start" HorizontalTextAlignment="Start"  Style="{StaticResource TextoAMostrarColorRojo}" FontAttributes="Bold"></Label>
+                                            <local:CustomLabel FontSize="17" HorizontalOptions="Start" HorizontalTextAlignment="Start" Style="{StaticResource TextoAMostrarColorRojo}" FontAttributes="Bold">
+                                                <local:CustomLabel.Text>
+                                                    <MultiBinding StringFormat="{}{0}  {1}">
+                                                        <Binding Path="NumArticulo" />
+                                                        <Binding Path="NombreArticulo" />
+                                                    </MultiBinding>
+                                            </local:CustomLabel.Text>
+                                            
+                                                
+                                            </local:CustomLabel>
 
-                                    <StackLayout HorizontalOptions="FillAndExpand">
-                                        <local:CustomLabel Text="{Binding NombreArticulo}" FontSize="16" Style="{StaticResource TextoAMostrarColorRojo}" FontAttributes="Bold"></local:CustomLabel>
+                                            <!--<StackLayout HorizontalOptions="FillAndExpand">
+                                                <local:CustomLabel Text="{Binding NombreArticulo}" FontSize="16" Style="{StaticResource TextoAMostrarColorRojo}" FontAttributes="Bold"></local:CustomLabel>
+                                            </StackLayout>-->
+                                        </StackLayout>
+
                                     </StackLayout>
 
-                                </StackLayout>
-
-                                <local:CustomLabel Text="{Binding Contenido}" FontSize="Subtitle"  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,10" Style="{StaticResource TextoAMostrarColorRojo}"></local:CustomLabel>
+                                    <local:CustomLabel Text="{Binding Contenido}" FontSize="Subtitle"  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,10" Style="{StaticResource TextoAMostrarColorRojo}"></local:CustomLabel>
                                 <!--<local:CustomEditor  AutoSize="TextChanges" Text="{Binding Contenido}" IsReadOnly="True" FontSize="Subtitle"  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,5" Style="{StaticResource TextoAMostrarColorRojo}"></local:CustomEditor>-->
                             </Grid>
 
                             <Expander x:Name="expanderGeneric" HorizontalOptions="End" VerticalOptions="Start"  Margin="10,0" Padding="5">
                                 
                                 <Expander.Header>
-                                    <Image Source="Tres_Puntos_Rojos.png" WidthRequest="25" HeightRequest="25" Rotation="180" >
+                                    <Image Source="Tres_Puntos_Rojos.png" WidthRequest="20" HeightRequest="20" Rotation="180" >
                                         <!--<Image.GestureRecognizers>
                                             <TapGestureRecognizer Tapped="EsArticuloSeleccionado"/>
                                         </Image.GestureRecognizers>-->
@@ -163,25 +174,38 @@
             </CollectionView>
             </RefreshView>
 
-            <!--<pv:PancakeView Grid.Row="1" HorizontalOptions="End" VerticalOptions="End" Margin="30" Padding="10" CornerRadius="15">
+            <pv:PancakeView Grid.Row="1" HorizontalOptions="End" VerticalOptions="End" Margin="25" Padding="10" CornerRadius="15">
                 <pv:PancakeView.BackgroundGradientStops>
                     <pv:GradientStopCollection>
-                        <pv:GradientStop Color="White" Offset="0"/>
-                        <pv:GradientStop Color="White" Offset="1"/>
+                        <pv:GradientStop Color="Transparent" Offset="0"/>
+                        <pv:GradientStop Color="Transparent" Offset="1"/>
                     </pv:GradientStopCollection>
                 </pv:PancakeView.BackgroundGradientStops>
-                <Expander Rotation="180" HorizontalOptions="Start" VerticalOptions="End">
-                    <Expander.Header>
+                <Expander Rotation="180" HorizontalOptions="Start" VerticalOptions="End" State="Expanding"
+                          ExpandAnimationEasing="{x:Static Easing.SinOut}"
+          ExpandAnimationLength="1"
+          CollapseAnimationEasing="{x:Static Easing.SinOut}"
+          CollapseAnimationLength="1">
+                    <Expander.Header >
                         <Image Source="Mas.png" WidthRequest="30" HeightRequest="30" Rotation="180"/>
                     </Expander.Header>
-                    <StackLayout>
-                        <Image Source="Admin.png" HeightRequest="20" WidthRequest="20" BackgroundColor="Transparent" Rotation="180"/>
-                        <Image Source="EditarPerfil.png" HeightRequest="20" WidthRequest="20" BackgroundColor="Transparent" Rotation="180"/>
-                        <Image Source="Usuarios.png" HeightRequest="20" WidthRequest="20" BackgroundColor="Transparent" Rotation="180"/>
+                    <Expander.ContentTemplate>
+                        <DataTemplate>
+                            <ContentView Margin="0,15,0,0">
+                                
+                    <StackLayout >
+                        <Image Source="avanzar.png" HeightRequest="45" WidthRequest="45" Rotation="180"/>
+                        <Image Source="retroseso.png" HeightRequest="45" WidthRequest="45"  Rotation="180"/>
+                        <Image Source="copiar.png" HeightRequest="45" WidthRequest="45" Rotation="180"/>
+                        <Image Source="lapiz.png" HeightRequest="45" WidthRequest="45" Rotation="180"/>
+                        <Image Source="lapiz.png" HeightRequest="45" WidthRequest="45" Rotation="180"/>
                     </StackLayout>
+                            </ContentView>
+                        </DataTemplate>
+                    </Expander.ContentTemplate>
                 </Expander>
 
-            </pv:PancakeView>-->
+            </pv:PancakeView>
         
         </Grid>
     </ContentPage.Content>
