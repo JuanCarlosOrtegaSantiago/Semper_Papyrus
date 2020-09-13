@@ -1,6 +1,7 @@
 ﻿using IURIS.COMMON.Entidades.Ley;
 using IURIS.COMMON.Entidades.Ley.ComponentesDeLey;
 using IURIS.COMMON.Entidades.UsuariosDeAplicacion;
+using IURIS.MOVIL.Utils;
 using IURIS.MOVIL.Views;
 using System;
 using System.Collections.Generic;
@@ -20,12 +21,12 @@ namespace IURIS.MOVIL.Detail
 
 
         public Usuarios usuario;
-        Leyes Ley;
+        Leyes _Ley;
         public ViewDetail(Usuarios usuarios)
         {
             InitializeComponent();
             this.usuario = usuarios;
-            this.BindingContext = Ley;
+            this.BindingContext = _Ley;
 
             
             DatosAInicializar();
@@ -34,10 +35,11 @@ namespace IURIS.MOVIL.Detail
 
         private void DatosAInicializar()
         {
-            Ley = usuario.MisLeyes.Where(e => e.CodigoLey == "cnpp1").SingleOrDefault();
-            lblTitle.Text = Ley.NombreLey;
+            //_Ley = usuario.MisLeyes.Where(e => e.CodigoLey == "cnpp1").SingleOrDefault();
+            _Ley = usuario.MisLeyes.Where(e => e.CodigoLey == Settings.CodigoDeLeyCargada).SingleOrDefault();
+            lblTitle.Text = _Ley.NombreLey;
 
-            ActualizarDatos(Ley.ListaDeTitulos);
+            ActualizarDatos(_Ley.ListaDeTitulos);
 
             ClltionTitulos.SelectedItem = null;
         }
@@ -67,7 +69,7 @@ namespace IURIS.MOVIL.Detail
             if (titulo != null) { 
 
             MostrarSearch(false);
-            await Navigation.PushAsync(new PageMotrarCapitulosConCodigos(titulo,usuario,Ley),false);
+            await Navigation.PushAsync(new PageMotrarCapitulosConCodigos(titulo,usuario,_Ley),false);
             }
             //Navigation.PushAsync(new PageCapitulos(titulo));
         }
@@ -87,7 +89,7 @@ namespace IURIS.MOVIL.Detail
 
             List<Titulo> titulos = new List<Titulo>();
 
-             titulos= Ley.ListaDeTitulos.ToList().Where(e => e.NumTitulo.ToUpper().Contains(TextChange.NewTextValue.ToUpper()) == true || e.NombreTitulo.ToUpper().Contains(TextChange.NewTextValue.ToUpper()) == true).ToList();
+             titulos= _Ley.ListaDeTitulos.ToList().Where(e => e.NumTitulo.ToUpper().Contains(TextChange.NewTextValue.ToUpper()) == true || e.NombreTitulo.ToUpper().Contains(TextChange.NewTextValue.ToUpper()) == true).ToList();
 
             ActualizarDatos(titulos);
             lblNumResultados.Text = TextChange.NewTextValue == "" ? "" : titulos.Count.ToString();

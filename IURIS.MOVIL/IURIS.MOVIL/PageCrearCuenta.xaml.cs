@@ -4,6 +4,7 @@ using IURIS.COMMON.Entidades.UsuariosDeAplicacion;
 using IURIS.COMMON.Entidades.UsuariosDeAplicacion.ComponentesDeUsuario;
 using IURIS.COMMON.Interfaces;
 using IURIS.DAL;
+using IURIS.MOVIL.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -86,7 +87,7 @@ namespace IURIS.MOVIL
             usuarios.MisLeyes = Mleyes;
             usuarios.Clasificaciones = new List<Clasificacion>();
             usuarios.Apuntes = new List<Apunte>();
-
+            Settings.CodigoDeLeyCargada = leyes.CodigoLey;
             if (!manejadorDeUsuarioAplicacion.AGREGAR(usuarios))
             {
 

@@ -111,23 +111,17 @@
                                                 <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_2"/>
                                             </Image.GestureRecognizers>
                                         </Image>
-                                        <StackLayout Orientation="Horizontal" Spacing="5">
-
-                                            <local:CustomLabel FontSize="17" HorizontalOptions="Start" HorizontalTextAlignment="Start" Style="{StaticResource TextoAMostrarColorRojo}" FontAttributes="Bold">
-                                                <local:CustomLabel.Text>
-                                                    <MultiBinding StringFormat="{}{0}  {1}">
-                                                        <Binding Path="NumArticulo" />
-                                                        <Binding Path="NombreArticulo" />
-                                                    </MultiBinding>
+                                        
+                                        <local:CustomLabel FontSize="17" HorizontalOptions="Start" HorizontalTextAlignment="Start" Style="{StaticResource TextoAMostrarColorRojo}" FontAttributes="Bold">
+                                            <local:CustomLabel.Text>
+                                                <MultiBinding StringFormat="{}{0}  {1}">
+                                                    <Binding Path="NumArticulo" />
+                                                    <Binding Path="NombreArticulo" />
+                                                </MultiBinding>
                                             </local:CustomLabel.Text>
-                                            
-                                                
-                                            </local:CustomLabel>
 
-                                            <!--<StackLayout HorizontalOptions="FillAndExpand">
-                                                <local:CustomLabel Text="{Binding NombreArticulo}" FontSize="16" Style="{StaticResource TextoAMostrarColorRojo}" FontAttributes="Bold"></local:CustomLabel>
-                                            </StackLayout>-->
-                                        </StackLayout>
+
+                                        </local:CustomLabel>
 
                                     </StackLayout>
 

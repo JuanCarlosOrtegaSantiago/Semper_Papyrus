@@ -1,4 +1,5 @@
-﻿using Plugin.Settings;
+﻿using IURIS.COMMON.Entidades.Ley;
+using Plugin.Settings;
 using Plugin.Settings.Abstractions;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,8 @@ namespace IURIS.MOVIL.Utils
         private const string NumUserSettingsKey = "Last_Num_key";
         private const string CorreoUserSettingsKey = "Last_Correo_key";
         private const string ContraseniaUserSettingsKey = "Last_Cotrasenia_key";
+        private const string LeyCodigoUserSettingsKey = "Last_LeyCodigo_key";
+
         private const bool RecuerdameUserSettingsKey = false;
         private static readonly string SettingsDefault = string.Empty;
         private static readonly bool SettingsDefaultiBool = default;
@@ -71,6 +74,19 @@ namespace IURIS.MOVIL.Utils
                 Appsettings.AddOrUpdateValue(RecuerdameUserSettingsKey.ToString(), value);
 
             }
+        }
+
+        public static string CodigoDeLeyCargada
+        {
+            get
+            {
+                return Appsettings.GetValueOrDefault(LeyCodigoUserSettingsKey, SettingsDefault);
+            }
+            set
+            {
+                Appsettings.AddOrUpdateValue(LeyCodigoUserSettingsKey, value);
+            }
+
         }
 
     }

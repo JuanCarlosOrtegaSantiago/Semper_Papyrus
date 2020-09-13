@@ -30,13 +30,17 @@
         <Grid RowDefinitions="auto,*" RowSpacing="0">
             <StackLayout Grid.Row="0" Orientation="Horizontal" Margin="0,5,0,0">
 
-                <Local:CustomEntry TextColor="{StaticResource PrimaryColor}" Placeholder="  Introducir codigo" PlaceholderColor="{StaticResource PrimaryColor}" Margin="10,0" FontSize="Large" HorizontalOptions="FillAndExpand"></Local:CustomEntry>
-                <Image Source="temp.png" WidthRequest="35" HorizontalOptions="End" VerticalOptions="Center" HeightRequest="35" Margin="0,0,20,0" ></Image>
+                <Local:CustomEntry x:Name="EntryCodigo" TextColor="{StaticResource PrimaryColor}" Placeholder="  Introducir codigo" PlaceholderColor="{StaticResource PrimaryColor}" Margin="10,0" FontSize="Large" HorizontalOptions="FillAndExpand" Completed="TapGestureRecognizer_Tapped"></Local:CustomEntry>
+                <Image Source="temp.png" WidthRequest="35" HorizontalOptions="End" VerticalOptions="Center" HeightRequest="35" Margin="0,0,20,0" >
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </Image.GestureRecognizers>
+                </Image>
                 
             </StackLayout>
 
 
-            <CollectionView Grid.Row="1" x:Name="clltionLeyes" SelectionMode="Single" ItemsSource="{Binding MisLeyes}" Margin="10,0,0,10">
+            <CollectionView Grid.Row="1" x:Name="clltionLeyes" ItemsSource="{Binding MisLeyes}" Margin="10,0,0,10" SelectionMode="Single" SelectionChanged="clltionLeyes_SelectionChanged">
             <CollectionView.EmptyView>
                 <StackLayout>
                     <Label FontAttributes="Bold"  FontSize="Large" HorizontalOptions="Center" Style="{StaticResource TextoAMostrarColorRojo}">No se encontraron datos</Label>
