@@ -50,21 +50,34 @@ namespace IURIS.DESKTOP.GUI.ADMIN
             try
             {
                 manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
-                //LeyMasDescargada = manejadorDeLeyes.Listar.Where(e => e.EsModificacion==false).SingleOrDefault();
-                LeyMasDescargada = manejadorDeLeyes.Listar.Where(e => e.EsModificacion == false).FirstOrDefault();
+                LeyMasDescargada = manejadorDeLeyes.Listar.First();
+
+                //corregir
+
+                foreach (var Ley in manejadorDeLeyes.Listar)
+                {
+                    if ( LeyMasDescargada.numDescargas > Ley.numDescargas)
+                    {
+
+                        LeyMasDescargada = Ley;
+                    }
+                    TotalDeDescargas += Ley.numDescargas;
+                }
 
                 if (manejadorDeLeyes.Listar.Count <= 0)
                     if (MessageBox.Show("Aun no tiene leyes agregadas", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning) == MessageBoxResult.OK)
                         this.Close();
+                //LeyMasDescargada = manejadorDeLeyes.Listar.Where(e => e.numDescargas).FirstOrDefault();
+
                 
                 DatosAInicializar();
 
-                ListLeyes.ItemsSource = manejadorDeLeyes.MostrarLeyes;
+                //ListLeyes.ItemsSource = manejadorDeLeyes.MostrarLeyes;
 
-                //DispatcherTimer timer = new DispatcherTimer();
-                //timer.Interval = TimeSpan.FromSeconds(5);
-                //timer.Tick += timer_Tick;
-                //timer.Start();
+                DispatcherTimer timer = new DispatcherTimer();
+                timer.Interval = TimeSpan.FromSeconds(5);
+                timer.Tick += timer_Tick;
+                timer.Start();
             }
             catch (Exception ex)
             {
@@ -84,13 +97,13 @@ namespace IURIS.DESKTOP.GUI.ADMIN
             ListLeyes.ItemsSource = null;
             ListLeyes.ItemsSource = manejadorDeLeyes.MostrarLeyes;
 
-            foreach (var item in manejadorDeLeyes.Listar)
-            {
-                if (item.numDescargas > LeyMasDescargada.numDescargas)
-                    LeyMasDescargada = item;
+            //foreach (var item in manejadorDeLeyes.Listar)
+            //{
+            //    if (item.numDescargas > LeyMasDescargada.numDescargas)
+            //        LeyMasDescargada = item;
 
-                TotalDeDescargas += item.numDescargas;
-            }
+            //    TotalDeDescargas += item.numDescargas;
+            //}
         }
 
         private void TextBox_KeyUp(object sender, KeyEventArgs e)
@@ -193,7 +206,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
 
                 LblGraficaNombreDeLEy.Content = leyes.NombreLey;
                 GaugeIOT.Value = leyes.numDescargas+2;
-                GaugeIOT.To = TotalDeDescargas+3;
+                GaugeIOT.To = TotalDeDescargas;
 
             }
         }

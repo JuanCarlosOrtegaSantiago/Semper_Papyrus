@@ -1,5 +1,6 @@
 ﻿using IURIS.BIZ;
 using IURIS.COMMON.Entidades.Ley;
+using IURIS.COMMON.Entidades.Ley.ComponentesDeLey;
 using IURIS.COMMON.Entidades.UsuariosDeAplicacion;
 using IURIS.COMMON.Interfaces;
 using IURIS.DAL;
@@ -42,14 +43,49 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
 
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
-            if (manejadorDeLeyes.BuscarPorCodigo(EntryCodigo.Text))
+            //if (manejadorDeLeyes.BuscarPorCodigo(EntryCodigo.Text))
+            //{
+            Leyes leyCopia=null;
+
+            bool Encontrado = false;
+
+            if (_User.MisLeyes.Count <= 5)
             {
-                _LeyeComprada = manejadorDeLeyes.MostrarLeyes.Where(x => x.CodigoLey == EntryCodigo.Text).SingleOrDefault();
+                CodigoVenta codigoVenta = new CodigoVenta();
+
+                foreach (var Ley in manejadorDeLeyes.Listar)
+                {
+                    foreach (var Codigo in Ley.CodigosDeVentas)
+                    {
+                        if (Codigo.CodigoDeVenta == EntryCodigo.Text)
+                        {
+                            _LeyeComprada = Ley;
+                            leyCopia = Ley;
+                            codigoVenta = Codigo;
+                            Encontrado = true;
+                            break;
+
+                        }
+                    }
+
+                    if (Encontrado)
+                        break;
+                }
+
+                if (_LeyeComprada == null)
+                {
+                    await DisplayAlert("Error", "Codigo incorrecto\nIntenta de nuevo", "OK");
+                    return;
+                }
+
+                _LeyeComprada.CodigosDeVentas = null;
+
                 _User.MisLeyes.Add(_LeyeComprada);
                 if (manejadorDeUsuarioAplicacion.Modificar(_User))
                 {
-                _LeyeComprada.numDescargas += 1;
-                    manejadorDeLeyes.Modificar(_LeyeComprada);
+                    leyCopia.numDescargas += 1;
+                    leyCopia.CodigosDeVentas.Remove(codigoVenta);
+                    manejadorDeLeyes.Modificar(leyCopia);
                     CargarDatos();
                     Limpiardatos();
                 }
@@ -57,11 +93,18 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
                 {
                     await DisplayAlert("", "Ocurrio un error\nIntente mas tarde", "OK");
                 }
+
             }
             else
             {
-                await DisplayAlert("Error", "Codigo incorrecto\nIntenta de nuevo", "OK");
+
             }
+            //}
+            //else
+            //{
+            //    
+            //    
+            //}
         }
 
         private void Limpiardatos()

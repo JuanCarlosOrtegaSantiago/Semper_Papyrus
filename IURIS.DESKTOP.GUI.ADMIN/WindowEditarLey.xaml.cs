@@ -90,9 +90,9 @@ namespace IURIS.DESKTOP.GUI.ADMIN
             if (MessageBox.Show("¿Realmente decea salir?", "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.No) == MessageBoxResult.Yes)
             {
 
-                WindowMostrarClasificaciones windowMostrarClasificaciones = new WindowMostrarClasificaciones();
+                WindowOperaciones windowOperaciones = new WindowOperaciones();
                 this.Close();
-                windowMostrarClasificaciones.Show();
+                windowOperaciones.Show();
 
             }
         }
@@ -122,9 +122,9 @@ namespace IURIS.DESKTOP.GUI.ADMIN
                     {
 
                         MessageBox.Show("Ley modificada satisfactoriamente", "Carga correcta", MessageBoxButton.OK, MessageBoxImage.Information);
-                        WindowMostrarClasificaciones windowMostrarClasificaciones = new WindowMostrarClasificaciones();
+                        WindowOperaciones windowOperaciones = new WindowOperaciones();
                         this.Close();
-                        windowMostrarClasificaciones.Show();
+                        windowOperaciones.Show();
                     }
                     else
                     {

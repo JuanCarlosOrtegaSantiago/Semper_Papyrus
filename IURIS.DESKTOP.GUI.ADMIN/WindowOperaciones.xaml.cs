@@ -21,7 +21,8 @@ namespace IURIS.DESKTOP.GUI.ADMIN
     /// </summary>
     public partial class WindowOperaciones : Window
     {
-        //private bool EsNuevaLey=false;
+        private bool EditarLey = false;
+        private bool VenderLey = false;
         public WindowOperaciones( )
         {
             InitializeComponent();
@@ -60,7 +61,8 @@ namespace IURIS.DESKTOP.GUI.ADMIN
 
         private void BtnModificarLey_Click(object sender, RoutedEventArgs e)
         {
-            WindowMostrarClasificaciones windowMostrarClasificaciones= new  WindowMostrarClasificaciones();
+            EditarLey = true;
+            WindowMostrarClasificaciones windowMostrarClasificaciones= new  WindowMostrarClasificaciones(EditarLey,VenderLey);
             //WindowOperacionesDeLeyes windowOperacionesDeLeyes = new WindowOperacionesDeLeyes(EsNuevaLey);
             if (windowMostrarClasificaciones.HayInternet)
             {
@@ -103,6 +105,22 @@ namespace IURIS.DESKTOP.GUI.ADMIN
             WindowClasificacion windowClasificacion = new WindowClasificacion();
             this.Close();
             windowClasificacion.Show();
+        }
+
+        private void BtnNuevaVenta_Click(object sender, RoutedEventArgs e)
+        {
+            VenderLey = true;
+            WindowMostrarClasificaciones windowMostrarClasificaciones = new WindowMostrarClasificaciones(EditarLey, VenderLey);
+            //WindowOperacionesDeLeyes windowOperacionesDeLeyes = new WindowOperacionesDeLeyes(EsNuevaLey);
+            if (windowMostrarClasificaciones.HayInternet)
+            {
+                this.Close();
+                windowMostrarClasificaciones.Show();
+            }
+            else
+            {
+                MessageBox.Show("Revisa tu conexion a internet", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
     }
 }
