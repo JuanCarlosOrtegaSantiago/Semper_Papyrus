@@ -81,7 +81,7 @@ namespace IURIS.MOVIL
                 IdApp = numUsuario,
                 Contrasenia = int.Parse(EntryContrasenia.Text),
             };
-            Leyes leyes = manejadorDeLeyes.BuscarLey("CÓDIGO NACIONAL DE PROCEDIMIENTOS PENALES");
+            Leyes leyes = manejadorDeLeyes.BuscarPorCodigo("cnpp1");//Poner el codigo de 
             List<Leyes> Mleyes = new List<Leyes>();
             Mleyes.Add(leyes);
             usuarios.MisLeyes = Mleyes;

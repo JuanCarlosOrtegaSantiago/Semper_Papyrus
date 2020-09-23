@@ -8,8 +8,8 @@ namespace IURIS.COMMON.Interfaces
 {
     public interface IManejadorDeLeyes:IManejadorGenerico<Leyes>
     {
-        bool BuscarPorCodigo(string codigo);
-        Leyes BuscarLey(string NombreDeLEy);
+        Leyes BuscarPorCodigo(string codigo);
+        //Leyes BuscarLey(string NombreDeLEy);
         List<Leyes> BuscarEnLeyes(string BuscarLey);
         List<Leyes> BuscarEnLeyesPorClasificacion(Clasificacion clasificacion);
         List<Leyes> MostrarLeyes { get; }

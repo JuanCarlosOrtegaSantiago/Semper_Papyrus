@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IURIS.DESKTOP.GUI.ADMIN"
         mc:Ignorable="d"
-        Height="350" Width="800" Background="#640404" Icon="Imagenes/Logo.png" MinWidth="800" MinHeight="350" WindowStyle="None" MaxWidth="650" MaxHeight="300" WindowStartupLocation="CenterScreen" >
+        Height="350" Width="700" Background="#640404" Icon="Imagenes/Logo.png" MinWidth="800" MinHeight="350" WindowStyle="None" MaxWidth="650" MaxHeight="300" WindowStartupLocation="CenterScreen" >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
@@ -27,18 +27,16 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
-        <WrapPanel Grid.Column="12" Grid.Row="0" Grid.RowSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <WrapPanel Grid.Column="10" Grid.Row="0" Grid.RowSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Button Style="{DynamicResource ButtonStyle1}" x:Name="BtnSalir" Click="BtnSalir_Click">
                 <StackPanel>
                     <Image Source="Imagenes/salir.png" Width="30"/>
                 </StackPanel>
             </Button>
         </WrapPanel>
-        <WrapPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="12" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <WrapPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="10" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Label Foreground="White" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center">¿Qué operacion deseas realizar?</Label>
         </WrapPanel>
         
@@ -89,14 +87,14 @@
             </Button>
         </WrapPanel>
         
-        <WrapPanel Grid.Row="2" Grid.Column="11" Grid.ColumnSpan="2" Margin="10,5" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <!--<WrapPanel Grid.Row="2" Grid.Column="11" Grid.ColumnSpan="2" Margin="10,5" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Button x:Name="BtnNuevaVenta" Click="BtnNuevaVenta_Click" Style="{DynamicResource ButtonStyle1}">
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Image Source="Imagenes/NuevaVenta.png"  Width="100" Height="100"></Image>
                     <Label Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold">NuevaVenta</Label>
                 </StackPanel>
             </Button>
-        </WrapPanel>
+        </WrapPanel>-->
         
 
     </Grid>

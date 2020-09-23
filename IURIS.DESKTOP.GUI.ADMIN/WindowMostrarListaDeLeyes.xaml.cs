@@ -26,15 +26,10 @@ namespace IURIS.DESKTOP.GUI.ADMIN
     {
         IManejadorDeLeyes manejadorDeLeyes;
 
-        static bool _EditarLey;
-        static bool _VenderLey;
-        public WindowMostrarListaDeLeyes(Clasificacion clasificacion, bool EditarLey, bool VenderLey)
+        public WindowMostrarListaDeLeyes(Clasificacion clasificacion)
         {
             InitializeComponent();
             manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
-
-            _EditarLey = EditarLey;
-            _VenderLey = VenderLey;
 
             if (manejadorDeLeyes.Listar.Count <= 0)
                 if (MessageBox.Show("Aun no tiene leyes agregadas", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning) == MessageBoxResult.OK)
@@ -84,22 +79,10 @@ namespace IURIS.DESKTOP.GUI.ADMIN
         {
             if (ListLeyes.SelectedItem != null)
             {
-                if (_EditarLey)
-                {
-
                     Leyes ley = ListLeyes.SelectedItem as Leyes;
                     WindowEditarLey windowEditarLey = new WindowEditarLey(ley);
                     this.Close();
                     windowEditarLey.Show();
-                }
-
-                if (_VenderLey)
-                {
-                    Leyes ley = ListLeyes.SelectedItem as Leyes;
-                    WindowVenderLey windowVenderLey = new WindowVenderLey(ley);
-                    this.Close();
-                    windowVenderLey.Show();
-                }
             }
         }
     }

@@ -116,7 +116,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
                     }
 
                     CopiaLey.EsModificacion = true;
-                    CopiaLey.UltimaFechaDeModificacion = DateTime.Now;
+                    CopiaLey.UltimaFechaDeModificacion = DateTime.Today;
 
                     if (manejadorDeLeyes.Modificar(CopiaLey))
                     {

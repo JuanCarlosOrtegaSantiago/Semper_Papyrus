@@ -89,13 +89,12 @@ namespace IURIS.DESKTOP.GUI.ADMIN
 
         private void EstadoDeCajas(bool v)
         {
-            LimpiarCajas();
-            //Abilitar cajas
+            //Habilitar cajas
             RtcTxtContenido.IsEnabled = v;
             txtCodigo.IsEnabled = v;
             txtNombreArticulo.IsEnabled = v;
             txtNombreCapitulo.IsEnabled = v;
-            TxtNombreDeLey.IsEnabled = v;
+            TxtNombreDeLey.IsEnabled = v;//
             txtNombreTitulo.IsEnabled = v;
             txtNumArticulo.IsEnabled = v;
             txtNumCapitulo.IsEnabled = v;
@@ -111,6 +110,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
             BtnCancelar.IsEnabled = v;
             BtnSubirLey.IsEnabled = v;
 
+            LimpiarCajas();
 
         }
 
@@ -127,6 +127,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
             txtNumCapitulo.Clear();
             txtNumTitulo.Clear();
             CmbxClasificacion.SelectedItem = null;
+            WrpLblCodigoAsociado.Visibility = Visibility.Collapsed;
         }
 
         private void BtnCambiarDeAlturaMinimizar_Click(object sender, RoutedEventArgs e)
@@ -168,10 +169,15 @@ namespace IURIS.DESKTOP.GUI.ADMIN
         {
             try
             {
-                if (manejadorDeLeyes.BuscarPorCodigo(txtCodigo.Text))
+                if (manejadorDeLeyes.BuscarPorCodigo(txtCodigo.Text)!=null)
                 {
                     WrpLblCodigoAsociado.Visibility = Visibility.Visible;
-                    CodigoExistente = true;
+                }
+                else
+                {
+
+                    WrpLblCodigoAsociado.Visibility = Visibility.Collapsed;
+                    CodigoExistente = false;
                 }
 
             }
@@ -337,10 +343,10 @@ namespace IURIS.DESKTOP.GUI.ADMIN
                             ListaDeTitulos = titulos,
                             NombreLey = TxtNombreDeLey.Text,
                             numDescargas = 0,
-                            UltimaFechaDeModificacion = DateTime.Now.Date,
+                            UltimaFechaDeModificacion = DateTime.Today.Date,
                             EsModificacion = false,
                             Clasificacion = (Clasificacion)CmbxClasificacion.SelectedItem,
-                            CodigosDeVentas = new List<CodigoVenta>()
+                            //CodigosDeVentas = new List<CodigoVenta>()
                         };
                         try
                         {

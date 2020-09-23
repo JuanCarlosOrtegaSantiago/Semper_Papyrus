@@ -62,7 +62,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
         private void BtnModificarLey_Click(object sender, RoutedEventArgs e)
         {
             EditarLey = true;
-            WindowMostrarClasificaciones windowMostrarClasificaciones= new  WindowMostrarClasificaciones(EditarLey,VenderLey);
+            WindowMostrarClasificaciones windowMostrarClasificaciones= new  WindowMostrarClasificaciones();
             //WindowOperacionesDeLeyes windowOperacionesDeLeyes = new WindowOperacionesDeLeyes(EsNuevaLey);
             if (windowMostrarClasificaciones.HayInternet)
             {
@@ -107,20 +107,20 @@ namespace IURIS.DESKTOP.GUI.ADMIN
             windowClasificacion.Show();
         }
 
-        private void BtnNuevaVenta_Click(object sender, RoutedEventArgs e)
-        {
-            VenderLey = true;
-            WindowMostrarClasificaciones windowMostrarClasificaciones = new WindowMostrarClasificaciones(EditarLey, VenderLey);
-            //WindowOperacionesDeLeyes windowOperacionesDeLeyes = new WindowOperacionesDeLeyes(EsNuevaLey);
-            if (windowMostrarClasificaciones.HayInternet)
-            {
-                this.Close();
-                windowMostrarClasificaciones.Show();
-            }
-            else
-            {
-                MessageBox.Show("Revisa tu conexion a internet", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-        }
+        //private void BtnNuevaVenta_Click(object sender, RoutedEventArgs e)
+        //{
+        //    VenderLey = true;
+        //    WindowMostrarClasificaciones windowMostrarClasificaciones = new WindowMostrarClasificaciones(EditarLey, VenderLey);
+        //    //WindowOperacionesDeLeyes windowOperacionesDeLeyes = new WindowOperacionesDeLeyes(EsNuevaLey);
+        //    if (windowMostrarClasificaciones.HayInternet)
+        //    {
+        //        this.Close();
+        //        windowMostrarClasificaciones.Show();
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Revisa tu conexion a internet", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+        //    }
+        //}
     }
 }

@@ -43,62 +43,83 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
 
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
-            //if (manejadorDeLeyes.BuscarPorCodigo(EntryCodigo.Text))
-            //{
-            Leyes leyCopia=null;
-
-            bool Encontrado = false;
-
-            if (_User.MisLeyes.Count <= 5)
+            if (_User.MisLeyes.Count < 4)
             {
-                CodigoVenta codigoVenta = new CodigoVenta();
 
-                foreach (var Ley in manejadorDeLeyes.Listar)
+                _LeyeComprada = manejadorDeLeyes.BuscarPorCodigo(EntryCodigo.Text);
+
+                if (_LeyeComprada != null)
                 {
-                    foreach (var Codigo in Ley.CodigosDeVentas)
-                    {
-                        if (Codigo.CodigoDeVenta == EntryCodigo.Text)
-                        {
-                            _LeyeComprada = Ley;
-                            leyCopia = Ley;
-                            codigoVenta = Codigo;
-                            Encontrado = true;
-                            break;
+                    _User.MisLeyes.Add(_LeyeComprada);
 
-                        }
-                    }
-
-                    if (Encontrado)
-                        break;
-                }
-
-                if (_LeyeComprada == null)
-                {
-                    await DisplayAlert("Error", "Codigo incorrecto\nIntenta de nuevo", "OK");
-                    return;
-                }
-
-                _LeyeComprada.CodigosDeVentas = null;
-
-                _User.MisLeyes.Add(_LeyeComprada);
-                if (manejadorDeUsuarioAplicacion.Modificar(_User))
-                {
-                    leyCopia.numDescargas += 1;
-                    leyCopia.CodigosDeVentas.Remove(codigoVenta);
-                    manejadorDeLeyes.Modificar(leyCopia);
-                    CargarDatos();
-                    Limpiardatos();
+                    if (manejadorDeUsuarioAplicacion.Modificar(_User))
+                        CargarDatos();
+                    else
+                        await DisplayAlert("", "Ocurrio un error\nIntente mas tarde", "OK");
                 }
                 else
                 {
-                    await DisplayAlert("", "Ocurrio un error\nIntente mas tarde", "OK");
+                    await DisplayAlert("Error", "Codigo incorrecto\nIntenta de nuevo", "OK");
                 }
-
             }
             else
             {
-
+                await DisplayAlert("Error", "No tienes suficiente espacio para agregar una ley más\nCompra más espacio o elimina una ley de tu colección", "OK");
             }
+
+            Limpiardatos();
+            //Leyes leyCopia=null;
+            //bool Encontrado = false;
+
+            //if (_User.MisLeyes.Count <= 4)
+            //{
+            //    CodigoVenta codigoVenta = new CodigoVenta();
+
+            //    foreach (var Ley in manejadorDeLeyes.Listar)
+            //    {
+            //        foreach (var Codigo in Ley.CodigosDeVentas)
+            //        {
+            //            if (Codigo.CodigoDeVenta == EntryCodigo.Text)
+            //            {
+            //                _LeyeComprada = Ley;
+            //                leyCopia = Ley;
+            //                codigoVenta = Codigo;
+            //                Encontrado = true;
+            //                break;
+
+            //            }
+            //        }
+
+            //        if (Encontrado)
+            //            break;
+            //    }
+
+            //    if (_LeyeComprada == null)
+            //    {
+            //        return;
+            //    }
+
+            //    _LeyeComprada.CodigosDeVentas = null;
+
+            //    _User.MisLeyes.Add(_LeyeComprada);
+            //    if (manejadorDeUsuarioAplicacion.Modificar(_User))
+            //    {
+            //        leyCopia.numDescargas += 1;
+            //        leyCopia.CodigosDeVentas.Remove(codigoVenta);
+            //        manejadorDeLeyes.Modificar(leyCopia);
+            //        CargarDatos();
+            //        Limpiardatos();
+            //    }
+            //    else
+            //    {
+            //        await DisplayAlert("", "Ocurrio un error\nIntente mas tarde", "OK");
+            //    }
+
+            //}
+            //else
+            //{
+
+            //}
             //}
             //else
             //{

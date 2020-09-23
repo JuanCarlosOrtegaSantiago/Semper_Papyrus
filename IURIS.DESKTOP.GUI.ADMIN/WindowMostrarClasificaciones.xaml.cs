@@ -26,16 +26,11 @@ namespace IURIS.DESKTOP.GUI.ADMIN
         IManejadorDeClasificaciones manejadorDeClasificaciones;
         static TimeoutException ExSinInternet = new TimeoutException();
         public bool HayInternet = true;
-        static bool _EditarLey;
-        static bool _VenderLey;
 
-        public WindowMostrarClasificaciones(bool EditarLey, bool VenderLey)
+        public WindowMostrarClasificaciones()
         {
             InitializeComponent();
             manejadorDeClasificaciones = new ManejadorDeClasificaciones(new RepositorioGenerico<Clasificacion>());
-
-            _EditarLey = EditarLey;
-            _VenderLey = VenderLey;
 
             try
             {
@@ -59,7 +54,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
             Clasificacion clasificacion = (Clasificacion)ListaDeClasificaciones.SelectedItem;
             if (clasificacion != null)
             {
-                WindowMostrarListaDeLeyes windowMostrarListaDeLeyes = new WindowMostrarListaDeLeyes(clasificacion, _EditarLey, _VenderLey);
+                WindowMostrarListaDeLeyes windowMostrarListaDeLeyes = new WindowMostrarListaDeLeyes(clasificacion);
                 this.Close();
                 windowMostrarListaDeLeyes.Show();
             }

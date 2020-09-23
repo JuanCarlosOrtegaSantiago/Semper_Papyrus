@@ -165,9 +165,6 @@
     <Compile Include="WindowUsuariosGlobal.xaml.cs">
       <DependentUpon>WindowUsuariosGlobal.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WindowVenderLey.xaml.cs">
-      <DependentUpon>WindowVenderLey.xaml</DependentUpon>
-    </Compile>
     <Page Include="DiccionarioDeRecursos\DictionaryOfButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -245,10 +242,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WindowUsuariosGlobal.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="WindowVenderLey.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

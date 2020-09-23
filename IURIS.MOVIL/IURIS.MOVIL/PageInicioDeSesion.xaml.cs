@@ -1,5 +1,6 @@
 ﻿using Android.Widget;
 using IURIS.BIZ;
+using IURIS.COMMON.Entidades.Ley;
 using IURIS.COMMON.Entidades.UsuariosDeAplicacion;
 using IURIS.COMMON.Interfaces;
 using IURIS.DAL;
@@ -22,14 +23,16 @@ namespace IURIS.MOVIL
         int Intentos = 0;
 
         IManejadorDeUsuarioAplicacion manejadorDeUsuarioAplicacion;
-
+        IManejadorDeLeyes manejadorDeLeyes;
+        Usuarios _User;
         bool Recuerdame = false;
-        
+        List<Leyes> LeyesParaActualizar=new List<Leyes>();
 
         public PageInicioDeSesion()
         {
             InitializeComponent();
             manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
+            manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
 
             DatosAIniciar();
         }
@@ -86,19 +89,25 @@ namespace IURIS.MOVIL
                         return;
                     }
 
-                    Usuarios usuario = manejadorDeUsuarioAplicacion.EncontrarUsuario(EntryCorreo.Text, int.Parse(EntryPasswor.Text));
-                    if (usuario!=null)
+                    _User = manejadorDeUsuarioAplicacion.EncontrarUsuario(EntryCorreo.Text, int.Parse(EntryPasswor.Text));
+                    if (_User != null)
                     {
                         if (Recuerdame)
                         {
-                            Settings.Email = usuario.Correo;
-                            Settings.Contrasenia = usuario.Contrasenia.ToString();
+                            Settings.Email = _User.Correo;
+                            Settings.Contrasenia = _User.Contrasenia.ToString();
                         }
 
                             Settings.Recuerdame = Recuerdame;
-                        Settings.NumUsuario = usuario.IdApp.ToString();
+                        Settings.NumUsuario = _User.IdApp.ToString();
+
+                        if (HayActualizacion())
+                        {
+                            Actualizaeyes();
+                        }
+                        await Navigation.PushAsync(new FirtsView(_User), false);
+
                         //Toast.MakeText(context,3,  ToastLength.Long).Show();
-                        await Navigation.PushAsync(new FirtsView(usuario), false);
 
                     }
                     else
@@ -108,6 +117,11 @@ namespace IURIS.MOVIL
                 }
             }
             Intentos = 0;
+        }
+
+        private void Actualizaeyes()
+        {
+            
         }
 
         private void CheckRecuerdame_CheckedChanged(object sender, CheckedChangedEventArgs e)
@@ -123,6 +137,25 @@ namespace IURIS.MOVIL
 
             CheckRecuerdame.IsChecked = CheckRecuerdame.IsChecked ? false : true;
             Recuerdame = CheckRecuerdame.IsChecked ? true : false;
+        }
+
+        public bool HayActualizacion()
+        {
+            List<Leyes> LeyesActualizadas = manejadorDeLeyes.Listar.Where(x => x.EsModificacion == true).ToList();
+            if (LeyesActualizadas.Count == 0)
+                return false;
+
+            foreach (var Ley in LeyesActualizadas)
+            {
+                foreach (var MiLey in _User.MisLeyes)
+                {
+                    if (MiLey.id == Ley.id)
+                    {
+                        LeyesParaActualizar.Add(Ley);
+                    }
+                }
+            }
+            return true;
         }
     }
 }

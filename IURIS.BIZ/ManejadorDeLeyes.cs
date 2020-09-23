@@ -36,16 +36,9 @@ namespace IURIS.BIZ
             return repositorio.Read.Where(w => w.Clasificacion.Nombre == clasificacion.Nombre).ToList();
         }
 
-        public Leyes BuscarLey(string NombreDeLEy)
+        public Leyes BuscarPorCodigo(string codigo)
         {
-        
-            return Listar.Where(e => e.NombreLey == NombreDeLEy).SingleOrDefault();
-            //return Listar.Where(e => e.NombreLey == NombreDeLEy).ToList().OrderBy(e => e.NombreLey).Single();
-        }
-
-        public bool BuscarPorCodigo(string codigo)
-        {
-            return Listar.Where(e => e.CodigoLey == codigo).Count() >= 1 ? true : false;
+            return Listar.Where(e => e.CodigoLey == codigo).SingleOrDefault();
         }
 
         public Leyes BuscarPorID(ObjectId Id)
