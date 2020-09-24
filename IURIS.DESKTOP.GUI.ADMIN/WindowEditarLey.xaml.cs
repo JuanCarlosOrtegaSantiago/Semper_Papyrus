@@ -110,6 +110,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
                     CopiaLey.CodigoLey = txtCodigo.Text != CopiaLey.CodigoLey ? txtCodigo.Text : CopiaLey.CodigoLey;
                     CopiaLey.Clasificacion = (Clasificacion)CmbxClasificacion.SelectedItem;
 
+                    //Verificar
                     while (CopiaLey.EsModificacion)
                     {
                         CopiaLey.EsModificacion = false;

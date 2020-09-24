@@ -149,7 +149,7 @@ namespace IURIS.MOVIL
             {
                 foreach (var MiLey in _User.MisLeyes)
                 {
-                    if (MiLey.id == Ley.id)
+                    if (MiLey.id == Ley.id && Ley.UltimaFechaDeModificacion>MiLey.UltimaFechaDeModificacion)
                     {
                         LeyesParaActualizar.Add(Ley);
                     }
