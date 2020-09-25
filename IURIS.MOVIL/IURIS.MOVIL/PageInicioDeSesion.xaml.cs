@@ -121,7 +121,51 @@ namespace IURIS.MOVIL
 
         private void Actualizaeyes()
         {
-            
+            foreach (var LeyParaActualizar in LeyesParaActualizar)
+            {
+                foreach (var MiLey in _User.MisLeyes)
+                {
+                    if (MiLey.id == LeyParaActualizar.id)
+                    {
+                        Settings.CodigoDeLeyCargada = Settings.CodigoDeLeyCargada == MiLey.CodigoLey ? LeyParaActualizar.CodigoLey: Settings.CodigoDeLeyCargada;
+                        MiLey.Clasificacion = MiLey.Clasificacion != LeyParaActualizar.Clasificacion ? LeyParaActualizar.Clasificacion : MiLey.Clasificacion;
+                        MiLey.NombreLey = MiLey.NombreLey != LeyParaActualizar.NombreLey ? LeyParaActualizar.NombreLey : MiLey.NombreLey;
+                        MiLey.UltimaFechaDeModificacion = MiLey.UltimaFechaDeModificacion != LeyParaActualizar.UltimaFechaDeModificacion ? LeyParaActualizar.UltimaFechaDeModificacion : MiLey.UltimaFechaDeModificacion;
+                        MiLey.CodigoLey = MiLey.CodigoLey != LeyParaActualizar.CodigoLey ? LeyParaActualizar.CodigoLey : MiLey.CodigoLey;
+
+                        //MiLey.ListaDeTitulos[0] = null;
+                        foreach (var Titulo in MiLey.ListaDeTitulos)
+                        {
+                            foreach (var TituloAActualizar in LeyParaActualizar.ListaDeTitulos)
+                            {
+                                Titulo.NumTitulo = Titulo.NumTitulo != TituloAActualizar.NumTitulo ? TituloAActualizar.NumTitulo : Titulo.NumTitulo;
+                                Titulo.NombreTitulo = Titulo.NombreTitulo != TituloAActualizar.NombreTitulo ? TituloAActualizar.NombreTitulo : Titulo.NombreTitulo;
+
+                                foreach (var _Capitulo in Titulo.ListaCapitulos)
+                                {
+                                    foreach (var _CapituloAActualizar in TituloAActualizar.ListaCapitulos)
+                                    {
+                                        _Capitulo.NumCapitulo = _Capitulo.NumCapitulo != _CapituloAActualizar.NumCapitulo ? _CapituloAActualizar.NumCapitulo : _Capitulo.NumCapitulo;
+                                        _Capitulo.NombreCapitulo = _Capitulo.NombreCapitulo != _CapituloAActualizar.NombreCapitulo ? _CapituloAActualizar.NombreCapitulo : _Capitulo.NombreCapitulo;
+
+                                        foreach (var _Articulo in _Capitulo.ListaArticulos)
+                                        {
+                                            foreach (var _ArticuloAModificar in _CapituloAActualizar.ListaArticulos)
+                                            {
+                                                _Articulo.Contenido = _Articulo.Contenido != _ArticuloAModificar.Contenido ? _ArticuloAModificar.Contenido : _Articulo.Contenido;
+                                                _Articulo.NombreArticulo = _Articulo.NombreArticulo != _ArticuloAModificar.NombreArticulo ? _ArticuloAModificar.NombreArticulo : _Articulo.NombreArticulo;
+                                                _Articulo.NumArticulo = _Articulo.NumArticulo != _ArticuloAModificar.NumArticulo ? _ArticuloAModificar.NumArticulo : _Articulo.NumArticulo;
+                                            }
+                                        }
+                                    }
+                                }
+
+                            }
+                        }
+
+                    }
+                }
+            }
         }
 
         private void CheckRecuerdame_CheckedChanged(object sender, CheckedChangedEventArgs e)
@@ -149,7 +193,7 @@ namespace IURIS.MOVIL
             {
                 foreach (var MiLey in _User.MisLeyes)
                 {
-                    if (MiLey.id == Ley.id && Ley.UltimaFechaDeModificacion>MiLey.UltimaFechaDeModificacion)
+                    if (MiLey.id == Ley.id ) //&& Ley.UltimaFechaDeModificacion > MiLey.UltimaFechaDeModificacion //Poner que obtenga la hora y la fecha exactas
                     {
                         LeyesParaActualizar.Add(Ley);
                     }
