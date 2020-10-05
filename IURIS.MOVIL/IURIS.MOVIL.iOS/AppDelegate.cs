@@ -4,6 +4,7 @@ using System.Linq;
 
 using Foundation;
 using UIKit;
+using Xamarin.Forms;
 
 namespace IURIS.MOVIL.iOS
 {
@@ -22,6 +23,8 @@ namespace IURIS.MOVIL.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            Forms.SetFlags(new[] { "RadioButton_Experimental", "Expander_Experimental" });
+
             Rg.Plugins.Popup.Popup.Init();
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());

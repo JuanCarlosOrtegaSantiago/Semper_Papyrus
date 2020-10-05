@@ -1,4 +1,6 @@
 ﻿using IURIS.MOVIL.Utils;
+using IURIS.MOVIL.Views.ViewsVentanasEmergentes;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,12 +24,13 @@ namespace IURIS.MOVIL
             DatosAIniciar();
         }
 
-        private void DatosAIniciar()
+        private async void DatosAIniciar()
         {
             if(Settings.NumUsuario !="")
             {
                 lblCodigoUsuario.Text = Settings.NumUsuario;
             }
+            await PopupNavigation.Instance.PushAsync(new WindowOfMembresiaPlatino());
         }
 
         private void BtnCrearCuenta_Clicked(object sender, EventArgs e)

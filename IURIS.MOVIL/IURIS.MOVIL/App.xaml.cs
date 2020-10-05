@@ -2,6 +2,7 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+        [assembly: ExportFont("lucida_handwriting.ttf")]
 namespace IURIS.MOVIL
 {
     public partial class App : Application
@@ -10,7 +11,9 @@ namespace IURIS.MOVIL
         public App()
         {
             InitializeComponent();
-            Device.SetFlags(new[] { "Expander_Experimental" });
+            //Device.SetFlags(new[] { "RadioButton_Experimental" });
+            //Device.SetFlags(new[] { "Expander_Experimental" });
+
             var pagina = new NavigationPage(new MainPage());
             pagina.BackgroundColor = (Color)App.Current.Resources["PrimaryColor"];
             pagina.BarBackgroundColor = (Color)App.Current.Resources["PrimaryColor"];

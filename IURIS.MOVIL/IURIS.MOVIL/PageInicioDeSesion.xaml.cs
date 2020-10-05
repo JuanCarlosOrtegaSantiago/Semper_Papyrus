@@ -119,7 +119,7 @@ namespace IURIS.MOVIL
             Intentos = 0;
         }
 
-        private void Actualizaeyes()
+        private async void Actualizaeyes()
         {
             foreach (var LeyParaActualizar in LeyesParaActualizar)
             {
@@ -127,7 +127,9 @@ namespace IURIS.MOVIL
                 {
                     if (MiLey.id == LeyParaActualizar.id)
                     {
-                        Settings.CodigoDeLeyCargada = Settings.CodigoDeLeyCargada == MiLey.CodigoLey ? LeyParaActualizar.CodigoLey: Settings.CodigoDeLeyCargada;
+
+                        if (_User.MiUltimaLeyCargada == MiLey.CodigoLey)
+                            _User.MiUltimaLeyCargada = MiLey.CodigoLey != LeyParaActualizar.CodigoLey ? LeyParaActualizar.CodigoLey : _User.MiUltimaLeyCargada;
                         MiLey.Clasificacion = MiLey.Clasificacion != LeyParaActualizar.Clasificacion ? LeyParaActualizar.Clasificacion : MiLey.Clasificacion;
                         MiLey.NombreLey = MiLey.NombreLey != LeyParaActualizar.NombreLey ? LeyParaActualizar.NombreLey : MiLey.NombreLey;
                         MiLey.UltimaFechaDeModificacion = MiLey.UltimaFechaDeModificacion != LeyParaActualizar.UltimaFechaDeModificacion ? LeyParaActualizar.UltimaFechaDeModificacion : MiLey.UltimaFechaDeModificacion;
@@ -138,33 +140,62 @@ namespace IURIS.MOVIL
                         {
                             foreach (var TituloAActualizar in LeyParaActualizar.ListaDeTitulos)
                             {
-                                Titulo.NumTitulo = Titulo.NumTitulo != TituloAActualizar.NumTitulo ? TituloAActualizar.NumTitulo : Titulo.NumTitulo;
-                                Titulo.NombreTitulo = Titulo.NombreTitulo != TituloAActualizar.NombreTitulo ? TituloAActualizar.NombreTitulo : Titulo.NombreTitulo;
 
-                                foreach (var _Capitulo in Titulo.ListaCapitulos)
+                                if (Titulo.id == TituloAActualizar.id)
                                 {
-                                    foreach (var _CapituloAActualizar in TituloAActualizar.ListaCapitulos)
-                                    {
-                                        _Capitulo.NumCapitulo = _Capitulo.NumCapitulo != _CapituloAActualizar.NumCapitulo ? _CapituloAActualizar.NumCapitulo : _Capitulo.NumCapitulo;
-                                        _Capitulo.NombreCapitulo = _Capitulo.NombreCapitulo != _CapituloAActualizar.NombreCapitulo ? _CapituloAActualizar.NombreCapitulo : _Capitulo.NombreCapitulo;
 
-                                        foreach (var _Articulo in _Capitulo.ListaArticulos)
+                                    Titulo.NumTitulo = Titulo.NumTitulo != TituloAActualizar.NumTitulo ? TituloAActualizar.NumTitulo : Titulo.NumTitulo;
+                                    Titulo.NombreTitulo = Titulo.NombreTitulo != TituloAActualizar.NombreTitulo ? TituloAActualizar.NombreTitulo : Titulo.NombreTitulo;
+
+                                    foreach (var _Capitulo in Titulo.ListaCapitulos)
+                                    {
+                                        foreach (var _CapituloAActualizar in TituloAActualizar.ListaCapitulos)
                                         {
-                                            foreach (var _ArticuloAModificar in _CapituloAActualizar.ListaArticulos)
+                                            if (_Capitulo.id == _CapituloAActualizar.id)
                                             {
-                                                _Articulo.Contenido = _Articulo.Contenido != _ArticuloAModificar.Contenido ? _ArticuloAModificar.Contenido : _Articulo.Contenido;
-                                                _Articulo.NombreArticulo = _Articulo.NombreArticulo != _ArticuloAModificar.NombreArticulo ? _ArticuloAModificar.NombreArticulo : _Articulo.NombreArticulo;
-                                                _Articulo.NumArticulo = _Articulo.NumArticulo != _ArticuloAModificar.NumArticulo ? _ArticuloAModificar.NumArticulo : _Articulo.NumArticulo;
+
+                                                _Capitulo.NumCapitulo = _Capitulo.NumCapitulo != _CapituloAActualizar.NumCapitulo ? _CapituloAActualizar.NumCapitulo : _Capitulo.NumCapitulo;
+                                                _Capitulo.NombreCapitulo = _Capitulo.NombreCapitulo != _CapituloAActualizar.NombreCapitulo ? _CapituloAActualizar.NombreCapitulo : _Capitulo.NombreCapitulo;
+
+                                                foreach (var _Articulo in _Capitulo.ListaArticulos)
+                                                {
+                                                    foreach (var _ArticuloAModificar in _CapituloAActualizar.ListaArticulos)
+                                                    {
+
+                                                        if (_Articulo.id == _ArticuloAModificar.id)
+                                                        {
+
+                                                            _Articulo.Contenido = _Articulo.Contenido != _ArticuloAModificar.Contenido ? _ArticuloAModificar.Contenido : _Articulo.Contenido;
+                                                            _Articulo.NombreArticulo = _Articulo.NombreArticulo != _ArticuloAModificar.NombreArticulo ? _ArticuloAModificar.NombreArticulo : _Articulo.NombreArticulo;
+                                                            _Articulo.NumArticulo = _Articulo.NumArticulo != _ArticuloAModificar.NumArticulo ? _ArticuloAModificar.NumArticulo : _Articulo.NumArticulo;
+                                                        }
+
+                                                    }
+                                                }
                                             }
                                         }
                                     }
                                 }
+
 
                             }
                         }
 
                     }
                 }
+            }
+            try
+            {
+            if (manejadorDeUsuarioAplicacion.Modificar(_User))
+            {
+                await DisplayAlert("","la actualizacion fue exitosa", "OK");
+            }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
 

@@ -10991,25 +10991,28 @@ namespace IURIS.MOVIL.Droid
 			public const int RedRefresh = 2131165316;
 			
 			// aapt resource value: 0x7F070085
-			public const int retroseso = 2131165317;
+			public const int Refresh = 2131165317;
 			
 			// aapt resource value: 0x7F070086
-			public const int temp = 2131165318;
+			public const int retroseso = 2131165318;
 			
 			// aapt resource value: 0x7F070087
-			public const int tooltip_frame_dark = 2131165319;
+			public const int temp = 2131165319;
 			
 			// aapt resource value: 0x7F070088
-			public const int tooltip_frame_light = 2131165320;
+			public const int tooltip_frame_dark = 2131165320;
 			
 			// aapt resource value: 0x7F070089
-			public const int Tres_puntos = 2131165321;
+			public const int tooltip_frame_light = 2131165321;
 			
 			// aapt resource value: 0x7F07008A
-			public const int Tres_Puntos_Rojos = 2131165322;
+			public const int Tres_puntos = 2131165322;
 			
 			// aapt resource value: 0x7F07008B
-			public const int Usuarios = 2131165323;
+			public const int Tres_Puntos_Rojos = 2131165323;
+			
+			// aapt resource value: 0x7F07008C
+			public const int Usuarios = 2131165324;
 			
 			static Drawable()
 			{

@@ -1,0 +1,30 @@
+﻿using Rg.Plugins.Popup.Pages;
+using Rg.Plugins.Popup.Services;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
+{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class WindowOfComprarEspacio : PopupPage
+    {
+        public WindowOfComprarEspacio()
+        {
+            InitializeComponent();
+
+            lblNoCuentas.Text = "No cuentas con espacio\npara descargar otra ley";
+            lblContent.Text = "Comprar un espacio \nmás para leyes por \n$9.00 M.N";
+        }
+
+        private void BtnCancelar_Clicked(object sender, EventArgs e)
+        {
+            PopupNavigation.Instance.PopAsync(false);
+        }
+    }
+}

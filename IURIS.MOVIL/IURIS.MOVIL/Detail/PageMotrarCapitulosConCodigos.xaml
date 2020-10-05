@@ -48,7 +48,7 @@
                 <FlexLayout Grid.Column="0" Direction="Column">
 
                     <Label x:Name="lblTitle" Style="{StaticResource TextoAMostrarColorBlanco}" HorizontalTextAlignment="Center" HorizontalOptions="Center" FontSize="Body" VerticalOptions="Start" />
-                    <Label x:Name="lblNumTitle" Style="{StaticResource TextoAMostrarColorBlanco}" FontSize="Subtitle" VerticalOptions="Fill" VerticalTextAlignment="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+                    <Label x:Name="lblCodigo" Style="{StaticResource TextoAMostrarColorBlanco}" FontSize="Small" VerticalOptions="End" VerticalTextAlignment="End" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
                 </FlexLayout>
 
                 <Image Grid.Column="1" Source="Buscador.png" WidthRequest="20" HorizontalOptions="End" HeightRequest="20" Margin="10,0,20,0">

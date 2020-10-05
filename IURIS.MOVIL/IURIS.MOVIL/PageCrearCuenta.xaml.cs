@@ -81,13 +81,13 @@ namespace IURIS.MOVIL
                 IdApp = numUsuario,
                 Contrasenia = int.Parse(EntryContrasenia.Text),
             };
-            Leyes leyes = manejadorDeLeyes.BuscarPorCodigo("cnpp1");//Poner el codigo de 
+            Leyes leyes = manejadorDeLeyes.BuscarPorCodigo("cnpp1E");//Poner el codigo de 
             List<Leyes> Mleyes = new List<Leyes>();
             Mleyes.Add(leyes);
             usuarios.MisLeyes = Mleyes;
             usuarios.Clasificaciones = new List<Clasificacion>();
             usuarios.Apuntes = new List<Apunte>();
-            Settings.CodigoDeLeyCargada = leyes.CodigoLey;
+            usuarios.MiUltimaLeyCargada = leyes.CodigoLey;
             if (!manejadorDeUsuarioAplicacion.AGREGAR(usuarios))
             {
 

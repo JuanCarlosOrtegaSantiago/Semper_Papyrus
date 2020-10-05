@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Xamarin.Forms;
 
 namespace IURIS.MOVIL.Droid
 {
@@ -22,6 +23,10 @@ namespace IURIS.MOVIL.Droid
             Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+
+            //Forms.SetFlags(new[] { "Expander_Experimental" });
+            Forms.SetFlags(new[] { "RadioButton_Experimental", "Expander_Experimental" });
+
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
         }

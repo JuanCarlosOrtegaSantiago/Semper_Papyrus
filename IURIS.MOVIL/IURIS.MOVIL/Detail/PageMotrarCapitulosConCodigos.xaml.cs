@@ -103,7 +103,7 @@ namespace IURIS.MOVIL.Detail
             
 
             lblTitle.Text = _titulo.NombreTitulo;
-            lblNumTitle.Text = _titulo.NumTitulo;//Cambiar por el codigo
+            lblCodigo.Text = _ley.CodigoLey;
 
             ActualizarDatosCapitulo(_titulo.ListaCapitulos);
 

@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Pages:PopupPage  xmlns:Pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                  xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IURIS.MOVIL.Views.ViewsVentanasEmergentes.WindowOfMembresiaPlatino">
+
+    <Frame BackgroundColor="{StaticResource SecundaryColor}"
+           BorderColor="White"
+           HasShadow="True"
+           IsClippedToBounds="True"
+           Padding="6"
+           Margin="20"
+           HorizontalOptions="FillAndExpand"
+           VerticalOptions="CenterAndExpand"
+           CornerRadius="3" >
+
+        <Grid RowDefinitions="auto,auto,auto,auto,*,auto" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+            <Image Grid.Row="0" Source="Logo.png" WidthRequest="100" HeightRequest="100"/>
+            <Label Grid.Row="1" Style="{StaticResource TextoAMostrarColorBlanco}" HorizontalOptions="Center" FontSize="Title" FontAttributes="Bold">IURIS</Label>
+            <Label x:Name="lbltitulo" FontFamily="L_Hand" Grid.Row="2" Style="{StaticResource TextoAMostrarColorBlanco}" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontSize="Title" FontAttributes="Bold"></Label>
+            <Label x:Name="lblDescripcion" Grid.Row="3" Style="{StaticResource TextoAMostrarColorBlanco}" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontSize="30" FontAttributes="Bold"></Label>
+            <StackLayout Grid.Row="4">
+                <RadioButton Text="$49.90 M.N. Mensuales" TextColor="White" FontSize="Large" FontAttributes="Bold" Margin="15,0"></RadioButton>
+                <Label Style="{StaticResource TextoAMostrarColorBlanco}" FontSize="Large" HorizontalTextAlignment="Center" FontAttributes="Bold">Promoción anual</Label>
+                <Label Style="{StaticResource TextoAMostrarColorBlanco}" FontSize="Large" HorizontalTextAlignment="Center" FontAttributes="Bold">Paga anualmente</Label>
+                <RadioButton Text="$360.00 M.N. 40% de descuento" TextColor="White" FontSize="Large" FontAttributes="Bold" Margin="15,0"></RadioButton>
+            </StackLayout>
+            <Frame Grid.Row="5" BorderColor="White"  
+                    HasShadow="False"
+                    IsClippedToBounds="True"
+                    Padding="2"
+                   Margin="20"
+                   HorizontalOptions="FillAndExpand" >
+
+                <StackLayout Orientation="Horizontal" Spacing="-1" BackgroundColor="{StaticResource PrimaryColor}" >
+                    <Button x:Name="BtnAceptar" Text="Aceptar" Style="{StaticResource buttonPrincipal}" FontSize="Large" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"></Button>
+
+                    <Frame WidthRequest="1"  Padding="0.5"
+                           HasShadow="False"
+                           IsClippedToBounds="True"
+                           BackgroundColor="{StaticResource SecundaryColor}"
+                           />
+                    <Button x:Name="BtnCancelar" Text="Cancelar" Style="{StaticResource buttonPrincipal}" FontSize="Large" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Clicked="BtnCancelar_Clicked"></Button>
+
+                </StackLayout>
+            </Frame>
+            <!--<Button x:Name="BtnGuardar" Grid.Row="1" Grid.Column="0" Text="Guardar" BackgroundColor="White" TextColor="{StaticResource  ColorTexto}" HorizontalOptions="Start" Margin="20,0" Clicked="BtnGuardar_Clicked"></Button>
+            <Button x:Name="BtnCancelar" Grid.Row="1" Grid.Column="1" Text="Cancelar" BackgroundColor="White" TextColor="{StaticResource  ColorTexto}" HorizontalOptions="End" Margin="20,0" Clicked="BtnCancelar_Clicked"></Button>-->
+        </Grid>
+    </Frame>
+
+
+</Pages:PopupPage>

@@ -21,25 +21,14 @@
                    HorizontalOptions="FillAndExpand" >
 
                 <StackLayout Orientation="Horizontal" Spacing="-1" BackgroundColor="{StaticResource PrimaryColor}" >
-                    <Frame Grid.Row="1" BorderColor="White"  
+                    <Button x:Name="BtnGuardar" Text="Guardar" Style="{StaticResource buttonPrincipal}" Clicked="BtnGuardar_Clicked" FontSize="Large" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"></Button>
+
+                    <Frame WidthRequest="1"  Padding="0.5"
                            HasShadow="False"
                            IsClippedToBounds="True"
-                           Padding="0,0,1,0" 
-                           HorizontalOptions="EndAndExpand" VerticalOptions="Center"
-                           BackgroundColor="{StaticResource PrimaryColor}">
-
-                        <Button x:Name="BtnGuardar" Text="Guardar" Style="{StaticResource buttonPrincipal}" Clicked="BtnGuardar_Clicked" ></Button>
-                    </Frame>
-
-                    <Frame Grid.Row="1" BorderColor="White"  
-                           HasShadow="False"
-                           IsClippedToBounds="True"
-                           Padding="1,0,0,0" 
-                           HorizontalOptions="StartAndExpand" VerticalOptions="Center">
-
-                        <Button x:Name="BtnCancelar" Text="Cancelar" Style="{StaticResource buttonPrincipal}" Clicked="BtnCancelar_Clicked" ></Button>
-
-                    </Frame>
+                           />
+                    <Button x:Name="BtnCancelar" Text="Cancelar" Style="{StaticResource buttonPrincipal}" Clicked="BtnCancelar_Clicked" FontSize="Large" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"></Button>
+                    
                 </StackLayout>
             </Frame>
             <!--<Button x:Name="BtnGuardar" Grid.Row="1" Grid.Column="0" Text="Guardar" BackgroundColor="White" TextColor="{StaticResource  ColorTexto}" HorizontalOptions="Start" Margin="20,0" Clicked="BtnGuardar_Clicked"></Button>

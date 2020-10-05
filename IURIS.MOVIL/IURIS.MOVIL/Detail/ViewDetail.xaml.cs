@@ -36,9 +36,9 @@ namespace IURIS.MOVIL.Detail
         private void DatosAInicializar()
         {
             //_Ley = usuario.MisLeyes.Where(e => e.CodigoLey == "cnpp1").SingleOrDefault();
-            _Ley = usuario.MisLeyes.Where(e => e.CodigoLey == Settings.CodigoDeLeyCargada.ToString()).SingleOrDefault();
+            _Ley = usuario.MisLeyes.Where(e => e.CodigoLey == usuario.MiUltimaLeyCargada).SingleOrDefault();
             lblTitle.Text = _Ley.NombreLey;
-
+            lblCodigo.Text = _Ley.CodigoLey;
             ActualizarDatos(_Ley.ListaDeTitulos);
 
             ClltionTitulos.SelectedItem = null;

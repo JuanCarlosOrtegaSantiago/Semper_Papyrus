@@ -4,6 +4,7 @@ using IURIS.COMMON.Entidades.Ley.ClasificacionDeLey;
 using IURIS.COMMON.Entidades.Ley.ComponentesDeLey;
 using IURIS.COMMON.Interfaces;
 using IURIS.DAL;
+using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -224,11 +225,13 @@ namespace IURIS.DESKTOP.GUI.ADMIN
 
             if (!string.IsNullOrWhiteSpace(txtNumArticulo.Text) && !string.IsNullOrWhiteSpace(txtNombreArticulo.Text) && Contenido() != "")
             {
+                //string codigo = string.Format("{0}", Guid.NewGuid().ToString());
                 Articulo articulo = new Articulo()
                 {
                     Contenido = Contenido(),
                     NombreArticulo = txtNombreArticulo.Text,
-                    NumArticulo = txtNumArticulo.Text
+                    NumArticulo = txtNumArticulo.Text,
+                    id = Guid.NewGuid().ToString()
 
                 };
                 if (MessageBox.Show("¿La informacion es correcta?", "", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No) == MessageBoxResult.Yes)
@@ -254,11 +257,13 @@ namespace IURIS.DESKTOP.GUI.ADMIN
         {
             if(!string.IsNullOrWhiteSpace(txtNumCapitulo.Text) && !string.IsNullOrWhiteSpace(txtNombreCapitulo.Text) && articulos != null)
             {
+                //string codigo = string.Format("{0}", Guid.NewGuid().ToString());
                 Capitulo capitulo = new Capitulo()
                 {
                     NombreCapitulo = txtNombreCapitulo.Text,
                     NumCapitulo = txtNumCapitulo.Text,
-                    ListaArticulos = articulos
+                    ListaArticulos = articulos,
+                    id = Guid.NewGuid().ToString()
                 };
                 if (MessageBox.Show("¿La informacion es correcta?", "", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No) == MessageBoxResult.Yes)
                 {
@@ -292,11 +297,14 @@ namespace IURIS.DESKTOP.GUI.ADMIN
         {
             if (!string.IsNullOrWhiteSpace(txtNombreTitulo.Text) && !string.IsNullOrWhiteSpace(txtNumTitulo.Text) && capitulos != null)
             {
+                //string codigo = string.Format("{0}",);
+
                 Titulo titulo = new Titulo()
                 {
                     NombreTitulo = txtNombreTitulo.Text,
                     NumTitulo = txtNumTitulo.Text,
-                    ListaCapitulos = capitulos
+                    ListaCapitulos = capitulos,
+                    id = Guid.NewGuid().ToString()
                 };
                 if (MessageBox.Show("¿La informacion es correcta?", "", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No) == MessageBoxResult.Yes)
                 {

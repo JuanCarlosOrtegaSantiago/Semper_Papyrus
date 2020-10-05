@@ -6,6 +6,8 @@ using IURIS.COMMON.Interfaces;
 using IURIS.DAL;
 using IURIS.MOVIL.Detail;
 using IURIS.MOVIL.Utils;
+using IURIS.MOVIL.Views.ViewsVentanasEmergentes;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,9 +24,10 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
     {
         IManejadorDeLeyes manejadorDeLeyes;
         IManejadorDeUsuarioAplicacion manejadorDeUsuarioAplicacion;
-
+        int tocadas = 0;
         Usuarios _User;
         Leyes _LeyeComprada;
+        Leyes _LeyEncache=null;
         public ViewCargarLey(Usuarios usuarios)
         {
             InitializeComponent();
@@ -38,11 +41,14 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
         private void CargarDatos()
         {
             clltionLeyes.ItemsSource = null;
-            clltionLeyes.ItemsSource = _User.MisLeyes;
+            clltionLeyes.ItemsSource = _User.MisLeyes.OrderBy(e=>e.UltimaFechaDeModificacion);
         }
 
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
+
+            bool ExisteLey = false;
+
             if (_User.MisLeyes.Count < 4)
             {
 
@@ -50,12 +56,25 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
 
                 if (_LeyeComprada != null)
                 {
-                    _User.MisLeyes.Add(_LeyeComprada);
 
-                    if (manejadorDeUsuarioAplicacion.Modificar(_User))
-                        CargarDatos();
+                    foreach (var Ley in _User.MisLeyes)
+                        if (_LeyeComprada.id == Ley.id)
+                            ExisteLey = true;
+
+                    if (!ExisteLey)
+                    {
+
+                        _User.MisLeyes.Add(_LeyeComprada);
+
+                        if (manejadorDeUsuarioAplicacion.Modificar(_User))
+                            CargarDatos();
+                        else
+                            await DisplayAlert("", "Ocurrio un error\nIntente mas tarde", "OK");
+                    }
                     else
-                        await DisplayAlert("", "Ocurrio un error\nIntente mas tarde", "OK");
+                    {
+                        await DisplayAlert("", "El codigo ingresado\nCorresponde a una ley que ya \nse encuentra en tu coleccion", "OK");
+                    }
                 }
                 else
                 {
@@ -64,7 +83,7 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
             }
             else
             {
-                await DisplayAlert("Error", "No tienes suficiente espacio para agregar una ley más\nCompra más espacio o elimina una ley de tu colección", "OK");
+                await PopupNavigation.Instance.PushAsync(new WindowOfComprarEspacio());
             }
 
             Limpiardatos();
@@ -133,14 +152,66 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
             EntryCodigo.Text = null;
         }
 
-        private void clltionLeyes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async void clltionLeyes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (clltionLeyes.SelectedItem != null)
             {
-                Settings.CodigoDeLeyCargada = ((Leyes)clltionLeyes.SelectedItem).CodigoLey;
+                if ((Leyes)clltionLeyes.SelectedItem != _LeyEncache)
+                {
+                    tocadas = 0;
+                    _LeyEncache = (Leyes)clltionLeyes.SelectedItem;
+                    clltionLeyes.SelectedItem = null;
+                }
+
+                tocadas++;
+                if (tocadas == 1)
+                {
+                    IMGBorrar.IsVisible = true;
+                }
+
+                if (tocadas == 2)
+                {
+                    //string tex = Settings.CodigoDeLeyCargada;
+                    //Settings.CodigoDeLeyCargada.Replace(tex, ((Leyes)clltionLeyes.SelectedItem).CodigoLey);
+                    _User.MiUltimaLeyCargada = ((Leyes)clltionLeyes.SelectedItem).CodigoLey;
+                    if (manejadorDeUsuarioAplicacion.Modificar(_User))
+                    {
+
                 App.masterDetail.IsPresented = false;
                 App.masterDetail.Detail = new NavigationPage(new ViewDetail(_User));
+                    }
+                    else
+                    {
+                        await DisplayAlert("error", "No se ha podido cargar la ley\n por favor intente mas tarde", "OK");
+                    }
+
+                }
+
             }
         }
+
+        private void MenuItem_Clicked(object sender, EventArgs e)
+        {
+            //if (clltionLeyes.SelectedItem != null)
+            //{
+            //if (!(DisplayAlert("Borrar", "Realmente desea borrar la ley:\n" + _LeyEncache.NombreLey, "Si", "No").IsCompleted))
+                _User.MisLeyes.Remove(_LeyEncache);
+            if (manejadorDeUsuarioAplicacion.Modificar(_User))
+            {
+                DisplayAlert("", "Se borro la ley de tu colección", "Ok");
+                CargarDatos();
+            }
+            //}
+        }
+
+        //private void clltionLeyes_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        //{
+        //    if (clltionLeyes.SelectedItem != null)
+        //    {
+        //        Settings.CodigoDeLeyCargada = ((Leyes)clltionLeyes.SelectedItem).CodigoLey;
+        //        App.masterDetail.IsPresented = false;
+        //        App.masterDetail.Detail = new NavigationPage(new ViewDetail(_User));
+        //    }
+        //}
     }
 }

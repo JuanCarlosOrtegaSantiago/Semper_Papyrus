@@ -27,10 +27,10 @@
             <Label x:Name="lblNumResultados" HorizontalOptions="End" Margin="0,0,10,0" IsVisible="false" Style="{StaticResource TextoAMostrarColorBlanco}" VerticalOptions="Center" VerticalTextAlignment="Center" FontSize="Body"></Label>
 
             <Grid ColumnDefinitions="*,Auto" ColumnSpacing="5" >
-            <FlexLayout Grid.Column="0" x:Name="tituloLey">
-
+            <FlexLayout Grid.Column="0" x:Name="tituloLey" Direction="Column">
                     <Local:CustomLabel x:Name="lblTitle" Style="{StaticResource TextoAMostrarColorBlanco}" HorizontalTextAlignment="Center" HorizontalOptions="Center"/>
-            </FlexLayout>
+                    <Label x:Name="lblCodigo" Style="{StaticResource TextoAMostrarColorBlanco}" FontSize="Small" VerticalOptions="End" VerticalTextAlignment="End" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+                </FlexLayout>
             
             <Image x:Name="IMGBuscador" Grid.Column="1" Source="Buscador.png" WidthRequest="20" HorizontalOptions="End" HeightRequest="20" Margin="10,0,20,0">
                 <Image.GestureRecognizers>

@@ -19,6 +19,7 @@ namespace IURIS.MOVIL.Utils
 
         private const bool RecuerdameUserSettingsKey = false;
         private static readonly string SettingsDefault = string.Empty;
+        private static readonly string SettingsDefaultCodigo = string.Empty;
         private static readonly bool SettingsDefaultiBool = default;
         #endregion
 
@@ -76,18 +77,18 @@ namespace IURIS.MOVIL.Utils
             }
         }
 
-        public static string CodigoDeLeyCargada
-        {
-            get
-            {
-                return Appsettings.GetValueOrDefault(LeyCodigoUserSettingsKey, SettingsDefault);
-            }
-            set
-            {
-                Appsettings.AddOrUpdateValue(LeyCodigoUserSettingsKey, value);
-            }
+        //public static string CodigoDeLeyCargada
+        //{
+        //    get
+        //    {
+        //        return Appsettings.GetValueOrDefault(LeyCodigoUserSettingsKey, SettingsDefaultCodigo);
+        //    }
+        //    set
+        //    {
+        //        Appsettings.AddOrUpdateValue(LeyCodigoUserSettingsKey, value);
+        //    }
 
-        }
+        //}
 
     }
 }
