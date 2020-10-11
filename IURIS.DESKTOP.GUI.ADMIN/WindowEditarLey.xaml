@@ -71,7 +71,7 @@
                 <WrapPanel Orientation="Horizontal" Margin="10,0" VerticalAlignment="Center">
                     <Label Style="{DynamicResource LabelStyle1}" >Clasificación</Label>
                 </WrapPanel>
-                <ComboBox x:Name="CmbxClasificacion" Width="200" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"></ComboBox>
+                <ComboBox x:Name="CmbxClasificacion" Width="200" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" SelectionChanged="CmbxClasificacion_SelectionChanged"></ComboBox>
             </WrapPanel>
 
 

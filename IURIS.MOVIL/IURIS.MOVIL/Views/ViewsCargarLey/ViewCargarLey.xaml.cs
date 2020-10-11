@@ -67,7 +67,11 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
                         _User.MisLeyes.Add(_LeyeComprada);
 
                         if (manejadorDeUsuarioAplicacion.Modificar(_User))
+                        {
+                            _LeyeComprada.numDescargas += 1;
+                            manejadorDeLeyes.Modificar(_LeyeComprada);
                             CargarDatos();
+                        }
                         else
                             await DisplayAlert("", "Ocurrio un error\nIntente mas tarde", "OK");
                     }

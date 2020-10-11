@@ -56,20 +56,23 @@ namespace IURIS.DESKTOP.GUI.ADMIN
             LblEditarLey.Content = string.Format("Editar ley {0}", CopiaLey.NombreLey);
             txtCodigo.Text = CopiaLey.CodigoLey;
             txtNombre.Text = CopiaLey.NombreLey;
+
+            CmbxClasificacion.ItemsSource = null;
+            CmbxClasificacion.ItemsSource = manejadorDeClasificaciones.Listar;
+
+
+            CmbxClasificacion.Text = CopiaLey.Clasificacion.Nombre;
+            
             
             this.WindowState = WindowState.Maximized;
-
-            //CmbxClasificacion.SelectedItem = CmbxClasificacion.Items.GetItemAt(1);
-            CmbxClasificacion.Text = CopiaLey.Clasificacion.Nombre;
 
         }
 
         private void ActualizarLista()
         {
-            CmbxClasificacion.ItemsSource = null;
-            CmbxClasificacion.ItemsSource = manejadorDeClasificaciones.Listar;
             ListTitulos.ItemsSource = null;
             ListTitulos.ItemsSource = CopiaLey.ListaDeTitulos;
+
         }
 
         private void LimpiarCajas()
@@ -108,7 +111,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
 
                     CopiaLey.NombreLey = txtNombre.Text != CopiaLey.NombreLey ? txtNombre.Text : CopiaLey.NombreLey;
                     CopiaLey.CodigoLey = txtCodigo.Text != CopiaLey.CodigoLey ? txtCodigo.Text : CopiaLey.CodigoLey;
-                    CopiaLey.Clasificacion = (Clasificacion)CmbxClasificacion.SelectedItem;
+                    
 
                     //Verificar
                     while (CopiaLey.EsModificacion)
@@ -302,6 +305,12 @@ namespace IURIS.DESKTOP.GUI.ADMIN
         private void BtnCancel_Click(object sender, RoutedEventArgs e)
         {
             wraMas.Visibility = Visibility.Collapsed;
+        }
+
+        private void CmbxClasificacion_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            CopiaLey.Clasificacion = (Clasificacion)CmbxClasificacion.SelectedItem;
+            CmbxClasificacion.Text = CopiaLey.Clasificacion.Nombre;
         }
     }
 }

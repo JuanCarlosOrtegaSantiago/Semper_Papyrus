@@ -130,10 +130,13 @@ namespace IURIS.MOVIL
 
                         if (_User.MiUltimaLeyCargada == MiLey.CodigoLey)
                             _User.MiUltimaLeyCargada = MiLey.CodigoLey != LeyParaActualizar.CodigoLey ? LeyParaActualizar.CodigoLey : _User.MiUltimaLeyCargada;
-                        MiLey.Clasificacion = MiLey.Clasificacion != LeyParaActualizar.Clasificacion ? LeyParaActualizar.Clasificacion : MiLey.Clasificacion;
+
+                        MiLey.EsModificacion = MiLey.EsModificacion != LeyParaActualizar.EsModificacion ? LeyParaActualizar.EsModificacion : MiLey.EsModificacion;
+                        //MiLey.EsModificacion = false;
                         MiLey.NombreLey = MiLey.NombreLey != LeyParaActualizar.NombreLey ? LeyParaActualizar.NombreLey : MiLey.NombreLey;
                         MiLey.UltimaFechaDeModificacion = MiLey.UltimaFechaDeModificacion != LeyParaActualizar.UltimaFechaDeModificacion ? LeyParaActualizar.UltimaFechaDeModificacion : MiLey.UltimaFechaDeModificacion;
                         MiLey.CodigoLey = MiLey.CodigoLey != LeyParaActualizar.CodigoLey ? LeyParaActualizar.CodigoLey : MiLey.CodigoLey;
+                        
 
                         //MiLey.ListaDeTitulos[0] = null;
                         foreach (var Titulo in MiLey.ListaDeTitulos)
@@ -184,12 +187,11 @@ namespace IURIS.MOVIL
                     }
                 }
             }
+         
             try
             {
             if (manejadorDeUsuarioAplicacion.Modificar(_User))
-            {
-                await DisplayAlert("","la actualizacion fue exitosa", "OK");
-            }
+                    await DisplayAlert("","la actualizacion fue exitosa", "OK");
 
             }
             catch (Exception)
@@ -224,12 +226,16 @@ namespace IURIS.MOVIL
             {
                 foreach (var MiLey in _User.MisLeyes)
                 {
-                    if (MiLey.id == Ley.id ) //&& Ley.UltimaFechaDeModificacion > MiLey.UltimaFechaDeModificacion //Poner que obtenga la hora y la fecha exactas
+                    if (MiLey.id == Ley.id && Ley.UltimaFechaDeModificacion > MiLey.UltimaFechaDeModificacion) //&& Ley.UltimaFechaDeModificacion > MiLey.UltimaFechaDeModificacion //Poner que obtenga la hora y la fecha exactas
                     {
-                        LeyesParaActualizar.Add(Ley);
+                            LeyesParaActualizar.Add(Ley);
                     }
                 }
             }
+
+            if (LeyesParaActualizar.Count == 0)
+                return false;
+
             return true;
         }
     }

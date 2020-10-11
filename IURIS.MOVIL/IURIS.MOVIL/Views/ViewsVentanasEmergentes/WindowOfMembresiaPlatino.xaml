@@ -23,7 +23,11 @@
                 <RadioButton Text="$49.90 M.N. Mensuales" TextColor="White" FontSize="Large" FontAttributes="Bold" Margin="15,0"></RadioButton>
                 <Label Style="{StaticResource TextoAMostrarColorBlanco}" FontSize="Large" HorizontalTextAlignment="Center" FontAttributes="Bold">Promoción anual</Label>
                 <Label Style="{StaticResource TextoAMostrarColorBlanco}" FontSize="Large" HorizontalTextAlignment="Center" FontAttributes="Bold">Paga anualmente</Label>
-                <RadioButton Text="$360.00 M.N. 40% de descuento" TextColor="White" FontSize="Large" FontAttributes="Bold" Margin="15,0"></RadioButton>
+                <RadioButton Text="$359.00 M.N. con" TextColor="White" FontSize="Large" FontAttributes="Bold" Margin="15,0"></RadioButton>
+                <StackLayout Orientation="Horizontal" VerticalOptions="Center" Margin="50,-15,0,0">
+                    <Label Style="{StaticResource TextoAMostrarColorBlanco}" HorizontalTextAlignment="Center" FontAttributes="Bold" FontSize="30" >40%</Label>
+                    <Label Style="{StaticResource TextoAMostrarColorBlanco}" FontSize="Large" HorizontalTextAlignment="Center" FontAttributes="Bold" VerticalTextAlignment="Center"> de descuento</Label>
+                </StackLayout>
             </StackLayout>
             <Frame Grid.Row="5" BorderColor="White"  
                     HasShadow="False"
