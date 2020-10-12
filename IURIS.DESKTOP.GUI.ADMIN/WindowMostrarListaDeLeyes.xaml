@@ -103,10 +103,10 @@
                         <Label Style="{DynamicResource LabelStyle1}" FontSize="15">Nueva</Label>
                     </WrapPanel>
                 </Button>-->
-            <Button x:Name="BtnEntrar" Background="Transparent" Style="{DynamicResource ButtonStyle1}" BorderBrush="White" Width="80" Height="90" Click="BtnEditarLey_Click">
+            <Button x:Name="BtnEntrar" Background="Transparent" Style="{DynamicResource ButtonStyle1}" BorderBrush="White"  Click="BtnEditarLey_Click">
                 <WrapPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <Image Source="Imagenes/EditarLey.png" Width="50" Height="50" HorizontalAlignment="Center"></Image>
-                    <Label Style="{DynamicResource LabelStyle1}" FontSize="15">Entrar</Label>
+                    <Label Style="{DynamicResource LabelStyle1}" FontSize="15">Entrar con ley</Label>
                 </WrapPanel>
             </Button>
         </WrapPanel>

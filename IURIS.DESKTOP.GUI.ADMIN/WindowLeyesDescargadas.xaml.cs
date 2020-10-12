@@ -33,15 +33,13 @@ namespace IURIS.DESKTOP.GUI.ADMIN
     /// </summary>
     public partial class WindowLeyesDescargadas : Window
     {
-
-        IManejadorDeLeyes manejadorDeLeyes;
-
-        Leyes LeyMasDescargada = null;
-        int TotalDeDescargas=0;
-        static TimeoutException ExSinInternet = new TimeoutException();
-        MongoConnectionException mongoConnectionException;
-        IOException iOException;
-        SocketException socketException;
+        readonly IManejadorDeLeyes manejadorDeLeyes;
+        readonly Leyes LeyMasDescargada = null;
+        readonly int TotalDeDescargas=0;
+        readonly static TimeoutException ExSinInternet = new TimeoutException();
+        readonly MongoConnectionException mongoConnectionException;
+        readonly IOException iOException;
+        readonly SocketException socketException;
 
         public WindowLeyesDescargadas()
         {
@@ -74,9 +72,11 @@ namespace IURIS.DESKTOP.GUI.ADMIN
 
                 //ListLeyes.ItemsSource = manejadorDeLeyes.MostrarLeyes;
 
-                DispatcherTimer timer = new DispatcherTimer();
-                timer.Interval = TimeSpan.FromSeconds(5);
-                timer.Tick += timer_Tick;
+                DispatcherTimer timer = new DispatcherTimer
+                {
+                    Interval = TimeSpan.FromSeconds(5)
+                };
+                timer.Tick += Timer_Tick;
                 timer.Start();
             }
             catch (Exception ex)
@@ -155,7 +155,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
         }
 
 
-        void timer_Tick(object sender, EventArgs e)
+        void Timer_Tick(object sender, EventArgs e)
         {
             //try
             //{
