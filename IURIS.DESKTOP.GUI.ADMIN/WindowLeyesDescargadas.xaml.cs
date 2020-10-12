@@ -56,7 +56,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
 
                 foreach (var Ley in manejadorDeLeyes.Listar)
                 {
-                    if ( LeyMasDescargada.numDescargas > Ley.numDescargas)
+                    if (Ley.numDescargas> LeyMasDescargada.numDescargas)
                     {
 
                         LeyMasDescargada = Ley;
@@ -182,8 +182,8 @@ namespace IURIS.DESKTOP.GUI.ADMIN
             try
             {
                 LblGraficaNombreDeLEy.Content = LeyMasDescargada.NombreLey;
-                GaugeIOT.Value= LeyMasDescargada.numDescargas+3;
-                GaugeIOT.To = TotalDeDescargas+3;
+                GaugeIOT.Value= LeyMasDescargada.numDescargas;
+                GaugeIOT.To = TotalDeDescargas;
                 GaugeIOT.From = 0;
 
                 //GaugeIOT.Value = manejadorDeLeyes.Listar.Where(i=>i.numDescargas!=0).LongCount();
@@ -205,7 +205,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
                 Leyes leyes = ListLeyes.SelectedItem as Leyes;
 
                 LblGraficaNombreDeLEy.Content = leyes.NombreLey;
-                GaugeIOT.Value = leyes.numDescargas+2;
+                GaugeIOT.Value = leyes.numDescargas;
                 GaugeIOT.To = TotalDeDescargas;
 
             }
