@@ -20,8 +20,10 @@ namespace IURIS.MOVIL.Droid
 {
     public class CustomLabelAndriod:LabelRenderer
     {
+
         public CustomLabelAndriod(Context context):base(context)
         {
+                //Control.JustificationMode = JustificationMode.InterWord;
 
         }
         protected override void OnElementChanged(ElementChangedEventArgs<Label> e)
@@ -29,8 +31,7 @@ namespace IURIS.MOVIL.Droid
             base.OnElementChanged(e);
             if (Control != null)
             {
-                //Control.JustificationMode = JustificationMode.InterWord;
-                //Control.SetTextIsSelectable(true);
+                Control.SetTextIsSelectable(true);
                 Control.Selected = true;
                 //Control.SetSelectAllOnFocus(true);
 

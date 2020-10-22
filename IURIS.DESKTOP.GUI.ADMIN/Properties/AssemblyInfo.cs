@@ -8,11 +8,11 @@ using System.Windows;
 // conjunto de atributos. Cambie estos valores de atributo para modificar la información
 // asociada con un ensamblado.
 [assembly: AssemblyTitle("IURIS")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Programa para la administracion de las leyes")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("IURIS.DESKTOP.GUI.ADMIN")]
-[assembly: AssemblyCopyright("Copyright ©  2020")]
+[assembly: AssemblyCompany("Semper Papyrus")]
+[assembly: AssemblyProduct("IURIS")]
+[assembly: AssemblyCopyright("Semper Papyrus ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

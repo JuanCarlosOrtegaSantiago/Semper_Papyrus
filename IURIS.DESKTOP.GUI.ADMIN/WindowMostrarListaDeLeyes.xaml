@@ -90,7 +90,7 @@
                  Width="500" Height="30" 
                  VerticalAlignment="Center"/>
 
-        <WrapPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="8" Orientation="Horizontal"  HorizontalAlignment="Right" VerticalAlignment="Center" Margin="20,0">
+        <WrapPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="8" Orientation="Horizontal"  HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10,0">
             <!--<Button x:Name="BtnSubirLey" Background="Transparent" Style="{DynamicResource ButtonStyle1}" BorderBrush="White" Width="100" Height="100" >
                     <WrapPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <Image Source="Imagenes/Subir.png" Width="50" Height="50"></Image>
@@ -103,10 +103,10 @@
                         <Label Style="{DynamicResource LabelStyle1}" FontSize="15">Nueva</Label>
                     </WrapPanel>
                 </Button>-->
-            <Button x:Name="BtnEntrar" Background="Transparent" Style="{DynamicResource ButtonStyle1}" BorderBrush="White"  Click="BtnEditarLey_Click">
+            <Button x:Name="BtnEntrar" Background="Transparent" Style="{DynamicResource ButtonStyle1}" BorderBrush="White" Width="100" Click="BtnEditarLey_Click">
                 <WrapPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <Image Source="Imagenes/EditarLey.png" Width="50" Height="50" HorizontalAlignment="Center"></Image>
-                    <Label Style="{DynamicResource LabelStyle1}" FontSize="15">Entrar con ley</Label>
+                    <Image Source="Imagenes/send.png" Width="50" Height="50" HorizontalAlignment="Center"></Image>
+                    <Label Style="{DynamicResource LabelStyle1}" FontSize="15">Cargar</Label>
                 </WrapPanel>
             </Button>
         </WrapPanel>

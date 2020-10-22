@@ -1,4 +1,5 @@
-﻿using IURIS.MOVIL.Utils;
+﻿using IURIS.MOVIL.Modelos_y_clases;
+using IURIS.MOVIL.Utils;
 using IURIS.MOVIL.Views.ViewsVentanasEmergentes;
 using Rg.Plugins.Popup.Services;
 using System;
@@ -30,7 +31,36 @@ namespace IURIS.MOVIL
             {
                 lblCodigoUsuario.Text = Settings.NumUsuario;
             }
-            await PopupNavigation.Instance.PushAsync(new WindowOfMembresiaPlatino());
+
+            //if (Settings.CountParaNumAleatorio != "" && Settings.NumAleatorio!=0)
+            //{
+
+            //    if (int.Parse(Settings.CountParaNumAleatorio) != Settings.NumAleatorio)
+            //    {
+            //        int num = int.Parse(Settings.CountParaNumAleatorio) + 1;
+            //        Settings.CountParaNumAleatorio = num.ToString();
+
+            //    }
+            //    else
+            //    {
+            //        await PopupNavigation.Instance.PushAsync(new WindowOfMembresiaPlatino());
+            //        Random rnd = new Random();
+            //        Settings.NumAleatorio = rnd.Next(5, 15);
+            //        Settings.CountParaNumAleatorio = "1";
+            //    }
+            //}
+            //else
+            //{
+            //    Settings.CountParaNumAleatorio = "1";
+            //    Settings.NumAleatorio = 1;
+            //}
+
+            ClassMostrarP_Cmpra _Cmpra = new ClassMostrarP_Cmpra();
+            if (_Cmpra.MostrarPantalla())
+            {
+                await PopupNavigation.Instance.PushAsync(new WindowOfMembresiaPlatino());
+            }
+
         }
 
         private void BtnCrearCuenta_Clicked(object sender, EventArgs e)

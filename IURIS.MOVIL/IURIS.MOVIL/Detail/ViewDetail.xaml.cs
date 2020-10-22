@@ -1,8 +1,11 @@
 ﻿using IURIS.COMMON.Entidades.Ley;
 using IURIS.COMMON.Entidades.Ley.ComponentesDeLey;
 using IURIS.COMMON.Entidades.UsuariosDeAplicacion;
+using IURIS.MOVIL.Modelos_y_clases;
 using IURIS.MOVIL.Utils;
 using IURIS.MOVIL.Views;
+using IURIS.MOVIL.Views.ViewsVentanasEmergentes;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -64,12 +67,20 @@ namespace IURIS.MOVIL.Detail
 
         private async void ClltionTitulos_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
-            Titulo titulo = ClltionTitulos.SelectedItem as Titulo;
-            if (titulo != null) { 
 
-            MostrarSearch(false);
-            await Navigation.PushAsync(new PageMotrarCapitulosConCodigos(titulo,usuario,_Ley),false);
+            Titulo titulo = ClltionTitulos.SelectedItem as Titulo;
+            if (titulo != null)
+            {
+
+                MostrarSearch(false);
+                await Navigation.PushAsync(new PageMotrarCapitulosConCodigos(titulo, usuario, _Ley), false);
+
+                ClassMostrarP_Cmpra _Cmpra = new ClassMostrarP_Cmpra();
+                if (_Cmpra.MostrarPantalla())
+                {
+                    await PopupNavigation.Instance.PushAsync(new WindowOfMembresiaPlatino());
+                }
+
             }
             //Navigation.PushAsync(new PageCapitulos(titulo));
         }

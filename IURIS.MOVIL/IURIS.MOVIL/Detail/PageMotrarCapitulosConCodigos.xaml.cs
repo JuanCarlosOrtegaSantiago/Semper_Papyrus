@@ -3,6 +3,7 @@ using IURIS.COMMON.Entidades.Ley.ComponentesDeLey;
 using IURIS.COMMON.Entidades.UsuariosDeAplicacion;
 using IURIS.MOVIL.Views;
 using IURIS.MOVIL.Views.ViewsVentanasEmergentes;
+using IURIS.MOVIL.Utils;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using IURIS.MOVIL.Modelos_y_clases;
 
 namespace IURIS.MOVIL.Detail
 {
@@ -117,11 +119,19 @@ namespace IURIS.MOVIL.Detail
             clltionCapitulos.ItemsSource = listaCapitulos;
         }
 
-        private void clltionCapitulos_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async
+            void clltionCapitulos_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (clltionCapitulos.SelectedItem is Capitulo capitulo)
             {
                 ActualizarDatosArticulo(capitulo.ListaArticulos);
+
+                ClassMostrarP_Cmpra _Cmpra = new ClassMostrarP_Cmpra();
+                if (_Cmpra.MostrarPantalla())
+                {
+                    await PopupNavigation.Instance.PushAsync(new WindowOfMembresiaPlatino());
+                }
+
             }
             //Capitulo capitulo = clltionCapitulos.SelectedItem as Capitulo;
             //if (capitulo != null)

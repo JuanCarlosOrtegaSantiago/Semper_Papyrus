@@ -88,6 +88,8 @@ namespace IURIS.MOVIL
             usuarios.Clasificaciones = new List<Clasificacion>();
             usuarios.Apuntes = new List<Apunte>();
             usuarios.MiUltimaLeyCargada = leyes.CodigoLey;
+            Settings.NumAleatorio = 1;
+            Settings.CountParaNumAleatorio = "1";
             if (!manejadorDeUsuarioAplicacion.AGREGAR(usuarios))
             {
 
