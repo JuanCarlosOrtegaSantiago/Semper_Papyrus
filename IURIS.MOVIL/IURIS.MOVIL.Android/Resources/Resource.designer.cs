@@ -10880,55 +10880,55 @@ namespace IURIS.MOVIL.Droid
 			public const int Buscador = 2131165279;
 			
 			// aapt resource value: 0x7F070060
-			public const int CambiarContrasenia = 2131165280;
+			public const int copiar = 2131165280;
 			
 			// aapt resource value: 0x7F070061
-			public const int copiar = 2131165281;
+			public const int design_bottom_navigation_item_background = 2131165281;
 			
 			// aapt resource value: 0x7F070062
-			public const int design_bottom_navigation_item_background = 2131165282;
+			public const int design_fab_background = 2131165282;
 			
 			// aapt resource value: 0x7F070063
-			public const int design_fab_background = 2131165283;
+			public const int design_ic_visibility = 2131165283;
 			
 			// aapt resource value: 0x7F070064
-			public const int design_ic_visibility = 2131165284;
+			public const int design_ic_visibility_off = 2131165284;
 			
 			// aapt resource value: 0x7F070065
-			public const int design_ic_visibility_off = 2131165285;
+			public const int design_password_eye = 2131165285;
 			
 			// aapt resource value: 0x7F070066
-			public const int design_password_eye = 2131165286;
+			public const int design_snackbar_background = 2131165286;
 			
 			// aapt resource value: 0x7F070067
-			public const int design_snackbar_background = 2131165287;
+			public const int Editar = 2131165287;
 			
 			// aapt resource value: 0x7F070068
-			public const int Editar = 2131165288;
+			public const int EditarPerfil = 2131165288;
 			
 			// aapt resource value: 0x7F070069
-			public const int EditarPerfil = 2131165289;
-			
-			// aapt resource value: 0x7F07006A
-			public const int favicon = 2131165290;
-			
-			// aapt resource value: 0x7F07006E
-			public const int Icon = 2131165294;
-			
-			// aapt resource value: 0x7F07006F
-			public const int IconGuardar = 2131165295;
-			
-			// aapt resource value: 0x7F070070
-			public const int icono7 = 2131165296;
-			
-			// aapt resource value: 0x7F07006B
-			public const int ic_mtrl_chip_checked_black = 2131165291;
-			
-			// aapt resource value: 0x7F07006C
-			public const int ic_mtrl_chip_checked_circle = 2131165292;
+			public const int favicon = 2131165289;
 			
 			// aapt resource value: 0x7F07006D
-			public const int ic_mtrl_chip_close_circle = 2131165293;
+			public const int Icon = 2131165293;
+			
+			// aapt resource value: 0x7F07006E
+			public const int IconGuardar = 2131165294;
+			
+			// aapt resource value: 0x7F07006F
+			public const int icono7 = 2131165295;
+			
+			// aapt resource value: 0x7F070070
+			public const int ICONO_Logo = 2131165296;
+			
+			// aapt resource value: 0x7F07006A
+			public const int ic_mtrl_chip_checked_black = 2131165290;
+			
+			// aapt resource value: 0x7F07006B
+			public const int ic_mtrl_chip_checked_circle = 2131165291;
+			
+			// aapt resource value: 0x7F07006C
+			public const int ic_mtrl_chip_close_circle = 2131165292;
 			
 			// aapt resource value: 0x7F070071
 			public const int lapiz = 2131165297;
@@ -10991,31 +10991,22 @@ namespace IURIS.MOVIL.Droid
 			public const int notify_panel_notification_icon_bg = 2131165316;
 			
 			// aapt resource value: 0x7F070085
-			public const int RedRefresh = 2131165317;
+			public const int Refresh = 2131165317;
 			
 			// aapt resource value: 0x7F070086
-			public const int Refresh = 2131165318;
+			public const int retroseso = 2131165318;
 			
 			// aapt resource value: 0x7F070087
-			public const int retroseso = 2131165319;
+			public const int tooltip_frame_dark = 2131165319;
 			
 			// aapt resource value: 0x7F070088
-			public const int temp = 2131165320;
+			public const int tooltip_frame_light = 2131165320;
 			
 			// aapt resource value: 0x7F070089
-			public const int tooltip_frame_dark = 2131165321;
+			public const int Tres_puntos = 2131165321;
 			
 			// aapt resource value: 0x7F07008A
-			public const int tooltip_frame_light = 2131165322;
-			
-			// aapt resource value: 0x7F07008B
-			public const int Tres_puntos = 2131165323;
-			
-			// aapt resource value: 0x7F07008C
-			public const int Tres_Puntos_Rojos = 2131165324;
-			
-			// aapt resource value: 0x7F07008D
-			public const int Usuarios = 2131165325;
+			public const int Tres_Puntos_Rojos = 2131165322;
 			
 			static Drawable()
 			{

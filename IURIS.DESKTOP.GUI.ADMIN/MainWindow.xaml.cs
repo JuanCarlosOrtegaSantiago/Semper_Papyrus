@@ -123,23 +123,23 @@ namespace IURIS.DESKTOP.GUI.ADMIN
         void AccionEntrar()
         {
 
-            //if (CmbxUsuario.SelectedItem == null)
-            //{
-            //    MessageBox.Show("Aún no has seleccionado tu usuario", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-            //}
-            //else
-            //{
-            //    if (PswrDeUsuario.Password == contrasenia.Password)
-            //    {
+            if (CmbxUsuario.SelectedItem == null)
+            {
+                MessageBox.Show("Aún no has seleccionado tu usuario", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            else
+            {
+                if (PswrDeUsuario.Password == contrasenia.Password)
+                {
                     WindowOperaciones windowOperaciones = new WindowOperaciones();
                     this.Close();
                     windowOperaciones.Show();
-            //    }
-            //    else
-            //    {
-            //        LblErrorDeContrasenia.Visibility = Visibility.Visible;
-            //    }
-            //}
+                }
+                else
+                {
+                    LblErrorDeContrasenia.Visibility = Visibility.Visible;
+                }
+            }
         }
 
         private void PswrDeUsuario_KeyDown(object sender, KeyEventArgs e)

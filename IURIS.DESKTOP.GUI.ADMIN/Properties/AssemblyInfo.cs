@@ -13,7 +13,7 @@ using System.Windows;
 [assembly: AssemblyCompany("Semper Papyrus")]
 [assembly: AssemblyProduct("IURIS")]
 [assembly: AssemblyCopyright("Semper Papyrus ©  2020")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyTrademark("Semper Papyrus")]
 [assembly: AssemblyCulture("")]
 
 // Si establece ComVisible en false, los tipos de este ensamblado no estarán visibles 
@@ -53,3 +53,4 @@ using System.Windows;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: NeutralResourcesLanguage("es-MX")]
