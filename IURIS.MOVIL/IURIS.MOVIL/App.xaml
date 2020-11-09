@@ -35,9 +35,13 @@
                 <Setter Property="WidthRequest" Value="230"/>
             </Style>
 
-            <!--<Style TargetType="ContentPage">
-                <Setter Property="BackgroundColor" Value="{StaticResource PrimaryColor}"/>
-            </Style>-->
+            <Style TargetType="FlexLayout" >
+                <Setter Property="Direction" Value="Column"/>
+                <Setter Property="AlignContent" Value="Center"/>
+                <Setter Property="AlignItems" Value="Center"/>
+                <Setter Property="JustifyContent" Value="SpaceBetween"/>
+                <!--<Setter Property="BackgroundColor" Value="{StaticResource PrimaryColor}"/>-->
+            </Style>
 
             <Style x:Key="EntryCrearCuenta" TargetType="Entry">
                 <Setter Property="TextColor" Value="White"/>

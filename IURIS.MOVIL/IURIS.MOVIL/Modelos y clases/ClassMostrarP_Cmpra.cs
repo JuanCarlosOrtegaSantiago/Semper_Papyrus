@@ -7,7 +7,6 @@ namespace IURIS.MOVIL.Modelos_y_clases
 {
     public class ClassMostrarP_Cmpra
     {
-        
 
         public bool MostrarPantalla()
         {
@@ -23,15 +22,8 @@ namespace IURIS.MOVIL.Modelos_y_clases
                 }
                 else
                 {
-                    //int num;
-                    //do
-                    //{
-                    //num = rnd.Next(5, 15);
-
-                    //} while (Settings.NumAleatorio==num);
-
                     Random rnd = new Random();
-                    Settings.NumAleatorio = rnd.Next(5, 15);
+                    Settings.NumAleatorio = rnd.Next(5, 100);
                     Settings.CountParaNumAleatorio = "1";
 
                     return true;

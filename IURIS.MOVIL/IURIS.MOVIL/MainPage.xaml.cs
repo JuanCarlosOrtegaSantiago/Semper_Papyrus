@@ -27,68 +27,32 @@ namespace IURIS.MOVIL
 
         private async void DatosAIniciar()
         {
-            if(Settings.NumUsuario !="")
-            {
-                lblCodigoUsuario.Text = Settings.NumUsuario;
-            }
-
-            //if (Settings.CountParaNumAleatorio != "" && Settings.NumAleatorio!=0)
-            //{
-
-            //    if (int.Parse(Settings.CountParaNumAleatorio) != Settings.NumAleatorio)
-            //    {
-            //        int num = int.Parse(Settings.CountParaNumAleatorio) + 1;
-            //        Settings.CountParaNumAleatorio = num.ToString();
-
-            //    }
-            //    else
-            //    {
-            //        await PopupNavigation.Instance.PushAsync(new WindowOfMembresiaPlatino());
-            //        Random rnd = new Random();
-            //        Settings.NumAleatorio = rnd.Next(5, 15);
-            //        Settings.CountParaNumAleatorio = "1";
-            //    }
-            //}
-            //else
-            //{
-            //    Settings.CountParaNumAleatorio = "1";
-            //    Settings.NumAleatorio = 1;
-            //}
+            if(Settings.NumUsuario !="") lblCodigoUsuario.Text = Settings.NumUsuario;
 
             ClassMostrarP_Cmpra _Cmpra = new ClassMostrarP_Cmpra();
-            if (_Cmpra.MostrarPantalla())
-            {
-                await PopupNavigation.Instance.PushAsync(new WindowOfMembresiaPlatino());
-            }
+
+            if (_Cmpra.MostrarPantalla()) await PopupNavigation.Instance.PushAsync(new WindowOfMembresiaPlatino());
 
         }
 
-        private void BtnCrearCuenta_Clicked(object sender, EventArgs e)
+        private async void BtnCrearCuenta_Clicked(object sender, EventArgs e)
         {
             Intentos++;
-            if (Intentos == 1)
-            {
-                Navigation.PopAsync();
-                Navigation.PushAsync(new PageCrearCuenta(), false);
-                Intentos = 0;
-            }
-        }
+            if (Intentos != 1) return;
 
-        //private void BtnRecuperarCuenta_Clicked(object sender, EventArgs e)
-        //{
-        //    lblCodigo.IsVisible = false;
-        //    lblCodigoUsuario.IsVisible = false;
-        //}
+            await Navigation.PopAsync();
+            await Navigation.PushAsync(new PageCrearCuenta(), false);
+            Intentos = 0;
+        }
 
         private async void BtnEntrar_Clicked(object sender, EventArgs e)
         {
             Intentos++;
-            if (Intentos == 1)
-            {
-                await Navigation.PopAsync();
-                await Navigation.PushAsync(new PageInicioDeSesion(), false);
-                Intentos = 0;
-            }
+            if (Intentos != 1) return;
+
+            await Navigation.PopAsync();
+            await Navigation.PushAsync(new PageInicioDeSesion(), false);
+            Intentos = 0;
         }
     }
 

@@ -4,72 +4,44 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="IURIS.MOVIL.MainPage" NavigationPage.HasNavigationBar="False">
+             x:Class="IURIS.MOVIL.MainPage" NavigationPage.HasNavigationBar="False" >
 
-    <ScrollView>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="2.5*"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="50"/>
-            </Grid.RowDefinitions>
+    <ScrollView Margin="0,30">
+        <FlexLayout>
 
-            <StackLayout Orientation="Horizontal" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center">
-                <Label Text="IURIS" FontAttributes="Bold" FontSize="40" TextColor="White"></Label>
-            </StackLayout>
+            <Label Text="IURIS" FontAttributes="Bold" FontSize="40" TextColor="White"></Label>
 
-            <StackLayout Orientation="Horizontal" Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Start" Padding="0,0,0,20">
-                <Label Text="Bienvenido" FontAttributes="Italic" FontSize="30" TextColor="White"></Label>
-            </StackLayout>
+            <Label Padding="0,0,0,20" Text="Bienvenido" FontAttributes="Italic" FontSize="30" TextColor="White"></Label>
 
-            <StackLayout Orientation="Horizontal" Grid.Row="3" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,10,0,5" >
-                <Image Source="Logo.png" WidthRequest="250" HeightRequest="250" ></Image>
-            </StackLayout>
+            <Image Source="Logo.png" Margin="0,10,0,5" Aspect="AspectFill" ></Image>
 
-            <StackLayout Orientation="Horizontal" Grid.Row="4" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,0,0,5">
-                <Label Text="From Semper Papyrus" FontSize="20" TextColor="White"></Label>
-            </StackLayout>
+            <Label Margin="0,0,0,5" Text="From Semper Papyrus" FontSize="20" TextColor="White"></Label>
 
+            <Frame 
+                    BorderColor="White"
+                    Padding="1,1,1,1"
+                    HasShadow="True"
+                    IsClippedToBounds="True"
+                    Margin="0,30,0,5">
 
-            <StackLayout Orientation="Horizontal" Grid.Row="5" HorizontalOptions="Center" VerticalOptions="Center" x:Name="btnEntrar" Margin="0,30,0,5">
+                <Button Text="Entrar" x:Name="BtnEntrar" Clicked="BtnEntrar_Clicked" FontSize="Large" Style="{StaticResource buttonSecundario}"></Button>
 
-                <Frame 
+            </Frame>
+
+            <Frame
                     BorderColor="White"
                     Padding="1,1,1,1"
                     HasShadow="True"
                     IsClippedToBounds="True">
+                <Button Text="Crear cuenta" x:Name="btnCrearCuenta" Clicked="BtnCrearCuenta_Clicked" FontSize="Large" Style="{StaticResource buttonSecundario}"></Button>
+            </Frame>
 
-                    <Button Text="Entrar" x:Name="BtnEntrar" Clicked="BtnEntrar_Clicked" FontSize="Large" HeightRequest="40" WidthRequest="230" Style="{StaticResource buttonSecundario}"></Button>
-
-                </Frame>
-            </StackLayout>
-
-            <StackLayout Orientation="Horizontal" Grid.Row="6" HorizontalOptions="Center" VerticalOptions="Center" >
-                <Frame
-                    BorderColor="White"
-                    Padding="1,1,1,1"
-                    HasShadow="True"
-                    IsClippedToBounds="True">
-
-                    <Button Text="Crear cuenta" x:Name="btnCrearCuenta" Clicked="BtnCrearCuenta_Clicked" HeightRequest="40" WidthRequest="230"  FontSize="Large" Style="{StaticResource buttonSecundario}"></Button>
-                </Frame>
-            </StackLayout>
-
-            <StackLayout Orientation="Horizontal" Grid.Row="7" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,10,0,5">
-                <Label Text="Codigo de usuario" FontSize="15" TextColor="White"></Label>
-            </StackLayout>
+            <Label Text="Codigo de usuario" FontSize="15" TextColor="White" Margin="0,10,0,5"></Label>
 
             <StackLayout Orientation="Horizontal" Grid.Row="8" HorizontalOptions="Center" VerticalOptions="Center">
-                <Label x:Name="lblCodigoUsuario" Text="######" FontSize="15" TextColor="White"></Label>
+                <Label x:Name="lblCodigoUsuario" Text="000000" FontSize="15" TextColor="White"></Label>
             </StackLayout>
-        </Grid>
+        </FlexLayout>
     </ScrollView>
 
 </ContentPage>
