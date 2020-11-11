@@ -32,13 +32,6 @@ namespace IURIS.MOVIL
             InitializeComponent();
 
             manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
-            //Usuarios = manejadorDeUsuarioAplicacion.Listar;
-
-
-            manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
-
-
-            stackCodigoDeUsuario.IsVisible = false;
         }
 
         private async void BtnOK_Clicked(object sender, EventArgs e)
@@ -50,26 +43,17 @@ namespace IURIS.MOVIL
                 return;
             }
 
-            if (!CorreoCorrecto)
-                return;
-
-            if (!TamanioDeContraseniaCorrecta)
-                return;
-
-
-            //lblFaltantesDeCorreo.IsVisible = false;
+            if (!CorreoCorrecto && !TamanioDeContraseniaCorrecta) return;
 
             if (manejadorDeUsuarioAplicacion.ExisteCorreo(EntryCorreoElectronico.Text))
             {
                 lblCorreoExistente.IsVisible = true;
-                //await DisplayAlert("Nuevo reguistro", "El correo ingresado ya está registrado", "OK");
                 return;
             }
 
             lblCorreoExistente.IsVisible = false;
 
-            if (!ContraseniasIguales)
-                return;
+            if (!ContraseniasIguales) return;
 
             int numUsuario = manejadorDeUsuarioAplicacion.Listar.Count + 1;
             Usuarios usuarios = new Usuarios()
@@ -80,35 +64,39 @@ namespace IURIS.MOVIL
                 Correo = EntryCorreoElectronico.Text,
                 IdApp = numUsuario,
                 Contrasenia = int.Parse(EntryContrasenia.Text),
+                Clasificaciones = new List<Clasificacion>(),
+                Apuntes = new List<Apunte>(),
+
             };
-            Leyes leyes = manejadorDeLeyes.BuscarPorCodigo("cnpp1E");//Poner el codigo de 
+            
+            manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
+            Leyes leyes = manejadorDeLeyes.BuscarPorCodigo("cnpp1E");
+
             List<Leyes> Mleyes = new List<Leyes>();
             Mleyes.Add(leyes);
             usuarios.MisLeyes = Mleyes;
-            usuarios.Clasificaciones = new List<Clasificacion>();
-            usuarios.Apuntes = new List<Apunte>();
             usuarios.MiUltimaLeyCargada = leyes.CodigoLey;
+
             Settings.NumAleatorio = 1;
             Settings.CountParaNumAleatorio = "1";
+
             if (!manejadorDeUsuarioAplicacion.AGREGAR(usuarios))
             {
-
                 await DisplayAlert("Crear cuenta", "No se puede efectuar por el momento\n intente mas tarde", "OK");
                 return;
             }
+
             stackCodigoDeUsuario.IsVisible = true;
             lblCodigoUsuario.Text = usuarios.IdApp.ToString();
-            await DisplayAlert("Usuaro creado", "Su reguistro fue exitoso", "OK");
-            //await Navigation.PushAsync(new PageInicioDeSesion(), true);
-            //await Navigation.PopAsync();
 
+            await DisplayAlert("Usuario creado", "Su reguistro fue exitoso", "OK");
+            
+            await Navigation.PushAsync(new PageInicioDeSesion(), true);
         }
 
         private async void BtnCanselar_Clicked(object sender, EventArgs e)
         {
            await Navigation.PopAsync();
-           await Navigation.PushAsync(new MainPage(), true);
-
         }
 
         private bool email_bien_escrito(String email)
@@ -116,39 +104,30 @@ namespace IURIS.MOVIL
             String expresion;
             expresion = "\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";
 
-            if (Regex.IsMatch(email, expresion))
-
-                return Regex.Replace(email, expresion, String.Empty).Length == 0 ? true : false;
-
-            else
-
-                return false;
+            if (Regex.IsMatch(email, expresion)) return Regex.Replace(email, expresion, String.Empty).Length == 0 ? true : false;
+            else return false;
         }
 
         private void EntryCorreoElectronico_TextChanged(object sender, TextChangedEventArgs e)
         {
 
             lblFaltantesDeCorreo.IsVisible = !email_bien_escrito(EntryCorreoElectronico.Text) ? true : false;
-            if (!lblFaltantesDeCorreo.IsVisible)
-                CorreoCorrecto = true;
+            if (!lblFaltantesDeCorreo.IsVisible) CorreoCorrecto = true;
         }
 
         private void EntryContrasenia_TextChanged(object sender, TextChangedEventArgs e)
         {
             lblTamanioDeContrasenia.IsVisible = EntryContrasenia.Text.Length < 4 ? true : false;
-            if (!lblTamanioDeContrasenia.IsVisible)
-                TamanioDeContraseniaCorrecta = true;
+            if (!lblTamanioDeContrasenia.IsVisible) TamanioDeContraseniaCorrecta = true;
 
             lblContraseniaNoCoinside.IsVisible = EntryConfirmarContrasenia.Text != EntryContrasenia.Text ? true : false;
-            if (!lblContraseniaNoCoinside.IsVisible)
-                ContraseniasIguales = true;
+            if (!lblContraseniaNoCoinside.IsVisible) ContraseniasIguales = true;
         }
 
         private void EntryConfirmarContrasenia_TextChanged(object sender, TextChangedEventArgs e)
         {
             lblContraseniaNoCoinside.IsVisible = EntryConfirmarContrasenia.Text != EntryContrasenia.Text ? true : false;
-            if (!lblContraseniaNoCoinside.IsVisible)
-                ContraseniasIguales = true;
+            if (!lblContraseniaNoCoinside.IsVisible) ContraseniasIguales = true;
         }
     }
 }

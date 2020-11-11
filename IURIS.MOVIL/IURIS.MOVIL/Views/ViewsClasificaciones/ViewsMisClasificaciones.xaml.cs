@@ -61,33 +61,8 @@ namespace IURIS.MOVIL.Views
             WindowOfEmergencyNuevaClasificacion pantalla = new WindowOfEmergencyNuevaClasificacion(_User);
             await PopupNavigation.Instance.PushAsync(pantalla);
 
-            //Clasificacion clasificacion = new Clasificacion()
-            //{
-            //    Nombre = await DisplayPromptAsync("", "", accept: "Aceptar", cancel: "Cancelar", placeholder: "Nombre de la nueva clasificación"),
-            //    MisArticulos = new List<Articulo>()
-            //};
-
-            //if (string.IsNullOrWhiteSpace(clasificacion.Nombre))
-            //    return;
-
-
-            //_User.Clasificaciones.Add(clasificacion);
-
-            //manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
-
-            //try
-            //{
-
-            //    if (manejadorDeUsuarioAplicacion.Modificar(_User))
             DatosAInicializar(_User);
 
-            //}
-            //catch (Exception ex)
-            //{
-
-            //    await DisplayAlert("Error", "Por el momento no se peude agregar su clasificacion\n por favor intente mas tarde\nError:" + ex.Message, "Aceptar");
-            //    return;
-            //}
         }
 
         private async void clltionClasificaciones_SelectionChanged(object sender, SelectionChangedEventArgs e)

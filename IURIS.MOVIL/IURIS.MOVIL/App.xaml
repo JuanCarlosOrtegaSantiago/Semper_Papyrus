@@ -24,6 +24,7 @@
                 <Setter Property="TextColor" Value="White"/>
                 <Setter Property="BackgroundColor" Value="{StaticResource PrimaryColor}"/>
                 <Setter Property="BorderColor" Value="White"/>
+                <Setter Property="BorderWidth" Value="1.5"/>
 
             </Style>
 
@@ -31,15 +32,14 @@
                 <Setter Property="TextColor" Value="White"/>
                 <Setter Property="BackgroundColor" Value="{StaticResource SecundaryColor}"/>
                 <Setter Property="BorderColor" Value="White"/>
-                <Setter Property="HeightRequest" Value="40"/>
-                <Setter Property="WidthRequest" Value="230"/>
+                <Setter Property="BorderWidth" Value="1.5"/>
             </Style>
 
             <Style TargetType="FlexLayout" >
                 <Setter Property="Direction" Value="Column"/>
-                <Setter Property="AlignContent" Value="Center"/>
-                <Setter Property="AlignItems" Value="Center"/>
-                <Setter Property="JustifyContent" Value="SpaceBetween"/>
+                <!--<Setter Property="AlignContent" Value="Center"/>-->
+                <Setter Property="AlignItems" Value="Stretch"/>
+                <Setter Property="JustifyContent" Value="SpaceEvenly"/>
                 <!--<Setter Property="BackgroundColor" Value="{StaticResource PrimaryColor}"/>-->
             </Style>
 

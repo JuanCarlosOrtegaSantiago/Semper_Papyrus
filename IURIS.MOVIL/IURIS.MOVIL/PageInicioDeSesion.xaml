@@ -4,7 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:Local="clr-namespace:IURIS.MOVIL.Modelos_y_clases"
              mc:Ignorable="d"
-             x:Class="IURIS.MOVIL.PageInicioDeSesion"  NavigationPage.HasNavigationBar="False" BackgroundColor="Aqua">
+             x:Class="IURIS.MOVIL.PageInicioDeSesion"  NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <ScrollView>
             <FlexLayout>

@@ -4,43 +4,29 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="IURIS.MOVIL.MainPage" NavigationPage.HasNavigationBar="False" >
+             x:Class="IURIS.MOVIL.MainPage" NavigationPage.HasNavigationBar="False" BackgroundColor="Black">
 
-    <ScrollView Margin="0,30">
+    <ScrollView Padding="0,30">
         <FlexLayout>
 
-            <Label Text="IURIS" FontAttributes="Bold" FontSize="40" TextColor="White"></Label>
+            <Label FlexLayout.Shrink="0" FlexLayout.Basis="auto" Text="IURIS" FontAttributes="Bold" HorizontalTextAlignment="Center" FontSize="40" TextColor="White"/>
 
-            <Label Padding="0,0,0,20" Text="Bienvenido" FontAttributes="Italic" FontSize="30" TextColor="White"></Label>
+            <Label FlexLayout.Shrink="0" Padding="0,0,0,5" HorizontalTextAlignment="Center" Text="Bienvenido" FontAttributes="Italic" FontSize="30" TextColor="White"/>
 
-            <Image Source="Logo.png" Margin="0,10,0,5" Aspect="AspectFill" ></Image>
+            <StackLayout Margin="0,5" >
 
-            <Label Margin="0,0,0,5" Text="From Semper Papyrus" FontSize="20" TextColor="White"></Label>
-
-            <Frame 
-                    BorderColor="White"
-                    Padding="1,1,1,1"
-                    HasShadow="True"
-                    IsClippedToBounds="True"
-                    Margin="0,30,0,5">
-
-                <Button Text="Entrar" x:Name="BtnEntrar" Clicked="BtnEntrar_Clicked" FontSize="Large" Style="{StaticResource buttonSecundario}"></Button>
-
-            </Frame>
-
-            <Frame
-                    BorderColor="White"
-                    Padding="1,1,1,1"
-                    HasShadow="True"
-                    IsClippedToBounds="True">
-                <Button Text="Crear cuenta" x:Name="btnCrearCuenta" Clicked="BtnCrearCuenta_Clicked" FontSize="Large" Style="{StaticResource buttonSecundario}"></Button>
-            </Frame>
-
-            <Label Text="Codigo de usuario" FontSize="15" TextColor="White" Margin="0,10,0,5"></Label>
-
-            <StackLayout Orientation="Horizontal" Grid.Row="8" HorizontalOptions="Center" VerticalOptions="Center">
-                <Label x:Name="lblCodigoUsuario" Text="000000" FontSize="15" TextColor="White"></Label>
+                <Image FlexLayout.Shrink="0" Source="Logo.png" Aspect="Fill" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
             </StackLayout>
+
+            <Label FlexLayout.Shrink="0" Text="From Semper Papyrus" HorizontalTextAlignment="Center" FontSize="20" TextColor="White"/>
+
+            <Button FlexLayout.Shrink="0" Text="Entrar" Margin="80,5" x:Name="BtnEntrar" Clicked="BtnEntrar_Clicked" FontSize="Large" Style="{StaticResource buttonSecundario}"/>
+
+            <Button FlexLayout.Shrink="0" Text="Crear cuenta" Margin="80,5" x:Name="btnCrearCuenta" Clicked="BtnCrearCuenta_Clicked" FontSize="Large" Style="{StaticResource buttonSecundario}"/>
+
+            <Label FlexLayout.Shrink="0" Text="Codigo de usuario" HorizontalTextAlignment="Center" FontSize="15" TextColor="White" />
+
+            <Label FlexLayout.Shrink="0" x:Name="lblCodigoUsuario" Margin="0,0,0,5" HorizontalTextAlignment="Center" Text="000000" FontSize="15" TextColor="White"/>
         </FlexLayout>
     </ScrollView>
 

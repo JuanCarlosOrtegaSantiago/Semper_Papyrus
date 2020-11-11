@@ -27,25 +27,28 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
         int tocadas = 0;
         Usuarios _User;
         Leyes _LeyeComprada;
-        Leyes _LeyEncache=null;
+
+        public Command<Leyes> FavoriteCommand { get; set; }
         public ViewCargarLey(Usuarios usuarios)
         {
             InitializeComponent();
+            BindingContext = this;
             _User = usuarios;
 
             CargarDatos();
-            manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
             manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
+
         }
 
         private void CargarDatos()
         {
             clltionLeyes.ItemsSource = null;
-            clltionLeyes.ItemsSource = _User.MisLeyes.OrderBy(e=>e.UltimaFechaDeModificacion);
+            clltionLeyes.ItemsSource = _User.MisLeyes.OrderByDescending(e=>e.FechaDeDescarga);
         }
 
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
+            manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
 
             bool ExisteLey = false;
 
@@ -63,6 +66,7 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
 
                     if (!ExisteLey)
                     {
+                        _LeyeComprada.FechaDeDescarga = DateTime.UtcNow.ToLocalTime();
 
                         _User.MisLeyes.Add(_LeyeComprada);
 
@@ -73,7 +77,10 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
                             CargarDatos();
                         }
                         else
+                        {
+
                             await DisplayAlert("", "Ocurrio un error\nIntente mas tarde", "OK");
+                        }
                     }
                     else
                     {
@@ -91,64 +98,6 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
             }
 
             Limpiardatos();
-            //Leyes leyCopia=null;
-            //bool Encontrado = false;
-
-            //if (_User.MisLeyes.Count <= 4)
-            //{
-            //    CodigoVenta codigoVenta = new CodigoVenta();
-
-            //    foreach (var Ley in manejadorDeLeyes.Listar)
-            //    {
-            //        foreach (var Codigo in Ley.CodigosDeVentas)
-            //        {
-            //            if (Codigo.CodigoDeVenta == EntryCodigo.Text)
-            //            {
-            //                _LeyeComprada = Ley;
-            //                leyCopia = Ley;
-            //                codigoVenta = Codigo;
-            //                Encontrado = true;
-            //                break;
-
-            //            }
-            //        }
-
-            //        if (Encontrado)
-            //            break;
-            //    }
-
-            //    if (_LeyeComprada == null)
-            //    {
-            //        return;
-            //    }
-
-            //    _LeyeComprada.CodigosDeVentas = null;
-
-            //    _User.MisLeyes.Add(_LeyeComprada);
-            //    if (manejadorDeUsuarioAplicacion.Modificar(_User))
-            //    {
-            //        leyCopia.numDescargas += 1;
-            //        leyCopia.CodigosDeVentas.Remove(codigoVenta);
-            //        manejadorDeLeyes.Modificar(leyCopia);
-            //        CargarDatos();
-            //        Limpiardatos();
-            //    }
-            //    else
-            //    {
-            //        await DisplayAlert("", "Ocurrio un error\nIntente mas tarde", "OK");
-            //    }
-
-            //}
-            //else
-            //{
-
-            //}
-            //}
-            //else
-            //{
-            //    
-            //    
-            //}
         }
 
         private void Limpiardatos()
@@ -158,64 +107,36 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
 
         private async void clltionLeyes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (clltionLeyes.SelectedItem != null)
+            if (clltionLeyes.SelectedItem == null) return;
+
+            _User.MiUltimaLeyCargada = ((Leyes)clltionLeyes.SelectedItem).CodigoLey;
+            if (manejadorDeUsuarioAplicacion.Modificar(_User))
             {
-                if ((Leyes)clltionLeyes.SelectedItem != _LeyEncache)
-                {
-                    tocadas = 0;
-                    _LeyEncache = (Leyes)clltionLeyes.SelectedItem;
-                    clltionLeyes.SelectedItem = null;
-                }
-
-                tocadas++;
-                if (tocadas == 1)
-                {
-                    IMGBorrar.IsVisible = true;
-                }
-
-                if (tocadas == 2)
-                {
-                    //string tex = Settings.CodigoDeLeyCargada;
-                    //Settings.CodigoDeLeyCargada.Replace(tex, ((Leyes)clltionLeyes.SelectedItem).CodigoLey);
-                    _User.MiUltimaLeyCargada = ((Leyes)clltionLeyes.SelectedItem).CodigoLey;
-                    if (manejadorDeUsuarioAplicacion.Modificar(_User))
-                    {
-
                 App.masterDetail.IsPresented = false;
                 App.masterDetail.Detail = new NavigationPage(new ViewDetail(_User));
-                    }
-                    else
-                    {
-                        await DisplayAlert("error", "No se ha podido cargar la ley\n por favor intente mas tarde", "OK");
-                    }
-
-                }
-
             }
+            else
+            {
+                await DisplayAlert("error", "No se ha podido cargar la ley\n por favor intente mas tarde", "OK");
+            }
+
         }
 
-        private void MenuItem_Clicked(object sender, EventArgs e)
+        private void SwipeItem_Invoked(object sender, EventArgs e)
         {
-            //if (clltionLeyes.SelectedItem != null)
-            //{
-            //if (!(DisplayAlert("Borrar", "Realmente desea borrar la ley:\n" + _LeyEncache.NombreLey, "Si", "No").IsCompleted))
-                _User.MisLeyes.Remove(_LeyEncache);
+            var MiLey = ((SwipeItemView)sender).BindingContext as Leyes;
+
+            if (MiLey == null) return;
+
+            if (_User.MiUltimaLeyCargada.Equals(MiLey.CodigoLey)) 
+                _User.MiUltimaLeyCargada = _User.MisLeyes.Where(w=> w.id!=MiLey.id).First().CodigoLey;
+
+            _User.MisLeyes.Remove(MiLey);
             if (manejadorDeUsuarioAplicacion.Modificar(_User))
             {
                 DisplayAlert("", "Se borro la ley de tu colección", "Ok");
                 CargarDatos();
             }
-            //}
         }
-
-        //private void clltionLeyes_ItemSelected(object sender, SelectedItemChangedEventArgs e)
-        //{
-        //    if (clltionLeyes.SelectedItem != null)
-        //    {
-        //        Settings.CodigoDeLeyCargada = ((Leyes)clltionLeyes.SelectedItem).CodigoLey;
-        //        App.masterDetail.IsPresented = false;
-        //        App.masterDetail.Detail = new NavigationPage(new ViewDetail(_User));
-        //    }
-        //}
     }
 }

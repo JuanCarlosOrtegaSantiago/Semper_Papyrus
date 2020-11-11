@@ -14,6 +14,7 @@ namespace IURIS.COMMON.Entidades.Ley
         //public List<CodigoVenta>  CodigosDeVentas { get; set; }
         public bool EsModificacion { get; set; } //importante
         public DateTime UltimaFechaDeModificacion { get; set; }
+        public DateTime? FechaDeDescarga { get; set; }
         public List<Titulo> ListaDeTitulos { get; set; }
         public int numDescargas { get; set; }
         public Clasificacion Clasificacion { get; set; }

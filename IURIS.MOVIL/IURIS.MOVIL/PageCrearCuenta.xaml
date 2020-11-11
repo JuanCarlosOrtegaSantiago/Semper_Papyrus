@@ -5,96 +5,57 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:IURIS.MOVIL.Modelos_y_clases"
              mc:Ignorable="d"
              x:Class="IURIS.MOVIL.PageCrearCuenta" Title="Crear Cuenta" BackgroundColor="{StaticResource SecundaryColor}" >
-    <ContentPage.Content>
-        <ScrollView>
+    <ScrollView Padding="0,5">
 
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="10"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="50"/>
-                </Grid.RowDefinitions>
+        <FlexLayout>
 
-                <StackLayout Orientation="Horizontal"  VerticalOptions="Center" Grid.Row="1" Margin="10,0,15,0" >
-                    <local:CustomEntry x:Name="EntryNombre" Placeholder="Nombre..." ClearButtonVisibility="WhileEditing" ReturnType="Next" Style="{StaticResource EntryCrearCuenta}" IsTextPredictionEnabled="True" ></local:CustomEntry>
-                </StackLayout>
+            <local:CustomEntry x:Name="EntryNombre" Margin="15,0" Placeholder="Nombre..." ClearButtonVisibility="WhileEditing" ReturnType="Next" Style="{StaticResource EntryCrearCuenta}" IsTextPredictionEnabled="True"/>
 
-                <StackLayout Orientation="Horizontal" VerticalOptions="Center" Grid.Row="2" Margin="10,0,15,0" >
-                    <local:CustomEntry x:Name="EntryApellidoPaterno" Placeholder="Apellido paterno..." ClearButtonVisibility="WhileEditing" ReturnType="Next" Style="{StaticResource EntryCrearCuenta}" IsTextPredictionEnabled="True"></local:CustomEntry>
-                </StackLayout>
+            <local:CustomEntry x:Name="EntryApellidoPaterno" Margin="15,0" Placeholder="Apellido paterno..." ClearButtonVisibility="WhileEditing" ReturnType="Next" Style="{StaticResource EntryCrearCuenta}" IsTextPredictionEnabled="True"/>
 
-                <StackLayout Orientation="Horizontal" VerticalOptions="Center" Grid.Row="3" Margin="10,0,15,0" >
-                    <local:CustomEntry x:Name="EntryApellidoMaterno" Placeholder="Apellido materno..." ClearButtonVisibility="WhileEditing" ReturnType="Next" Style="{StaticResource EntryCrearCuenta}" IsTextPredictionEnabled="True"></local:CustomEntry>
-                </StackLayout>
+            <local:CustomEntry x:Name="EntryApellidoMaterno" Margin="15,0" Placeholder="Apellido materno..." ClearButtonVisibility="WhileEditing" ReturnType="Next" Style="{StaticResource EntryCrearCuenta}" IsTextPredictionEnabled="True"/>
 
-                <StackLayout Orientation="Vertical" VerticalOptions="Center" Grid.Row="4" Margin="10,0,15,0" >
-                    <local:CustomEntry x:Name="EntryCorreoElectronico" TextChanged="EntryCorreoElectronico_TextChanged" Placeholder="Correo electrónico..." ClearButtonVisibility="WhileEditing" ReturnType="Next" Style="{StaticResource EntryCrearCuenta}" IsTextPredictionEnabled="True"></local:CustomEntry>
-                    <Label x:Name="lblCorreoExistente" TextColor="White" FontSize="Medium" Text="El correo ingresado ya existe" IsVisible="False"></Label>
-                    <Label x:Name="lblFaltantesDeCorreo" TextColor="White" FontSize="Medium" Text="Faltan componentes al correo" IsVisible="False"></Label>
-                </StackLayout>
+            <StackLayout Orientation="Vertical" VerticalOptions="Center" Margin="15,0" >
+                <local:CustomEntry x:Name="EntryCorreoElectronico" TextChanged="EntryCorreoElectronico_TextChanged" Placeholder="Correo electrónico..." ClearButtonVisibility="WhileEditing" ReturnType="Next" Style="{StaticResource EntryCrearCuenta}" IsTextPredictionEnabled="True"/>
+                <Label x:Name="lblCorreoExistente" TextColor="White" FontSize="Medium" Text="El correo ingresado ya existe" IsVisible="False"/>
+                <Label x:Name="lblFaltantesDeCorreo" TextColor="White" FontSize="Medium" Text="Faltan componentes al correo" IsVisible="False"/>
+            </StackLayout>
 
-                <StackLayout Orientation="Vertical" VerticalOptions="Center" Grid.Row="5" Margin="10,0,15,0" >
-                    <local:CustomEntry x:Name="EntryContrasenia" TextChanged="EntryContrasenia_TextChanged" MaxLength="4" Keyboard="Numeric" Placeholder="Contraseña..." ClearButtonVisibility="WhileEditing" ReturnType="Next" Style="{StaticResource EntryCrearCuenta}"></local:CustomEntry>
-                    <Label x:Name="lblTamanioDeContrasenia" TextColor="White" FontSize="Medium" Text="Contraseña muy corta" IsVisible="False"></Label>
-                </StackLayout>
+            <StackLayout Orientation="Vertical" VerticalOptions="Center" Margin="15,0"  >
+                <local:CustomEntry x:Name="EntryContrasenia" TextChanged="EntryContrasenia_TextChanged" MaxLength="4" Keyboard="Numeric" Placeholder="Contraseña..." ClearButtonVisibility="WhileEditing" ReturnType="Next" Style="{StaticResource EntryCrearCuenta}"/>
+                <Label x:Name="lblTamanioDeContrasenia" TextColor="White" FontSize="Medium" Text="Contraseña muy corta" IsVisible="False"/>
+            </StackLayout>
 
-                <StackLayout Orientation="Vertical" VerticalOptions="Center" Grid.Row="6" Margin="10,0,15,0" >
-                    <local:CustomEntry x:Name="EntryConfirmarContrasenia" TextChanged="EntryConfirmarContrasenia_TextChanged" MaxLength="4" Keyboard="Numeric" Placeholder="Confirmar contraseña..." ClearButtonVisibility="WhileEditing" Completed="BtnOK_Clicked" Style="{StaticResource EntryCrearCuenta}" ></local:CustomEntry>
-                    <Label x:Name="lblContraseniaNoCoinside" TextColor="White" FontSize="Medium" Text="Las contraseñas no coinsiden" IsVisible="False"></Label>
-                </StackLayout>
+            <StackLayout Orientation="Vertical" VerticalOptions="Center" Margin="15,0" >
+                <local:CustomEntry x:Name="EntryConfirmarContrasenia" TextChanged="EntryConfirmarContrasenia_TextChanged" MaxLength="4" Keyboard="Numeric" Placeholder="Confirmar contraseña..." ClearButtonVisibility="WhileEditing" Completed="BtnOK_Clicked" Style="{StaticResource EntryCrearCuenta}" />
+                <Label x:Name="lblContraseniaNoCoinside" TextColor="White" FontSize="Medium" Text="Las contraseñas no coinsiden" IsVisible="False"/>
+            </StackLayout>
 
-
-
-                <StackLayout Grid.Row="7">
-                    <Frame
-                            BorderColor="White"
-                    Padding="0,1,0,1"
-                    HasShadow="True"
-                    IsClippedToBounds="True"
-                    BackgroundColor="{StaticResource PrimaryColor}">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <Button Grid.Column="0" BackgroundColor="Transparent" Text="Ok" FontSize="Large" x:Name="btnOK" Clicked="BtnOK_Clicked" Style="{StaticResource buttonPrincipal}" ></Button>
-
-                            <Frame
-                            Grid.Column="1" 
-                            BorderColor="White"
-                    Padding="1,0,0,0"
-                    HasShadow="True"
-                    IsClippedToBounds="True">
-
-
-                                <Button BackgroundColor="{StaticResource PrimaryColor}" FontSize="Large" Text="Cancelar" x:Name="btnCanselar" Clicked="BtnCanselar_Clicked" Style="{StaticResource buttonPrincipal}">
-                                </Button>
-                            </Frame>
-                        </Grid>
-                    </Frame>
-
-                </StackLayout>
-
-                <StackLayout Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Grid.Row="8" BackgroundColor="{StaticResource PrimaryColor}" x:Name="stackCodigoDeUsuario">
-                    <Label Text="Codigo de usuario" Style="{StaticResource LabelCrearCuenta}"></Label>
-                    <Label x:Name="lblCodigoUsuario" Style="{StaticResource LabelCrearCuenta}"></Label>
-                </StackLayout>
-
-                <StackLayout HorizontalOptions="Center" Grid.Row="9" >
-                    <Image Source="Logo.png" ></Image>
-                </StackLayout>
-
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="-1" Margin="-2,10,-2,0">
+                <Button Grid.Column="0" Text="Ok" FontSize="Large" x:Name="btnOK" Clicked="BtnOK_Clicked" Style="{StaticResource buttonPrincipal}"/>
+                <Button Grid.Column="1" FontSize="Large" Text="Cancelar" x:Name="btnCanselar" Clicked="BtnCanselar_Clicked" Style="{StaticResource buttonPrincipal}"/>
             </Grid>
 
-        </ScrollView>
-    </ContentPage.Content>
+            <Frame BorderColor="White"
+                   Padding="0,2"
+                   HasShadow="True"
+                   Margin="-2,-1.5"
+                   IsClippedToBounds="True"
+                   BackgroundColor="{StaticResource PrimaryColor}"
+                   x:Name="stackCodigoDeUsuario" 
+                   IsVisible="false">
+
+                <StackLayout Orientation="Vertical">
+                    <Label Text="Codigo de usuario" Style="{StaticResource LabelCrearCuenta}"/>
+                    <Label x:Name="lblCodigoUsuario" Style="{StaticResource LabelCrearCuenta}"/>
+                </StackLayout>
+            </Frame>
+
+            <StackLayout Padding="10">
+                <Image FlexLayout.Shrink="0" Source="Logo.png" Aspect="Fill" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+            </StackLayout>
+
+        </FlexLayout>
+
+    </ScrollView>
 </ContentPage>

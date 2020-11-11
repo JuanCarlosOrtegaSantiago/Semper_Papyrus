@@ -8,25 +8,11 @@
 
     <NavigationPage.TitleView>
 
-
-
-        <Grid ColumnDefinitions="*,Auto" >
-
-            <StackLayout Orientation="Horizontal" Grid.Column="0" BackgroundColor="{StaticResource PrimaryColor}">
+            <StackLayout Orientation="Horizontal"  BackgroundColor="{StaticResource PrimaryColor}">
                 <Image Source="Logo.png" Margin="0,5,5,5" VerticalOptions="Center" WidthRequest="40" HeightRequest="40"></Image>
                 <Label Text="IURIS" Style="{StaticResource LabelCrearCuenta}" FontAttributes="Bold" FontSize="Title" Margin="15,0" VerticalOptions="Center" ></Label>
             </StackLayout>
 
-            <Image x:Name="IMGBorrar" Source="BBasura.png" WidthRequest="20" HorizontalOptions="End" VerticalOptions="Center" HeightRequest="20" Margin="20,0" IsVisible="false">
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="MenuItem_Clicked"/>
-                </Image.GestureRecognizers>
-            </Image>
-                <!--<Image.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
-                </Image.GestureRecognizers>-->
-
-        </Grid>
     </NavigationPage.TitleView>
 
     <ContentPage.Content>
@@ -52,19 +38,31 @@
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout Orientation="Vertical" ItemSpacing="5" SnapPointsAlignment="Center" SnapPointsType="MandatorySingle"/>
                 </CollectionView.ItemsLayout>
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                        <StackLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <SwipeView>
+                            <SwipeView.RightItems>
+                                <SwipeItems Mode="Reveal" >
+                                    <SwipeItemView Invoked="SwipeItem_Invoked" BackgroundColor="{StaticResource PrimaryColor}" IsTabStop="True">
+                                        <Grid WidthRequest="120" RowDefinitions="*, auto" Padding="5" RowSpacing="0">
+                                            <Image Grid.Row="0" HorizontalOptions="Center" Source="BBasura.png" Aspect="AspectFit" Margin="0,2,0,0"></Image>
+                                            <Label Grid.Row="1" HorizontalOptions="Center" Text="Borrar" Style="{StaticResource TextoAMostrarColorBlanco}"></Label>
+                                        </Grid>
+                                    </SwipeItemView>
+                                </SwipeItems>
+                            </SwipeView.RightItems>
+                            <StackLayout>
 
-                            <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand" VerticalOptions="Center" Margin="10,0">
-                                <Local:CustomLabel Text="{Binding NombreLey}" FontSize="Large" Style="{StaticResource TextoAMostrarColorRojo}" HorizontalOptions="Center"></Local:CustomLabel>
-                                <Local:CustomLabel Text="{Binding CodigoLey}" FontSize="Medium" Style="{StaticResource TextoAMostrarColorRojo}" HorizontalOptions="Start"></Local:CustomLabel>
-                            </StackLayout>
+                                <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand" VerticalOptions="Center" Margin="10,0">
+                                    <Label Text="{Binding NombreLey}" FontSize="Large" Style="{StaticResource TextoAMostrarColorRojo}" HorizontalOptions="Center"></Label>
+                                    <Label Text="{Binding CodigoLey}" FontSize="Medium" Style="{StaticResource TextoAMostrarColorRojo}" HorizontalOptions="Start"></Label>
+                                </StackLayout>
                                 <Frame BorderColor="{StaticResource PrimaryColor}" BackgroundColor="{StaticResource PrimaryColor}" HeightRequest="1" Padding="0.5" HasShadow="False" IsClippedToBounds="True" Margin="5,0,10,0"/>
-                        </StackLayout>
+                            </StackLayout>
+                        </SwipeView>
                     </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
