@@ -4,118 +4,60 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:Local="clr-namespace:IURIS.MOVIL.Modelos_y_clases"
              mc:Ignorable="d"
-             x:Class="IURIS.MOVIL.PageInicioDeSesion"  NavigationPage.HasNavigationBar="False">
-    <ContentPage.Content>
-        <ScrollView>
-            <FlexLayout>
-                
-            <Grid >
-                <Grid.RowDefinitions>
-                    <!--<RowDefinition Height="50"/>-->
-                    <RowDefinition />
-                    <RowDefinition Height="50"/>
-                </Grid.RowDefinitions>
+             x:Class="IURIS.MOVIL.PageInicioDeSesion"  NavigationPage.HasNavigationBar="False" >
+    <ScrollView Padding="0,5,0,20">
 
-                <StackLayout Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                        </Grid.RowDefinitions>
+        <FlexLayout>
 
-                        <StackLayout Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Start">
-                            <Label Text="IURIS" FontAttributes="Bold" FontSize="40" TextColor="White"></Label>
-                        </StackLayout>
-                        
-                        <StackLayout HorizontalOptions="Center" Grid.Row="1" Margin="0,30,0,0">
-                            <Image Source="Logo.png" ></Image>
-                        </StackLayout>
+            <Label FlexLayout.Shrink="0" Text="IURIS" HorizontalTextAlignment="Center" FontAttributes="Bold" FontSize="40" TextColor="White"></Label>
 
-                        <StackLayout Orientation="Horizontal" Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center">
-                            <Label Text="From Semper Papyrus" FontSize="30" TextColor="White"></Label>
-                        </StackLayout>
+            <StackLayout Margin="0,20,0,0" FlexLayout.Shrink="0">
 
-                        <StackLayout Orientation="Horizontal" Grid.Row="3" HorizontalOptions="Center" VerticalOptions="Center">
-                        <Label Text="Inicio de sesión" TextColor="White" FontSize="Large"  VerticalOptions="End" VerticalTextAlignment="End" HorizontalOptions="Center" Grid.Row="0"></Label>
-                        </StackLayout>
+                <Image FlexLayout.Shrink="0" Source="Logo.png" Aspect="Fill" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+            </StackLayout>
 
-                        <StackLayout Orientation="Horizontal" VerticalOptions="Center" Grid.Row="4" Margin="10,10,15,0" >
-                            <Label Text="Correo:" Margin="5,0,0,0" WidthRequest="100" VerticalOptions="Center" HorizontalTextAlignment="End" HorizontalOptions="End" FontSize="20" Style="{StaticResource TextoAMostrarColorBlanco}"></Label>
-                            <Local:CustomEntry x:Name="EntryCorreo" Placeholder="Ejemplo1234@gmail.com" ReturnType="Next" Style="{StaticResource EntryCrearCuenta}" HorizontalTextAlignment="Center" IsTextPredictionEnabled="False" FontSize="Medium"></Local:CustomEntry>
-                        </StackLayout>
+            <Label FlexLayout.Shrink="0" Text="From Semper Papyrus" FontSize="30" HorizontalTextAlignment="Center" TextColor="White"></Label>
 
-                        <StackLayout Orientation="Horizontal" VerticalOptions="Center" Grid.Row="5" Margin="10,0,15,0" >
-                            <Label Text="Contraseña:" Margin="5,0,0,0" WidthRequest="100" VerticalOptions="Center" HorizontalTextAlignment="End" HorizontalOptions="End" FontSize="20" Style="{StaticResource TextoAMostrarColorBlanco}"></Label>
-                            <Local:CustomEntry MaxLength="4" Keyboard="Numeric" Placeholder="****" Style="{StaticResource EntryCrearCuenta}" HorizontalTextAlignment="Center" IsTextPredictionEnabled="False" IsPassword="True" FontSize="Medium" x:Name="EntryPasswor" Completed="BtnAceptar_Clicked"></Local:CustomEntry>
-                        </StackLayout>
+            <Label FlexLayout.Shrink="0" Text="Inicio de sesión" TextColor="White" HorizontalTextAlignment="Center" FontSize="Large"  VerticalOptions="End" VerticalTextAlignment="End" HorizontalOptions="Center"></Label>
 
-                        <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="6" Margin="10,0,15,0" >
-                            <CheckBox x:Name="CheckRecuerdame" Color="White" CheckedChanged="CheckRecuerdame_CheckedChanged"></CheckBox>
-                            <Label Text="Recordar usuario" Margin="5,0,0,0" VerticalOptions="Center" HorizontalTextAlignment="End" HorizontalOptions="End" FontSize="20" Style="{StaticResource TextoAMostrarColorBlanco}"></Label>
-                            <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
-                            </StackLayout.GestureRecognizers>
-                        </StackLayout>
-
-                        <StackLayout Grid.Row="7" Margin="20,20,20,0">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-
-                                <Frame
-                            Margin="25,0"
-                            Grid.Column="0"
-                            BorderColor="White"
-                            Padding="1,1,1,1"
-                            HasShadow="True"
-                            IsClippedToBounds="True">
-
-                                    <Button Text="Aceptar" x:Name="btnAceptar" Clicked="BtnAceptar_Clicked" Style="{StaticResource buttonPrincipal}" ></Button>
-                                </Frame>
-                                <Frame
-                            Margin="25,0"
-                            Grid.Column="1"
-                            BorderColor="White"
-                            Padding="1,1,1,1"
-                            HasShadow="True"
-                            IsClippedToBounds="True">
-
-                                    <Button Text="Cancelar" x:Name="btnCanselar" Clicked="BtnCanselar_Clicked" Style="{StaticResource buttonPrincipal}"></Button>
-                                </Frame>
-                            </Grid>
-
-                        </StackLayout>
-                        <StackLayout Grid.Row="8" VerticalOptions="End" x:Name="stakNoRecuerdoMiContrasenia" Margin="0,5,0,0">
-                            <Label TextColor="White" HorizontalTextAlignment="Center" FontSize="Medium" x:Name="LblNoRecuerdoMiContrasenia" >
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span Text="No recuerdo mi contraseña"
-                                              TextDecorations="Underline"/>
-                                    </FormattedString>
-                                </Label.FormattedText>
-                                <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
-                                </Label.GestureRecognizers>
-                            </Label>
-                        </StackLayout>
-
-                    </Grid>
-                </StackLayout>
-
+            <Grid FlexLayout.Shrink="0" FlexLayout.AlignSelf="Stretch" ColumnDefinitions="0.6*,*" ColumnSpacing="5">
+                <Label Grid.Column="0" FlexLayout.Grow="20" Text="Correo:" HorizontalTextAlignment="End" FontSize="Title" Style="{StaticResource TextoAMostrarColorBlanco}"/>
+                <Local:CustomEntry Grid.Column="1" FlexLayout.Grow="1" x:Name="EntryCorreo" Placeholder="Ejemplo1234@gmail.com" ReturnType="Next" Style="{StaticResource EntryCrearCuenta}" HorizontalTextAlignment="Center" IsTextPredictionEnabled="False" FontSize="Medium"/>
             </Grid>
-            </FlexLayout>
+
+            <Grid FlexLayout.Shrink="0" FlexLayout.AlignSelf="Auto" ColumnDefinitions="0.6*,*" ColumnSpacing="5">
+                <Label Grid.Column="0" Text="Contraseña:" HorizontalTextAlignment="End" FontSize="Title" Style="{StaticResource TextoAMostrarColorBlanco}"></Label>
+                <Local:CustomEntry Grid.Column="1" MaxLength="4" Keyboard="Numeric" Placeholder="****" Style="{StaticResource EntryCrearCuenta}" HorizontalTextAlignment="Center" IsTextPredictionEnabled="False" IsPassword="True" FontSize="Medium" x:Name="EntryPasswor" Completed="BtnAceptar_Clicked"/>
+            </Grid>
+
+            <StackLayout Orientation="Horizontal" FlexLayout.Shrink="0" FlexLayout.AlignSelf="Center" Margin="15,0" >
+                <CheckBox Grid.Column="0" x:Name="CheckRecuerdame" Color="White" CheckedChanged="CheckRecuerdame_CheckedChanged" HorizontalOptions="End" ></CheckBox>
+                <Label  Text="Recordar usuario" Margin="5,0,0,0" VerticalOptions="Center" HorizontalTextAlignment="End" FontSize="20" Style="{StaticResource TextoAMostrarColorBlanco}"></Label>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+
+            <Grid FlexLayout.Shrink="0" ColumnDefinitions="*,*" Margin="20">
+                <Button Grid.Column="0" Text="Aceptar" x:Name="btnAceptar" Clicked="BtnAceptar_Clicked" Style="{StaticResource buttonPrincipal}" ></Button>
+                <Button Grid.Column="1" Text="Cancelar" x:Name="btnCanselar" Clicked="BtnCanselar_Clicked" Style="{StaticResource buttonPrincipal}"></Button>
+            </Grid>
+
+            <Label FlexLayout.Shrink="0" TextColor="White" HorizontalTextAlignment="Center" FontSize="Medium" x:Name="LblNoRecuerdoMiContrasenia" >
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="No recuerdo mi contraseña"
+                                              TextDecorations="Underline"/>
+                    </FormattedString>
+                </Label.FormattedText>
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                </Label.GestureRecognizers>
+            </Label>
+
+        </FlexLayout>
 
 
-        </ScrollView>
+    </ScrollView>
 
-    </ContentPage.Content>
 </ContentPage>

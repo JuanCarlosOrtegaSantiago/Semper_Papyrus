@@ -39,82 +39,67 @@ namespace IURIS.MOVIL
 
         private void DatosAIniciar()
         {
-            if (Settings.Recuerdame)
-            {
-                if (Settings.Email != "")
-                    EntryCorreo.Text = Settings.Email;
-                if (Settings.Contrasenia != "")
-                    EntryPasswor.Text = Settings.Contrasenia;
-                CheckRecuerdame.IsChecked = Settings.Recuerdame;
-            }
+            if (!Settings.Recuerdame) return;
 
+            EntryCorreo.Text = Settings.Email != "" ? Settings.Email : null;
+            EntryPasswor.Text = Settings.Contrasenia != "" ? Settings.Contrasenia : null;
+
+            CheckRecuerdame.IsChecked = Settings.Recuerdame;
 
         }
 
         private async void BtnCanselar_Clicked(object sender, EventArgs e)
         {
             Intentos++;
-            if (Intentos == 1)
-            {
-                await Navigation.PopAsync();
-                await Navigation.PushAsync(new MainPage(), true);
-                Intentos = 0;
-            }
+            if (Intentos != 1) return;
+
+            await Navigation.PopAsync();
+            Intentos = 0;
         }
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             Intentos++;
-            if (Intentos == 1)
-            {
+            if (Intentos != 1) return;
+
                 LblNoRecuerdoMiContrasenia.TextColor = Color.CadetBlue;
                 Navigation.PushAsync(new PageRecuperarCuenta(), false);
                 LblNoRecuerdoMiContrasenia.TextColor = Color.White;
 
                 Intentos = 0;
-            }
         }
 
         private async void BtnAceptar_Clicked(object sender, EventArgs e)
         {
             Intentos++;
-            if (Intentos == 1)
+            if (Intentos != 1) return;
+
+            if (string.IsNullOrWhiteSpace(EntryPasswor.Text) || string.IsNullOrWhiteSpace(EntryCorreo.Text)) return;
+            if (Connectivity.NetworkAccess == NetworkAccess.None)
             {
+                await DisplayAlert("Error", "Sin conexión a internet", "Aceptar");
+                return;
+            }
 
-                if (!string.IsNullOrWhiteSpace(EntryPasswor.Text) && !string.IsNullOrWhiteSpace(EntryCorreo.Text))
+            _User = manejadorDeUsuarioAplicacion.EncontrarUsuario(EntryCorreo.Text, int.Parse(EntryPasswor.Text));
+            if (_User != null)
+            {
+                Settings.Recuerdame = Recuerdame;
+                if (Settings.Recuerdame)
                 {
-                    if (Connectivity.NetworkAccess == NetworkAccess.None)
-                    {
-                        await DisplayAlert("Error", "Sin conexión a internet", "Aceptar");
-                        return;
-                    }
-
-                    _User = manejadorDeUsuarioAplicacion.EncontrarUsuario(EntryCorreo.Text, int.Parse(EntryPasswor.Text));
-                    if (_User != null)
-                    {
-                        if (Recuerdame)
-                        {
-                            Settings.Email = _User.Correo;
-                            Settings.Contrasenia = _User.Contrasenia.ToString();
-                        }
-
-                            Settings.Recuerdame = Recuerdame;
-                        Settings.NumUsuario = _User.IdApp.ToString();
-
-                        if (HayActualizacion())
-                        {
-                            Actualizaeyes();
-                        }
-                        await Navigation.PushAsync(new FirtsView(_User), false);
-
-                        //Toast.MakeText(context,3,  ToastLength.Long).Show();
-
-                    }
-                    else
-                    {
-                        await DisplayAlert("Error de usuario", "Por favor verifica los datos ingresados", "OK");
-                    }
+                    Settings.Email = _User.Correo;
+                    Settings.Contrasenia = _User.Contrasenia.ToString();
                 }
+                Settings.NumUsuario = _User.IdApp.ToString();
+
+
+                if (HayActualizacion()) Actualizaeyes();
+
+                await Navigation.PushAsync(new FirtsView(_User), false);
+            }
+            else
+            {
+                await DisplayAlert("Error de usuario", "Por favor verifica los datos ingresados", "OK");
             }
             Intentos = 0;
         }
@@ -203,15 +188,11 @@ namespace IURIS.MOVIL
 
         private void CheckRecuerdame_CheckedChanged(object sender, CheckedChangedEventArgs e)
         {
-
-            Recuerdame = CheckRecuerdame.IsChecked ? true : false;
-            //Settings.Recuerdame = CheckRecuerdame.IsChecked ? true : false;
-
+            Recuerdame = CheckRecuerdame.IsChecked;
         }
 
         private void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
         {
-
             CheckRecuerdame.IsChecked = CheckRecuerdame.IsChecked ? false : true;
             Recuerdame = CheckRecuerdame.IsChecked ? true : false;
         }

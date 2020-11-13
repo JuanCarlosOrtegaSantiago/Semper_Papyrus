@@ -4,7 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="IURIS.MOVIL.MainPage" NavigationPage.HasNavigationBar="False" BackgroundColor="Black">
+             x:Class="IURIS.MOVIL.MainPage" NavigationPage.HasNavigationBar="False">
 
     <ScrollView Padding="0,30">
         <FlexLayout>
