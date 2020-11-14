@@ -7,8 +7,8 @@
              x:Class="IURIS.MOVIL.Detail.ViewDetail" >
 
     <NavigationPage.TitleView>
-        <FlexLayout VerticalOptions="Center">
-            
+        <FlexLayout Direction="Row">
+
             <SearchBar 
                 
                 x:Name="SearchViewDetailTitle" 
@@ -27,17 +27,17 @@
             <Label x:Name="lblNumResultados" HorizontalOptions="End" Margin="0,0,10,0" IsVisible="false" Style="{StaticResource TextoAMostrarColorBlanco}" VerticalOptions="Center" VerticalTextAlignment="Center" FontSize="Body"></Label>
 
             <Grid ColumnDefinitions="*,Auto" ColumnSpacing="5" >
-            <FlexLayout Grid.Column="0" x:Name="tituloLey" Direction="Column">
+                <FlexLayout Grid.Column="0" x:Name="tituloLey" Direction="Column">
                     <Local:CustomLabel x:Name="lblTitle" Style="{StaticResource TextoAMostrarColorBlanco}" HorizontalTextAlignment="Center" HorizontalOptions="Center"/>
-                    <Label x:Name="lblCodigo" Style="{StaticResource TextoAMostrarColorBlanco}" FontSize="Small" VerticalOptions="End" VerticalTextAlignment="End" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+                    <Label x:Name="lblCodigo" Style="{StaticResource TextoAMostrarColorBlanco}" FontSize="Small" VerticalOptions="End" VerticalTextAlignment="End" HorizontalOptions="Center" HorizontalTextAlignment="Center" Margin="0,0,0,5"/>
                 </FlexLayout>
-            
-            <Image x:Name="IMGBuscador" Grid.Column="1" Source="Buscador.png" WidthRequest="20" HorizontalOptions="End" HeightRequest="20" Margin="10,0,20,0">
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
-                </Image.GestureRecognizers>
-            </Image>
-        </Grid>
+
+                <Image x:Name="IMGBuscador" Grid.Column="1" Source="Buscador.png" WidthRequest="20" HorizontalOptions="End" HeightRequest="20" Margin="10,0,20,0">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </Image.GestureRecognizers>
+                </Image>
+            </Grid>
         </FlexLayout>
     </NavigationPage.TitleView>
 
@@ -62,36 +62,36 @@
     <ContentPage.Content>
 
         <Grid >
-                    <CollectionView x:Name="ClltionTitulos" SelectionMode="Single" ItemsSource="{Binding Titulo}" SelectionChanged="ClltionTitulos_SelectionChanged">
+            <CollectionView x:Name="ClltionTitulos" SelectionMode="Single" ItemsSource="{Binding Titulo}" SelectionChanged="ClltionTitulos_SelectionChanged">
                 <CollectionView.EmptyView>
                     <StackLayout>
                         <Label FontAttributes="Bold"  FontSize="Large" HorizontalOptions="Center" Style="{StaticResource TextoAMostrarColorRojo}">No se encontraron datos</Label>
                     </StackLayout>
                 </CollectionView.EmptyView>
                 <CollectionView.ItemsLayout>
-                            <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" SnapPointsAlignment="Center"/>
-                        </CollectionView.ItemsLayout>
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate>
-                                <ContentView >
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" SnapPointsAlignment="Center"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <ContentView >
 
-                                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Margin="10,5" >
-                                        <Label Style="{StaticResource TextoAMostrarColorRojo}" >
-                                            <Label.Text>
-                                                <MultiBinding StringFormat="{}{0} - {1}">
-                                                    <Binding Path="NumTitulo" />
-                                                    <Binding Path="NombreTitulo" />
-                                                </MultiBinding>
-                                            </Label.Text>
-                                        </Label>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Margin="10,5" >
+                                <Label Style="{StaticResource TextoAMostrarColorRojo}" >
+                                    <Label.Text>
+                                        <MultiBinding StringFormat="{}{0} - {1}">
+                                            <Binding Path="NumTitulo" />
+                                            <Binding Path="NombreTitulo" />
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
 
-                                    </StackLayout>
+                            </StackLayout>
 
-                                </ContentView>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
+                        </ContentView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
 
-                    </CollectionView>
+            </CollectionView>
             <!--<pv:PancakeView HorizontalOptions="End" VerticalOptions="End" Margin="30" Padding="10" CornerRadius="15">
                 <pv:PancakeView.BackgroundGradientStops>
                     <pv:GradientStopCollection>
