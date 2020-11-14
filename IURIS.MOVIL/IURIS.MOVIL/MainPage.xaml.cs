@@ -22,6 +22,7 @@ namespace IURIS.MOVIL
         {
             InitializeComponent();
 
+
             DatosAIniciar();
         }
 

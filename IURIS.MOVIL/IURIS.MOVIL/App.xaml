@@ -24,7 +24,7 @@
                 <Setter Property="TextColor" Value="White"/>
                 <Setter Property="BackgroundColor" Value="{StaticResource PrimaryColor}"/>
                 <Setter Property="BorderColor" Value="White"/>
-                <Setter Property="BorderWidth" Value="1.5"/>
+                <Setter Property="BorderWidth" Value="2"/>
 
             </Style>
 
@@ -32,7 +32,7 @@
                 <Setter Property="TextColor" Value="White"/>
                 <Setter Property="BackgroundColor" Value="{StaticResource SecundaryColor}"/>
                 <Setter Property="BorderColor" Value="White"/>
-                <Setter Property="BorderWidth" Value="1.5"/>
+                <Setter Property="BorderWidth" Value="2"/>
             </Style>
 
             <Style TargetType="FlexLayout" >

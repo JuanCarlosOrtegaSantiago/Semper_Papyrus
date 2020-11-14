@@ -20,7 +20,7 @@
 
             <Label FlexLayout.Shrink="0" Text="From Semper Papyrus" HorizontalTextAlignment="Center" FontSize="20" TextColor="White"/>
 
-            <Button FlexLayout.Shrink="0" Text="Entrar" Margin="80,5" x:Name="BtnEntrar" Clicked="BtnEntrar_Clicked" FontSize="Large" Style="{StaticResource buttonSecundario}"/>
+            <Button FlexLayout.Shrink="0" Margin="80,5" x:Name="BtnEntrar" Clicked="BtnEntrar_Clicked" FontSize="Large" Style="{StaticResource buttonSecundario}" Text="Entrar"/>
 
             <Button FlexLayout.Shrink="0" Text="Crear cuenta" Margin="80,5" x:Name="btnCrearCuenta" Clicked="BtnCrearCuenta_Clicked" FontSize="Large" Style="{StaticResource buttonSecundario}"/>
 
