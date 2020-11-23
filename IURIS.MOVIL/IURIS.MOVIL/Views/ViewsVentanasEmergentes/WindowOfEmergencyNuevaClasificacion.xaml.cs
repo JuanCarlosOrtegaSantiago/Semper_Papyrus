@@ -1,4 +1,5 @@
 ﻿using IURIS.BIZ;
+using IURIS.COMMON.Entidades.Ley;
 using IURIS.COMMON.Entidades.Ley.ComponentesDeLey;
 using IURIS.COMMON.Entidades.UsuariosDeAplicacion;
 using IURIS.COMMON.Entidades.UsuariosDeAplicacion.ComponentesDeUsuario;
@@ -22,17 +23,19 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
     {
         IManejadorDeUsuarioAplicacion manejadorDeUsuarioAplicacion;
         Usuarios _User;
-        public WindowOfEmergencyNuevaClasificacion(Usuarios usuarios)
+        Leyes _Leyes;
+        public WindowOfEmergencyNuevaClasificacion(Usuarios usuarios,Leyes leyes)
         {
             InitializeComponent();
             _User = usuarios;
+            _Leyes = leyes;
         }
 
         private void BtnAceptar_Clicked(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(EntryNuevaClasificacion.Text))
             {
-                Clasificacion clasificacion = new Clasificacion()
+                ClasificacionPUsuario clasificacion = new ClasificacionPUsuario()
                 {
                     Nombre = EntryNuevaClasificacion.Text,
                     MisArticulos = new List<Articulo>()
@@ -40,9 +43,9 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
 
                 if (string.IsNullOrWhiteSpace(clasificacion.Nombre))
                     return;
-
-
-                _User.Clasificaciones.Add(clasificacion);
+                //comprobar por que truena
+                _User.MisLeyes.Where(w => w.CodigoLey == _Leyes.CodigoLey).SingleOrDefault().Clasificaciones.Add(clasificacion);
+                //_User.MisLeyesLeyes leyes.Clasificaciones.Add(clasificacion);
 
                 manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
 
@@ -53,7 +56,7 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
                     {
                         DisplayAlert("Hecho","Agregada satisfactoriamente", "OK");
                         App.masterDetail.IsPresented = false;
-                        App.masterDetail.Detail = new NavigationPage(new ViewsMisClasificaciones(_User, null));
+                        App.masterDetail.Detail = new NavigationPage(new ViewsMisClasificaciones(_User, null,_Leyes));
                     }
                     else
                     {

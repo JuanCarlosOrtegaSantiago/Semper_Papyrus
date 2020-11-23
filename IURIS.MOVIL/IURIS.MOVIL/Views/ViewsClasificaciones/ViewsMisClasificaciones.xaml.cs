@@ -1,4 +1,5 @@
 ﻿using IURIS.BIZ;
+using IURIS.COMMON.Entidades.Ley;
 using IURIS.COMMON.Entidades.Ley.ComponentesDeLey;
 using IURIS.COMMON.Entidades.UsuariosDeAplicacion;
 using IURIS.COMMON.Entidades.UsuariosDeAplicacion.ComponentesDeUsuario;
@@ -25,13 +26,14 @@ namespace IURIS.MOVIL.Views
         IManejadorDeUsuarioAplicacion manejadorDeUsuarioAplicacion;
         Usuarios _User;
         Articulo _Articulo;
+        Leyes _Leyes;
         public bool nuevoArticulo = false;
 
-        public ViewsMisClasificaciones(Usuarios Usuario,Articulo articulo)
+        public ViewsMisClasificaciones(Usuarios Usuario,Articulo articulo, Leyes leyes)
         {
             InitializeComponent();
             manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
-
+            _Leyes = leyes;
             _Articulo = articulo;
 
             DatosAInicializar(Usuario);
@@ -52,13 +54,13 @@ namespace IURIS.MOVIL.Views
         void ActualizarDatos()
         {
             clltionClasificaciones.ItemsSource = null;
-            clltionClasificaciones.ItemsSource = _User.Clasificaciones;
+            clltionClasificaciones.ItemsSource = _User.MisLeyes.Where(w => w.CodigoLey == _Leyes.CodigoLey).SingleOrDefault().Clasificaciones;
         }
 
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
 
-            WindowOfEmergencyNuevaClasificacion pantalla = new WindowOfEmergencyNuevaClasificacion(_User);
+            WindowOfEmergencyNuevaClasificacion pantalla = new WindowOfEmergencyNuevaClasificacion(_User,_Leyes);
             await PopupNavigation.Instance.PushAsync(pantalla);
 
             DatosAInicializar(_User);
@@ -67,7 +69,9 @@ namespace IURIS.MOVIL.Views
 
         private async void clltionClasificaciones_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-                Clasificacion clasificacion = (Clasificacion)clltionClasificaciones.SelectedItem;
+
+            //Revisar por que despues de que se agrega la nueva clasificacion se pone nulo elarticulo
+                ClasificacionPUsuario clasificacion = (ClasificacionPUsuario)clltionClasificaciones.SelectedItem;
             if (_Articulo != null)
             {
 
@@ -98,7 +102,7 @@ namespace IURIS.MOVIL.Views
                 }
 
             }
-                await Navigation.PushAsync(new ViewMiClasificacionPersonalizada(clasificacion, _User), false);
+                await Navigation.PushAsync(new ViewMiClasificacionPersonalizada(clasificacion, _User, _Leyes), false);
         }
     }
 }

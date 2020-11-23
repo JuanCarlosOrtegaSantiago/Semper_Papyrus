@@ -16,7 +16,7 @@ namespace IURIS.COMMON.Entidades.UsuariosDeAplicacion
         public string ApellidoMaterno { get; set; }
         public int Contrasenia { get; set; }
         public List<Leyes> MisLeyes { get; set; }
-        public List<Clasificacion> Clasificaciones { get; set; }
+        //public List<Clasificacion> Clasificaciones { get; set; }
         public List<Apunte> Apuntes { get; set; }
         public string MiUltimaLeyCargada { get; set; }
     }

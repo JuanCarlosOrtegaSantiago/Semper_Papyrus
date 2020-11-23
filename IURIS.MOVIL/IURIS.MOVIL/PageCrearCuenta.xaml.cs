@@ -1,5 +1,6 @@
 ﻿using IURIS.BIZ;
 using IURIS.COMMON.Entidades.Ley;
+using IURIS.COMMON.Entidades.Ley.ComponentesDeLey;
 using IURIS.COMMON.Entidades.UsuariosDeAplicacion;
 using IURIS.COMMON.Entidades.UsuariosDeAplicacion.ComponentesDeUsuario;
 using IURIS.COMMON.Interfaces;
@@ -64,13 +65,13 @@ namespace IURIS.MOVIL
                 Correo = EntryCorreoElectronico.Text,
                 IdApp = numUsuario,
                 Contrasenia = int.Parse(EntryContrasenia.Text),
-                Clasificaciones = new List<Clasificacion>(),
                 Apuntes = new List<Apunte>(),
 
             };
             
             manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
             Leyes leyes = manejadorDeLeyes.BuscarPorCodigo("cnpp1E");
+            leyes.Clasificaciones = new List<ClasificacionPUsuario>();
 
             List<Leyes> Mleyes = new List<Leyes>();
             Mleyes.Add(leyes);

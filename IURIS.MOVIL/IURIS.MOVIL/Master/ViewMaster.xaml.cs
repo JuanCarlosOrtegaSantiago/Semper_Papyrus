@@ -39,7 +39,7 @@ namespace IURIS.MOVIL.Master
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             App.masterDetail.IsPresented = false;
-            App.masterDetail.Detail = new NavigationPage(new ViewsMisClasificaciones(User,null));
+            App.masterDetail.Detail = new NavigationPage(new ViewsMisClasificaciones(User,null,User.MisLeyes.Where(w=>w.CodigoLey==User.MiUltimaLeyCargada).SingleOrDefault()));
 
             //await App.masterDetail.Detail.Navigation.PushAsync(new ViewsMisClasificaciones(User));
         }

@@ -69,7 +69,7 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
                         _LeyeComprada.FechaDeDescarga = DateTime.UtcNow.ToLocalTime();
 
                         _User.MisLeyes.Add(_LeyeComprada);
-
+                        _User.MisLeyes.Where(w => w.CodigoLey == _LeyeComprada.CodigoLey).SingleOrDefault().Clasificaciones= new List<ClasificacionPUsuario>();
                         if (manejadorDeUsuarioAplicacion.Modificar(_User))
                         {
                             _LeyeComprada.numDescargas += 1;
@@ -110,6 +110,8 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
             if (clltionLeyes.SelectedItem == null) return;
 
             _User.MiUltimaLeyCargada = ((Leyes)clltionLeyes.SelectedItem).CodigoLey;
+            if(_User.MisLeyes.Where(w => w.CodigoLey == _User.MiUltimaLeyCargada).SingleOrDefault().Clasificaciones==null) _User.MisLeyes.Where(w => w.CodigoLey == _User.MiUltimaLeyCargada).SingleOrDefault().Clasificaciones = new List<ClasificacionPUsuario>();
+
             if (manejadorDeUsuarioAplicacion.Modificar(_User))
             {
                 App.masterDetail.IsPresented = false;

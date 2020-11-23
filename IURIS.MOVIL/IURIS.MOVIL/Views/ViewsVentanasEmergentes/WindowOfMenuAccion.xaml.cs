@@ -42,7 +42,7 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
 
         private async void LblClasificacionPersonalizada(object sender, EventArgs e)
         {
-            App.masterDetail.Detail = new NavigationPage(new ViewsMisClasificaciones(_User, _Articulo));
+            App.masterDetail.Detail = new NavigationPage(new ViewsMisClasificaciones(_User, _Articulo,_Ley));
             //await Navigation.PushAsync(new ViewsMisClasificaciones(_User, _Articulo));
             await PopupNavigation.Instance.PopAsync(false);
         }

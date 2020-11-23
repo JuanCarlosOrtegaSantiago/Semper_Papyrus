@@ -1,4 +1,5 @@
 ﻿using IURIS.BIZ;
+using IURIS.COMMON.Entidades.Ley;
 using IURIS.COMMON.Entidades.Ley.ComponentesDeLey;
 using IURIS.COMMON.Entidades.UsuariosDeAplicacion;
 using IURIS.COMMON.Entidades.UsuariosDeAplicacion.ComponentesDeUsuario;
@@ -18,20 +19,21 @@ namespace IURIS.MOVIL.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ViewMiClasificacionPersonalizada : ContentPage
     {
-        Clasificacion _Clasificacion;
+        ClasificacionPUsuario _Clasificacion;
         Usuarios _Usuarios;
+        Leyes _Leyes;
         public List<Articulo> _Articulos;
 
         IManejadorDeUsuarioAplicacion manejadorDeUsuarioAplicacion;
 
-        public ViewMiClasificacionPersonalizada(Clasificacion clasificacion, Usuarios usuarios)
+        public ViewMiClasificacionPersonalizada(ClasificacionPUsuario clasificacion, Usuarios usuarios, Leyes leyes)
         {
 
             InitializeComponent();
 
             _Clasificacion = clasificacion;
             _Usuarios = usuarios;
-            
+            _Leyes = leyes;
             DatosAInicializar();
         }
 
