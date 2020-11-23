@@ -110,7 +110,6 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
             if (clltionLeyes.SelectedItem == null) return;
 
             _User.MiUltimaLeyCargada = ((Leyes)clltionLeyes.SelectedItem).CodigoLey;
-            if(_User.MisLeyes.Where(w => w.CodigoLey == _User.MiUltimaLeyCargada).SingleOrDefault().Clasificaciones==null) _User.MisLeyes.Where(w => w.CodigoLey == _User.MiUltimaLeyCargada).SingleOrDefault().Clasificaciones = new List<ClasificacionPUsuario>();
 
             if (manejadorDeUsuarioAplicacion.Modificar(_User))
             {

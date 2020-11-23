@@ -59,18 +59,11 @@ namespace IURIS.MOVIL.Views
 
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
-
-            WindowOfEmergencyNuevaClasificacion pantalla = new WindowOfEmergencyNuevaClasificacion(_User,_Leyes);
-            await PopupNavigation.Instance.PushAsync(pantalla);
-
-            DatosAInicializar(_User);
-
+            await PopupNavigation.Instance.PushAsync(new WindowOfEmergencyNuevaClasificacion(_User, _Leyes,_Articulo));
         }
 
         private async void clltionClasificaciones_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
-            //Revisar por que despues de que se agrega la nueva clasificacion se pone nulo elarticulo
                 ClasificacionPUsuario clasificacion = (ClasificacionPUsuario)clltionClasificaciones.SelectedItem;
             if (_Articulo != null)
             {

@@ -24,52 +24,52 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
         IManejadorDeUsuarioAplicacion manejadorDeUsuarioAplicacion;
         Usuarios _User;
         Leyes _Leyes;
-        public WindowOfEmergencyNuevaClasificacion(Usuarios usuarios,Leyes leyes)
+        Articulo _Articulo;
+        public WindowOfEmergencyNuevaClasificacion(Usuarios usuarios,Leyes leyes, Articulo articulo)
         {
             InitializeComponent();
             _User = usuarios;
             _Leyes = leyes;
+            _Articulo = articulo;
         }
 
         private void BtnAceptar_Clicked(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(EntryNuevaClasificacion.Text))
-            {
-                ClasificacionPUsuario clasificacion = new ClasificacionPUsuario()
-                {
-                    Nombre = EntryNuevaClasificacion.Text,
-                    MisArticulos = new List<Articulo>()
-                };
+            if (string.IsNullOrWhiteSpace(EntryNuevaClasificacion.Text)) return;
 
-                if (string.IsNullOrWhiteSpace(clasificacion.Nombre))
-                    return;
-                //comprobar por que truena
-                _User.MisLeyes.Where(w => w.CodigoLey == _Leyes.CodigoLey).SingleOrDefault().Clasificaciones.Add(clasificacion);
-                //_User.MisLeyesLeyes leyes.Clasificaciones.Add(clasificacion);
+            ClasificacionPUsuario clasificacion = new ClasificacionPUsuario
+            {
+                Nombre = EntryNuevaClasificacion.Text,
+                MisArticulos = new List<Articulo>()
+            };
+
+
+            if (string.IsNullOrWhiteSpace(clasificacion.Nombre)) return;
+
+            if (_Articulo != null) clasificacion.MisArticulos.Add(_Articulo);
+
+            _User.MisLeyes.Where(w => w.CodigoLey == _Leyes.CodigoLey).SingleOrDefault().Clasificaciones.Add(clasificacion);
+
+            try
+            {
 
                 manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
 
-                try
+                if (manejadorDeUsuarioAplicacion.Modificar(_User))
                 {
-
-                    if (manejadorDeUsuarioAplicacion.Modificar(_User))
-                    {
-                        DisplayAlert("Hecho","Agregada satisfactoriamente", "OK");
-                        App.masterDetail.IsPresented = false;
-                        App.masterDetail.Detail = new NavigationPage(new ViewsMisClasificaciones(_User, null,_Leyes));
-                    }
-                    else
-                    {
-                        DisplayAlert("Error","No se pudo completar la operación", "OK");
-
-                    }
-
+                    DisplayAlert("Hecho", "Agregada satisfactoriamente", "OK");
+                    App.masterDetail.IsPresented = false;
+                    App.masterDetail.Detail = new NavigationPage(new ViewsMisClasificaciones(_User, null, _Leyes));
                 }
-                catch
+                else
                 {
-
-                    return;
+                    DisplayAlert("Error", "No se pudo completar la operación", "OK");
                 }
+
+            }
+            catch
+            {
+                return;
             }
 
 
