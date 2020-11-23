@@ -23,23 +23,18 @@ namespace IURIS.MOVIL.Detail
     {
 
 
-        public Usuarios usuario;
+        public Usuarios _Usuario;
         Leyes _Ley;
         public ViewDetail(Usuarios usuarios)
         {
             InitializeComponent();
-            this.usuario = usuarios;
-            this.BindingContext = _Ley;
-
-            
+            _Usuario = usuarios;
             DatosAInicializar();
-            //MostrarSearch(false);
         }
 
         private void DatosAInicializar()
         {
-            //_Ley = usuario.MisLeyes.Where(e => e.CodigoLey == "cnpp1").SingleOrDefault();
-            _Ley = usuario.MisLeyes.Where(e => e.CodigoLey == usuario.MiUltimaLeyCargada).SingleOrDefault();
+            _Ley = _Usuario.MisLeyes.Where(e => e.CodigoLey == _Usuario.MiUltimaLeyCargada).SingleOrDefault();
             lblTitle.Text = _Ley.NombreLey;
             lblCodigo.Text = _Ley.CodigoLey;
             ActualizarDatos(_Ley.ListaDeTitulos);
@@ -49,8 +44,6 @@ namespace IURIS.MOVIL.Detail
 
         private void ActualizarDatos(List<Titulo> _MiLista)
         {
-            ClltionTitulos.SelectedItem = null;
-
             ClltionTitulos.ItemsSource = null;
             ClltionTitulos.ItemsSource = _MiLista;
         }
@@ -62,41 +55,31 @@ namespace IURIS.MOVIL.Detail
             IMGBuscador.IsVisible = !v;
             lblNumResultados.IsVisible = v;
             lblNumResultados.Text = null;
-            //SearchViewDetail.IsVisible = v;
         }
 
         private async void ClltionTitulos_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
             Titulo titulo = ClltionTitulos.SelectedItem as Titulo;
-            if (titulo != null)
-            {
+            if (titulo == null) return;
 
                 MostrarSearch(false);
-                await Navigation.PushAsync(new PageMotrarCapitulosConCodigos(titulo, usuario, _Ley), false);
+                await Navigation.PushAsync(new PageMotrarCapitulosConCodigos(titulo, _Usuario, _Ley), false);
 
                 ClassMostrarP_Cmpra _Cmpra = new ClassMostrarP_Cmpra();
-                if (_Cmpra.MostrarPantalla())
-                {
-                    await PopupNavigation.Instance.PushAsync(new WindowOfMembresiaPlatino());
-                }
 
-            }
-            //Navigation.PushAsync(new PageCapitulos(titulo));
+                if (_Cmpra.MostrarPantalla()) await PopupNavigation.Instance.PushAsync(new WindowOfMembresiaPlatino());
         }
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
-            //Navigation.PushAsync(new ViewBuscador(Ley), true);
             MostrarSearch(true);
-
         }
 
 
         private void BuscarTexto(TextChangedEventArgs TextChange)
         {
-            if (SearchViewDetailTitle.Text != null)
-            {
+            if (SearchViewDetailTitle.Text == null) return;
 
             List<Titulo> titulos = new List<Titulo>();
 
@@ -104,8 +87,6 @@ namespace IURIS.MOVIL.Detail
 
             ActualizarDatos(titulos);
             lblNumResultados.Text = TextChange.NewTextValue == "" ? "" : titulos.Count.ToString();
-            }
-
 
         }
 
@@ -120,33 +101,5 @@ namespace IURIS.MOVIL.Detail
             MostrarSearch(false);
             SearchViewDetailTitle.Text = null;
         }
-
-        //private void ListTitulos_ItemSelected(object sender, SelectedItemChangedEventArgs e)
-        //{
-        //    var detali = e.SelectedItem as Titulo;
-        //    if (ListTitulos.HasUnevenRows == false)
-        //    {
-        //        ListTitulos.HasUnevenRows = true;
-        //    }
-        //    else
-        //    {
-        //        ListTitulos.HasUnevenRows = false;
-        //    }
-        //}
-
-        //private void ListTitulos_ItemTapped(object sender, ItemTappedEventArgs e)
-        //{
-        //    var detali = e.Item as Titulo;
-        //    if (ListTitulos.HasUnevenRows == false)
-        //    {
-        //        ListTitulos.HasUnevenRows = true;
-        //    }
-        //    else
-        //    {
-        //        ListTitulos.HasUnevenRows = false;
-        //    }
-
-
-        //}
     }
 }

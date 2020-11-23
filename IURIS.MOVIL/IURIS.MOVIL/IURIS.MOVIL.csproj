@@ -108,5 +108,8 @@
     <EmbeddedResource Update="Views\ViewsVentanasEmergentes\WindowOfMembresiaPlatino.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\ViewsVentanasEmergentes\WindowOfMenuAccion.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

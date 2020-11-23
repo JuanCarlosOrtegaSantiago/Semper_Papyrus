@@ -42,8 +42,8 @@
         </FlexLayout>
     </NavigationPage.TitleView>
 
-    <ContentPage.Resources>
-        <Style TargetType="ContentPage">
+    <!--<ContentPage.Resources>
+        <Style TargetType="CollectionView" x:Key="colection" x:Name="colectionview" >
             <Setter Property="VisualStateManager.VisualStateGroups">
                 <VisualStateGroupList>
                     <VisualStateGroup x:Name="CommonStates">
@@ -51,18 +51,17 @@
                         <VisualState x:Name="Selected">
                             <VisualState.Setters>
                                 <Setter Property="BackgroundColor"
-                                        Value="LightSkyBlue" />
+                                        Value="LightSkyBlue"/>
                             </VisualState.Setters>
                         </VisualState>
                     </VisualStateGroup>
                 </VisualStateGroupList>
             </Setter>
         </Style>
-    </ContentPage.Resources>
+    </ContentPage.Resources>-->
 
     <ContentPage.Content>
-
-        <CollectionView x:Name="ClltionTitulos" SelectionMode="Single" ItemsSource="{Binding Titulo}" SelectionChanged="ClltionTitulos_SelectionChanged">
+        <CollectionView x:Name="ClltionTitulos" SelectionMode="Single" ItemsSource="{Binding Titulo}" SelectionChanged="ClltionTitulos_SelectionChanged" Style="{StaticResource colection}" b>
             <CollectionView.EmptyView>
                 <StackLayout>
                     <Label FontAttributes="Bold"  FontSize="Large" HorizontalOptions="Center" Style="{StaticResource TextoAMostrarColorRojo}">No se encontraron datos</Label>
@@ -88,26 +87,5 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-
-        <!--<pv:PancakeView HorizontalOptions="End" VerticalOptions="End" Margin="30" Padding="10" CornerRadius="15">
-                <pv:PancakeView.BackgroundGradientStops>
-                    <pv:GradientStopCollection>
-                        <pv:GradientStop Color="White" Offset="0"/>
-                        <pv:GradientStop Color="White" Offset="1"/>
-                    </pv:GradientStopCollection>
-                </pv:PancakeView.BackgroundGradientStops>
-                <Expander Rotation="180" HorizontalOptions="Start" VerticalOptions="End">
-                    <Expander.Header>
-                        <Image Source="Mas.png" WidthRequest="30" HeightRequest="30" Rotation="180"/>
-                    </Expander.Header>
-                    <StackLayout>
-                        <Image Source="Admin.png" HeightRequest="20" WidthRequest="20" BackgroundColor="Transparent" Rotation="180"/>
-                        <Image Source="EditarPerfil.png" HeightRequest="20" WidthRequest="20" BackgroundColor="Transparent" Rotation="180"/>
-                        <Image Source="Usuarios.png" HeightRequest="20" WidthRequest="20" BackgroundColor="Transparent" Rotation="180"/>
-                    </StackLayout>
-                </Expander>
-            
-            </pv:PancakeView>-->
-
     </ContentPage.Content>
 </ContentPage>
