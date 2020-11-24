@@ -60,12 +60,8 @@ namespace IURIS.MOVIL.Views
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
 
-            var aser = clltionMiClasificacionPersonalziada.SelectedItems;
-            foreach (var item in aser)
-            {
-                _Clasificacion.MisArticulos.Remove(item as Articulo);
-
-            }
+            var Articulo = clltionMiClasificacionPersonalziada.SelectedItems;
+            foreach (var item in Articulo) _Clasificacion.MisArticulos.Remove(item as Articulo);
 
             manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
 
@@ -75,7 +71,7 @@ namespace IURIS.MOVIL.Views
                 if (manejadorDeUsuarioAplicacion.Modificar(_Usuarios))
                 {
                     await DisplayAlert("Hecho", "Se eliminaron los elementos", "Aceptar");
-                    IMGBasura.IsVisible = true;
+                    IMGBasura.IsVisible = false;
                     ActualizarTabla();
                 }
                 else
@@ -94,10 +90,5 @@ namespace IURIS.MOVIL.Views
 
         }
 
-        //private async void Expander_Tapped(object sender, EventArgs e)
-        //{
-        //            await DisplayAlert("se", "Se selecciono", "Aceptar");
-
-        //}
     }
 }

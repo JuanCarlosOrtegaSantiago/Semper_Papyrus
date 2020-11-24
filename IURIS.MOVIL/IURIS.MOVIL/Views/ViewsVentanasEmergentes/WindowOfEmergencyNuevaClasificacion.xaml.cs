@@ -33,7 +33,7 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
             _Articulo = articulo;
         }
 
-        private void BtnAceptar_Clicked(object sender, EventArgs e)
+        private async void BtnAceptar_Clicked(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(EntryNuevaClasificacion.Text)) return;
 
@@ -57,13 +57,13 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
 
                 if (manejadorDeUsuarioAplicacion.Modificar(_User))
                 {
-                    DisplayAlert("Hecho", "Agregada satisfactoriamente", "OK");
+                    await DisplayAlert("Hecho", "Agregada correctamente", "Ok");
                     App.masterDetail.IsPresented = false;
                     App.masterDetail.Detail = new NavigationPage(new ViewsMisClasificaciones(_User, null, _Leyes));
                 }
                 else
                 {
-                    DisplayAlert("Error", "No se pudo completar la operación", "OK");
+                    await DisplayAlert("Error", "No se pudo completar la operación", "OK");
                 }
 
             }
@@ -73,7 +73,7 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
             }
 
 
-            PopupNavigation.Instance.PopAsync(false);
+            await PopupNavigation.Instance.PopAsync(false);
         }
 
         private void BtnCancelar_Clicked(object sender, EventArgs e)

@@ -7,11 +7,10 @@
              x:Class="IURIS.MOVIL.Views.ViewMiClasificacionPersonalizada">
 
     <NavigationPage.TitleView>
-        <FlexLayout>
+        <FlexLayout Direction="Row">
 
             <Grid ColumnDefinitions="*,Auto" ColumnSpacing="5" >
                 <FlexLayout Grid.Column="0" >
-
                     <local:CustomLabel x:Name="lblTitle" Style="{StaticResource TextoAMostrarColorBlanco}" FontSize="Title"/>
                 </FlexLayout>
 
@@ -28,43 +27,45 @@
     <StackLayout>
         <CollectionView x:Name="clltionMiClasificacionPersonalziada" SelectionMode="Multiple" ItemsSource="{Binding MisArticulos}" Margin="10,5" SelectionChanged="clltionMiClasificacionPersonalziada_SelectionChanged">
             <CollectionView.EmptyView>
-                <StackLayout>
-                    <Label TextColor="Black" FontAttributes="Bold"  FontSize="Large" HorizontalOptions="Center">No se encontraron datos</Label>
-                </StackLayout>
+                    <Label Style="{StaticResource TextoAMostrarColorRojo}" FontAttributes="Bold"  FontSize="Large" HorizontalTextAlignment="Center" Text="No se encontraron datos"/>
             </CollectionView.EmptyView>
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
+                        
                     <pv:PancakeView  HorizontalOptions="FillAndExpand" >
-                        
-                        <Expander HorizontalOptions="Start" VerticalOptions="Center" >
-                        
-                        <Expander.Header>
-                    
-                            <StackLayout Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="Center">
-                                <Image Source="Mas.png" WidthRequest="20" HeightRequest="20" VerticalOptions="Center">
-                                    <Image.Triggers>
-                                        <DataTrigger TargetType="Image" Binding="{Binding Source={RelativeSource AncestorType={x:Type Expander}}, Path=IsExpanded}" Value="True">
-                                            <Setter Property="Source" Value="menos.png"/>
-                                        </DataTrigger>
-                                    </Image.Triggers>
-                                </Image>
-                                    <Label Text="{Binding NumArticulo}" FontSize="17" VerticalOptions="Center" Style="{StaticResource TextoAMostrarColorRojo}" Margin="5,0" FontAttributes="Bold"></Label>
+                        <Grid>
+                            
+                                    <FlexLayout Direction="Row" Margin="40,0,0,0" JustifyContent="Start">
+                                        <Label FlexLayout.Shrink="0" Text="{Binding NumArticulo}" FontSize="17" HorizontalTextAlignment="Start" VerticalOptions="Center" Style="{StaticResource TextoAMostrarColorRojo}" FontAttributes="Bold"/>
 
-                                    <local:CustomLabel Text="{Binding NombreArticulo}" FontSize="16" Style="{StaticResource TextoAMostrarColorRojo}" VerticalOptions="Center" FontAttributes="Bold"></local:CustomLabel>
-                            </StackLayout>
-                        
-                        </Expander.Header>
+                                        <Label Text="{Binding NombreArticulo}" FontSize="16" Style="{StaticResource TextoAMostrarColorRojo}" HorizontalTextAlignment="Start" VerticalOptions="Center" FontAttributes="Bold" Margin="5,0"/>
+
+                                    </FlexLayout>
+                        <Expander HorizontalOptions="Start" VerticalOptions="Center" >
+
+                            <Expander.Header>
+
+                                <StackLayout Orientation="Horizontal">
+                                    <Image Source="Mas.png" WidthRequest="30" HeightRequest="30" FlexLayout.Shrink="0" HorizontalOptions="Start">
+                                        <Image.Triggers>
+                                            <DataTrigger TargetType="Image" Binding="{Binding Source={RelativeSource AncestorType={x:Type Expander}}, Path=IsExpanded}" Value="True">
+                                                <Setter Property="Source" Value="menos.png"/>
+                                            </DataTrigger>
+                                        </Image.Triggers>
+                                    </Image>
+                                </StackLayout>
+
+                            </Expander.Header>
                             <Expander.Content>
-                                
-                        <StackLayout>
-                            <local:CustomLabel Text="{Binding Contenido}" FontSize="Subtitle" Style="{StaticResource TextoAMostrarColorRojo}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,10"></local:CustomLabel>
-                        </StackLayout>
+
+                                <Label Text="{Binding Contenido}" FontSize="Subtitle" Style="{StaticResource TextoAMostrarColorRojo}" Margin="0,20"/>
                             </Expander.Content>
-                    
-                    </Expander>
+
+                        </Expander>
+                        </Grid>
                     </pv:PancakeView>
 
                 </DataTemplate>

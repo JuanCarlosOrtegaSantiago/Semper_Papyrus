@@ -41,13 +41,8 @@ namespace IURIS.MOVIL.Views
 
         private void DatosAInicializar(Usuarios usuarios)
         {
-
-
             _User = manejadorDeUsuarioAplicacion.EncontrarUsuario(usuarios.Correo, usuarios.Contrasenia);
-
-
             ActualizarDatos();
-
         }
 
 
@@ -68,34 +63,50 @@ namespace IURIS.MOVIL.Views
             if (_Articulo != null)
             {
 
-                clasificacion.MisArticulos.Add(_Articulo);
-
-                manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
-
-                try
+                if (!(clasificacion.MisArticulos.Where(w => w.NumArticulo == _Articulo.NumArticulo).Count() >= 1))
                 {
 
-                    if (manejadorDeUsuarioAplicacion.Modificar(_User))
+
+                    clasificacion.MisArticulos.Add(_Articulo);
+
+                    manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
+
+                    try
                     {
-                        await DisplayAlert("Hecho", "Agregado correctamente", "Aceptar");
-                        _Articulo = null;
+
+                        if (manejadorDeUsuarioAplicacion.Modificar(_User))
+                        {
+                            await DisplayAlert("Hecho", "Agregada correctamente", "Ok");
+                            _Articulo = null;
+                        }
+                        else
+                        {
+
+                            await DisplayAlert("Error", "Por favor intenta mas tarde", "Ok");
+                        }
+
                     }
-                    else
+                    catch (Exception ex)
                     {
 
-                        await DisplayAlert("Error", "Por favor intenta mas tarde", "Aceptar");
+                        await DisplayAlert("Error", "Por el momento no se peude agregar su clasificacion\n por favor intente mas tarde\nError:" + ex.Message, "Aceptar");
+                        return;
                     }
-
-                }
-                catch (Exception ex)
-                {
-
-                    await DisplayAlert("Error", "Por el momento no se peude agregar su clasificacion\n por favor intente mas tarde\nError:" + ex.Message, "Aceptar");
-                    return;
                 }
 
             }
                 await Navigation.PushAsync(new ViewMiClasificacionPersonalizada(clasificacion, _User, _Leyes), false);
+        }
+
+        private void SwipeItemView_Invoked(object sender, EventArgs e)
+        {
+            var MiClasificacion = ((SwipeItemView)sender).BindingContext as ClasificacionPUsuario;
+
+            if (MiClasificacion == null) return;
+            _User.MisLeyes.Where(w => w.CodigoLey == _Leyes.CodigoLey).SingleOrDefault().Clasificaciones.Remove(MiClasificacion);
+
+            if (!manejadorDeUsuarioAplicacion.Modificar(_User)) return;
+            ActualizarDatos();
         }
     }
 }
