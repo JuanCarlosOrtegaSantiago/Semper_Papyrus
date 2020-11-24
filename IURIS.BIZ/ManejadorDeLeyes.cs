@@ -38,7 +38,7 @@ namespace IURIS.BIZ
 
         public Leyes BuscarPorCodigo(string codigo)
         {
-            return Listar.Where(e => e.CodigoLey == codigo).SingleOrDefault();
+            return Listar.Where(e => e.CodigoLey.ToUpperInvariant().Equals(codigo)).SingleOrDefault();
         }
 
         public Leyes BuscarPorID(ObjectId Id)

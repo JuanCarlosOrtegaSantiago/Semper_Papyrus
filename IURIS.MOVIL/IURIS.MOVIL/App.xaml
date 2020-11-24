@@ -8,7 +8,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <Color x:Key="PrimaryColor">#640404</Color>
-            <Color x:Key="ColorTexto">#650606</Color>
+            <Color x:Key="ColorTexto">#640404</Color>
             <Color x:Key="SecundaryColor">#c40505</Color>
 
             <Style x:Key="TextoAMostrarColorBlanco" TargetType="Label">
