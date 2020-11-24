@@ -39,10 +39,6 @@
                 <Setter Property="Direction" Value="Column"/>
                 <Setter Property="AlignItems" Value="Stretch"/>
                 <Setter Property="JustifyContent" Value="SpaceEvenly"/>
-                
-                
-                <!--<Setter Property="AlignContent" Value="Center"/>-->
-                <!--<Setter Property="BackgroundColor" Value="{StaticResource PrimaryColor}"/>-->
             </Style>
 
             <Style x:Key="EntryCrearCuenta" TargetType="Entry">
@@ -92,9 +88,8 @@
             </Style>
 
         </ResourceDictionary>
-        <!--BarBackgroundColor = Color.FromHex("#ff5300")-->
+        
         <ResourceDictionary>
-            <!--Global Styles-->
             <Color x:Key="NavigationPrimary">#640404</Color>
             <Style TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor" Value="{StaticResource NavigationPrimary}" />

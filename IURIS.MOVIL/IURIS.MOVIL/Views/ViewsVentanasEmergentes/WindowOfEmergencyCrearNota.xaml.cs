@@ -28,9 +28,9 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
         readonly Leyes _Ley;
         readonly Capitulo _Capitulo;
 
-        Titulo _titulo = null;
-        Capitulo _capitulo = null;
-        Articulo _articulo = null;
+        //Titulo _titulo = null;
+        //Capitulo _capitulo = null;
+        //Articulo _articulo = null;
 
         public WindowOfEmergencyCrearNota(Titulo titulo, Usuarios usuarios, Articulo articulo,Leyes ley, Capitulo capitulo)
         {
@@ -49,8 +49,16 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
 
         private void DatosAInicializar()
         {
-            if (_Articulo.NotaAdjunta)
+            if (!_Articulo.NotaAdjunta) return;
+
                 EntryNombreApunte.Text = _Articulo.TextoDeNota;
+                MostarBotonEliminar(true);
+        }
+
+        private void MostarBotonEliminar(bool v)
+        {
+            BtnCancelar.IsVisible = !v;
+            BtnEliminar.IsVisible = v;
         }
 
         private void BtnCancelar_Clicked(object sender, EventArgs e)
@@ -60,30 +68,44 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
 
         private void BtnGuardar_Clicked(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(EntryNombreApunte.Text))
+            if (string.IsNullOrWhiteSpace(EntryNombreApunte.Text)) return;
+
+            //List<Titulo> titulos = (List<Titulo>)_Ley.ListaDeTitulos;
+            //_titulo = (Titulo)titulos.Find(i => i.NumTitulo == _Titulo.NumTitulo);
+
+            //List<Capitulo> capitulos = _titulo.ListaCapitulos as List<Capitulo>;
+            //_capitulo = capitulos.Find(i => i.NumCapitulo == _Capitulo.NumCapitulo) as Capitulo;
+
+            //List<Articulo> articulos = _capitulo.ListaArticulos as List<Articulo>;
+
+            //_articulo = articulos.Find(i => i.NumArticulo == _Articulo.NumArticulo) as Articulo;
+
+            if (!EntryNombreApunte.Text.Equals(_Articulo.TextoDeNota))
             {
-                List<Titulo> titulos = (List<Titulo>)_Ley.ListaDeTitulos;
-                _titulo = (Titulo)titulos.Find(i => i.NumTitulo == _Titulo.NumTitulo);
 
-                List<Capitulo> capitulos = _titulo.ListaCapitulos as List<Capitulo>;
-                _capitulo = capitulos.Find(i => i.NumCapitulo == _Capitulo.NumCapitulo) as Capitulo;
-
-                List<Articulo> articulos = _capitulo.ListaArticulos as List<Articulo>;
-
-                _articulo = articulos.Find(i => i.NumArticulo == _Articulo.NumArticulo) as Articulo;
-                
-                _articulo.NotaAdjunta = true;
-            _articulo.TextoDeNota = EntryNombreApunte.Text;
+                _Articulo.NotaAdjunta = true;
+                _Articulo.TextoDeNota = EntryNombreApunte.Text;
 
                 //int NumIndex= _User.MisLeyes.IndexOf(_LeyCopia);
                 //_User.MisLeyes.RemoveAt(NumIndex);
                 //_User.MisLeyes.Insert(NumIndex,_Ley);
-                if (manejadorDeUsuarioAplicacion.Modificar(_User)) {
-
-                    PopupNavigation.Instance.PopAsync(false);
-                }
-
+                if (!manejadorDeUsuarioAplicacion.Modificar(_User)) return;
             }
+
+
+            PopupNavigation.Instance.PopAsync(false);
+
+        }
+
+        private void BtnEliminar_Clicked(object sender, EventArgs e)
+        {
+            _Articulo.NotaAdjunta = false;
+            _Articulo.TextoDeNota = null;
+
+            if (!manejadorDeUsuarioAplicacion.Modificar(_User)) return;
+
+            PopupNavigation.Instance.PopAsync(false);
+
         }
     }
 }
