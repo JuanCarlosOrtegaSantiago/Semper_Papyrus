@@ -26,7 +26,6 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
         IManejadorDeUsuarioAplicacion manejadorDeUsuarioAplicacion;
         
         Usuarios _User;
-        //Leyes _LeyeComprada;
 
         public ViewCargarLey(Usuarios usuarios)
         {

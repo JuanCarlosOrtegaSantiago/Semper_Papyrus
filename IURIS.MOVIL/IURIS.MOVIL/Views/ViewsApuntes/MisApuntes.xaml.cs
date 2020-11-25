@@ -31,8 +31,7 @@ namespace IURIS.MOVIL.Views
             _Apunte = apunte;
             _ApunteCopia = apunte;
 
-            if (_Apunte != null)
-                TxtMiApunte.Text = apunte.MiApunte;
+            if (_Apunte != null) TxtMiApunte.Text = apunte.MiApunte;
         }
 
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
@@ -42,28 +41,23 @@ namespace IURIS.MOVIL.Views
 
         private async void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(TxtMiApunte.Text))
+            if (string.IsNullOrWhiteSpace(TxtMiApunte.Text)) return;
+
+            if (_Apunte != null)
             {
-                if (_Apunte != null)
-                {
-                    _User.Apuntes.Remove(_ApunteCopia);
-                    _Apunte.MiApunte = TxtMiApunte.Text;
-                    _User.Apuntes.Add(_Apunte);
-                    manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
-                    if (manejadorDeUsuarioAplicacion.Modificar(_User))
-                        TxtMiApunte.Text = null;
+                if (_Apunte.MiApunte.Equals(TxtMiApunte.Text)) return;
 
-                }
-                else
-                {
+                _Apunte.MiApunte = TxtMiApunte.Text;
+                manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
+                if (!manejadorDeUsuarioAplicacion.Modificar(_User)) await DisplayAlert("Error", "Intenta mas tarde", "Aceptar");
 
-                WindowOfEmergencyNombreDeApunte pantalla = new WindowOfEmergencyNombreDeApunte(_User, TxtMiApunte.Text);
-                await PopupNavigation.Instance.PushAsync(pantalla);
-                }
+                TxtMiApunte.Text = null;
             }
             else
             {
-                await DisplayAlert("", "No tienes ningun texto ingresado", "Ok");
+
+                WindowOfEmergencyNombreDeApunte pantalla = new WindowOfEmergencyNombreDeApunte(_User, TxtMiApunte.Text);
+                await PopupNavigation.Instance.PushAsync(pantalla);
             }
         }
     }

@@ -1,5 +1,8 @@
-﻿using IURIS.COMMON.Entidades.UsuariosDeAplicacion;
+﻿using IURIS.BIZ;
+using IURIS.COMMON.Entidades.UsuariosDeAplicacion;
 using IURIS.COMMON.Entidades.UsuariosDeAplicacion.ComponentesDeUsuario;
+using IURIS.COMMON.Interfaces;
+using IURIS.DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,11 +18,12 @@ namespace IURIS.MOVIL.Views.ViewsApuntes
     public partial class ViewsMisApuntes : ContentPage
     {
         readonly Usuarios _User;
+        IManejadorDeUsuarioAplicacion manejadorDeUsuarioAplicacion;
         
         public ViewsMisApuntes(Usuarios usuarios)
         {
             InitializeComponent();
-
+            manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
             _User = usuarios;
 
             DatosAInicializar();
@@ -39,12 +43,24 @@ namespace IURIS.MOVIL.Views.ViewsApuntes
         private void clltionApuntes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Apunte apunte = (Apunte)clltionApuntes.SelectedItem;
-            if (apunte != null)
-            {
+            if (apunte == null) return;
+
                 App.masterDetail.IsPresented = false;
-                //MisApuntes misApuntes = new MisApuntes(_User, apunte);
                 App.masterDetail.Detail = new NavigationPage(new MisApuntes(_User, apunte));
-            }
+        }
+
+        private void SwipeItemView_Invoked(object sender, EventArgs e)
+        {
+            var MiApunte = ((SwipeItemView)sender).BindingContext as Apunte;
+
+            if (MiApunte == null) return;
+
+            _User.Apuntes.Remove(MiApunte);
+
+            if (!manejadorDeUsuarioAplicacion.Modificar(_User)) return;
+
+            DisplayAlert("", "Se elimino el apunte", "Ok");
+            LlenadosDeCampos();
         }
     }
 }

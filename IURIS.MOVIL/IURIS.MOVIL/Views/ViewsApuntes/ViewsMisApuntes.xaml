@@ -5,40 +5,28 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="IURIS.MOVIL.Views.ViewsApuntes.ViewsMisApuntes" Title="Apuntes guardados">
-    <StackLayout>
-        <Grid RowSpacing="0">
+    
+    <CollectionView x:Name="clltionApuntes" SelectionMode="Single" ItemsSource="{Binding Apuntes}" SelectionChanged="clltionApuntes_SelectionChanged">
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-            </Grid.RowDefinitions>
-            <!--<StackLayout Grid.Row="0" BackgroundColor="{StaticResource PrimaryColor}">
-                <RowDefinition Height="50"/>
-
-                <Label Margin="10,0" FontSize="Title" VerticalOptions="Center" Style="{StaticResource TextoAMostrarColorBlanco}" HorizontalOptions="Center">Apuntes guardados</Label>
-            </StackLayout>-->
-
-            <CollectionView x:Name="clltionApuntes" Grid.Row="0" SelectionMode="Single" ItemsSource="{Binding Apuntes}" SelectionChanged="clltionApuntes_SelectionChanged">
-
-                <CollectionView.EmptyView>
-                    <StackLayout>
-                        <Label FontAttributes="Italic" FontSize="Large" HorizontalOptions="Center" Style="{StaticResource TextoAMostrarColorRojo}">Aun no tienes ninguna clasificación</Label>
-
-                    </StackLayout>
-                </CollectionView.EmptyView>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="50"/>
-                            </Grid.RowDefinitions>
-
-                            <Label Text="{Binding Nombre}" Style="{StaticResource TextoAMostrarColorRojo}" FontSize="Title" VerticalOptions="Center" Padding="15,10"></Label>
-
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </Grid>
-
-    </StackLayout>
+        <CollectionView.EmptyView>
+            <Label FontAttributes="Italic" FontSize="Large" HorizontalTextAlignment="Center" Style="{StaticResource TextoAMostrarColorRojo}" Text="Aun no tienes ninguna clasificación"/>
+        </CollectionView.EmptyView>
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <SwipeView>
+                    <SwipeView.RightItems>
+                        <SwipeItems Mode="Reveal" >
+                            <SwipeItemView Invoked="SwipeItemView_Invoked" BackgroundColor="{StaticResource PrimaryColor}" IsTabStop="True">
+                                <Grid WidthRequest="120" RowDefinitions="*, auto" Padding="5" RowSpacing="0">
+                                    <Image Grid.Row="0" HorizontalOptions="Center" Source="BBasura.png" Aspect="AspectFit" Margin="0,2,0,0"></Image>
+                                    <Label Grid.Row="1" HorizontalOptions="Center" Text="Eliminar" Style="{StaticResource TextoAMostrarColorBlanco}"></Label>
+                                </Grid>
+                            </SwipeItemView>
+                        </SwipeItems>
+                    </SwipeView.RightItems>
+                    <Label Text="{Binding Nombre}" HeightRequest="50" Style="{StaticResource TextoAMostrarColorRojo}" FontSize="Title" VerticalOptions="Center" Padding="15,10"></Label>
+                </SwipeView>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
 </ContentPage>

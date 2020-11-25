@@ -7,37 +7,25 @@
              x:Class="IURIS.MOVIL.Views.MisApuntes" Title="Mis Apuntes">
 
     <NavigationPage.TitleView>
-            <Grid ColumnDefinitions="Auto,*" >
-                <Label Grid.Column="0" Style="{StaticResource TextoAMostrarColorBlanco}" Text="Apuntes" FontSize="Title" HorizontalTextAlignment="Center" HorizontalOptions="Start" VerticalOptions="Center"/>
+        <Grid ColumnDefinitions="Auto,*" >
+            <Label Grid.Column="0" Style="{StaticResource TextoAMostrarColorBlanco}" Text="Apuntes" FontSize="Title" HorizontalTextAlignment="Center" HorizontalOptions="Start" VerticalOptions="Center"/>
             <StackLayout Orientation="Horizontal" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Center">
-                <Image x:Name="IMGGuardar" Source="IconGuardar.png" WidthRequest="20" HorizontalOptions="End" VerticalOptions="Center" HeightRequest="20" Margin="10,0" >
+                <Image x:Name="IMGGuardar" Source="IconGuardar.png" WidthRequest="25" HeightRequest="25" HorizontalOptions="End" VerticalOptions="Center">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
                     </Image.GestureRecognizers>
                 </Image>
-                <Image x:Name="IMGTresPuntos" Source="Tres_puntos.png" WidthRequest="20" HorizontalOptions="End" VerticalOptions="Center" HeightRequest="20" Margin="10,0,20,0">
+                <Image x:Name="IMGTresPuntos" Source="Tres_puntos.png" WidthRequest="25" HeightRequest="25" HorizontalOptions="End" VerticalOptions="Center" Margin="20,0">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
                     </Image.GestureRecognizers>
                 </Image>
             </StackLayout>
-            </Grid>
+        </Grid>
     </NavigationPage.TitleView>
 
-    <ContentPage.Content>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition />
-            </Grid.RowDefinitions>
-
-            <StackLayout Grid.Row="0" Margin="0,20,0,0" HorizontalOptions="Center">
-            <Label Style="{StaticResource TextoAMostrarColorRojo}"  VerticalOptions="Center" FontSize="Title" FontAttributes="Bold">MIS APUNTES</Label>
-                
-            </StackLayout>
-            <StackLayout Grid.Row="1" Margin="10">
-                <Local:CustomEditor x:Name="TxtMiApunte" Placeholder="Escribe tus ideas..." PlaceholderColor="{StaticResource ColorTexto}" TextColor="{StaticResource ColorTexto}" AutoSize="TextChanges" MaxLength="2000" ></Local:CustomEditor>
-            </StackLayout>
-        </Grid>
-    </ContentPage.Content>
+    <FlexLayout JustifyContent="Start">
+        <Label Style="{StaticResource TextoAMostrarColorRojo}" HorizontalTextAlignment="Center" VerticalOptions="Center" FontSize="Title" FontAttributes="Bold" Margin="0,20" Text="MIS APUNTES"/>
+        <Local:CustomEditor x:Name="TxtMiApunte" Placeholder="Escribe tus ideas..." PlaceholderColor="{StaticResource ColorTexto}" TextColor="{StaticResource ColorTexto}" AutoSize="TextChanges" MaxLength="2000" Margin="20,0"/>
+    </FlexLayout>
 </ContentPage>
