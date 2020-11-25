@@ -28,10 +28,6 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
         readonly Leyes _Ley;
         readonly Capitulo _Capitulo;
 
-        //Titulo _titulo = null;
-        //Capitulo _capitulo = null;
-        //Articulo _articulo = null;
-
         public WindowOfEmergencyCrearNota(Titulo titulo, Usuarios usuarios, Articulo articulo,Leyes ley, Capitulo capitulo)
         {
             InitializeComponent();

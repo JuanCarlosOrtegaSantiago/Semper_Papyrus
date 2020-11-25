@@ -7,7 +7,7 @@
            BorderColor="White"
            HasShadow="True"
            IsClippedToBounds="True"
-           Padding="6"
+           Padding="2"
            Margin="20"
            HorizontalOptions="FillAndExpand"
            VerticalOptions="CenterAndExpand"
@@ -15,30 +15,15 @@
 
         <Grid RowDefinitions="auto,auto,auto,*,auto" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
             <Image Grid.Row="0" Source="Logo.png" WidthRequest="100" HeightRequest="100"/>
-            <Label Grid.Row="1" Style="{StaticResource TextoAMostrarColorBlanco}" HorizontalOptions="Center" FontSize="Title" FontAttributes="Bold">IURIS</Label>
-            <Label x:Name="lblNoCuentas" Grid.Row="2" Style="{StaticResource TextoAMostrarColorBlanco}" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontSize="Large" FontAttributes="Italic"></Label>
-            <Label x:Name="lblContent" Grid.Row="3" Style="{StaticResource TextoAMostrarColorBlanco}" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontSize="30" FontAttributes="Bold"></Label>
-            <Frame Grid.Row="4" BorderColor="White"  
-                    HasShadow="False"
-                    IsClippedToBounds="True"
-                    Padding="2"
-                   Margin="20"
-                   HorizontalOptions="FillAndExpand" >
+            <Label Grid.Row="1" Style="{StaticResource TextoAMostrarColorBlanco}" HorizontalTextAlignment="Center" FontSize="Title" FontAttributes="Bold">IURIS</Label>
+            <Label x:Name="lblNoCuentas" Grid.Row="2" Style="{StaticResource TextoAMostrarColorBlanco}" HorizontalTextAlignment="Center" FontSize="Large" FontAttributes="Italic"></Label>
+            <Label x:Name="lblContent" Grid.Row="3" Style="{StaticResource TextoAMostrarColorBlanco}" HorizontalTextAlignment="Center" FontSize="30" FontAttributes="Bold"></Label>
 
-                <StackLayout Orientation="Horizontal" Spacing="-1" BackgroundColor="{StaticResource PrimaryColor}" >
-                    <Button x:Name="BtnAceptar" Text="Aceptar" Style="{StaticResource buttonPrincipal}" FontSize="Large" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"></Button>
-
-                    <Frame WidthRequest="1"  Padding="0.5"
-                           HasShadow="False"
-                           IsClippedToBounds="True"
-                           BackgroundColor="{StaticResource SecundaryColor}"
-                           />
-                    <Button x:Name="BtnCancelar" Text="Cancelar" Style="{StaticResource buttonPrincipal}" FontSize="Large" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Clicked="BtnCancelar_Clicked"></Button>
-
-                </StackLayout>
-            </Frame>
-            <!--<Button x:Name="BtnGuardar" Grid.Row="1" Grid.Column="0" Text="Guardar" BackgroundColor="White" TextColor="{StaticResource  ColorTexto}" HorizontalOptions="Start" Margin="20,0" Clicked="BtnGuardar_Clicked"></Button>
-            <Button x:Name="BtnCancelar" Grid.Row="1" Grid.Column="1" Text="Cancelar" BackgroundColor="White" TextColor="{StaticResource  ColorTexto}" HorizontalOptions="End" Margin="20,0" Clicked="BtnCancelar_Clicked"></Button>-->
+            <Grid ColumnSpacing="-1.5" ColumnDefinitions="*,*" Grid.Row="4" Margin="-5">
+                <Button Grid.Column="0" x:Name="BtnAceptar" Text="Aceptar" Style="{StaticResource buttonPrincipal}" FontSize="Large" ></Button>
+                <Button Grid.Column="1" x:Name="BtnCancelar" Text="Cancelar" Style="{StaticResource buttonPrincipal}" FontSize="Large" Clicked="BtnCancelar_Clicked"></Button>
+            </Grid>
+            
         </Grid>
     </Frame>
 

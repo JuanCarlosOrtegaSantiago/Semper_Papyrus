@@ -37,13 +37,11 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
         {
             await PopupNavigation.Instance.PopAsync(false);
             await PopupNavigation.Instance.PushAsync(new WindowOfEmergencyCrearNota(_Titulo, _User, _Articulo, _Ley, _Capitulo), false);
-
         }
 
         private async void LblClasificacionPersonalizada(object sender, EventArgs e)
         {
             App.masterDetail.Detail = new NavigationPage(new ViewsMisClasificaciones(_User, _Articulo,_Ley));
-            //await Navigation.PushAsync(new ViewsMisClasificaciones(_User, _Articulo));
             await PopupNavigation.Instance.PopAsync(false);
         }
     }

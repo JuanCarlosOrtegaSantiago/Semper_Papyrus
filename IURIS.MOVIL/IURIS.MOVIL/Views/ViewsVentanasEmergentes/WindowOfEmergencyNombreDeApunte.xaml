@@ -5,42 +5,19 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:Local="clr-namespace:IURIS.MOVIL.Modelos_y_clases"
              mc:Ignorable="d"
              x:Class="IURIS.MOVIL.Views.ViewsVentanasEmergentes.WindowOfEmergencyNombreDeApunte">
-    
+
     <Frame BackgroundColor="{StaticResource PrimaryColor}"
-           Margin="24"
+           Margin="20"
            Padding="12"
            HorizontalOptions="Center"
            VerticalOptions="Center"
            CornerRadius="5">
-        <Grid RowDefinitions="*,auto" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="-1">
-            <Local:CustomEntry x:Name="EntryNombreApunte" Grid.Row="0" Placeholder="Nombre del apunte" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start" Style="{StaticResource EntryCrearCuenta}" Completed="BtnGuardar_Clicked"></Local:CustomEntry>
-            <Frame Grid.Row="1" BorderColor="White"  
-                    HasShadow="False"
-                    IsClippedToBounds="True"
-                    Padding="0,1,0,0">
-
-                <StackLayout Orientation="Horizontal" Spacing="-1" BackgroundColor="{StaticResource PrimaryColor}" >
-                    <Frame Grid.Row="1" BorderColor="White"  
-                           HasShadow="False"
-                           IsClippedToBounds="True"
-                           Padding="0,0,1,0" 
-                           HorizontalOptions="EndAndExpand" VerticalOptions="Center"
-                           BackgroundColor="{StaticResource PrimaryColor}">
-
-                        <Button x:Name="BtnGuardar" Text="Guardar" Style="{StaticResource buttonPrincipal}" Clicked="BtnGuardar_Clicked" ></Button>
-                    </Frame>
-
-                    <Frame Grid.Row="1" BorderColor="White"  
-                           HasShadow="False"
-                           IsClippedToBounds="True"
-                           Padding="1,0,0,0" 
-                           HorizontalOptions="StartAndExpand" VerticalOptions="Center">
-
-                        <Button x:Name="BtnCancelar" Text="Cancelar" Style="{StaticResource buttonPrincipal}" Clicked="BtnCancelar_Clicked" ></Button>
-
-                    </Frame>
-                </StackLayout>
-            </Frame>
-        </Grid>
+        <StackLayout>
+            <Local:CustomEntry x:Name="EntryNombreApunte" Placeholder="Nombre del apunte" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start" Style="{StaticResource EntryCrearCuenta}" Completed="BtnGuardar_Clicked"/>
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="-1.5" Margin="-5" >
+                <Button Grid.Column="0" x:Name="BtnGuardar" Text="Guardar" Style="{StaticResource buttonPrincipal}" Clicked="BtnGuardar_Clicked"/>
+                <Button Grid.Column="1" x:Name="BtnCancelar" Text="Cancelar" Style="{StaticResource buttonPrincipal}" Clicked="BtnCancelar_Clicked"/>
+            </Grid>
+        </StackLayout>
     </Frame>
 </Pages:PopupPage>

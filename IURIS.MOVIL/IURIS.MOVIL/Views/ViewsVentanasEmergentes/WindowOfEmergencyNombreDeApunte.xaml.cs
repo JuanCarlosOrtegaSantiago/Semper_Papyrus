@@ -39,26 +39,22 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
 
         private async void BtnGuardar_Clicked(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(EntryNombreApunte.Text))
+            if (string.IsNullOrEmpty(EntryNombreApunte.Text)) return;
+
+            Apunte apunte = new Apunte
             {
-                Apunte apunte = new Apunte
-                {
-                    MiApunte = _TextoApunte,
-                    Nombre = EntryNombreApunte.Text
-                };
+                MiApunte = _TextoApunte,
+                Nombre = EntryNombreApunte.Text
+            };
 
-                _User.Apuntes.Add(apunte);
-                manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
-                if (manejadorDeUsuarioAplicacion.Modificar(_User))
-                {
-                    await DisplayAlert("", "Apunte agregado correctamente", "Ok");
-                    //await Navigation.PushAsync(new ViewsMisApuntes(_User), false);
-                    await PopupNavigation.Instance.PopAsync(false);
-                    App.masterDetail.IsPresented = false;
-                    App.masterDetail.Detail = new NavigationPage(new MisApuntes(_User, null));
-                }
+            _User.Apuntes.Add(apunte);
+            manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
+            if (!manejadorDeUsuarioAplicacion.Modificar(_User)) return;
 
-            }
+            await DisplayAlert("", "Apunte agregado correctamente", "Ok");
+            await PopupNavigation.Instance.PopAsync(false);
+            App.masterDetail.IsPresented = false;
+            App.masterDetail.Detail = new NavigationPage(new MisApuntes(_User, null));
 
         }
     }
