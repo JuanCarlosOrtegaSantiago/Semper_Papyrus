@@ -170,7 +170,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
         {
             try
             {
-                if (manejadorDeLeyes.BuscarPorCodigo(txtCodigo.Text)!=null)
+                if (manejadorDeLeyes.BuscarPorCodigo(txtCodigo.Text.ToUpper())!=null)
                 {
                     WrpLblCodigoAsociado.Visibility = Visibility.Visible;
                 }

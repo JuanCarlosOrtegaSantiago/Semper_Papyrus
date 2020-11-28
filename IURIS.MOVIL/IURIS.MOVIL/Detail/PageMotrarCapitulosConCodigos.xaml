@@ -9,23 +9,24 @@
     <NavigationPage.TitleView>
         <FlexLayout Direction="Row">
 
-            <SearchBar 
+            <local:CustomEntry 
                 
                 x:Name="SearchViewDetailTitle" 
                 VerticalOptions="Center"
-                HorizontalOptions="EndAndExpand"
+                HorizontalOptions="StartAndExpand" 
                 Placeholder="Titulo, palabras clave..." 
                 PlaceholderColor="White"
                 TextColor="White"
-                CancelButtonColor="White"
+                ClearButtonVisibility="WhileEditing"
                 BackgroundColor="Transparent"
                 TextChanged="SearchViewDetailTitle_TextChanged"
-                SearchButtonPressed="SearchViewDetailTitle_SearchButtonPressed"
+                Completed="SearchViewDetailTitle_SearchButtonPressed"
+                ReturnType="Search"
                 IsVisible="false"
-                Margin="-50,0,0,0"
                 IsSpellCheckEnabled="True"/>
+                <!--Margin="-50,0,0,0"-->
 
-            <Label x:Name="lblNumResultados" HorizontalOptions="End" Margin="0,0,10,0" IsVisible="false" Style="{StaticResource TextoAMostrarColorBlanco}" VerticalOptions="Center" VerticalTextAlignment="Center" FontSize="Body"></Label>
+            <Label x:Name="lblNumResultados" HorizontalOptions="EndAndExpand" Margin="0,0,10,0" IsVisible="false" Style="{StaticResource TextoAMostrarColorBlanco}" VerticalOptions="Center" VerticalTextAlignment="Center" FontSize="Body"></Label>
 
             <Grid ColumnDefinitions="*,Auto" ColumnSpacing="5" x:Name="GridTituloEIMGBuscador">
                 <FlexLayout Grid.Column="0" Direction="Column">

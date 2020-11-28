@@ -76,6 +76,11 @@ namespace IURIS.MOVIL.Detail
             lblTitle.Text = _titulo.NombreTitulo;
             lblCodigo.Text = _ley.CodigoLey;
 
+            cllctionArticulos.ItemsSource = null;
+            cllctionArticulos.ItemsSource = _titulo.ListaCapitulos.FirstOrDefault().ListaArticulos;//modificar
+            _Capitulo = _titulo.ListaCapitulos.FirstOrDefault();
+
+
             ActualizarDatosCapitulo(_titulo.ListaCapitulos);
 
         }
@@ -85,9 +90,9 @@ namespace IURIS.MOVIL.Detail
             clltionCapitulos.ItemsSource = null;
             clltionCapitulos.ItemsSource = listaCapitulos;
 
-            cllctionArticulos.ItemsSource = null;
-            cllctionArticulos.ItemsSource = listaCapitulos.FirstOrDefault().ListaArticulos;
-            _Capitulo = listaCapitulos.FirstOrDefault();
+            //cllctionArticulos.ItemsSource = null;
+            //cllctionArticulos.ItemsSource = listaCapitulos.FirstOrDefault().ListaArticulos;//modificar
+            //_Capitulo = listaCapitulos.FirstOrDefault();
         }
 
         private void ActualizarDatosArticulo(List<Articulo> listaArticulos)

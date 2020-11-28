@@ -9,21 +9,22 @@
     <NavigationPage.TitleView>
         <FlexLayout Direction="Row">
 
-            <SearchBar 
+            <Local:CustomEntry 
                 
                 x:Name="SearchViewDetailTitle" 
                 VerticalOptions="Center"
-                HorizontalOptions="EndAndExpand"
+                HorizontalOptions="StartAndExpand"
                 Placeholder="Titulo, palabras clave..." 
                 PlaceholderColor="White"
                 TextColor="White"
-                CancelButtonColor="White"
+                ClearButtonVisibility="WhileEditing"
                 BackgroundColor="Transparent"
                 TextChanged="SearchViewDetailTitle_TextChanged"
-                SearchButtonPressed="SearchViewDetailTitle_SearchButtonPressed"
+                Completed="SearchViewDetailTitle_SearchButtonPressed"
+                ReturnType="Search"
                 IsSpellCheckEnabled="True"
-                IsVisible="false"
-                Margin="-50,0,0,0"/>
+                IsVisible="false"/>
+
 
             <Label x:Name="lblNumResultados" HorizontalOptions="End" Margin="0,0,10,0" IsVisible="false" Style="{StaticResource TextoAMostrarColorBlanco}" VerticalOptions="Center" VerticalTextAlignment="Center" FontSize="Body"></Label>
 

@@ -37,7 +37,7 @@
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <SwipeView>
+                    <SwipeView FlexLayout.Basis="8%">
                         <SwipeView.RightItems>
                             <SwipeItems Mode="Reveal" >
                                 <SwipeItemView Invoked="SwipeItem_Invoked" BackgroundColor="{StaticResource PrimaryColor}" IsTabStop="True">
@@ -48,8 +48,8 @@
                                 </SwipeItemView>
                             </SwipeItems>
                         </SwipeView.RightItems>
-                        <StackLayout>
-                            <FlexLayout JustifyContent="Start" Margin="15,0">
+                        <StackLayout FlexLayout.Basis="8%">
+                            <FlexLayout JustifyContent="Start" Margin="15,0" >
                                 <Label Text="{Binding NombreLey}" FontSize="17" FontAttributes="Bold" Style="{StaticResource TextoAMostrarColorRojo}" HorizontalOptions="Start"/>
                                 <Label Text="{Binding CodigoLey}" FontSize="17" Style="{StaticResource TextoAMostrarColorRojo}" HorizontalOptions="Start"/>
                             </FlexLayout>

@@ -78,6 +78,7 @@ namespace IURIS.MOVIL
             if (Connectivity.NetworkAccess == NetworkAccess.None)
             {
                 await DisplayAlert("Error", "Sin conexión a internet", "Aceptar");
+                Intentos=0;
                 return;
             }
 

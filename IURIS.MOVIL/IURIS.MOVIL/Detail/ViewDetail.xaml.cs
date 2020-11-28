@@ -63,12 +63,13 @@ namespace IURIS.MOVIL.Detail
             Titulo titulo = ClltionTitulos.SelectedItem as Titulo;
             if (titulo == null) return;
 
-                MostrarSearch(false);
-                await Navigation.PushAsync(new PageMotrarCapitulosConCodigos(titulo, _Usuario, _Ley), false);
+            MostrarSearch(false);
+            await Navigation.PushAsync(new PageMotrarCapitulosConCodigos(titulo, _Usuario, _Ley), false);
+            ClltionTitulos.SelectedItem = null;
 
-                ClassMostrarP_Cmpra _Cmpra = new ClassMostrarP_Cmpra();
+            ClassMostrarP_Cmpra _Cmpra = new ClassMostrarP_Cmpra();
 
-                if (_Cmpra.MostrarPantalla()) await PopupNavigation.Instance.PushAsync(new WindowOfMembresiaPlatino());
+            if (_Cmpra.MostrarPantalla()) await PopupNavigation.Instance.PushAsync(new WindowOfMembresiaPlatino());
         }
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)

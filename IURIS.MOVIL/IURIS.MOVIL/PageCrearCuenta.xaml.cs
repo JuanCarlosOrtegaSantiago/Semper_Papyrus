@@ -70,7 +70,7 @@ namespace IURIS.MOVIL
             };
             
             manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
-            Leyes leyes = manejadorDeLeyes.BuscarPorCodigo("cnpp1E");
+            Leyes leyes = manejadorDeLeyes.Listar.Where(w=>w.numDescargas<=0).SingleOrDefault();
             leyes.Clasificaciones = new List<ClasificacionPUsuario>();
 
             List<Leyes> Mleyes = new List<Leyes>();

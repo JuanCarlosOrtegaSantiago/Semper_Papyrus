@@ -13,7 +13,7 @@
            CornerRadius="5" >
 
         <StackLayout>
-            <Local:CustomEditor x:Name="EntryNombreApunte" AutoSize="TextChanges" Placeholder="Escribe una nota o comentario" HorizontalOptions="FillAndExpand" Style="{StaticResource EntryCrearCuenta}" MaxLength="140"/>
+            <Local:CustomEditor x:Name="EntryNombreApunte" AutoSize="TextChanges" Placeholder="Escribe una nota o comentario" HorizontalOptions="FillAndExpand" Style="{StaticResource EntryCrearCuenta}" MaxLength="300" FontSize="Medium"/>
             <Grid ColumnDefinitions="*,*" ColumnSpacing="-1.5" Margin="-5,0,-5,-5">
                 <Button Grid.Column="0" x:Name="BtnGuardar" Text="Guardar" Style="{StaticResource buttonPrincipal}" Clicked="BtnGuardar_Clicked" FontSize="Large"/>
 
