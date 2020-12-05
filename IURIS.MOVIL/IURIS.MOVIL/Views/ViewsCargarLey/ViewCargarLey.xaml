@@ -37,24 +37,23 @@
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <SwipeView FlexLayout.Basis="8%">
+                    <SwipeView>
                         <SwipeView.RightItems>
                             <SwipeItems Mode="Reveal" >
                                 <SwipeItemView Invoked="SwipeItem_Invoked" BackgroundColor="{StaticResource PrimaryColor}" IsTabStop="True">
-                                    <Grid WidthRequest="120" RowDefinitions="*, auto" Padding="5" RowSpacing="0">
-                                        <Image Grid.Row="0" HorizontalOptions="Center" Source="BBasura.png" Aspect="AspectFit" Margin="0,2,0,0"></Image>
-                                        <Label Grid.Row="1" HorizontalOptions="Center" Text="Borrar" Style="{StaticResource TextoAMostrarColorBlanco}"></Label>
-                                    </Grid>
+                                    <FlexLayout WidthRequest="100" Padding="5" AlignItems="Center">
+                                        <Image Source="BBasura.png" Margin="0,2,0,0" WidthRequest="25" HeightRequest="25"></Image>
+                                        <Label Text="Borrar" Style="{StaticResource TextoAMostrarColorBlanco}"></Label>
+                                    </FlexLayout>
                                 </SwipeItemView>
                             </SwipeItems>
                         </SwipeView.RightItems>
-                        <StackLayout FlexLayout.Basis="8%">
+                        <StackLayout>
                             <FlexLayout JustifyContent="Start" Margin="15,0" >
-                                <Label Text="{Binding NombreLey}" FontSize="17" FontAttributes="Bold" Style="{StaticResource TextoAMostrarColorRojo}" HorizontalOptions="Start"/>
+                                <Label Text="{Binding NombreLey}" MaxLines="1" FontSize="17" FontAttributes="Bold" Style="{StaticResource TextoAMostrarColorRojo}" HorizontalOptions="Start"/>
                                 <Label Text="{Binding CodigoLey}" FontSize="17" Style="{StaticResource TextoAMostrarColorRojo}" HorizontalOptions="Start"/>
                             </FlexLayout>
                             <Frame BackgroundColor="{StaticResource PrimaryColor}" HeightRequest="1" Padding="0.5" Margin="5,0"/>
-                            <!--<Frame BackgroundColor="#948037" HeightRequest="1" Padding="0.5" Margin="5,0"/>-->
                         </StackLayout>
                     </SwipeView>
                 </DataTemplate>

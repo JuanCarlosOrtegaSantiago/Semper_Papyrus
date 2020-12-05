@@ -35,6 +35,7 @@ namespace IURIS.MOVIL.Droid
                 GradientDrawable gd = new GradientDrawable();
                 gd.SetColor(global::Android.Graphics.Color.Transparent);
                 Control.SetBackgroundDrawable(gd);
+                Control.SetCursorVisible(false);
             }
 
         }

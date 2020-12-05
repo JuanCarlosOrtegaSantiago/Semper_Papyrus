@@ -7,13 +7,14 @@
              x:Class="IURIS.MOVIL.Detail.PageMotrarCapitulosConCodigos">
 
     <NavigationPage.TitleView>
-        <FlexLayout Direction="Row">
+        <FlexLayout Direction="Row" >
 
             <local:CustomEntry 
                 
                 x:Name="SearchViewDetailTitle" 
                 VerticalOptions="Center"
-                HorizontalOptions="StartAndExpand" 
+                HorizontalOptions="Start" 
+                HorizontalTextAlignment="Start"
                 Placeholder="Titulo, palabras clave..." 
                 PlaceholderColor="White"
                 TextColor="White"
@@ -26,12 +27,12 @@
                 IsSpellCheckEnabled="True"/>
                 <!--Margin="-50,0,0,0"-->
 
-            <Label x:Name="lblNumResultados" HorizontalOptions="EndAndExpand" Margin="0,0,10,0" IsVisible="false" Style="{StaticResource TextoAMostrarColorBlanco}" VerticalOptions="Center" VerticalTextAlignment="Center" FontSize="Body"></Label>
+            <Label x:Name="lblNumResultados" HorizontalOptions="End" HorizontalTextAlignment="End" Margin="0,0,10,0" IsVisible="false" Style="{StaticResource TextoAMostrarColorBlanco}" VerticalOptions="Center" VerticalTextAlignment="Center" FontSize="Body"></Label>
 
             <Grid ColumnDefinitions="*,Auto" ColumnSpacing="5" x:Name="GridTituloEIMGBuscador">
                 <FlexLayout Grid.Column="0" Direction="Column">
 
-                    <local:CustomLabel x:Name="lblTitle" Style="{StaticResource TextoAMostrarColorBlanco}" HorizontalTextAlignment="Center" HorizontalOptions="Center" FontSize="Body" VerticalOptions="Start" />
+                    <local:CustomLabel x:Name="lblTitle" Style="{StaticResource TextoAMostrarColorBlanco}"  HorizontalTextAlignment="Center" HorizontalOptions="Center" FontSize="Body" VerticalOptions="Start" />
                     <Label x:Name="lblCodigo" Style="{StaticResource TextoAMostrarColorBlanco}" FontSize="Small" VerticalOptions="End" VerticalTextAlignment="End" HorizontalOptions="Center" HorizontalTextAlignment="Center" Margin="0,2,0,5"/>
                 </FlexLayout>
 
@@ -77,7 +78,7 @@
                    IndicatorColor="{StaticResource SecundaryColor}"
                    SelectedIndicatorColor="{StaticResource PrimaryColor}"
                    HorizontalOptions="Center" 
-                               VerticalOptions="Start"
+                               VerticalOptions="Start" MaximumVisible="3" 
                             />
             </StackLayout>
 
