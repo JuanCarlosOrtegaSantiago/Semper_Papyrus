@@ -57,6 +57,7 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
                 return;
             }
 
+            if (string.IsNullOrEmpty(EntryCodigo.Text)) return;
             _LeyeComprada = manejadorDeLeyes.BuscarPorCodigo(EntryCodigo.Text.ToUpper());
 
             if (_LeyeComprada == null)
@@ -119,7 +120,7 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
 
             var MiLey = ((SwipeItemView)sender).BindingContext as Leyes;
 
-            if (MiLey == null || MiLey.numDescargas <= 1) return;
+            if (MiLey == null || MiLey.numDescargas < 1) return;
 
             if (_User.MiUltimaLeyCargada.Equals(MiLey.CodigoLey)) _User.MiUltimaLeyCargada = _User.MisLeyes.Where(w => w.id != MiLey.id).First().CodigoLey;
 
