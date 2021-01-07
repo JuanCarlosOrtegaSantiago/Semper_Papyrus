@@ -102,6 +102,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
             {
 
                 MessageBox.Show("Error al inicar error:\n" + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Hand);
+                return;
 
             }
 

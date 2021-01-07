@@ -40,22 +40,22 @@ namespace IURIS.DESKTOP.GUI.ADMIN
         {
             InitializeComponent();
 
-            try
-            {
-                manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
-                manejadorDeClasificaciones = new ManejadorDeClasificaciones(new RepositorioGenerico<Clasificacion>());
+            //try
+            //{
+            //    manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
+            //    manejadorDeClasificaciones = new ManejadorDeClasificaciones(new RepositorioGenerico<Clasificacion>());
                 DatosAInicializar();
 
-            }
-            catch (TimeoutException)
-            {
+            //}
+            //catch (TimeoutException)
+            //{
 
-                    MensajeDeExcepcion("Revisa tu conexion a internet");
-            }
-            catch (Exception ex)
-            {
-                MensajeDeExcepcion(ex.Message);
-            }
+            //        MensajeDeExcepcion("Revisa tu conexion a internet");
+            //}
+            //catch (Exception ex)
+            //{
+            //    MensajeDeExcepcion(ex.Message);
+            //}
 
         }
 
@@ -67,7 +67,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
         private void DatosAInicializar()
         {
             EstadoDeCajas(false);
-            CargarDatosAlCombo();
+           // CargarDatosAlCombo();
         }
 
         private void CargarDatosAlCombo()
@@ -117,13 +117,12 @@ namespace IURIS.DESKTOP.GUI.ADMIN
 
         private void LimpiarCajas()
         {
-            //Limpiar cajas
-            LimpiarCajaDeContenido();
+            LimpiarCajaDeContenido(RtcTxtContenido);
+            LimpiarCajaDeContenido(txtNombreArticulo);
+            LimpiarCajaDeContenido(txtNombreCapitulo);
+            LimpiarCajaDeContenido(txtNombreTitulo);
             txtCodigo.Clear();
-            txtNombreArticulo.Clear();
-            txtNombreCapitulo.Clear();
             TxtNombreDeLey.Clear();
-            txtNombreTitulo.Clear();
             txtNumArticulo.Clear();
             txtNumCapitulo.Clear();
             txtNumTitulo.Clear();
@@ -206,15 +205,14 @@ namespace IURIS.DESKTOP.GUI.ADMIN
             EstadoDeCajas(false);
         }
 
-        private string Contenido()
+        private string Contenido(RichTextBox caja)
         {
-            //string richText;
-            return new TextRange(RtcTxtContenido.Document.ContentStart, RtcTxtContenido.Document.ContentEnd).Text;
+            return new TextRange(caja.Document.ContentStart, caja.Document.ContentEnd).Text;
         }
 
-        private void LimpiarCajaDeContenido()
+        private void LimpiarCajaDeContenido(RichTextBox caja)
         {
-            _ = new TextRange(RtcTxtContenido.Document.ContentStart, RtcTxtContenido.Document.ContentEnd)
+            _ = new TextRange(caja.Document.ContentStart, caja.Document.ContentEnd)
             {
                 Text = ""
             };
@@ -223,116 +221,107 @@ namespace IURIS.DESKTOP.GUI.ADMIN
         private void BtnAgregarArticulo_Click(object sender, RoutedEventArgs e)
         {
 
-            if (!string.IsNullOrWhiteSpace(txtNumArticulo.Text) && !string.IsNullOrWhiteSpace(txtNombreArticulo.Text) && Contenido() != "")
-            {
-                //string codigo = string.Format("{0}", Guid.NewGuid().ToString());
-                Articulo articulo = new Articulo()
-                {
-                    Contenido = Contenido(),
-                    NombreArticulo = txtNombreArticulo.Text,
-                    NumArticulo = txtNumArticulo.Text,
-                    id = Guid.NewGuid().ToString()
-
-                };
-                if (MessageBox.Show("¿La informacion es correcta?", "", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No) == MessageBoxResult.Yes)
-                {
-
-                    articulos.Add(articulo);
-                    LimpiarCajas();
-                    if (MessageBox.Show("¿Deseas agregar otro articulo?", "", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes) == MessageBoxResult.No)
-                    {
-                        WrpArticulo.IsEnabled = false;
-                        RtcTxtContenido.IsEnabled = false;
-                    }
-                }
-
-            }
-            else
+            if (string.IsNullOrWhiteSpace(txtNumArticulo.Text))
             {
                 MessageBox.Show("Faltan datos por llenar", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
             }
+            
+         
+            if (MessageBox.Show("¿La informacion es correcta?", "", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No) == MessageBoxResult.No) return;
+
+            Articulo articulo = new Articulo()
+            {
+                Contenido = Contenido(RtcTxtContenido),
+                NombreArticulo = Contenido(txtNombreArticulo),
+                NumArticulo = txtNumArticulo.Text,
+                id = Guid.NewGuid().ToString()
+
+            };
+
+            articulos.Add(articulo);
+            LimpiarCajas();
+            
+            if (MessageBox.Show("¿Deseas agregar otro articulo?", "", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes) == MessageBoxResult.No)
+            {
+                WrpArticulo.IsEnabled = false;
+                RtcTxtContenido.IsEnabled = false;
+            }
+
         }
 
         private void BtnAgregarCapitulo_Click(object sender, RoutedEventArgs e)
         {
-            if(!string.IsNullOrWhiteSpace(txtNumCapitulo.Text) && !string.IsNullOrWhiteSpace(txtNombreCapitulo.Text) && articulos != null)
+            if (string.IsNullOrWhiteSpace(txtNumCapitulo.Text))
             {
-                //string codigo = string.Format("{0}", Guid.NewGuid().ToString());
-                Capitulo capitulo = new Capitulo()
-                {
-                    NombreCapitulo = txtNombreCapitulo.Text,
-                    NumCapitulo = txtNumCapitulo.Text,
-                    ListaArticulos = articulos,
-                    id = Guid.NewGuid().ToString()
-                };
-                if (MessageBox.Show("¿La informacion es correcta?", "", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No) == MessageBoxResult.Yes)
-                {
-                    articulos = new List<Articulo>();
-                    capitulos.Add(capitulo);
-                    LimpiarCajas();
-                    if (MessageBox.Show("¿Deseas agregar otro capitulo?", "", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes) == MessageBoxResult.No)
-                    {
-                        WrpArticulo.IsEnabled = false;
-                        RtcTxtContenido.IsEnabled = false;
-                        WrpCapitulo.IsEnabled = false;
-                    }
-                    else
-                    {
-                        WrpArticulo.IsEnabled = true;
-                        RtcTxtContenido.IsEnabled = true;
-                        WrpCapitulo.IsEnabled = true;
-                    }
-                }
+                MessageBox.Show("Faltan datos por llenar", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            //string codigo = string.Format("{0}", Guid.NewGuid().ToString());
+            if (MessageBox.Show("¿La informacion es correcta?", "", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No) == MessageBoxResult.No) return;
+
+            Capitulo capitulo = new Capitulo()
+            {
+                NombreCapitulo = Contenido(txtNombreCapitulo),
+                NumCapitulo = txtNumCapitulo.Text,
+                ListaArticulos = articulos,
+                id = Guid.NewGuid().ToString()
+            };
+            articulos = new List<Articulo>();
+            capitulos.Add(capitulo);
+            LimpiarCajas();
+            
+            if (MessageBox.Show("¿Deseas agregar otro capitulo?", "", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes) == MessageBoxResult.No)
+            {
+                WrpArticulo.IsEnabled = false;
+                RtcTxtContenido.IsEnabled = false;
+                WrpCapitulo.IsEnabled = false;
             }
             else
             {
-                if (articulos == null)
-                    MessageBox.Show("No tienes articulos agregados", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-                else
-                    MessageBox.Show("Faltan datos por llenar", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                WrpArticulo.IsEnabled = true;
+                RtcTxtContenido.IsEnabled = true;
+                WrpCapitulo.IsEnabled = true;
             }
         }
 
         private void BtnAgregarTitulo_Click(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(txtNombreTitulo.Text) && !string.IsNullOrWhiteSpace(txtNumTitulo.Text) && capitulos != null)
+            if (string.IsNullOrWhiteSpace(txtNumTitulo.Text))
             {
-                //string codigo = string.Format("{0}",);
+                MessageBox.Show("Faltan datos por llenar", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            //string codigo = string.Format("{0}",);
 
-                Titulo titulo = new Titulo()
-                {
-                    NombreTitulo = txtNombreTitulo.Text,
-                    NumTitulo = txtNumTitulo.Text,
-                    ListaCapitulos = capitulos,
-                    id = Guid.NewGuid().ToString()
-                };
-                if (MessageBox.Show("¿La informacion es correcta?", "", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No) == MessageBoxResult.Yes)
-                {
-                    capitulos = new List<Capitulo>();
-                    titulos.Add(titulo);
-                    LimpiarCajas();
-                    if (MessageBox.Show("¿Deseas agregar otro Titulo?", "", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes) == MessageBoxResult.No)
-                    {
-                        WrpArticulo.IsEnabled = false;
-                        RtcTxtContenido.IsEnabled = false;
-                        WrpCapitulo.IsEnabled = false;
-                        WrpTitulo.IsEnabled = false;
-                    }
-                    else
-                    {
-                        WrpArticulo.IsEnabled = true;
-                        RtcTxtContenido.IsEnabled = true;
-                        WrpCapitulo.IsEnabled = true;
-                        WrpTitulo.IsEnabled = true;
-                    }
-                }
+         
+            if (MessageBox.Show("¿La informacion es correcta?", "", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No) == MessageBoxResult.No) return;
+            
+            Titulo titulo = new Titulo()
+            {
+                NombreTitulo = Contenido(txtNombreTitulo),
+                NumTitulo = txtNumTitulo.Text,
+                ListaCapitulos = capitulos,
+                id = Guid.NewGuid().ToString()
+            };
+            
+            capitulos = new List<Capitulo>();
+            titulos.Add(titulo);
+            LimpiarCajas();
+            
+            if (MessageBox.Show("¿Deseas agregar otro Titulo?", "", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes) == MessageBoxResult.No)
+            {
+                WrpArticulo.IsEnabled = false;
+                RtcTxtContenido.IsEnabled = false;
+                WrpCapitulo.IsEnabled = false;
+                WrpTitulo.IsEnabled = false;
             }
             else
             {
-                if (capitulos == null)
-                    MessageBox.Show("No tienes capitulos agregados", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-                else
-                    MessageBox.Show("Faltan datos por llenar", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                WrpArticulo.IsEnabled = true;
+                RtcTxtContenido.IsEnabled = true;
+                WrpCapitulo.IsEnabled = true;
+                WrpTitulo.IsEnabled = true;
             }
         }
 
