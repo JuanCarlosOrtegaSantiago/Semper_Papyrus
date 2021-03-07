@@ -16,9 +16,10 @@ namespace IURIS.DAL
 
         public RepositorioGenerico()
         {
-            client = new MongoClient(new MongoUrl(@"mongodb://AdminDbSemper:Semper1234@ds060009.mlab.com:60009/semperpapyrusbd?retryWrites=false"));
-            db = client.GetDatabase("semperpapyrusbd");
+            client = new MongoClient(new MongoUrl(@"mongodb://UserSemper:IURISuser@bdsemper-shard-00-00.xg6rg.mongodb.net:27017,bdsemper-shard-00-01.xg6rg.mongodb.net:27017,bdsemper-shard-00-02.xg6rg.mongodb.net:27017/myFirstDatabase?ssl=true&replicaSet=atlas-xo23j9-shard-0&authSource=admin&retryWrites=true&w=majority"));
+            db = client.GetDatabase("bdsemper");
         }
+        
 
         private IMongoCollection<T> Collection()
         {
