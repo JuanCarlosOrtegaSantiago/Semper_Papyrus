@@ -40,22 +40,22 @@ namespace IURIS.DESKTOP.GUI.ADMIN
         {
             InitializeComponent();
 
-            //try
-            //{
-            //    manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
-            //    manejadorDeClasificaciones = new ManejadorDeClasificaciones(new RepositorioGenerico<Clasificacion>());
+            try
+            {
+                manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
+                manejadorDeClasificaciones = new ManejadorDeClasificaciones(new RepositorioGenerico<Clasificacion>());
                 DatosAInicializar();
 
-            //}
-            //catch (TimeoutException)
-            //{
+            }
+            catch (TimeoutException)
+            {
 
-            //        MensajeDeExcepcion("Revisa tu conexion a internet");
-            //}
-            //catch (Exception ex)
-            //{
-            //    MensajeDeExcepcion(ex.Message);
-            //}
+                MensajeDeExcepcion("Revisa tu conexion a internet");
+            }
+            catch (Exception ex)
+            {
+                MensajeDeExcepcion(ex.Message);
+            }
 
         }
 
@@ -67,7 +67,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
         private void DatosAInicializar()
         {
             EstadoDeCajas(false);
-           // CargarDatosAlCombo();
+            CargarDatosAlCombo();
         }
 
         private void CargarDatosAlCombo()
