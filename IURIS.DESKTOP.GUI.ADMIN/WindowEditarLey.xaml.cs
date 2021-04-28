@@ -31,9 +31,9 @@ namespace IURIS.DESKTOP.GUI.ADMIN
 
         Leyes CopiaLey;
 
-        Titulo _titulo=null;
+        Titulo _titulo = null;
         Capitulo _capitulo = null;
-        Articulo _articulo=null;
+        Articulo _articulo = null;
 
         IManejadorDeLeyes manejadorDeLeyes;
         IManejadorDeClasificaciones manejadorDeClasificaciones;
@@ -62,9 +62,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
 
 
             CmbxClasificacion.Text = CopiaLey.Clasificacion.Nombre;
-            
-            
-            this.WindowState = WindowState.Maximized;
+
 
         }
 
@@ -100,7 +98,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
             }
         }
 
-        
+
         private void BtnEditarLey_Click(object sender, RoutedEventArgs e)
         {
             if (MessageBox.Show("Esta seguro de subir los cambios", "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Exclamation, MessageBoxResult.No) == MessageBoxResult.Yes)
@@ -111,7 +109,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
 
                     CopiaLey.NombreLey = txtNombre.Text != CopiaLey.NombreLey ? txtNombre.Text : CopiaLey.NombreLey;
                     CopiaLey.CodigoLey = txtCodigo.Text != CopiaLey.CodigoLey ? txtCodigo.Text : CopiaLey.CodigoLey;
-                    
+
 
                     //Verificar
                     while (CopiaLey.EsModificacion)
@@ -193,7 +191,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
                 if (_titulo != null)
                 {
 
-                    WindowModificarDatos windowModificarDatos = new WindowModificarDatos(_titulo,_capitulo,_articulo,Titulo,Capitulo,Articulo);
+                    WindowModificarDatos windowModificarDatos = new WindowModificarDatos(_titulo, _capitulo, _articulo, Titulo, Capitulo, Articulo);
                     windowModificarDatos.ShowDialog();
                     ActualizarLista();
                 }
@@ -312,5 +310,6 @@ namespace IURIS.DESKTOP.GUI.ADMIN
             CopiaLey.Clasificacion = (Clasificacion)CmbxClasificacion.SelectedItem;
             CmbxClasificacion.Text = CopiaLey.Clasificacion.Nombre;
         }
+
     }
 }

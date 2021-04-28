@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IURIS.DESKTOP.GUI.ADMIN"
         mc:Ignorable="d"
-        Title="WindowEditarLey" Height="600" Width="800" WindowStyle="None" Background="#640404" WindowStartupLocation="CenterScreen" >
+        Title="WindowEditarLey" Height="600" Width="800" Background="#640404" WindowStartupLocation="CenterScreen" WindowStyle="None" WindowState="Maximized" >
 
     
-    <Grid>
+    <Grid >
 
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
@@ -61,7 +61,7 @@
             <WrapPanel Orientation="Horizontal" VerticalAlignment="Center">
 
                 <WrapPanel Orientation="Horizontal" Margin="10,0" VerticalAlignment="Center">
-                    <Label Style="{DynamicResource LabelStyle1}" >Codigo</Label>
+                    <Label Style="{DynamicResource LabelStyle1}" >Código</Label>
                 </WrapPanel>
                 <TextBox x:Name="txtCodigo" Width="200" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"></TextBox>
             </WrapPanel>
@@ -87,15 +87,15 @@
             <WrapPanel Orientation="Vertical" VerticalAlignment="Center" Margin="10,10" >
 
                 <RadioButton x:Name="RdoBtnTitulo" Click="RdoBtnTitulo_Click"  VerticalContentAlignment="Center">
-                    <Label Style="{DynamicResource LabelStyle1}" >Titulo</Label>
+                    <Label Style="{DynamicResource LabelStyle1}" >Título</Label>
                 </RadioButton>
 
                 <RadioButton x:Name="RdoBtnCapitulo" Checked="RdoBtnCapitulo_Checked" VerticalContentAlignment="Center">
-                    <Label Style="{DynamicResource LabelStyle1}" >Capitulo</Label>
+                    <Label Style="{DynamicResource LabelStyle1}" >Capítulo</Label>
                 </RadioButton>
 
                 <RadioButton x:Name="RdoBtnArticulo" Checked="RdoBtnArticulo_Checked" VerticalContentAlignment="Center">
-                    <Label Style="{DynamicResource LabelStyle1}" >Articulo</Label>
+                    <Label Style="{DynamicResource LabelStyle1}" >Artículo</Label>
                 </RadioButton>
 
             </WrapPanel>
@@ -106,7 +106,7 @@
                     <WrapPanel Orientation="Horizontal">
 
                         <WrapPanel Orientation="Horizontal" Margin="10,0">
-                            <Label Style="{DynamicResource LabelStyle1}" >Numero titulo</Label>
+                            <Label Style="{DynamicResource LabelStyle1}" >Número título</Label>
                         </WrapPanel>
                         <TextBox x:Name="txtNumeroTitulo" Width="150" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"></TextBox>
 
@@ -115,7 +115,7 @@
                     <WrapPanel x:Name="WrpCapitulo" Orientation="Horizontal" Visibility="Collapsed">
 
                         <WrapPanel Orientation="Horizontal" Margin="10,0">
-                            <Label Style="{DynamicResource LabelStyle1}" >Numero capitulo</Label>
+                            <Label Style="{DynamicResource LabelStyle1}" >Número capítulo</Label>
                         </WrapPanel>
                         <TextBox x:Name="txtNumeroCaputilo" Width="150" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"></TextBox>
 
@@ -124,7 +124,7 @@
                     <WrapPanel x:Name="WrpArticulo" Orientation="Horizontal" Visibility="Collapsed">
 
                         <WrapPanel Orientation="Horizontal" Margin="10,0">
-                            <Label Style="{DynamicResource LabelStyle1}" >Numero articulo</Label>
+                            <Label Style="{DynamicResource LabelStyle1}" >Número artículo</Label>
                         </WrapPanel>
                         <TextBox x:Name="txtNumeroArtitulo" Width="150" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"></TextBox>
 
@@ -237,7 +237,7 @@
 
                             <WrapPanel Orientation="Vertical" Margin="20,0">
 
-                                <Label Style="{DynamicResource LabelStyle1}">Nombre del titulo</Label>
+                                <Label Style="{DynamicResource LabelStyle1}">Nombre del título</Label>
                                 <TextBox IsEnabled="False" Width="250" Text="{Binding NombreTitulo}" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"></TextBox>
 
                             </WrapPanel>
@@ -245,8 +245,8 @@
                             <WrapPanel Orientation="Vertical" Margin="20,0">
 
                                 <WrapPanel Orientation="Horizontal">
-                                    <Label Style="{DynamicResource LabelStyle1}" FontWeight="Black" Margin="0,0,-5,0">Numero</Label>
-                                    <Label Style="{DynamicResource LabelStyle1}" >del titulo</Label>
+                                    <Label Style="{DynamicResource LabelStyle1}" FontWeight="Black" Margin="0,0,-5,0">Número</Label>
+                                    <Label Style="{DynamicResource LabelStyle1}" >del título</Label>
                                 </WrapPanel>
                                 <TextBox IsEnabled="False" Text="{Binding NumTitulo}" Width="250" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"></TextBox>
 
@@ -323,7 +323,7 @@
 
                                                     <WrapPanel Orientation="Vertical" Margin="20,0" >
 
-                                                        <Label Style="{DynamicResource LabelStyle1}">Nombre del capitulo</Label>
+                                                        <Label Style="{DynamicResource LabelStyle1}">Nombre del capítulo</Label>
                                                         <TextBox IsEnabled="False" Text="{Binding NombreCapitulo}" Width="250" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"></TextBox>
 
                                                     </WrapPanel>
@@ -331,8 +331,8 @@
                                                     <WrapPanel Orientation="Vertical" Margin="20,0">
 
                                                         <WrapPanel Orientation="Horizontal">
-                                                            <Label Style="{DynamicResource LabelStyle1}" FontWeight="Black" Margin="0,0,-5,0">Numero</Label>
-                                                            <Label Style="{DynamicResource LabelStyle1}" >del capitulo</Label>
+                                                            <Label Style="{DynamicResource LabelStyle1}" FontWeight="Black" Margin="0,0,-5,0">Número</Label>
+                                                            <Label Style="{DynamicResource LabelStyle1}" >del capítulo</Label>
                                                         </WrapPanel>
                                                         <TextBox IsEnabled="False" Text="{Binding NumCapitulo}" Width="250" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"></TextBox>
 
@@ -404,12 +404,13 @@
                                                                         <Grid.RowDefinitions>
                                                                             <RowDefinition Height="auto"/>
                                                                             <RowDefinition Height="auto"/>
+                                                                            <RowDefinition Height="auto"/>
                                                                         </Grid.RowDefinitions>
 
                                                                         <WrapPanel Orientation="Horizontal" Grid.Row="0" VerticalAlignment="Center" Margin="10,0">
                                                                             <WrapPanel Orientation="Vertical" Margin="20,0">
 
-                                                                                <Label Style="{DynamicResource LabelStyle1}">Nombre del articulo</Label>
+                                                                                <Label Style="{DynamicResource LabelStyle1}">Nombre del artículo</Label>
                                                                                 <TextBox IsEnabled="False" Text="{Binding NombreArticulo}" Width="250" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"></TextBox>
 
                                                                             </WrapPanel>
@@ -417,8 +418,8 @@
                                                                             <WrapPanel Orientation="Vertical" Margin="20,0">
 
                                                                                 <WrapPanel Orientation="Horizontal">
-                                                                                    <Label Style="{DynamicResource LabelStyle1}" FontWeight="Black" Margin="0,0,-5,0">Numero</Label>
-                                                                                    <Label Style="{DynamicResource LabelStyle1}">del articulo</Label>
+                                                                                    <Label Style="{DynamicResource LabelStyle1}" FontWeight="Black" Margin="0,0,-5,0">Número</Label>
+                                                                                    <Label Style="{DynamicResource LabelStyle1}">del artículo</Label>
                                                                                 </WrapPanel>
                                                                                 <TextBox IsEnabled="False" Text="{Binding NumArticulo}" Width="250" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"></TextBox>
 
@@ -431,6 +432,91 @@
                                                                         <Label Style="{DynamicResource LabelStyle1}">Contenido</Label>
                                                                             <TextBox IsEnabled="False" Text="{Binding Contenido}" HorizontalScrollBarVisibility="Auto" Width="600" Height="100" VerticalScrollBarVisibility="Auto" FontSize="20" FontWeight="Black" ></TextBox>
                                                                     </WrapPanel>
+
+
+                                                                        <WrapPanel x:Name="ApartadoFotos" Orientation="Horizontal" Grid.Row="2" VerticalAlignment="Center" IsEnabled="{Binding FotoAdjunta}">
+                                                                            <!--<WrapPanel.Triggers>
+                                                                            </WrapPanel.Triggers>-->
+
+                                                                            <Expander Header="Fotos" Foreground="White" FontSize="15" Margin="0,10" >
+
+                                                                                <ListView SelectionMode="Single" Background="Transparent" HorizontalContentAlignment="Center" MinWidth="400" Grid.Column="1" Grid.ColumnSpan="8" HorizontalAlignment="Center" BorderBrush="Transparent" ItemsSource="{Binding Fotografia}" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="False">
+                                                                                        <ListView.ItemContainerStyle>
+
+                                                                                            <Style TargetType="{x:Type ListViewItem}">
+                                                                                                <Style.Triggers>
+                                                                                                    <MultiTrigger>
+                                                                                                        <MultiTrigger.Conditions>
+                                                                                                            <Condition Property="IsMouseOver" Value="true" />
+                                                                                                        </MultiTrigger.Conditions>
+                                                                                                        <MultiTrigger.Setters>
+                                                                                                            <Setter Property="FocusManager.IsFocusScope" Value="False" />
+                                                                                                        </MultiTrigger.Setters>
+                                                                                                    </MultiTrigger>
+                                                                                                </Style.Triggers>
+                                                                                                <Setter Property="Focusable" Value="False"/>
+                                                                                                <Setter Property="Template">
+                                                                                                    <Setter.Value>
+                                                                                                        <ControlTemplate TargetType="ListViewItem">
+                                                                                                            <Border x:Name="border" Background="Transparent">
+                                                                                                                <VisualStateManager.VisualStateGroups>
+                                                                                                                    <VisualStateGroup x:Name="CommonStates">
+                                                                                                                        <VisualState x:Name="Normal" />
+                                                                                                                        <VisualState x:Name="Disabled" />
+                                                                                                                    </VisualStateGroup>
+                                                                                                                    <VisualStateGroup x:Name="SelectionStates">
+                                                                                                                        <VisualState x:Name="Unselected" />
+                                                                                                                        <VisualState x:Name="Selected">
+                                                                                                                            <Storyboard>
+                                                                                                                                <ColorAnimationUsingKeyFrames Storyboard.TargetName="border"
+                                                              Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+                                                                                                                                    <EasingColorKeyFrame KeyTime="0" Value="LightBlue" />
+                                                                                                                                </ColorAnimationUsingKeyFrames>
+                                                                                                                            </Storyboard>
+                                                                                                                        </VisualState>
+                                                                                                                        <VisualState x:Name="SelectedUnfocused">
+                                                                                                                            <Storyboard>
+                                                                                                                                <ColorAnimationUsingKeyFrames Storyboard.TargetName="border"
+                                                              Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+                                                                                                                                    <EasingColorKeyFrame KeyTime="0" Value="SkyBlue" />
+                                                                                                                                </ColorAnimationUsingKeyFrames>
+                                                                                                                            </Storyboard>
+                                                                                                                        </VisualState>
+                                                                                                                    </VisualStateGroup>
+                                                                                                                </VisualStateManager.VisualStateGroups>
+                                                                                                                <ContentPresenter/>
+                                                                                                            </Border>
+                                                                                                        </ControlTemplate>
+                                                                                                    </Setter.Value>
+                                                                                                </Setter>
+                                                                                            </Style>
+
+                                                                                        </ListView.ItemContainerStyle>
+                                                                                    <ListView.ItemsPanel>
+                                                                                        <ItemsPanelTemplate>
+                                                                                            <VirtualizingStackPanel Orientation="Horizontal"/>
+                                                                                        </ItemsPanelTemplate>
+                                                                                    </ListView.ItemsPanel>
+
+                                                                                            <ListView.ItemTemplate >
+                                                                                            
+                                                                                        <DataTemplate>
+                                                                                            <WrapPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="20,15">
+
+                                                                                                <Image Source="{Binding Foto}" Width="150" Height="150" ></Image>
+                                                                                                <TextBox IsEnabled="False" Text="{Binding Descripcion}" Width="250" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"></TextBox>
+
+                                                                                            </WrapPanel>
+                                                                                        </DataTemplate>
+                                                                                    </ListView.ItemTemplate>
+                                                                                    </ListView>
+
+                                                                                </Expander>
+
+                                                                            </WrapPanel>
+
+                                                                    
+                                                                    
 
                                                                 </Grid>
                                                             </DataTemplate>

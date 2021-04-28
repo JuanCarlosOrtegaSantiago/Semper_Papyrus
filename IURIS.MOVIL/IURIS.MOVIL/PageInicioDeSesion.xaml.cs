@@ -1,4 +1,4 @@
-﻿using Android.Widget;
+﻿//using Xamarin.Forms.PlatformConfiguration.Android.Widget;
 using IURIS.BIZ;
 using IURIS.COMMON.Entidades.Ley;
 using IURIS.COMMON.Entidades.UsuariosDeAplicacion;

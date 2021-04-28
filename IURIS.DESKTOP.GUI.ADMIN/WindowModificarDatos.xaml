@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IURIS.DESKTOP.GUI.ADMIN"
         mc:Ignorable="d"
-        Height="350" Width="800" WindowStyle="None" WindowStartupLocation="CenterScreen" Background="#640404" >
+        Height="550" Width="850" WindowStyle="None" WindowStartupLocation="CenterScreen" Background="#640404" >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="10"/>
@@ -14,6 +14,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
@@ -40,22 +41,139 @@
         <WrapPanel Orientation="Horizontal"  Grid.Row="2"  Grid.Column="1" Grid.ColumnSpan="6" VerticalAlignment="Center" HorizontalAlignment="Center">
 
             <WrapPanel Orientation="Horizontal" Margin="10,0">
-                
-            <Label Style="{DynamicResource LabelStyle1}" >Nombre:</Label>
-            <TextBox x:Name="txtNombre" Width="250" VerticalContentAlignment="Center" Height="40" FontSize="25"></TextBox>
+
+                <Label Style="{DynamicResource LabelStyle1}" >Nombre:</Label>
+                <TextBox x:Name="txtNombre" Width="250" VerticalContentAlignment="Center" Height="40" FontSize="25"></TextBox>
             </WrapPanel>
 
             <WrapPanel Orientation="Horizontal" Margin="10,0">
-                
-            <Label Style="{DynamicResource LabelStyle1}" >Numero:</Label>
-            <TextBox x:Name="txtNumero" Width="250" VerticalContentAlignment="Center" Height="40" FontSize="25"></TextBox>
+
+                <Label Style="{DynamicResource LabelStyle1}" >Número:</Label>
+                <TextBox x:Name="txtNumero" Width="250" VerticalContentAlignment="Center" Height="40" FontSize="25"></TextBox>
             </WrapPanel>
         </WrapPanel>
 
-            <Label Visibility="Collapsed" Grid.Row="3" Grid.RowSpan="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" Style="{DynamicResource LabelStyle1}" x:Name="lblContenido">Contenido:</Label>
+        <Label Visibility="Collapsed" Grid.Row="3" Grid.RowSpan="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" Style="{DynamicResource LabelStyle1}" x:Name="lblContenido">Contenido:</Label>
         <RichTextBox Visibility="Collapsed" Grid.Row="3" Grid.RowSpan="3" Grid.Column="2" Grid.ColumnSpan="5" x:Name="RtcTxtContenido" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" FontSize="15" ></RichTextBox>
 
-        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="6">
+        <Grid x:Name="GridFotos" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="6" Height="150" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1.4*"/>
+            </Grid.ColumnDefinitions>
+
+            <ListView x:Name="listFotos" Grid.Column="0" SelectionChanged="listFotos_SelectionChanged" Background="Transparent" HorizontalContentAlignment="Center" MinWidth="400" HorizontalAlignment="Center" BorderBrush="Transparent" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="False">
+                <!--<ListView.ItemContainerStyle>
+
+                    <Style TargetType="{x:Type ListViewItem}">
+                        <Style.Triggers>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsMouseOver" Value="true" />
+                                </MultiTrigger.Conditions>
+                                <MultiTrigger.Setters>
+                                    <Setter Property="FocusManager.IsFocusScope" Value="False" />
+                                </MultiTrigger.Setters>
+                            </MultiTrigger>
+                        </Style.Triggers>
+                        <Setter Property="Focusable" Value="False"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ListViewItem">
+                                    <Border x:Name="border" Background="Transparent">
+                                        <VisualStateManager.VisualStateGroups>
+                                            <VisualStateGroup x:Name="CommonStates">
+                                                <VisualState x:Name="Normal" />
+                                                <VisualState x:Name="Disabled" />
+                                            </VisualStateGroup>
+                                            <VisualStateGroup x:Name="SelectionStates">
+                                                <VisualState x:Name="Unselected" />
+                                                <VisualState x:Name="Selected">
+                                                    <Storyboard>
+                                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="border"
+                                                              Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+                                                            <EasingColorKeyFrame KeyTime="0" Value="LightBlue" />
+                                                        </ColorAnimationUsingKeyFrames>
+                                                    </Storyboard>
+                                                </VisualState>
+                                                <VisualState x:Name="SelectedUnfocused">
+                                                    <Storyboard>
+                                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="border"
+                                                              Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+                                                            <EasingColorKeyFrame KeyTime="0" Value="SkyBlue" />
+                                                        </ColorAnimationUsingKeyFrames>
+                                                    </Storyboard>
+                                                </VisualState>
+                                            </VisualStateGroup>
+                                        </VisualStateManager.VisualStateGroups>
+                                        <ContentPresenter/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+
+                </ListView.ItemContainerStyle>
+                -->
+                <!--<ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>-->
+
+                <ListView.ItemTemplate >
+                    <DataTemplate>
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left">
+
+                            <Image Source="{Binding Foto}" Width="150" Height="150" ></Image>
+                            <TextBox IsEnabled="False" Text="{Binding Descripcion}" Width="250" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"></TextBox>
+
+                        </WrapPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <WrapPanel Orientation="Horizontal" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+
+                <Button x:Name="btnAddPhoto" HorizontalAlignment="Center" Style="{DynamicResource ButtonStyle1}" Margin="5,0" Click="btnAddPhoto_Click">
+
+                    <WrapPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+
+                        <Image x:Name="Img" Source="Imagenes/AddPhoto.png" Width="100" Height="100"></Image>
+                        <Label x:Name="lblIMG" Style="{DynamicResource LabelStyle1}" FontSize="10" Margin="0">Seleccionar imagen</Label>
+
+                    </WrapPanel>
+
+                </Button>
+
+                <Grid VerticalAlignment="Center" HorizontalAlignment="Left">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="10*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Style="{DynamicResource LabelStyle1}" HorizontalAlignment="Left" FontSize="15">Descripción</Label>
+                    <RichTextBox Grid.Row="1" x:Name="RtcTxtDescripcionIMG" HorizontalAlignment="Left" Height="100" Width="200" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" FontSize="15" ></RichTextBox>
+
+                </Grid>
+
+                <Button x:Name="BtnAddImg" Style="{DynamicResource ButtonStyle1}" Click="BtnAddImg_Click">
+
+                    <WrapPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+
+                        <Image Source="Imagenes/add.ico" Width="30" Height="30"></Image>
+                        <Label Style="{DynamicResource LabelStyle1}" FontSize="10" Margin="0">Agregar imagen</Label>
+
+                    </WrapPanel>
+
+                </Button>
+
+            </WrapPanel>
+        </Grid>
+
+
+        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="6">
             <WrapPanel Orientation="Horizontal" Margin="0,5">
                 <Button Style="{DynamicResource ButtonStyle1}" Width="100" Height="30" Margin="25,5" FontWeight="Bold" BorderBrush="White" FontSize="15" x:Name="BtnEditar" Click="BtnEditar_Click">Editar</Button>
                 <Button Style="{DynamicResource ButtonStyle1}" Width="100" Height="30" Margin="25,5" FontWeight="Bold" BorderBrush="White" FontSize="15" x:Name="BtnGuardar" Click="BtnGuardar_Click">Guardar</Button>

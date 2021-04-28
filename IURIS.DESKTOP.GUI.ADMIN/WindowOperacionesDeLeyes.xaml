@@ -3,10 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:IURIS.DESKTOP.GUI.ADMIN"
+        xmlns:local="clr-namespace:IURIS.DESKTOP.GUI.ADMIN" xmlns:wpftoggleswitch="clr-namespace:WPFToggleSwitch;assembly=WPFToggleSwitch"
         mc:Ignorable="d"
-        Title="WindowOperacionesDeLeyes" MinHeight="450" Height="500" MinWidth="850" Width="900" WindowStyle="None" Background="#640404" WindowStartupLocation="CenterScreen" >
-    <Grid>
+        Title="WindowOperacionesDeLeyes" MinHeight="450" Height="500" MinWidth="850" Width="900" WindowStyle="None" Background="#640404" WindowStartupLocation="CenterScreen" WindowState="Maximized" >
+    <Grid >
 
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
@@ -73,7 +73,7 @@
 
                 <WrapPanel Orientation="Vertical">
 
-                    <Label VerticalAlignment="Center" VerticalContentAlignment="Center" Style="{DynamicResource LabelStyle1}">Codigo:</Label>
+                    <Label VerticalAlignment="Center" VerticalContentAlignment="Center" Style="{DynamicResource LabelStyle1}">Código:</Label>
 
                     <WrapPanel Orientation="Horizontal">
 
@@ -106,25 +106,25 @@
             <WrapPanel Orientation="Vertical" Margin="10,0">
 
                 <WrapPanel Orientation="Horizontal">
-                    <Label Style="{DynamicResource LabelStyle1}" FontWeight="Black" Margin="0,0,-5,0">Numero</Label>
-                    <Label Style="{DynamicResource LabelStyle1}" >del titulo</Label>
+                    <Label Style="{DynamicResource LabelStyle1}" FontWeight="Black" Margin="0,0,-5,0">Número</Label>
+                    <Label Style="{DynamicResource LabelStyle1}" >del título</Label>
                 </WrapPanel>
                 <TextBox x:Name="txtNumTitulo" Width="350" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"></TextBox>
 
             </WrapPanel>
-            
+
             <WrapPanel Orientation="Vertical" Margin="10,0">
 
-                <Label Style="{DynamicResource LabelStyle1}">Nombre del titulo</Label>
+                <Label Style="{DynamicResource LabelStyle1}">Nombre del título</Label>
                 <RichTextBox x:Name="txtNombreTitulo" Width="350" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"></RichTextBox>
-          
+
             </WrapPanel>
 
 
             <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,0">
-                
+
                 <Button x:Name="BtnAgregarTitulo" Style="{DynamicResource ButtonStyle1}" Click="BtnAgregarTitulo_Click">
-                    
+
                     <WrapPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
 
                         <Image Source="Imagenes/add.ico" Width="30" Height="30"></Image>
@@ -144,8 +144,8 @@
             <WrapPanel Orientation="Vertical" Margin="10,0">
 
                 <WrapPanel Orientation="Horizontal">
-                    <Label Style="{DynamicResource LabelStyle1}" FontWeight="Black" Margin="0,0,-5,0">Numero</Label>
-                    <Label Style="{DynamicResource LabelStyle1}" >del capitulo</Label>
+                    <Label Style="{DynamicResource LabelStyle1}" FontWeight="Black" Margin="0,0,-5,0">Número</Label>
+                    <Label Style="{DynamicResource LabelStyle1}" >del capítulo</Label>
                 </WrapPanel>
                 <TextBox x:Name="txtNumCapitulo" Width="350" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"></TextBox>
 
@@ -153,11 +153,11 @@
 
             <WrapPanel Orientation="Vertical" Margin="10,0">
 
-                <Label Style="{DynamicResource LabelStyle1}">Nombre del capitulo</Label>
+                <Label Style="{DynamicResource LabelStyle1}">Nombre del capítulo</Label>
                 <RichTextBox x:Name="txtNombreCapitulo" Width="350" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"></RichTextBox>
 
             </WrapPanel>
-            
+
             <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,0">
 
                 <Button x:Name="BtnAgregarCapitulo" Style="{DynamicResource ButtonStyle1}" Click="BtnAgregarCapitulo_Click">
@@ -181,8 +181,8 @@
             <WrapPanel Orientation="Vertical" Margin="10,0">
 
                 <WrapPanel Orientation="Horizontal">
-                    <Label Style="{DynamicResource LabelStyle1}" FontWeight="Black" Margin="0,0,-5,0">Numero</Label>
-                    <Label Style="{DynamicResource LabelStyle1}">del articulo</Label>
+                    <Label Style="{DynamicResource LabelStyle1}" FontWeight="Black" Margin="0,0,-5,0">Número</Label>
+                    <Label Style="{DynamicResource LabelStyle1}">del artículo</Label>
                 </WrapPanel>
                 <TextBox x:Name="txtNumArticulo" Width="350" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"></TextBox>
 
@@ -190,7 +190,7 @@
 
             <WrapPanel Orientation="Vertical" Margin="10,0">
 
-                <Label Style="{DynamicResource LabelStyle1}">Nombre del articulo</Label>
+                <Label Style="{DynamicResource LabelStyle1}">Nombre del artículo</Label>
                 <RichTextBox x:Name="txtNombreArticulo" Width="350" Height="30" IsEnabled="True" VerticalAlignment="Center" FontSize="20" ></RichTextBox>
 
             </WrapPanel>
@@ -212,36 +212,67 @@
 
         </WrapPanel>
 
-        <WrapPanel Orientation="Vertical" HorizontalAlignment="Left" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="8">
+        <WrapPanel Orientation="Vertical" HorizontalAlignment="Left" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="7">
 
             <Label Style="{DynamicResource LabelStyle1}">Contenido</Label>
-            <RichTextBox x:Name="RtcTxtContenido" Width="800" Height="200" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" FontSize="20" FontWeight="Black"></RichTextBox> <!--SpellCheck.IsEnabled="True"-->
+            <RichTextBox x:Name="RtcTxtContenido" Width="800" Height="200" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" FontSize="20" FontWeight="Black"></RichTextBox>
+            <WrapPanel VerticalAlignment="Center">
+
+                <wpftoggleswitch:ToggleSwitch x:Name="SwitchFoto" FontSize="20" BorderBrush="White" Foreground="White" UncheckedBackground="White" UncheckedForeground="#640404" UncheckedBorderBrush="White" Unchecked="SwitchFoto_Unchecked" CheckedForeground="White" CheckedBackground="#640404" CheckedBorderBrush="White" Checked="SwitchFoto_Checked" UncheckedText="" CheckedText=""></wpftoggleswitch:ToggleSwitch>
+                <Label Style="{DynamicResource LabelStyle1}">Agregar imagen</Label>
+                
+            </WrapPanel>
 
         </WrapPanel>
+        
+        <Button x:Name="btnFoto" Click="btnFoto_Click" Grid.Row="4" Grid.Column="9" Grid.RowSpan="2" Grid.ColumnSpan="3" Background="Transparent" Width="150" Height="150" VerticalAlignment="Bottom" Margin="0,20,0,-10" HorizontalAlignment="Center">
+                <Image x:Name="ImgFoto" Stretch="Uniform" Source="Imagenes/camera.png" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ></Image>
+        </Button>
+ 
+        <Grid Grid.Row="6" Grid.Column="9"  Grid.ColumnSpan="4" x:Name="GridContenidoFoto" HorizontalAlignment="Left">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            
+            <Label Grid.Row="0" Style="{DynamicResource LabelStyle1}" HorizontalAlignment="Left">Descripción</Label>
+            <RichTextBox Grid.Row="1" x:Name="RtcTxtDescripcionIMG" HorizontalAlignment="Left" Height="200" Width="300" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" FontSize="18" ></RichTextBox>
+            
+        </Grid>
 
-        <WrapPanel Grid.Row="4" Grid.Column="9" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2">
-            <Button x:Name="BtnSubirLey" Background="Transparent" Style="{DynamicResource ButtonStyle1}" BorderBrush="White" Width="100" Height="100" Click="BtnSubirLey_Click">
+            <Button x:Name="btnAddPhoto" Grid.Column="12" Grid.Row="6" VerticalAlignment="Top" HorizontalAlignment="Center" Style="{DynamicResource ButtonStyle1}" Click="btnAddPhoto_Click" Margin="5,0">
+
+                <WrapPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+
+                    <Image Source="Imagenes/AddPhoto.png" Width="30" Height="30"></Image>
+                    <Label Style="{DynamicResource LabelStyle1}" FontSize="10" Margin="0">Agregar nueva imagen </Label>
+
+                </WrapPanel>
+
+            </Button>
+
+        <WrapPanel Grid.Row="3" Grid.Column="9" Orientation="Horizontal" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,10">
+
+
+            <Button Margin="10,0" x:Name="BtnSubirLey" Background="Transparent" Style="{DynamicResource ButtonStyle1}" BorderBrush="White" Width="100" Height="100" Click="BtnSubirLey_Click">
                 <WrapPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <Image Source="Imagenes/Subir.png" Width="50" Height="50"></Image>
                     <Label Style="{DynamicResource LabelStyle1}" FontSize="15">Subir</Label>
                 </WrapPanel>
             </Button>
-        </WrapPanel>
-        
-        <WrapPanel Grid.Row="5" Grid.Column="9" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2">
-            <Button x:Name="BtnNuevaLey" Background="Transparent" Style="{DynamicResource ButtonStyle1}" BorderBrush="White" Width="100" Height="100" Click="BtnNuevaLey_Click">
+
+            <Button Margin="10,0" x:Name="BtnNuevaLey" Background="Transparent" Style="{DynamicResource ButtonStyle1}" BorderBrush="White" Width="100" Height="100" Click="BtnNuevaLey_Click">
                 <WrapPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <Image Source="Imagenes/Nuevo.png" Width="50" Height="50"></Image>
                     <Label Style="{DynamicResource LabelStyle1}" FontSize="15">Nueva</Label>
                 </WrapPanel>
             </Button>
-        </WrapPanel>
 
-        <WrapPanel Grid.Row="6" Grid.Column="9" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="2">
-            <Button x:Name="BtnCancelar" Background="Transparent" Style="{DynamicResource ButtonStyle1}" BorderBrush="White" Width="100" Height="100" Click="BtnCancelar_Click">
+            <Button Margin="10,0" x:Name="BtnCancelar" Background="Transparent" Style="{DynamicResource ButtonStyle1}" BorderBrush="White" Width="100" Height="100" Click="BtnCancelar_Click">
                 <WrapPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <Image Source="Imagenes/cancelar.png" Width="50" Height="50"></Image>
                     <Label Style="{DynamicResource LabelStyle1}" FontSize="15">Cancelar</Label>
+                    
                 </WrapPanel>
             </Button>
         </WrapPanel>

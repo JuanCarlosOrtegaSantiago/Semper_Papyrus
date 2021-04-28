@@ -12,5 +12,7 @@ namespace IURIS.COMMON.Entidades.Ley.ComponentesDeLey
         public string Contenido { get; set; }
         public bool NotaAdjunta { get; set; }
         public string TextoDeNota { get; set; }
+        public bool FotoAdjunta { get; set; }
+        public List<Fotografia> Fotografia { get; set; }
     }
 }

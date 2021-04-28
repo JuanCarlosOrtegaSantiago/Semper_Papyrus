@@ -1,4 +1,5 @@
 ﻿using IURIS.COMMON.Entidades.Ley.ComponentesDeLey;
+using Microsoft.Win32;
 using Org.Apache.Http.Cookies;
 using System;
 using System.Collections.Generic;
@@ -54,15 +55,19 @@ namespace IURIS.DESKTOP.GUI.ADMIN
             EditarCampos(false);
             if (titulo)
             {
-                lblNombreDeComponente.Content = "Titulo";
+                lblNombreDeComponente.Content = "Título";
                 txtNombre.Text = _titulo.NombreTitulo;
                 txtNumero.Text = _titulo.NumTitulo;
+                GridFotos.Visibility = Visibility.Collapsed;
+                this.Height = 350;
             }
             if (capitulo)
             {
-                lblNombreDeComponente.Content = "Capitulo";
+                lblNombreDeComponente.Content = "Capítulo";
                 txtNombre.Text = _capitulo.NombreCapitulo;
                 txtNumero.Text = _capitulo.NumCapitulo;
+                GridFotos.Visibility = Visibility.Collapsed;
+                this.Height = 350;
             }
 
             if (articulo)
@@ -70,9 +75,14 @@ namespace IURIS.DESKTOP.GUI.ADMIN
 
                 lblContenido.Visibility = Visibility.Visible;
                 RtcTxtContenido.Visibility = Visibility.Visible;
-                lblNombreDeComponente.Content = "Articulo";
+                lblNombreDeComponente.Content = "Artiículo";
                 txtNombre.Text = _articulo.NombreArticulo;
                 txtNumero.Text = _articulo.NumArticulo;
+                if (_articulo.FotoAdjunta)
+                    ActualizarListaFotos();
+                else
+                    GridFotos.Visibility = Visibility.Collapsed;
+
 
                     var SM = new MemoryStream(Encoding.UTF8.GetBytes(_articulo.Contenido));
                 TextRange range;
@@ -90,6 +100,9 @@ namespace IURIS.DESKTOP.GUI.ADMIN
             BtnCancelar.IsEnabled = v;
             BtnEditar.IsEnabled = !v;
             BtnGuardar.IsEnabled = v;
+            GridFotos.IsEnabled = v;
+
+            LimpiarDatosFoto();
         }
 
         private void BtnGuardar_Click(object sender, RoutedEventArgs e)
@@ -128,7 +141,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
 
                 if (!string.IsNullOrWhiteSpace(txtNombre.Text) && !string.IsNullOrWhiteSpace(txtNumero.Text) && RtcTxtContenido != null)
                 {
-                    _articulo.Contenido = Contenido();
+                    _articulo.Contenido = Contenido(RtcTxtContenido);
                     _articulo.NombreArticulo = txtNombre.Text;
                     _articulo.NumArticulo = txtNumero.Text;
                     this.Close();
@@ -156,14 +169,91 @@ namespace IURIS.DESKTOP.GUI.ADMIN
 
         private void BtnRegresar_Click(object sender, RoutedEventArgs e)
         {
-            //DatosAIniciar();
             this.Close();
         }
 
-        private string Contenido()
+        private string Contenido(RichTextBox caja)
         {
-            //string richText;
-            return new TextRange(RtcTxtContenido.Document.ContentStart, RtcTxtContenido.Document.ContentEnd).Text;
+            return new TextRange(caja.Document.ContentStart, caja.Document.ContentEnd).Text;
+        }
+
+        private void LimpiarCajaDeContenido(RichTextBox caja)
+        {
+            _ = new TextRange(caja.Document.ContentStart, caja.Document.ContentEnd)
+            {
+                Text = ""
+            };
+        }
+
+        public byte[] ImageToByte(ImageSource image)
+        {
+            if (image == null)
+                return null;
+
+                MemoryStream memoryStream = new MemoryStream();
+                JpegBitmapEncoder encoder = new JpegBitmapEncoder();
+                encoder.Frames.Add(BitmapFrame.Create(image as BitmapSource));
+                encoder.Save(memoryStream);
+                return memoryStream.ToArray();
+        }
+         
+        private void listFotos_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (listFotos.SelectedItem == null)
+                return;
+
+            Fotografia fotografia = listFotos.SelectedItem as Fotografia;
+
+            WindowEditarFoto windowEditarFoto = new WindowEditarFoto(fotografia);
+            windowEditarFoto.ShowDialog();
+
+            ActualizarListaFotos();
+        }
+
+        private void ActualizarListaFotos()
+        {
+            listFotos.ItemsSource = null;
+            listFotos.ItemsSource = _articulo.Fotografia;
+        }
+
+        private void btnAddPhoto_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Title = "Selecciona la fotografia";
+            dialog.Filter = "Formato de imagen|*.jpg; *.png";
+            if (dialog.ShowDialog().Value)
+            {
+                Img.Source = new BitmapImage(new Uri(dialog.FileName));
+            }
+        }
+
+        private void BtnAddImg_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (Contenido(RtcTxtDescripcionIMG) == "")
+                return;
+
+            Fotografia fotografia = new Fotografia()
+            {
+                Descripcion = Contenido(RtcTxtDescripcionIMG),
+                Foto = ImageToByte(Img.Source)
+            };
+
+            _articulo.Fotografia.Add(fotografia);
+
+            ActualizarListaFotos();
+
+            LimpiarDatosFoto();
+        }
+
+        private void LimpiarDatosFoto()
+        {
+            LimpiarCajaDeContenido(RtcTxtDescripcionIMG);
+            BitmapImage bi3 = new BitmapImage();
+            bi3.BeginInit();
+            bi3.UriSource = new Uri("Imagenes/camera.png", UriKind.Relative);
+            bi3.EndInit();
+            Img.Source = bi3;
         }
     }
 }

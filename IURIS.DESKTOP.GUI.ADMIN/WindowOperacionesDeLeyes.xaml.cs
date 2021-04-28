@@ -4,9 +4,11 @@ using IURIS.COMMON.Entidades.Ley.ClasificacionDeLey;
 using IURIS.COMMON.Entidades.Ley.ComponentesDeLey;
 using IURIS.COMMON.Interfaces;
 using IURIS.DAL;
+using Microsoft.Win32;
 using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,6 +37,14 @@ namespace IURIS.DESKTOP.GUI.ADMIN
         readonly IManejadorDeLeyes manejadorDeLeyes;
         readonly IManejadorDeClasificaciones manejadorDeClasificaciones;
         public bool HayInternet = true;
+        List<Fotografia> Fotografias;
+        bool HayFotos;
+        enum HayFoto
+        {
+            Si,
+            No
+        }
+        HayFoto HayFotoEnElArticulo;
 
         public WindowOperacionesDeLeyes()
         {
@@ -101,6 +111,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
             txtNumCapitulo.IsEnabled = v;
             txtNumTitulo.IsEnabled = v;
             CmbxClasificacion.IsEnabled = v;
+            RtcTxtDescripcionIMG.IsEnabled = v;
             //Habilitar botones
             BtnAgregarArticulo.IsEnabled = v;
             BtnAgregarCapitulo.IsEnabled = v;
@@ -110,6 +121,14 @@ namespace IURIS.DESKTOP.GUI.ADMIN
             BtnNuevaLey.IsEnabled = !v;
             BtnCancelar.IsEnabled = v;
             BtnSubirLey.IsEnabled = v;
+            btnFoto.IsEnabled = v;
+            SwitchFoto.IsEnabled = v;
+
+            GridContenidoFoto.Visibility = Visibility.Hidden;
+            btnFoto.Visibility = Visibility.Hidden;
+            btnAddPhoto.Visibility = Visibility.Hidden;
+
+            HayFotoEnElArticulo = HayFoto.No;
 
             LimpiarCajas();
 
@@ -235,9 +254,19 @@ namespace IURIS.DESKTOP.GUI.ADMIN
                 Contenido = Contenido(RtcTxtContenido),
                 NombreArticulo = Contenido(txtNombreArticulo),
                 NumArticulo = txtNumArticulo.Text,
-                id = Guid.NewGuid().ToString()
-
+                id = Guid.NewGuid().ToString(),
+                Fotografia = HayFotoEnElArticulo == HayFoto.Si ? Fotografias : null,
+                FotoAdjunta = HayFotoEnElArticulo == HayFoto.Si ? true : false
             };
+            if (HayFotoEnElArticulo==HayFoto.Si)
+            {
+                SwitchFoto.IsChecked = false;
+                LimpiarDatosFoto();
+                Fotografias = null;
+
+            }
+            //articulo.Fotografia = HayFotoEnElArticulo == HayFoto.Si ? Fotografias : null;
+            //articulo.FotoAdjunta = HayFotoEnElArticulo == HayFoto.Si ? true : false;
 
             articulos.Add(articulo);
             LimpiarCajas();
@@ -248,6 +277,16 @@ namespace IURIS.DESKTOP.GUI.ADMIN
                 RtcTxtContenido.IsEnabled = false;
             }
 
+        }
+
+        private void LimpiarDatosFoto()
+        {
+            LimpiarCajaDeContenido(RtcTxtDescripcionIMG);
+            BitmapImage bi3 = new BitmapImage();
+            bi3.BeginInit();
+            bi3.UriSource = new Uri("Imagenes/camera.png", UriKind.Relative);
+            bi3.EndInit();
+            ImgFoto.Source = bi3;
         }
 
         private void BtnAgregarCapitulo_Click(object sender, RoutedEventArgs e)
@@ -397,6 +436,85 @@ namespace IURIS.DESKTOP.GUI.ADMIN
                     }
                 }
 
+            }
+        }
+
+        private void btnFoto_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Title = "Selecciona la fotografia";
+            dialog.Filter = "Formato de imagen|*.jpg; *.png";
+            if (dialog.ShowDialog().Value)
+            {
+                ImgFoto.Source = new BitmapImage(new Uri(dialog.FileName));
+            }
+        }
+
+        private void SwitchFoto_Checked(object sender, RoutedEventArgs e)
+        {
+            GridContenidoFoto.Visibility = Visibility.Visible;
+            btnFoto.Visibility = Visibility.Visible;
+            btnAddPhoto.Visibility = Visibility.Visible;
+            HayFotoEnElArticulo = HayFoto.Si;
+            if (!HayFotos)Fotografias = new List<Fotografia>();
+        }
+
+        private void SwitchFoto_Unchecked(object sender, RoutedEventArgs e)
+        {
+            
+            HayFotos = Fotografias.Count >= 1 ? true : false;
+            if (HayFotos)
+            {
+                if (MessageBox.Show("¿Está seguro de borrar los datos almacenados?", "Advertencia", MessageBoxButton.OKCancel, MessageBoxImage.Warning) == MessageBoxResult.Cancel)
+                {
+                    SwitchFoto.IsChecked = true;
+                    return;
+                }
+                else
+                {
+                    Fotografias = null;
+                }
+            }
+            GridContenidoFoto.Visibility = Visibility.Hidden;
+            btnFoto.Visibility = Visibility.Hidden;
+            btnAddPhoto.Visibility = Visibility.Hidden;
+            HayFotoEnElArticulo = HayFoto.No;
+            LimpiarDatosFoto();
+            Fotografias = null;
+
+
+        }
+
+        private void btnAddPhoto_Click(object sender, RoutedEventArgs e)
+        {
+            if (Contenido(RtcTxtDescripcionIMG) == "")
+            {
+                MessageBox.Show("Faltan datos por llenar", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
+            }
+
+            Fotografia fotografia = new Fotografia()
+            {
+                Descripcion = Contenido(RtcTxtDescripcionIMG),
+                Foto = ImageToByte(ImgFoto.Source)
+            };
+            Fotografias.Add(fotografia);
+            LimpiarDatosFoto();
+        }
+
+        public byte[] ImageToByte(ImageSource image)
+        {
+            if (image != null)
+            {
+                MemoryStream memoryStream = new MemoryStream();
+                JpegBitmapEncoder encoder = new JpegBitmapEncoder();
+                encoder.Frames.Add(BitmapFrame.Create(image as BitmapSource));
+                encoder.Save(memoryStream);
+                return memoryStream.ToArray();
+            }
+            else
+            {
+                return null;
             }
         }
     }
