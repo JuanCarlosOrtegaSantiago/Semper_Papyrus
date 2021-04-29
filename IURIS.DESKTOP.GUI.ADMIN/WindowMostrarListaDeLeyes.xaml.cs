@@ -5,6 +5,7 @@ using IURIS.COMMON.Interfaces;
 using IURIS.DAL;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,23 +25,29 @@ namespace IURIS.DESKTOP.GUI.ADMIN
     /// </summary>
     public partial class WindowMostrarListaDeLeyes : Window
     {
+//[System.Diagnostics.DebuggerBrowsable(DebuggerBrowsableState.Never)]
         IManejadorDeLeyes manejadorDeLeyes;
-
+        List<Leyes> LeyesDeClasificacion;
         public WindowMostrarListaDeLeyes(Clasificacion clasificacion)
         {
             InitializeComponent();
             manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
 
-            if (manejadorDeLeyes.Listar.Count <= 0)
+            List<Leyes> leyes = manejadorDeLeyes.Listar;
+
+            if (leyes.Count <= 0)
                 if (MessageBox.Show("Aun no tiene leyes agregadas", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning) == MessageBoxResult.OK)
                     this.Close();
 
-            ListLeyes.ItemsSource = manejadorDeLeyes.BuscarEnLeyesPorClasificacion(clasificacion);
+            LeyesDeClasificacion = leyes.Where(w => w.Clasificacion.Nombre == clasificacion.Nombre).ToList();
+            ListLeyes.ItemsSource =  LeyesDeClasificacion;
+
         }
 
         private void TextBox_KeyUp(object sender, KeyEventArgs e)
         {
-            ListLeyes.ItemsSource = manejadorDeLeyes.BuscarEnLeyes(txtbuscar.Text);
+            //ListLeyes.ItemsSource = manejadorDeLeyes.BuscarEnLeyes(txtbuscar.Text);
+            ListLeyes.ItemsSource = LeyesDeClasificacion.Where(r => r.NombreLey.ToUpper().Contains(txtbuscar.Text.ToUpper()) == true || r.CodigoLey.ToUpper().Contains(txtbuscar.Text.ToUpper()) == true).OrderByDescending(w => w.UltimaFechaDeModificacion).ToList();
         }
 
         private void BtnRegresarAMenuDeOperaciones_Click(object sender, RoutedEventArgs e)
