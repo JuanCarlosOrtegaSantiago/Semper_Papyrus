@@ -14,6 +14,7 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using IURIS.MOVIL.Modelos_y_clases;
+using System.IO;
 
 namespace IURIS.MOVIL.Detail
 {
@@ -30,6 +31,7 @@ namespace IURIS.MOVIL.Detail
         bool isRefreshing;
 
 
+
         public PageMotrarCapitulosConCodigos(Titulo titulo, Usuarios usuarios, Leyes ley)
         {
             InitializeComponent();
@@ -40,6 +42,7 @@ namespace IURIS.MOVIL.Detail
             _ley = ley;
 
             DatosAInicializar();
+            
         }
 
         public bool IsRefreshing
@@ -81,6 +84,7 @@ namespace IURIS.MOVIL.Detail
             _Capitulo = _titulo.ListaCapitulos.FirstOrDefault();
 
 
+
             ActualizarDatosCapitulo(_titulo.ListaCapitulos);
 
         }
@@ -107,7 +111,6 @@ namespace IURIS.MOVIL.Detail
         {
             MostrarSearch(true);
         }
-
 
         private void BuscarTexto(TextChangedEventArgs TextChange)
         {
@@ -212,7 +215,54 @@ namespace IURIS.MOVIL.Detail
             if (articulo == null) return;
 
             await PopupNavigation.Instance.PushAsync(new WindowOfMenuAccion(_titulo, _Usuario, articulo, _ley, _Capitulo), false);
-            
+
+        }
+
+        private void ObtenerImagenesDeArticulo()
+        {
+
+            ////if (_Articulo.FotoAdjunta)
+            //{
+
+            //    //List<Fotografia> vs = _Capitulo.ListaArticulos.Where(e=> e.FotoAdjunta==true).ToList();
+
+            //    Stream stream = new MemoryStream(byteArray);
+            //    //image.Source = ImageSource.FromStream(stream);
+            //    image.Source = ImageSource.FromStream(() => { return stream; });
+            //    //ImageSource.FromStream(() => new MemoryStream(imageAsBytes));
+            //}
+
+        }
+
+        private void TapGestureRecognizer_Tapped_5Fotos(object sender, EventArgs e)
+        {
+            var Fot = ((Image)sender).BindingContext as Fotografia;
+
+            if (!(Fot is Fotografia)) return;
+
+            //Stream stream = new MemoryStream(Fot.Foto);
+            //image.Source = ImageSource.FromStream(stream);
+            //((Image)sender).Source = ImageSource.FromStream(() => { return stream; });
+            ((Image)sender).Margin= new Thickness(20,20,20,20);
+            ((Image)sender).Source = ImageSource.FromStream(() => new MemoryStream(Fot.Foto));
+
+        }
+
+        private void ArticulosConFoto_PositionChanged(object sender, PositionChangedEventArgs e)
+        {
+            var Fot = ((CarouselView)sender).BindingContext as Fotografia;
+
+            if (!(Fot is Fotografia)) return;
+        }
+
+        private void TapGestureRecognizer_Tapped_5(object sender, EventArgs e)
+        {
+            DisplayAlert("Color seleccioando", "el color seleccionado es Rojo", "Ok");
+        }
+
+        private void TapGestureRecognizer_Tapped_6(object sender, EventArgs e)
+        {
+            stakColores.IsVisible = stakColores.IsVisible==false? true:false;
         }
     }
 }

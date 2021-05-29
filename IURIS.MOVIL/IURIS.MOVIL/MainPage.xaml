@@ -9,7 +9,9 @@
     <ScrollView Padding="0,30">
         <FlexLayout>
 
-            <Label FlexLayout.Shrink="0" FlexLayout.Basis="auto" Text="IURIS" FontAttributes="Bold" HorizontalTextAlignment="Center" FontSize="40" TextColor="White"/>
+            <Label FlexLayout.Shrink="0" FlexLayout.Basis=
+                   
+                   "auto" Text="IURIS" FontAttributes="Bold" HorizontalTextAlignment="Center" FontSize="40" TextColor="White"/>
 
             <Label FlexLayout.Shrink="0" Padding="0,0,0,5" HorizontalTextAlignment="Center" Text="Bienvenido" FontAttributes="Italic" FontSize="30" TextColor="White"/>
 
@@ -27,7 +29,15 @@
             <Label FlexLayout.Shrink="0" Text="Codigo de usuario" HorizontalTextAlignment="Center" FontSize="15" TextColor="White" />
 
             <Label FlexLayout.Shrink="0" x:Name="lblCodigoUsuario" Margin="0,0,0,5" HorizontalTextAlignment="Center" Text="000000" FontSize="15" TextColor="White"/>
+
+            <!--<Polyline Points="4 4,20 10,4 20"
+          Stroke="DarkBlue"
+          StrokeThickness="7"
+          StrokeLineJoin="Round"/>-->
+
+            
         </FlexLayout>
+        
     </ScrollView>
 
 </ContentPage>

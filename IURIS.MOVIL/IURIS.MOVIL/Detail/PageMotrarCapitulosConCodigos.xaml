@@ -6,6 +6,12 @@
              mc:Ignorable="d"
              x:Class="IURIS.MOVIL.Detail.PageMotrarCapitulosConCodigos">
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ByteArrayToImageSourceConverter x:Key="ByteArrayToImage" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <NavigationPage.TitleView>
         <FlexLayout Direction="Row" >
 
@@ -50,7 +56,6 @@
         <FlexLayout  AlignItems="Start" JustifyContent="Start" >
 
             <StackLayout FlexLayout.Shrink="1.5"  FlexLayout.Grow="1" FlexLayout.Basis="40%">
-
                 <CarouselView x:Name="clltionCapitulos" ItemsSource="{Binding ListaCapitulos}" IndicatorView="indicatorView" Margin="10,5,10,0" PositionChanged="clltionCapitulos_PositionChanged" BindingContext="{Binding .}" >
                     <CarouselView.EmptyView>
                         <StackLayout>
@@ -92,7 +97,8 @@
                     </CollectionView.EmptyView>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Grid RowDefinitions="auto,auto" >
+                            <Grid RowDefinitions="auto,auto,auto" >
+
                                 <StackLayout Grid.Row="0" Orientation="Horizontal" VerticalOptions="Start" Spacing="5">
 
                                     <Image Source="LapizNota.png" WidthRequest="25" HeightRequest="25" IsVisible="{Binding NotaAdjunta}" BindingContext="{Binding .}" VerticalOptions="Center" HorizontalOptions="Start">
@@ -118,13 +124,64 @@
 
                                 </StackLayout>
 
-                                <local:CustomLabel Text="{Binding Contenido}" FontSize="Subtitle"  Grid.Row="1" Margin="0,10" Style="{StaticResource TextoAMostrarColorRojo}"></local:CustomLabel>
+                                <local:CustomLabel Text="{Binding Contenido}" FontSize="Subtitle"  Grid.Row="1" Margin="0,10, 0,0" Style="{StaticResource TextoAMostrarColorRojo}"></local:CustomLabel>
+
+                                <CarouselView ItemsSource="{Binding Fotografia}" Grid.Row="2" HorizontalOptions="Center" IsVisible="{Binding FotoAdjunta}" HeightRequest="250">
+                                    <!--<CarouselView.ItemsLayout>
+                                        <LinearItemsLayout Orientation="Horizontal" SnapPointsAlignment="Start" SnapPointsType="MandatorySingle" FlexLayout.AlignSelf="Auto" FlexLayout.Basis="0" FlexLayout.Grow="0" ItemSpacing="15" />
+                                    </CarouselView.ItemsLayout>-->
+                                    <CarouselView.ItemTemplate>
+                                        <DataTemplate >
+                                            <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center" Padding="50,10">
+
+                                                <Image Source="{Binding Foto,  Converter={StaticResource ByteArrayToImage}}" HorizontalOptions="Center" Margin="0,0,0,5"/>
+                                                <Label Text="{Binding Descripcion}" Style="{StaticResource TextoAMostrarColorRojo}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+
+                                            </StackLayout>
+                                        </DataTemplate>
+                                    </CarouselView.ItemTemplate>
+                                </CarouselView>
+
+
                             </Grid>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
             </RefreshView>
         </FlexLayout>
+
+        <StackLayout x:Name="stakColores" Orientation="Horizontal" Spacing="15" HorizontalOptions="Start"  VerticalOptions="End" Margin="10,0,0,20" IsVisible="false">
+
+            <Ellipse Fill="Red"
+         WidthRequest="20"
+         HeightRequest="20"
+         HorizontalOptions="Start">
+                <Ellipse.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_5"/>
+                </Ellipse.GestureRecognizers>
+            </Ellipse>
+
+            <Ellipse Fill="GreenYellow" 
+         WidthRequest="20"
+         HeightRequest="20"
+         HorizontalOptions="Start" />
+
+            <Ellipse Fill="Purple"
+         WidthRequest="20"
+         HeightRequest="20"
+         HorizontalOptions="Start" />
+
+            <Ellipse Fill="DeepPink"
+         WidthRequest="20"
+         HeightRequest="20"
+         HorizontalOptions="Start" />
+
+            <Ellipse Fill="Yellow"
+         WidthRequest="20"
+         HeightRequest="20"
+         HorizontalOptions="Start" />
+        </StackLayout>
+
 
         <pv:PancakeView HorizontalOptions="End" VerticalOptions="End" Margin="30" CornerRadius="15">
             <pv:PancakeView.BackgroundGradientStops>
@@ -134,12 +191,17 @@
                 </pv:GradientStopCollection>
             </pv:PancakeView.BackgroundGradientStops>
             <Expander Rotation="180" HorizontalOptions="End" VerticalOptions="End" State="Expanding"
-                          ExpandAnimationEasing="{x:Static Easing.SinOut}"
-          ExpandAnimationLength="1"
+                          ExpandAnimationEasing="{x:Static Easing.SinInOut}"
+          ExpandAnimationLength="0"
           CollapseAnimationEasing="{x:Static Easing.SinOut}"
           CollapseAnimationLength="1">
                 <Expander.Header >
-                    <Image Source="Mas.png" WidthRequest="35" HeightRequest="35"/>
+                    <Image Source="Mas.png" WidthRequest="35" HeightRequest="35">
+
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_6"/>
+                        </Image.GestureRecognizers>
+                    </Image>
                 </Expander.Header>
                 <Expander.ContentTemplate>
                     <DataTemplate>
@@ -157,6 +219,6 @@
                 </Expander.ContentTemplate>
             </Expander>
         </pv:PancakeView>
-        
+
     </Grid>
 </ContentPage>

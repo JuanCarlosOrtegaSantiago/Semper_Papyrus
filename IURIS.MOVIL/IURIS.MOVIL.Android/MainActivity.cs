@@ -25,7 +25,7 @@ namespace IURIS.MOVIL.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
 
             //Forms.SetFlags(new[] { "Expander_Experimental" });
-            Forms.SetFlags(new[] { "RadioButton_Experimental", "Expander_Experimental", "SwipeView_Experimental", "IndicatorView_Experimental" });
+            Forms.SetFlags(new[] { "RadioButton_Experimental", "Expander_Experimental", "SwipeView_Experimental", "IndicatorView_Experimental", "Shapes_Experimental" });
 
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());

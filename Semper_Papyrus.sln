@@ -236,6 +236,7 @@ Global
 		{7032CF10-94DA-41A9-9101-C286BF6C29FE}.AppStore|x64.ActiveCfg = Debug|x64
 		{7032CF10-94DA-41A9-9101-C286BF6C29FE}.AppStore|x64.Build.0 = Debug|x64
 		{7032CF10-94DA-41A9-9101-C286BF6C29FE}.Debug|Any CPU.ActiveCfg = Debug|iPhone
+		{7032CF10-94DA-41A9-9101-C286BF6C29FE}.Debug|Any CPU.Build.0 = Debug|iPhone
 		{7032CF10-94DA-41A9-9101-C286BF6C29FE}.Debug|iPhone.ActiveCfg = Debug|iPhone
 		{7032CF10-94DA-41A9-9101-C286BF6C29FE}.Debug|iPhone.Build.0 = Debug|iPhone
 		{7032CF10-94DA-41A9-9101-C286BF6C29FE}.Debug|iPhone.Deploy.0 = Debug|iPhone
