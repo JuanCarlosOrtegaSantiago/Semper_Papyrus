@@ -124,12 +124,18 @@
 
                                 </StackLayout>
 
-                                <local:CustomLabel Text="{Binding Contenido}" FontSize="Subtitle"  Grid.Row="1" Margin="0,10, 0,0" Style="{StaticResource TextoAMostrarColorRojo}"></local:CustomLabel>
+                                <local:CustomLabeJustifity Text="{Binding Contenido}" BindingContext="{Binding .}" FontSize="Subtitle"  Grid.Row="1" Margin="0,10, 0,0" Style="{StaticResource TextoAMostrarColorRojo}">
+                                    <local:CustomLabeJustifity.Triggers>
+                                        <DataTrigger TargetType="local:CustomLabeJustifity" Binding="{Binding TieneColorDeTexto}" Value="true">
+                                            <Setter Property="TextColor" Value="{Binding ColorTextoHex}"/>
+                                        </DataTrigger>
+                                    </local:CustomLabeJustifity.Triggers>
+                                    <local:CustomLabeJustifity.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_5" BindingContext="{Binding .}"/>
+                                    </local:CustomLabeJustifity.GestureRecognizers>
+                                </local:CustomLabeJustifity>
 
                                 <CarouselView ItemsSource="{Binding Fotografia}" Grid.Row="2" HorizontalOptions="Center" IsVisible="{Binding FotoAdjunta}" HeightRequest="250">
-                                    <!--<CarouselView.ItemsLayout>
-                                        <LinearItemsLayout Orientation="Horizontal" SnapPointsAlignment="Start" SnapPointsType="MandatorySingle" FlexLayout.AlignSelf="Auto" FlexLayout.Basis="0" FlexLayout.Grow="0" ItemSpacing="15" />
-                                    </CarouselView.ItemsLayout>-->
                                     <CarouselView.ItemTemplate>
                                         <DataTemplate >
                                             <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center" Padding="50,10">
@@ -150,36 +156,52 @@
             </RefreshView>
         </FlexLayout>
 
-        <StackLayout x:Name="stakColores" Orientation="Horizontal" Spacing="15" HorizontalOptions="Start"  VerticalOptions="End" Margin="10,0,0,20" IsVisible="false">
+        <StackLayout x:Name="stakColores" Orientation="Horizontal" Spacing="15" HorizontalOptions="Start"  VerticalOptions="End" Margin="10,0,0,30" IsVisible="false">
 
-            <Ellipse Fill="Red"
-         WidthRequest="20"
-         HeightRequest="20"
+            <Ellipse Fill="#643404"
+         WidthRequest="25"
+         HeightRequest="25"
          HorizontalOptions="Start">
                 <Ellipse.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_5"/>
+                    <TapGestureRecognizer Tapped="EllipceColor"/>
                 </Ellipse.GestureRecognizers>
             </Ellipse>
 
-            <Ellipse Fill="GreenYellow" 
-         WidthRequest="20"
-         HeightRequest="20"
-         HorizontalOptions="Start" />
+            <Ellipse Fill="#040464" 
+         WidthRequest="25"
+         HeightRequest="25"
+         HorizontalOptions="Start">
+                <Ellipse.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="EllipceColor"/>
+                </Ellipse.GestureRecognizers>
+            </Ellipse>
 
-            <Ellipse Fill="Purple"
-         WidthRequest="20"
-         HeightRequest="20"
-         HorizontalOptions="Start" />
+            <Ellipse Fill="#046404"
+         WidthRequest="25"
+         HeightRequest="25"
+         HorizontalOptions="Start">
+                <Ellipse.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="EllipceColor"/>
+                </Ellipse.GestureRecognizers>
+            </Ellipse>
 
-            <Ellipse Fill="DeepPink"
-         WidthRequest="20"
-         HeightRequest="20"
-         HorizontalOptions="Start" />
+            <Ellipse Fill="#640434"
+         WidthRequest="25"
+         HeightRequest="25"
+         HorizontalOptions="Start">
+                <Ellipse.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="EllipceColor"/>
+                </Ellipse.GestureRecognizers>
+            </Ellipse>
 
-            <Ellipse Fill="Yellow"
-         WidthRequest="20"
-         HeightRequest="20"
-         HorizontalOptions="Start" />
+            <Ellipse Fill="#b337a3"
+         WidthRequest="25"
+         HeightRequest="25"
+         HorizontalOptions="Start" >
+                <Ellipse.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="EllipceColor"/>
+                </Ellipse.GestureRecognizers>
+            </Ellipse>
         </StackLayout>
 
 
@@ -191,15 +213,15 @@
                 </pv:GradientStopCollection>
             </pv:PancakeView.BackgroundGradientStops>
             <Expander Rotation="180" HorizontalOptions="End" VerticalOptions="End" State="Expanding"
-                          ExpandAnimationEasing="{x:Static Easing.SinInOut}"
-          ExpandAnimationLength="0"
+                          ExpandAnimationEasing="{x:Static Easing.SinOut}"
+          ExpandAnimationLength="1"
           CollapseAnimationEasing="{x:Static Easing.SinOut}"
           CollapseAnimationLength="1">
                 <Expander.Header >
                     <Image Source="Mas.png" WidthRequest="35" HeightRequest="35">
 
                         <Image.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_6"/>
+                            <TapGestureRecognizer Tapped="ExpaderForPlus"/>
                         </Image.GestureRecognizers>
                     </Image>
                 </Expander.Header>
@@ -209,8 +231,11 @@
 
                             <StackLayout >
                                 <Image Source="avanzar.png" HeightRequest="35" WidthRequest="35" Rotation="180"/>
-                                <Image Source="retroseso.png" HeightRequest="35" WidthRequest="35"  Rotation="180"/>
-                                <Image Source="copiar.png" HeightRequest="35" WidthRequest="35" Rotation="180"/>
+                                <Image Source="retroseso.png" HeightRequest="35" WidthRequest="35"  Rotation="180">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_6"/>
+                                    </Image.GestureRecognizers>
+                                </Image>
                                 <Image Source="lapiz.png" HeightRequest="35" WidthRequest="35" Rotation="180"/>
                                 <Image Source="lapiz.png" HeightRequest="35" WidthRequest="35" Rotation="180"/>
                             </StackLayout>

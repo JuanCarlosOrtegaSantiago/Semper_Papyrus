@@ -15,6 +15,11 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using IURIS.MOVIL.Modelos_y_clases;
 using System.IO;
+using Xamarin.Forms.Shapes;
+using IURIS.COMMON.Entidades.UsuariosDeAplicacion.ComponentesDeUsuario;
+using IURIS.COMMON.Interfaces;
+using IURIS.DAL;
+using IURIS.BIZ;
 
 namespace IURIS.MOVIL.Detail
 {
@@ -29,7 +34,9 @@ namespace IURIS.MOVIL.Detail
         public Capitulo _Capitulo;
         public Articulo _Articulo;
         bool isRefreshing;
-
+        IManejadorDeUsuarioAplicacion manejadorDeUsuarioAplicacion;
+        private string ColorHex;
+        bool BorrarTextoColoreado= false;
 
 
         public PageMotrarCapitulosConCodigos(Titulo titulo, Usuarios usuarios, Leyes ley)
@@ -40,6 +47,8 @@ namespace IURIS.MOVIL.Detail
             _titulo = titulo;
             _Usuario = usuarios;
             _ley = ley;
+
+            manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
 
             DatosAInicializar();
             
@@ -255,14 +264,58 @@ namespace IURIS.MOVIL.Detail
             if (!(Fot is Fotografia)) return;
         }
 
+        private void EllipceColor(object sender, EventArgs e)
+        {
+                ColorHex = ((Ellipse)sender).Fill.ToHex();
+           // ((Ellipse)sender).Stroke = Color.Black;
+        }
+
+        private void ExpaderForPlus(object sender, EventArgs e)
+        {
+            stakColores.IsVisible = stakColores.IsVisible==false? true:false;
+        }
+
         private void TapGestureRecognizer_Tapped_5(object sender, EventArgs e)
         {
-            DisplayAlert("Color seleccioando", "el color seleccionado es Rojo", "Ok");
+
+            try
+            {
+
+
+                var articulo = ((CustomLabeJustifity)sender).BindingContext as Articulo;
+                if (articulo == null)
+                    return;
+
+                if (BorrarTextoColoreado)
+                {
+                    articulo.ColorTextoHex = null;
+                    articulo.TieneColorDeTexto = false;
+                    BorrarTextoColoreado = false;
+                }
+                else
+                {
+                    if (ColorHex == null)
+                        return;
+
+                    articulo.ColorTextoHex = ColorHex;
+                    articulo.TieneColorDeTexto = true;
+                    ColorHex = null;
+                }
+                 if (manejadorDeUsuarioAplicacion.Modificar(_Usuario))
+                    IsRefreshing = true;
+
+            }
+            catch (Exception ex)
+            {
+
+                DisplayAlert("Error", "Ah ocurrido un error, \n"+ex.Message, "Ok");
+            }
+
         }
 
         private void TapGestureRecognizer_Tapped_6(object sender, EventArgs e)
         {
-            stakColores.IsVisible = stakColores.IsVisible==false? true:false;
+            BorrarTextoColoreado = true;
         }
     }
 }

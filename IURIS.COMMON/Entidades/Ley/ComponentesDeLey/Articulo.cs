@@ -14,5 +14,7 @@ namespace IURIS.COMMON.Entidades.Ley.ComponentesDeLey
         public string TextoDeNota { get; set; }
         public bool FotoAdjunta { get; set; }
         public List<Fotografia> Fotografia { get; set; }
+        public string ColorTextoHex { get; set; }
+        public bool TieneColorDeTexto { get; set; }
     }
 }
