@@ -125,22 +125,39 @@
                                 </StackLayout>
 
                                 <local:CustomLabeJustifity BindingContext="{Binding .}" FontSize="Subtitle"  Grid.Row="1" Margin="0,10, 0,0" Style="{StaticResource TextoAMostrarColorRojo}">
-                                    <local:CustomLabeJustifity.FormattedText>
-                                        <FormattedString>
-                                            <Span Text="{Binding Contenido}" BackgroundColor="Red"/>
-                                            <!--<Span Text="Ejemplo" BackgroundColor="Red"/>-->
-                                        </FormattedString>
-
-                                    </local:CustomLabeJustifity.FormattedText>
                                     <local:CustomLabeJustifity.Triggers>
                                         <DataTrigger TargetType="local:CustomLabeJustifity" Binding="{Binding TieneColorDeTexto}" Value="true">
-                                            <Setter Property="TextColor" Value="{Binding ColorTextoHex}"/>
+                                            <Setter Property="IsVisible" Value="false"/>
                                         </DataTrigger>
                                     </local:CustomLabeJustifity.Triggers>
+                                    <local:CustomLabeJustifity.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding Contenido}"/>
+                                        </FormattedString>
+                                    </local:CustomLabeJustifity.FormattedText>
                                     <local:CustomLabeJustifity.GestureRecognizers>
                                         <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_5" BindingContext="{Binding .}"/>
                                     </local:CustomLabeJustifity.GestureRecognizers>
                                 </local:CustomLabeJustifity>
+
+                                <local:CustomLabeJustifity BindingContext="{Binding .}" FontSize="Subtitle"  Grid.Row="1" Margin="0,10, 0,0" Style="{StaticResource TextoAMostrarColorRojo}" IsVisible="{Binding TieneColorDeTexto}">
+                                    <local:CustomLabeJustifity.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Texto anterior"/>
+                                            <Span Text="{Binding TextoContenidoSeleccionado}" BackgroundColor="{Binding ColorTextoHex}" TextColor="Black"/>
+                                            <Span Text="Texto despues"/>
+                                        </FormattedString>
+                                    </local:CustomLabeJustifity.FormattedText>
+                                    <!--<local:CustomLabeJustifity.Triggers>
+                                        <DataTrigger TargetType="local:CustomLabeJustifity" Binding="{Binding TieneTextoSe +eccionado}" Value="true">
+                                            <Setter Property="TextColor" Value="{Binding ColorTextoHex}"/>
+                                        </DataTrigger>
+                                    </local:CustomLabeJustifity.Triggers>-->
+                                    <local:CustomLabeJustifity.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_5" BindingContext="{Binding .}"/>
+                                    </local:CustomLabeJustifity.GestureRecognizers>
+                                </local:CustomLabeJustifity>
+
 
                                 <CarouselView ItemsSource="{Binding Fotografia}" Grid.Row="2" HorizontalOptions="Center" IsVisible="{Binding FotoAdjunta}" HeightRequest="250">
                                     <CarouselView.ItemTemplate>
@@ -243,7 +260,8 @@
                                         <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_6"/>
                                     </Image.GestureRecognizers>
                                 </Image>
-                                <Image Source="lapiz.png" HeightRequest="35" WidthRequest="35" Rotation="180"/>
+                                <Image Source="lapiz.png" HeightRequest="35" WidthRequest="35" Rotation="180">
+                                </Image>
                                 <Image Source="lapiz.png" HeightRequest="35" WidthRequest="35" Rotation="180"/>
                             </StackLayout>
                         </ContentView>
@@ -254,3 +272,6 @@
 
     </Grid>
 </ContentPage>
+
+
+

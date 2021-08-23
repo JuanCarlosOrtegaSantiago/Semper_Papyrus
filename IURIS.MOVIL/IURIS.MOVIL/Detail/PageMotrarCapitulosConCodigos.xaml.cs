@@ -20,6 +20,7 @@ using IURIS.COMMON.Entidades.UsuariosDeAplicacion.ComponentesDeUsuario;
 using IURIS.COMMON.Interfaces;
 using IURIS.DAL;
 using IURIS.BIZ;
+using Plugin.Clipboard;
 
 namespace IURIS.MOVIL.Detail
 {
@@ -223,7 +224,7 @@ namespace IURIS.MOVIL.Detail
             var articulo = ((Image)sender).BindingContext as Articulo;
             if (articulo == null) return;
 
-            await PopupNavigation.Instance.PushAsync(new WindowOfMenuAccion(_titulo, _Usuario, articulo, _ley, _Capitulo), false);
+            await PopupNavigation.Instance.PushAsync(new WindowOfMenuAccion(_titulo, _Usuario, articulo, _ley, _Capitulo, ColorHex), false);
 
         }
 
@@ -281,7 +282,6 @@ namespace IURIS.MOVIL.Detail
             try
             {
 
-
                 var articulo = ((CustomLabeJustifity)sender).BindingContext as Articulo;
                 if (articulo == null)
                     return;
@@ -317,5 +317,7 @@ namespace IURIS.MOVIL.Detail
         {
             BorrarTextoColoreado = true;
         }
+
+
     }
 }

@@ -33,7 +33,7 @@ namespace IURIS.MOVIL.Droid
             base.OnElementChanged(e);
             if (Control != null)
             {
-                //Control.SetTextIsSelectable(true);
+                Control.SetTextIsSelectable(true);
                 Control.Selected = true;
             }
         }

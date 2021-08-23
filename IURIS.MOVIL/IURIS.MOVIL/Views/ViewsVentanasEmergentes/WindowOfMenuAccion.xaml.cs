@@ -1,6 +1,7 @@
 ﻿using IURIS.COMMON.Entidades.Ley;
 using IURIS.COMMON.Entidades.Ley.ComponentesDeLey;
 using IURIS.COMMON.Entidades.UsuariosDeAplicacion;
+using Plugin.Clipboard;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using System;
@@ -22,8 +23,9 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
         readonly Articulo _Articulo;
         readonly Leyes _Ley;
         readonly Capitulo _Capitulo;
+        readonly string _ColorHex;
 
-        public WindowOfMenuAccion(Titulo titulo, Usuarios usuarios, Articulo articulo, Leyes ley, Capitulo capitulo)
+        public WindowOfMenuAccion(Titulo titulo, Usuarios usuarios, Articulo articulo, Leyes ley, Capitulo capitulo, string ColorHex)
         {
             InitializeComponent();
             _Articulo = articulo;
@@ -31,6 +33,7 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
             _User = usuarios;
             _Ley = ley;
             _Capitulo = capitulo;
+            _ColorHex = ColorHex;
         }
 
         private async void LblCrearNota(object sender, EventArgs e)
@@ -44,5 +47,30 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
             App.masterDetail.Detail = new NavigationPage(new ViewsMisClasificaciones(_User, _Articulo,_Ley));
             await PopupNavigation.Instance.PopAsync(false);
         }
+
+        private async void GuardarSeleccion(object sender, EventArgs e)
+        {
+            try
+            {
+                string txt;
+
+                txt = await CrossClipboard.Current.GetTextAsync();
+                //CrossClipboard.Current.SetText()
+
+
+                if (!_Articulo.Contenido.ToUpper().Contains(txt))
+                {
+                    _Articulo.TextoContenidoSeleccionado = txt;
+                _Articulo.TieneColorDeTexto = true;
+                    _Articulo.ColorTextoHex = _ColorHex;
+                }
+
+            }
+            catch (Exception)
+            {
+
+                return;
+            }
+         }
     }
 }
