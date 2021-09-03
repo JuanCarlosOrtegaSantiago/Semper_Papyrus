@@ -1,6 +1,9 @@
-﻿using IURIS.COMMON.Entidades.Ley;
+﻿using IURIS.BIZ;
+using IURIS.COMMON.Entidades.Ley;
 using IURIS.COMMON.Entidades.Ley.ComponentesDeLey;
 using IURIS.COMMON.Entidades.UsuariosDeAplicacion;
+using IURIS.COMMON.Interfaces;
+using IURIS.DAL;
 using Plugin.Clipboard;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
@@ -23,9 +26,9 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
         readonly Articulo _Articulo;
         readonly Leyes _Ley;
         readonly Capitulo _Capitulo;
-        readonly string _ColorHex;
+        IManejadorDeUsuarioAplicacion manejadorDeUsuarioAplicacion;
 
-        public WindowOfMenuAccion(Titulo titulo, Usuarios usuarios, Articulo articulo, Leyes ley, Capitulo capitulo, string ColorHex)
+        public WindowOfMenuAccion(Titulo titulo, Usuarios usuarios, Articulo articulo, Leyes ley, Capitulo capitulo)
         {
             InitializeComponent();
             _Articulo = articulo;
@@ -33,7 +36,7 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
             _User = usuarios;
             _Ley = ley;
             _Capitulo = capitulo;
-            _ColorHex = ColorHex;
+            manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
         }
 
         private async void LblCrearNota(object sender, EventArgs e)
@@ -50,27 +53,22 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
 
         private async void GuardarSeleccion(object sender, EventArgs e)
         {
-            try
-            {
-                string txt;
-
-                txt = await CrossClipboard.Current.GetTextAsync();
-                //CrossClipboard.Current.SetText()
-
-
-                if (!_Articulo.Contenido.ToUpper().Contains(txt))
-                {
-                    _Articulo.TextoContenidoSeleccionado = txt;
-                _Articulo.TieneColorDeTexto = true;
-                    _Articulo.ColorTextoHex = _ColorHex;
-                }
-
-            }
-            catch (Exception)
-            {
-
-                return;
-            }
+                await PopupNavigation.Instance.PopAsync(false);
          }
+
+        private async void BorrarSubrayado(object sender, EventArgs e)
+        {
+            if (!_Articulo.TieneColorDeTexto)
+                return;
+
+            _Articulo.TextoContenidoSeleccionado = null;
+            _Articulo.TieneColorDeTexto = false;
+            _Articulo.ColorTextoHex = null;
+
+            if (manejadorDeUsuarioAplicacion.Modificar(_User))
+                await DisplayAlert("Informe", "Se borro el subrayado, refresca la página", "ok");
+
+            await PopupNavigation.Instance.PopAsync(false);
+        }
     }
 }

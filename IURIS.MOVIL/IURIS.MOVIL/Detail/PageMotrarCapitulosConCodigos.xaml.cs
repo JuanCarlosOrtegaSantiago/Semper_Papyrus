@@ -37,8 +37,7 @@ namespace IURIS.MOVIL.Detail
         bool isRefreshing;
         IManejadorDeUsuarioAplicacion manejadorDeUsuarioAplicacion;
         private string ColorHex;
-        bool BorrarTextoColoreado= false;
-
+        Ellipse Ellipse_Cargado = null;
 
         public PageMotrarCapitulosConCodigos(Titulo titulo, Usuarios usuarios, Leyes ley)
         {
@@ -84,6 +83,7 @@ namespace IURIS.MOVIL.Detail
                 });
             }
         }
+        
         private void DatosAInicializar()
         {
             lblTitle.Text = _titulo.NombreTitulo;
@@ -223,8 +223,8 @@ namespace IURIS.MOVIL.Detail
 
             var articulo = ((Image)sender).BindingContext as Articulo;
             if (articulo == null) return;
-
-            await PopupNavigation.Instance.PushAsync(new WindowOfMenuAccion(_titulo, _Usuario, articulo, _ley, _Capitulo, ColorHex), false);
+            _Articulo = articulo;
+            await PopupNavigation.Instance.PushAsync(new WindowOfMenuAccion(_titulo, _Usuario, articulo, _ley, _Capitulo), false);
 
         }
 
@@ -267,8 +267,12 @@ namespace IURIS.MOVIL.Detail
 
         private void EllipceColor(object sender, EventArgs e)
         {
-                ColorHex = ((Ellipse)sender).Fill.ToHex();
-           // ((Ellipse)sender).Stroke = Color.Black;
+            if (Ellipse_Cargado != null) Ellipse_Cargado.StrokeThickness = 0;
+
+            ColorHex = ((Ellipse)sender).Fill.ToHex();
+            Ellipse_Cargado = ((Ellipse)sender);
+            ((Ellipse)sender).Stroke = Color.Black;
+            ((Ellipse)sender).StrokeThickness = 4;
         }
 
         private void ExpaderForPlus(object sender, EventArgs e)
@@ -276,47 +280,75 @@ namespace IURIS.MOVIL.Detail
             stakColores.IsVisible = stakColores.IsVisible==false? true:false;
         }
 
-        private void TapGestureRecognizer_Tapped_5(object sender, EventArgs e)
+        private async void TapGestureRecognizer_Tapped_5(object sender, EventArgs e)
         {
-
             try
             {
 
-                var articulo = ((CustomLabeJustifity)sender).BindingContext as Articulo;
-                if (articulo == null)
-                    return;
+                if (_Articulo == null) return;
+                if (ColorHex == null) return;
 
-                if (BorrarTextoColoreado)
-                {
-                    articulo.ColorTextoHex = null;
-                    articulo.TieneColorDeTexto = false;
-                    BorrarTextoColoreado = false;
-                }
-                else
-                {
-                    if (ColorHex == null)
-                        return;
+                string txt;
+                txt = await CrossClipboard.Current.GetTextAsync();
 
-                    articulo.ColorTextoHex = ColorHex;
-                    articulo.TieneColorDeTexto = true;
-                    ColorHex = null;
-                }
-                 if (manejadorDeUsuarioAplicacion.Modificar(_Usuario))
-                    IsRefreshing = true;
+                if (_Articulo.Contenido.ToUpper().Contains(txt)) return;
 
+                _Articulo.TieneColorDeTexto = true;
+                _Articulo.ColorTextoHex = ColorHex;
+
+                int x = _Articulo.Contenido.IndexOf(txt);
+                int y = txt.Length;
+
+                _Articulo.TextoContenidoAnteriror = _Articulo.Contenido.Substring(0, x);
+                _Articulo.TextoContenidoSeleccionado = txt;
+                _Articulo.TextoContenidoDespues = _Articulo.Contenido.Substring(x + y);
+
+                if (manejadorDeUsuarioAplicacion.Modificar(_Usuario)) IsRefreshing = true;
             }
             catch (Exception ex)
             {
-
-                DisplayAlert("Error", "Ah ocurrido un error, \n"+ex.Message, "Ok");
+                await DisplayAlert("Error", "Error: " + ex.Message, "ok");
+                return;
             }
-
         }
 
-        private void TapGestureRecognizer_Tapped_6(object sender, EventArgs e)
-        {
-            BorrarTextoColoreado = true;
-        }
+        //private void TapGestureRecognizer_Tapped_5(object sender, EventArgs e)
+        //{
+
+        //    try
+        //    {
+
+        //        var articulo = ((CustomLabeJustifity)sender).BindingContext as Articulo;
+        //        if (articulo == null)
+        //            return;
+
+        //        if (BorrarTextoColoreado)
+        //        {
+        //            articulo.ColorTextoHex = null;
+        //            articulo.TieneColorDeTexto = false;
+        //            BorrarTextoColoreado = false;
+        //        }
+        //        else
+        //        {
+        //            if (ColorHex == null)
+        //                return;
+
+        //            articulo.ColorTextoHex = ColorHex;
+        //            articulo.TieneColorDeTexto = true;
+        //            ColorHex = null;
+        //        }
+        //         if (manejadorDeUsuarioAplicacion.Modificar(_Usuario))
+        //            IsRefreshing = true;
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+
+        //        DisplayAlert("Error", "Ah ocurrido un error, \n"+ex.Message, "Ok");
+        //    }
+
+        //}
+
 
 
     }

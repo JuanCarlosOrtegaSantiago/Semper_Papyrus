@@ -135,17 +135,14 @@
                                             <Span Text="{Binding Contenido}"/>
                                         </FormattedString>
                                     </local:CustomLabeJustifity.FormattedText>
-                                    <local:CustomLabeJustifity.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_5" BindingContext="{Binding .}"/>
-                                    </local:CustomLabeJustifity.GestureRecognizers>
                                 </local:CustomLabeJustifity>
 
                                 <local:CustomLabeJustifity BindingContext="{Binding .}" FontSize="Subtitle"  Grid.Row="1" Margin="0,10, 0,0" Style="{StaticResource TextoAMostrarColorRojo}" IsVisible="{Binding TieneColorDeTexto}">
                                     <local:CustomLabeJustifity.FormattedText>
                                         <FormattedString>
-                                            <Span Text="Texto anterior"/>
+                                            <Span Text="{Binding TextoContenidoAnteriror}"/>
                                             <Span Text="{Binding TextoContenidoSeleccionado}" BackgroundColor="{Binding ColorTextoHex}" TextColor="Black"/>
-                                            <Span Text="Texto despues"/>
+                                            <Span Text="{Binding TextoContenidoDespues}"/>
                                         </FormattedString>
                                     </local:CustomLabeJustifity.FormattedText>
                                     <!--<local:CustomLabeJustifity.Triggers>
@@ -153,9 +150,6 @@
                                             <Setter Property="TextColor" Value="{Binding ColorTextoHex}"/>
                                         </DataTrigger>
                                     </local:CustomLabeJustifity.Triggers>-->
-                                    <local:CustomLabeJustifity.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_5" BindingContext="{Binding .}"/>
-                                    </local:CustomLabeJustifity.GestureRecognizers>
                                 </local:CustomLabeJustifity>
 
 
@@ -180,48 +174,43 @@
             </RefreshView>
         </FlexLayout>
 
-        <StackLayout x:Name="stakColores" Orientation="Horizontal" Spacing="15" HorizontalOptions="Start"  VerticalOptions="End" Margin="10,0,0,30" IsVisible="false">
+        <StackLayout x:Name="stakColores" Orientation="Horizontal" Spacing="15" HorizontalOptions="Start"  VerticalOptions="End" Margin="15,0,0,30" IsVisible="false">
 
             <Ellipse Fill="#643404"
-         WidthRequest="25"
-         HeightRequest="25"
-         HorizontalOptions="Start">
+         WidthRequest="30"
+         HeightRequest="30">
                 <Ellipse.GestureRecognizers>
                     <TapGestureRecognizer Tapped="EllipceColor"/>
                 </Ellipse.GestureRecognizers>
             </Ellipse>
 
             <Ellipse Fill="#040464" 
-         WidthRequest="25"
-         HeightRequest="25"
-         HorizontalOptions="Start">
+         WidthRequest="30"
+         HeightRequest="30">
                 <Ellipse.GestureRecognizers>
                     <TapGestureRecognizer Tapped="EllipceColor"/>
                 </Ellipse.GestureRecognizers>
             </Ellipse>
 
             <Ellipse Fill="#046404"
-         WidthRequest="25"
-         HeightRequest="25"
-         HorizontalOptions="Start">
+         WidthRequest="30"
+         HeightRequest="30">
                 <Ellipse.GestureRecognizers>
                     <TapGestureRecognizer Tapped="EllipceColor"/>
                 </Ellipse.GestureRecognizers>
             </Ellipse>
 
             <Ellipse Fill="#640434"
-         WidthRequest="25"
-         HeightRequest="25"
-         HorizontalOptions="Start">
+         WidthRequest="30"
+         HeightRequest="30">
                 <Ellipse.GestureRecognizers>
                     <TapGestureRecognizer Tapped="EllipceColor"/>
                 </Ellipse.GestureRecognizers>
             </Ellipse>
 
             <Ellipse Fill="#b337a3"
-         WidthRequest="25"
-         HeightRequest="25"
-         HorizontalOptions="Start" >
+         WidthRequest="30"
+         HeightRequest="30">
                 <Ellipse.GestureRecognizers>
                     <TapGestureRecognizer Tapped="EllipceColor"/>
                 </Ellipse.GestureRecognizers>
@@ -243,7 +232,6 @@
           CollapseAnimationLength="1">
                 <Expander.Header >
                     <Image Source="Mas.png" WidthRequest="35" HeightRequest="35">
-
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Tapped="ExpaderForPlus"/>
                         </Image.GestureRecognizers>
@@ -252,12 +240,10 @@
                 <Expander.ContentTemplate>
                     <DataTemplate>
                         <ContentView Margin="0,15,0,0">
-
                             <StackLayout >
-                                <Image Source="avanzar.png" HeightRequest="35" WidthRequest="35" Rotation="180"/>
-                                <Image Source="retroseso.png" HeightRequest="35" WidthRequest="35"  Rotation="180">
+                                <Image Source="Save.png" HeightRequest="35" WidthRequest="35" Rotation="180">
                                     <Image.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_6"/>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_5"/>
                                     </Image.GestureRecognizers>
                                 </Image>
                                 <Image Source="lapiz.png" HeightRequest="35" WidthRequest="35" Rotation="180">
