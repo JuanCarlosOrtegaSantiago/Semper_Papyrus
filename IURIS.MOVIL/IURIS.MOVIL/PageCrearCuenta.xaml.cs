@@ -37,6 +37,8 @@ namespace IURIS.MOVIL
 
         private async void BtnOK_Clicked(object sender, EventArgs e)
         {
+            try
+            {
 
             if (string.IsNullOrWhiteSpace(EntryCorreoElectronico.Text) || string.IsNullOrWhiteSpace(EntryApellidoMaterno.Text) || string.IsNullOrWhiteSpace(EntryApellidoPaterno.Text) || string.IsNullOrWhiteSpace(EntryNombre.Text) || string.IsNullOrWhiteSpace(EntryConfirmarContrasenia.Text) || string.IsNullOrWhiteSpace(EntryContrasenia.Text))
             {
@@ -44,7 +46,7 @@ namespace IURIS.MOVIL
                 return;
             }
 
-            if (!CorreoCorrecto && !TamanioDeContraseniaCorrecta) return;
+            if (!CorreoCorrecto || !TamanioDeContraseniaCorrecta) return;
 
             if (manejadorDeUsuarioAplicacion.ExisteCorreo(EntryCorreoElectronico.Text))
             {
@@ -93,6 +95,12 @@ namespace IURIS.MOVIL
             await DisplayAlert("Usuario creado", "Su reguistro fue exitoso", "OK");
             
             await Navigation.PushAsync(new PageInicioDeSesion(), true);
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error","Error: " + ex.Message, "ok");
+                return;
+            }
         }
 
         private async void BtnCanselar_Clicked(object sender, EventArgs e)
@@ -112,8 +120,23 @@ namespace IURIS.MOVIL
         private void EntryCorreoElectronico_TextChanged(object sender, TextChangedEventArgs e)
         {
 
-            lblFaltantesDeCorreo.IsVisible = !email_bien_escrito(EntryCorreoElectronico.Text) ? true : false;
-            if (!lblFaltantesDeCorreo.IsVisible) CorreoCorrecto = true;
+            //lblFaltantesDeCorreo.IsVisible = !email_bien_escrito(EntryCorreoElectronico.Text) ? true : false;
+            //if (!lblFaltantesDeCorreo.IsVisible)
+
+            if (email_bien_escrito(EntryCorreoElectronico.Text))
+            {
+                CorreoCorrecto = true;
+                lblFaltantesDeCorreo.IsVisible = false;
+            }
+            else
+            {
+                CorreoCorrecto = false;
+                lblFaltantesDeCorreo.IsVisible = true;
+            }
+
+
+
+
         }
 
         private void EntryContrasenia_TextChanged(object sender, TextChangedEventArgs e)

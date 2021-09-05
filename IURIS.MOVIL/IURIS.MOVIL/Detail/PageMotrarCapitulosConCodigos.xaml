@@ -176,7 +176,7 @@
 
         <StackLayout x:Name="stakColores" Orientation="Horizontal" Spacing="15" HorizontalOptions="Start"  VerticalOptions="End" Margin="15,0,0,30" IsVisible="false">
 
-            <Ellipse Fill="#643404"
+            <Ellipse Fill="#F7FE2E"
          WidthRequest="30"
          HeightRequest="30">
                 <Ellipse.GestureRecognizers>
@@ -184,7 +184,7 @@
                 </Ellipse.GestureRecognizers>
             </Ellipse>
 
-            <Ellipse Fill="#040464" 
+            <Ellipse Fill="#60FB36 " 
          WidthRequest="30"
          HeightRequest="30">
                 <Ellipse.GestureRecognizers>
@@ -192,7 +192,7 @@
                 </Ellipse.GestureRecognizers>
             </Ellipse>
 
-            <Ellipse Fill="#046404"
+            <Ellipse Fill="#38E9FB"
          WidthRequest="30"
          HeightRequest="30">
                 <Ellipse.GestureRecognizers>
@@ -200,7 +200,7 @@
                 </Ellipse.GestureRecognizers>
             </Ellipse>
 
-            <Ellipse Fill="#640434"
+            <Ellipse Fill="#FAC437"
          WidthRequest="30"
          HeightRequest="30">
                 <Ellipse.GestureRecognizers>
@@ -208,7 +208,7 @@
                 </Ellipse.GestureRecognizers>
             </Ellipse>
 
-            <Ellipse Fill="#b337a3"
+            <Ellipse Fill="#FB39EB"
          WidthRequest="30"
          HeightRequest="30">
                 <Ellipse.GestureRecognizers>
