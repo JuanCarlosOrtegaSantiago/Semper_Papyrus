@@ -13,7 +13,7 @@
     </ContentPage.Resources>
 
     <NavigationPage.TitleView>
-        <FlexLayout Direction="Row" >
+        <FlexLayout Direction="Row" Wrap="Wrap">
 
             <local:CustomEntry 
                 
@@ -33,7 +33,7 @@
                 IsSpellCheckEnabled="True"/>
                 <!--Margin="-50,0,0,0"-->
 
-            <Label x:Name="lblNumResultados" HorizontalOptions="End" HorizontalTextAlignment="End" Margin="0,0,10,0" IsVisible="false" Style="{StaticResource TextoAMostrarColorBlanco}" VerticalOptions="Center" VerticalTextAlignment="Center" FontSize="Body"></Label>
+            <Label x:Name="lblNumResultados" HorizontalOptions="End" HorizontalTextAlignment="End" Margin="0,0,10,3" IsVisible="false" Style="{StaticResource TextoAMostrarColorBlanco}" VerticalOptions="Center" VerticalTextAlignment="Center" FontSize="Body"></Label>
 
             <Grid ColumnDefinitions="*,Auto" ColumnSpacing="5" x:Name="GridTituloEIMGBuscador">
                 <FlexLayout Grid.Column="0" Direction="Column">
@@ -70,7 +70,7 @@
                             <ContentView >
                                 <FlexLayout JustifyContent="Center" AlignContent="Center">
                                     <Label Text="{Binding NumCapitulo}" FontSize="Large" Style="{StaticResource TextoAMostrarColorRojo}" HorizontalTextAlignment="Center"></Label>
-                                    <Label Text="{Binding NombreCapitulo}" FontSize="Large" Style="{StaticResource TextoAMostrarColorRojo}" HorizontalTextAlignment="Center"></Label>
+                                    <Label Text="{Binding NombreCapitulo}" FontSize="Medium" Style="{StaticResource TextoAMostrarColorRojo}" HorizontalTextAlignment="Center"></Label>
                                 </FlexLayout>
                                 <ContentView.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_3" BindingContext="{Binding .}"/>

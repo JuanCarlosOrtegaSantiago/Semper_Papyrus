@@ -18,19 +18,19 @@
 
             <Label FlexLayout.Shrink="0" Text="From Semper Papyrus" FontSize="30" HorizontalTextAlignment="Center" TextColor="White"></Label>
 
-            <Label FlexLayout.Shrink="0" Text="Inicio de sesión" TextColor="White" HorizontalTextAlignment="Center" FontSize="Large"  VerticalOptions="End" VerticalTextAlignment="End" HorizontalOptions="Center"></Label>
+            <Label FlexLayout.Shrink="0" Margin="0,-10" Text="Inicio de sesión" TextColor="White" HorizontalTextAlignment="Center" FontSize="Large"  VerticalOptions="End" VerticalTextAlignment="End" HorizontalOptions="Center"></Label>
 
-            <Grid FlexLayout.Shrink="0" FlexLayout.AlignSelf="Stretch" ColumnDefinitions="0.6*,*" ColumnSpacing="5">
+            <Grid FlexLayout.Shrink="0" Margin="0,-15" FlexLayout.AlignSelf="Stretch" ColumnDefinitions="0.6*,*" ColumnSpacing="5">
                 <Label Grid.Column="0" FlexLayout.Grow="20" Text="Correo:" HorizontalTextAlignment="End" FontSize="Title" Style="{StaticResource TextoAMostrarColorBlanco}"/>
                 <Local:CustomEntry Grid.Column="1" FlexLayout.Grow="1" x:Name="EntryCorreo" Placeholder="Ejemplo1234@gmail.com" ReturnType="Next" Style="{StaticResource EntryCrearCuenta}" HorizontalTextAlignment="Center" IsTextPredictionEnabled="False" FontSize="Medium"/>
             </Grid>
 
-            <Grid FlexLayout.Shrink="0" FlexLayout.AlignSelf="Auto" ColumnDefinitions="0.6*,*" ColumnSpacing="5">
+            <Grid FlexLayout.Shrink="0" Margin="0,-20" FlexLayout.AlignSelf="Auto" ColumnDefinitions="0.6*,*" ColumnSpacing="5">
                 <Label Grid.Column="0" Text="Contraseña:" HorizontalTextAlignment="End" FontSize="Title" Style="{StaticResource TextoAMostrarColorBlanco}"></Label>
                 <Local:CustomEntry Grid.Column="1" MaxLength="4" Keyboard="Numeric" Placeholder="****" Style="{StaticResource EntryCrearCuenta}" HorizontalTextAlignment="Center" IsTextPredictionEnabled="False" IsPassword="True" FontSize="Medium" x:Name="EntryPasswor" Completed="BtnAceptar_Clicked"/>
             </Grid>
 
-            <StackLayout Orientation="Horizontal" FlexLayout.Shrink="0" FlexLayout.AlignSelf="Center" Margin="15,0" >
+            <StackLayout Orientation="Horizontal" FlexLayout.Shrink="0" FlexLayout.AlignSelf="Center" Margin="15,-15" >
                 <CheckBox Grid.Column="0" x:Name="CheckRecuerdame" Color="White" CheckedChanged="CheckRecuerdame_CheckedChanged" HorizontalOptions="End" ></CheckBox>
                 <Label  Text="Recordar usuario" Margin="5,0,0,0" VerticalOptions="Center" HorizontalTextAlignment="End" FontSize="20" Style="{StaticResource TextoAMostrarColorBlanco}"></Label>
                 <StackLayout.GestureRecognizers>
@@ -38,12 +38,12 @@
                 </StackLayout.GestureRecognizers>
             </StackLayout>
 
-            <Grid FlexLayout.Shrink="0" ColumnDefinitions="*,*" Margin="20">
+            <Grid FlexLayout.Shrink="0" ColumnDefinitions="*,*" Margin="20,-10">
                 <Button Grid.Column="0" Text="Aceptar" x:Name="btnAceptar" Clicked="BtnAceptar_Clicked" Style="{StaticResource buttonPrincipal}" ></Button>
                 <Button Grid.Column="1" Text="Cancelar" x:Name="btnCanselar" Clicked="BtnCanselar_Clicked" Style="{StaticResource buttonPrincipal}"></Button>
             </Grid>
 
-            <Label FlexLayout.Shrink="0" TextColor="White" HorizontalTextAlignment="Center" FontSize="Medium" x:Name="LblNoRecuerdoMiContrasenia" >
+            <Label FlexLayout.Shrink="0" TextColor="White" HorizontalTextAlignment="Center" FontSize="Medium" x:Name="LblNoRecuerdoMiContrasenia" Margin="0,-10">
                 <Label.FormattedText>
                     <FormattedString>
                         <Span Text="No recuerdo mi contraseña"
