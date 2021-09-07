@@ -7,7 +7,7 @@
              x:Class="IURIS.MOVIL.Detail.ViewDetail" >
 
     <NavigationPage.TitleView>
-        <FlexLayout Direction="Row">
+        <FlexLayout Direction="Row" Wrap="Wrap">
 
             <Local:CustomEntry 
                 

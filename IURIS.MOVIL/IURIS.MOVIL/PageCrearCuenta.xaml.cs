@@ -26,6 +26,7 @@ namespace IURIS.MOVIL
         bool CorreoCorrecto = false;
         private bool TamanioDeContraseniaCorrecta = false;
         private bool ContraseniasIguales = false;
+        private string CorreoSinEspacios = "";
 
         //List<Usuarios> Usuarios;
         public PageCrearCuenta()
@@ -37,8 +38,12 @@ namespace IURIS.MOVIL
 
         private async void BtnOK_Clicked(object sender, EventArgs e)
         {
+                ActivityIndicator activityIndicator = new ActivityIndicator();
             try
             {
+
+                activityIndicator.Color = Color.Pink;
+                activityIndicator.IsRunning = true;
 
             if (string.IsNullOrWhiteSpace(EntryCorreoElectronico.Text) || string.IsNullOrWhiteSpace(EntryApellidoMaterno.Text) || string.IsNullOrWhiteSpace(EntryApellidoPaterno.Text) || string.IsNullOrWhiteSpace(EntryNombre.Text) || string.IsNullOrWhiteSpace(EntryConfirmarContrasenia.Text) || string.IsNullOrWhiteSpace(EntryContrasenia.Text))
             {
@@ -64,7 +69,7 @@ namespace IURIS.MOVIL
                 Nombre = EntryNombre.Text,
                 ApellidoPaterno = EntryApellidoPaterno.Text,
                 ApellidoMaterno = EntryApellidoMaterno.Text,
-                Correo = EntryCorreoElectronico.Text,
+                Correo = CorreoSinEspacios,
                 IdApp = numUsuario,
                 Contrasenia = int.Parse(EntryContrasenia.Text),
                 Apuntes = new List<Apunte>(),
@@ -72,7 +77,7 @@ namespace IURIS.MOVIL
             };
             
             manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
-            Leyes leyes = manejadorDeLeyes.Listar.Where(w=>w.numDescargas<=0).SingleOrDefault();
+            Leyes leyes = manejadorDeLeyes.Listar.Where(w=>w.numDescargas==0).Single();
             leyes.Clasificaciones = new List<ClasificacionPUsuario>();
 
             List<Leyes> Mleyes = new List<Leyes>();
@@ -95,9 +100,11 @@ namespace IURIS.MOVIL
             await DisplayAlert("Usuario creado", "Su reguistro fue exitoso", "OK");
             
             await Navigation.PushAsync(new PageInicioDeSesion(), true);
+                activityIndicator.IsRunning = false;
             }
             catch (Exception ex)
             {
+                activityIndicator.IsRunning = false;
                 await DisplayAlert("Error","Error: " + ex.Message, "ok");
                 return;
             }
@@ -112,18 +119,18 @@ namespace IURIS.MOVIL
         {
             String expresion;
             expresion = "\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";
-
+            
             if (Regex.IsMatch(email, expresion)) return Regex.Replace(email, expresion, String.Empty).Length == 0 ? true : false;
             else return false;
         }
 
         private void EntryCorreoElectronico_TextChanged(object sender, TextChangedEventArgs e)
         {
+            char space = ' ';
+            CorreoSinEspacios=EntryCorreoElectronico.Text.TrimStart(space);
+            CorreoSinEspacios =CorreoSinEspacios.TrimEnd(space);
 
-            //lblFaltantesDeCorreo.IsVisible = !email_bien_escrito(EntryCorreoElectronico.Text) ? true : false;
-            //if (!lblFaltantesDeCorreo.IsVisible)
-
-            if (email_bien_escrito(EntryCorreoElectronico.Text))
+            if (email_bien_escrito(CorreoSinEspacios))
             {
                 CorreoCorrecto = true;
                 lblFaltantesDeCorreo.IsVisible = false;

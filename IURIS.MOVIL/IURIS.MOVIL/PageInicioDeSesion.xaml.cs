@@ -71,6 +71,13 @@ namespace IURIS.MOVIL
 
         private async void BtnAceptar_Clicked(object sender, EventArgs e)
         {
+            ActivityIndicator activityIndicator = new ActivityIndicator() { Color = Color.White, BackgroundColor = Color.Black };
+            try
+            {
+                activityIndicator.IsRunning = true;
+                activityIndicator.IsVisible = true;
+                activityIndicator.WidthRequest = DeviceDisplay.MainDisplayInfo.Width;
+                activityIndicator.HeightRequest = DeviceDisplay.MainDisplayInfo.Height;
             Intentos++;
             if (Intentos != 1) return;
 
@@ -82,7 +89,11 @@ namespace IURIS.MOVIL
                 return;
             }
 
-            _User = manejadorDeUsuarioAplicacion.EncontrarUsuario(EntryCorreo.Text, int.Parse(EntryPasswor.Text));
+            string CorreoSinEspacios;
+            CorreoSinEspacios = EntryCorreo.Text.TrimStart();
+            CorreoSinEspacios = CorreoSinEspacios.TrimEnd();
+
+            _User = manejadorDeUsuarioAplicacion.EncontrarUsuario(CorreoSinEspacios, int.Parse(EntryPasswor.Text));
             if (_User != null)
             {
                 Settings.Recuerdame = Recuerdame;
@@ -97,12 +108,23 @@ namespace IURIS.MOVIL
                 if (HayActualizacion()) Actualizaeyes();
 
                 await Navigation.PushAsync(new FirtsView(_User), false);
-            }
+                    activityIndicator.IsRunning = false;
+                }
             else
             {
-                await DisplayAlert("Error de usuario", "Por favor verifica los datos ingresados", "OK");
+                    activityIndicator.IsRunning = false;
+                    await DisplayAlert("Error de usuario", "Por favor verifica los datos ingresados", "OK");
+
             }
             Intentos = 0;
+            }
+            catch (Exception ex)
+            {
+                Intentos = 0;
+                activityIndicator.IsRunning = false;
+                await DisplayAlert("Error","Error:"+ ex.Message,"ok");
+                return;
+            }
         }
 
         private async void Actualizaeyes()
