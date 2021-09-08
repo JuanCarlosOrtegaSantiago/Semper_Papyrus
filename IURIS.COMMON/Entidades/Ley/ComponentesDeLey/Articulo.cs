@@ -14,12 +14,12 @@ namespace IURIS.COMMON.Entidades.Ley.ComponentesDeLey
         public string TextoDeNota { get; set; }
         public bool FotoAdjunta { get; set; }
         public List<Fotografia> Fotografia { get; set; }
-        public string ColorTextoHex { get; set; }
+        public List<Subrayado> Subrayados { get; set; }
         public bool TieneColorDeTexto { get; set; }
+        public string ColorTextoHex { get; set; }
         public string TextoContenidoAnteriror { get; set; }
         public string TextoContenidoSeleccionado { get; set; }
         public string TextoContenidoDespues { get; set; }
-
 
     }
 }

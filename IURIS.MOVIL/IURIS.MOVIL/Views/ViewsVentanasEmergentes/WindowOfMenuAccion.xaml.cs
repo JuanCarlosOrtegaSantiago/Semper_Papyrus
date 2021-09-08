@@ -61,9 +61,10 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
             if (!_Articulo.TieneColorDeTexto)
                 return;
 
-            _Articulo.TextoContenidoSeleccionado = null;
+            //_Articulo.TextoContenidoSeleccionado = null;
             _Articulo.TieneColorDeTexto = false;
-            _Articulo.ColorTextoHex = null;
+            _Articulo.Subrayados = null;
+            //_Articulo.ColorTextoHex = null;
 
             if (manejadorDeUsuarioAplicacion.Modificar(_User))
                 await DisplayAlert("Informe", "Se borro el subrayado, refresca la página", "ok");

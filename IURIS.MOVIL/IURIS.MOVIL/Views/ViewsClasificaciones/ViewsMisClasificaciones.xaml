@@ -11,7 +11,7 @@
 
         <CollectionView x:Name="clltionClasificaciones" SelectionMode="Single" ItemsSource="{Binding Clasificaciones}" SelectionChanged="clltionClasificaciones_SelectionChanged" >
             <CollectionView.EmptyView>
-                    <Label FlexLayout.Basis="7%" FontAttributes="Italic" FontSize="Large" HorizontalTextAlignment="Center" Style="{StaticResource TextoAMostrarColorRojo}">Aun no tienes ninguna clasificación</Label>
+                    <Label FlexLayout.Basis="7%" FontAttributes="Italic" FontSize="Large" HorizontalTextAlignment="Center" Style="{StaticResource TextoAMostrarColorRojo}">Aún no tienes ninguna clasificación</Label>
             </CollectionView.EmptyView>
             <CollectionView.ItemTemplate>
                 <DataTemplate>

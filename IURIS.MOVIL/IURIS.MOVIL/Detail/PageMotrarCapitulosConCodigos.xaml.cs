@@ -286,24 +286,82 @@ namespace IURIS.MOVIL.Detail
             {
 
                 if (_Articulo == null) return;
-                if (ColorHex == null) return;
-
-                string txt;
+                    string txt;
                 txt = await CrossClipboard.Current.GetTextAsync();
+                    if (_Articulo.Contenido.ToUpper().Contains(txt)) return;
 
-                if (_Articulo.Contenido.ToUpper().Contains(txt)) return;
+                //var cap=_Capitulo.ListaArticulos.Where(r => r.Contenido.Contains(txt)).SingleOrDefault();
 
-                _Articulo.TieneColorDeTexto = true;
-                _Articulo.ColorTextoHex = ColorHex;
 
-                int x = _Articulo.Contenido.IndexOf(txt);
-                int y = txt.Length;
+                if (ColorHex == null) return;
+                   if(!_Articulo.TieneColorDeTexto) _Articulo.TieneColorDeTexto=true;
+                    if (_Articulo.Subrayados == null)  _Articulo.Subrayados = new List<Subrayado>();
 
-                _Articulo.TextoContenidoAnteriror = _Articulo.Contenido.Substring(0, x);
-                _Articulo.TextoContenidoSeleccionado = txt;
-                _Articulo.TextoContenidoDespues = _Articulo.Contenido.Substring(x + y);
+                Subrayado subrayado;
+                Subrayado subrayadoTemp;
+
+                int Items = _Articulo.Subrayados.Count();
+
+                if (Items < 1)
+                {
+
+                    int x = _Articulo.Contenido.IndexOf(txt);
+                    int y = txt.Length;
+
+
+                    subrayado = new Subrayado()
+                    {
+                        ColorTextoHex = ColorHex,
+                        TextoContenidoAnteriror = _Articulo.Contenido.Substring(0, x),
+                        TextoContenidoSeleccionado = txt,
+                        TextoContenidoDespues = ""
+                    };
+                    subrayadoTemp = new Subrayado()
+                    {
+
+                        TextoContenidoAnteriror = _Articulo.Contenido.Substring(x + y),
+                        ColorTextoHex = null,
+                        TextoContenidoDespues = "",
+                        TextoContenidoSeleccionado = ""
+                    };
+                }
+                else
+                {
+
+                    Subrayado sub = _Articulo.Subrayados[Items - 1];
+                    //if (_Articulo.Subrayados.Where(w => w.ColorTextoHex == ColorHex).Count() >= 1)
+                    //{
+                        
+                    //}
+
+                    int x = sub.TextoContenidoAnteriror.IndexOf(txt);
+                    int y = txt.Length;
+
+                    subrayado = new Subrayado()
+                    {
+                        ColorTextoHex = ColorHex,
+                        TextoContenidoAnteriror = sub.TextoContenidoAnteriror.Substring(0, x),
+                        TextoContenidoSeleccionado = txt,
+                        TextoContenidoDespues = ""
+                    };
+
+                    subrayadoTemp = new Subrayado()
+                    {
+
+                        TextoContenidoAnteriror = sub.TextoContenidoAnteriror.Substring(x + y),
+                        ColorTextoHex = null,
+                        TextoContenidoDespues = "",
+                        TextoContenidoSeleccionado = ""
+                    };
+
+                    _Articulo.Subrayados.Remove(sub);
+                }
+
+                _Articulo.Subrayados.Add(subrayado);
+                _Articulo.Subrayados.Add(subrayadoTemp);
 
                 if (manejadorDeUsuarioAplicacion.Modificar(_Usuario)) IsRefreshing = true;
+                else await DisplayAlert("Error", "No se han guardado los cambios", "Ok");
             }
             catch (Exception ex)
             {
@@ -311,45 +369,6 @@ namespace IURIS.MOVIL.Detail
                 return;
             }
         }
-
-        //private void TapGestureRecognizer_Tapped_5(object sender, EventArgs e)
-        //{
-
-        //    try
-        //    {
-
-        //        var articulo = ((CustomLabeJustifity)sender).BindingContext as Articulo;
-        //        if (articulo == null)
-        //            return;
-
-        //        if (BorrarTextoColoreado)
-        //        {
-        //            articulo.ColorTextoHex = null;
-        //            articulo.TieneColorDeTexto = false;
-        //            BorrarTextoColoreado = false;
-        //        }
-        //        else
-        //        {
-        //            if (ColorHex == null)
-        //                return;
-
-        //            articulo.ColorTextoHex = ColorHex;
-        //            articulo.TieneColorDeTexto = true;
-        //            ColorHex = null;
-        //        }
-        //         if (manejadorDeUsuarioAplicacion.Modificar(_Usuario))
-        //            IsRefreshing = true;
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-
-        //        DisplayAlert("Error", "Ah ocurrido un error, \n"+ex.Message, "Ok");
-        //    }
-
-        //}
-
-
 
     }
 }
