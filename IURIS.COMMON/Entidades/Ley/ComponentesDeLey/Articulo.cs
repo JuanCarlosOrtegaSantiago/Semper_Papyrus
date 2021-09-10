@@ -16,10 +16,6 @@ namespace IURIS.COMMON.Entidades.Ley.ComponentesDeLey
         public List<Fotografia> Fotografia { get; set; }
         public List<Subrayado> Subrayados { get; set; }
         public bool TieneColorDeTexto { get; set; }
-        public string ColorTextoHex { get; set; }
-        public string TextoContenidoAnteriror { get; set; }
-        public string TextoContenidoSeleccionado { get; set; }
-        public string TextoContenidoDespues { get; set; }
-
+        
     }
 }

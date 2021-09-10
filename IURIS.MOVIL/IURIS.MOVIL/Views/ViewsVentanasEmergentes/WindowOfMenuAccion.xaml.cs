@@ -56,20 +56,5 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
                 await PopupNavigation.Instance.PopAsync(false);
          }
 
-        private async void BorrarSubrayado(object sender, EventArgs e)
-        {
-            if (!_Articulo.TieneColorDeTexto)
-                return;
-
-            //_Articulo.TextoContenidoSeleccionado = null;
-            _Articulo.TieneColorDeTexto = false;
-            _Articulo.Subrayados = null;
-            //_Articulo.ColorTextoHex = null;
-
-            if (manejadorDeUsuarioAplicacion.Modificar(_User))
-                await DisplayAlert("Informe", "Se borro el subrayado, refresca la página", "ok");
-
-            await PopupNavigation.Instance.PopAsync(false);
-        }
     }
 }

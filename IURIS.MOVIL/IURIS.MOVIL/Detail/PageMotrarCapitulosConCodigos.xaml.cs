@@ -370,5 +370,16 @@ namespace IURIS.MOVIL.Detail
             }
         }
 
+        private void TapGestureRecognizer_Tapped_6(object sender, EventArgs e)
+        {
+            if (!_Articulo.TieneColorDeTexto)
+                return;
+
+            //_Articulo.TextoContenidoSeleccionado = null;
+            _Articulo.TieneColorDeTexto = false;
+            _Articulo.Subrayados = null;
+            //_Articulo.ColorTextoHex = null;
+            IsRefreshing = true;
+        }
     }
 }
