@@ -277,6 +277,15 @@ namespace IURIS.MOVIL.Detail
 
         private void ExpaderForPlus(object sender, EventArgs e)
         {
+            //if (_Articulo == null)
+            //{
+            //    //((Expander)sender).IsExpanded = false;
+            //    ((Expander)sender).State = ExpanderState.Expanding;
+                
+
+            //}
+            //((Expander)sender).IsExpanded = _Articulo != null?true:false;
+
             stakColores.IsVisible = stakColores.IsVisible==false? true:false;
         }
 
@@ -296,6 +305,12 @@ namespace IURIS.MOVIL.Detail
                 if (ColorHex == null) return;
                    if(!_Articulo.TieneColorDeTexto) _Articulo.TieneColorDeTexto=true;
                     if (_Articulo.Subrayados == null)  _Articulo.Subrayados = new List<Subrayado>();
+
+                if (_Articulo.Subrayados.Find(w => w.ColorTextoHex == ColorHex) != null)
+                {
+                    await DisplayAlert("Error","Ya tienes ese color por favor elije otro","ok");
+                    return;
+                }
 
                 Subrayado subrayado;
                 Subrayado subrayadoTemp;
@@ -372,14 +387,34 @@ namespace IURIS.MOVIL.Detail
 
         private void TapGestureRecognizer_Tapped_6(object sender, EventArgs e)
         {
+            if (_Articulo == null)
+                return;
+            if (ColorHex == null)
+                return;
             if (!_Articulo.TieneColorDeTexto)
                 return;
+            
+            Subrayado subrayado = _Articulo.Subrayados.Where(r => r.ColorTextoHex == ColorHex).FirstOrDefault();
+            if (subrayado == null)
+                return;
 
-            //_Articulo.TextoContenidoSeleccionado = null;
-            _Articulo.TieneColorDeTexto = false;
-            _Articulo.Subrayados = null;
-            //_Articulo.ColorTextoHex = null;
-            IsRefreshing = true;
+            int Index = _Articulo.Subrayados.IndexOf(subrayado);
+
+            if (_Articulo.Subrayados.Where(r => r.ColorTextoHex !=null).Count() == 1)
+            {
+                _Articulo.TieneColorDeTexto = false;
+                _Articulo.Subrayados = null;
+
+            }
+            else
+            {
+                _Articulo.Subrayados[Index + 1].TextoContenidoAnteriror = string.Format("{0}{1}{2}", _Articulo.Subrayados[Index].TextoContenidoAnteriror, _Articulo.Subrayados[Index].TextoContenidoSeleccionado, _Articulo.Subrayados[Index + 1].TextoContenidoAnteriror);
+                _Articulo.Subrayados[Index + 1].TextoContenidoDespues = "";
+                _Articulo.Subrayados[Index + 1].TextoContenidoSeleccionado = "";
+                _Articulo.Subrayados[Index + 1].ColorTextoHex = null;
+                _Articulo.Subrayados.Remove(subrayado);
+            }
+            if(manejadorDeUsuarioAplicacion.Modificar(_Usuario)) IsRefreshing = true;
         }
     }
 }
