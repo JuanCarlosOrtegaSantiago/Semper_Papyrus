@@ -80,7 +80,7 @@ namespace IURIS.MOVIL
             };
             
             manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
-            Leyes leyes = manejadorDeLeyes.Listar.Where(w=>w.numDescargas==0).SingleOrDefault();
+                Leyes leyes = manejadorDeLeyes.Listar.Where(w => w.numDescargas == 0).FirstOrDefault();
             leyes.Clasificaciones = new List<ClasificacionPUsuario>();
 
             List<Leyes> Mleyes = new List<Leyes>();
