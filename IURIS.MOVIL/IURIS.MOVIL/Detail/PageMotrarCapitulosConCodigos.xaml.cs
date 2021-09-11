@@ -38,7 +38,7 @@ namespace IURIS.MOVIL.Detail
         IManejadorDeUsuarioAplicacion manejadorDeUsuarioAplicacion;
         private string ColorHex;
         Ellipse Ellipse_Cargado = null;
-
+        int numToques = 0;
         public PageMotrarCapitulosConCodigos(Titulo titulo, Usuarios usuarios, Leyes ley)
         {
             InitializeComponent();
@@ -225,7 +225,7 @@ namespace IURIS.MOVIL.Detail
             if (articulo == null) return;
             _Articulo = articulo;
             await PopupNavigation.Instance.PushAsync(new WindowOfMenuAccion(_titulo, _Usuario, articulo, _ley, _Capitulo), false);
-
+            expandr.IsEnabled = true;
         }
 
         private void ObtenerImagenesDeArticulo()
@@ -277,15 +277,13 @@ namespace IURIS.MOVIL.Detail
 
         private void ExpaderForPlus(object sender, EventArgs e)
         {
-            //if (_Articulo == null)
-            //{
-            //    //((Expander)sender).IsExpanded = false;
-            //    ((Expander)sender).State = ExpanderState.Expanding;
-                
-
-            //}
-            //((Expander)sender).IsExpanded = _Articulo != null?true:false;
-
+            numToques += 1;
+            if (numToques == 2)
+            {
+                expandr.IsEnabled = false;
+                numToques = 0;
+                _Articulo = null;
+            }
             stakColores.IsVisible = stakColores.IsVisible==false? true:false;
         }
 
@@ -294,7 +292,7 @@ namespace IURIS.MOVIL.Detail
             try
             {
 
-                if (_Articulo == null) return;
+                //if (_Articulo == null) return;
                     string txt;
                 txt = await CrossClipboard.Current.GetTextAsync();
                     if (_Articulo.Contenido.ToUpper().Contains(txt)) return;
@@ -387,8 +385,9 @@ namespace IURIS.MOVIL.Detail
 
         private void TapGestureRecognizer_Tapped_6(object sender, EventArgs e)
         {
-            if (_Articulo == null)
-                return;
+            try
+            {
+
             if (ColorHex == null)
                 return;
             if (!_Articulo.TieneColorDeTexto)
@@ -414,7 +413,13 @@ namespace IURIS.MOVIL.Detail
                 _Articulo.Subrayados[Index + 1].ColorTextoHex = null;
                 _Articulo.Subrayados.Remove(subrayado);
             }
+
             if(manejadorDeUsuarioAplicacion.Modificar(_Usuario)) IsRefreshing = true;
+            }
+            catch (Exception ex)
+            {
+                DisplayAlert("Error", "No se ha podido borrar el subrayado,\npor favor intente mas tarde", "ok");
+            }
         }
     }
 }

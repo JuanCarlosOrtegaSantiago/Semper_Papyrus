@@ -226,7 +226,7 @@
                     <pv:GradientStop Color="Transparent" Offset="1"/>
                 </pv:GradientStopCollection>
             </pv:PancakeView.BackgroundGradientStops>
-            <Expander Rotation="180" HorizontalOptions="End" VerticalOptions="End" State="Expanding"
+            <Expander x:Name="expandr" IsEnabled="False" Rotation="180" HorizontalOptions="End" VerticalOptions="End" State="Expanding"
                           ExpandAnimationEasing="{x:Static Easing.SinOut}"
           ExpandAnimationLength="1"
           CollapseAnimationEasing="{x:Static Easing.SinOut}"
@@ -241,7 +241,7 @@
                 <Expander.ContentTemplate>
                     <DataTemplate>
                         <ContentView Margin="0,15,0,0">
-                            <StackLayout >
+                            <StackLayout x:Name="expanding" >
                                 <Image Source="Save.png" HeightRequest="35" WidthRequest="35" Rotation="180">
                                     <Image.GestureRecognizers>
                                         <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_5"/>
