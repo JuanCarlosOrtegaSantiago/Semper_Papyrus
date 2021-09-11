@@ -7,6 +7,7 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using Xamarin.Forms;
+using Acr.UserDialogs;
 
 namespace IURIS.MOVIL.Droid
 {
@@ -19,6 +20,8 @@ namespace IURIS.MOVIL.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
+
+            UserDialogs.Init(this);
 
             Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
 

@@ -21,12 +21,12 @@
             <Label FlexLayout.Shrink="0" Margin="0,-15" Text="Inicio de sesión" TextColor="White" HorizontalTextAlignment="Center" FontSize="Large"  VerticalOptions="End" VerticalTextAlignment="End" HorizontalOptions="Center"></Label>
 
             <Grid FlexLayout.Shrink="0" Margin="0,-20" FlexLayout.AlignSelf="Stretch" ColumnDefinitions="0.6*,*" ColumnSpacing="5">
-                <Label Grid.Column="0" FlexLayout.Grow="20" Text="Correo:" HorizontalTextAlignment="End" FontSize="Title" Style="{StaticResource TextoAMostrarColorBlanco}"/>
+                <Label Grid.Column="0" x:Name="lblcorreo" FlexLayout.Grow="20" Text="Correo:" HorizontalTextAlignment="End" FontSize="Title" Style="{StaticResource TextoAMostrarColorBlanco}"/>
                 <Local:CustomEntry Grid.Column="1" FlexLayout.Grow="1" x:Name="EntryCorreo" Placeholder="Ejemplo1234@gmail.com" ReturnType="Next" Style="{StaticResource EntryCrearCuenta}" HorizontalTextAlignment="Center" IsTextPredictionEnabled="False" FontSize="Medium"/>
             </Grid>
 
             <Grid FlexLayout.Shrink="0" Margin="0,-20" FlexLayout.AlignSelf="Auto" ColumnDefinitions="0.6*,*" ColumnSpacing="5">
-                <Label Grid.Column="0" Text="Contraseña:" HorizontalTextAlignment="End" FontSize="Title" Style="{StaticResource TextoAMostrarColorBlanco}"></Label>
+                <Label Grid.Column="0" x:Name="lblcontra" Text="Contraseña:" HorizontalTextAlignment="End" FontSize="Title" Style="{StaticResource TextoAMostrarColorBlanco}"></Label>
                 <Local:CustomEntry Grid.Column="1" MaxLength="4" Keyboard="Numeric" Placeholder="****" Style="{StaticResource EntryCrearCuenta}" HorizontalTextAlignment="Center" IsTextPredictionEnabled="False" IsPassword="True" FontSize="Medium" x:Name="EntryPasswor" Completed="BtnAceptar_Clicked"/>
             </Grid>
 

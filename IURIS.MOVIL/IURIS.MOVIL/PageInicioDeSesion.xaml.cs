@@ -1,4 +1,5 @@
 ﻿//using Xamarin.Forms.PlatformConfiguration.Android.Widget;
+using Acr.UserDialogs;
 using IURIS.BIZ;
 using IURIS.COMMON.Entidades.Ley;
 using IURIS.COMMON.Entidades.UsuariosDeAplicacion;
@@ -31,9 +32,10 @@ namespace IURIS.MOVIL
         public PageInicioDeSesion()
         {
             InitializeComponent();
+            lblcontra.FontSize = Device.GetNamedSize(NamedSize.Title, lblcontra);
+            lblcorreo.FontSize = Device.GetNamedSize(NamedSize.Title, lblcontra);
             manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
             manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
-
             DatosAIniciar();
         }
 
@@ -71,6 +73,8 @@ namespace IURIS.MOVIL
 
         private async void BtnAceptar_Clicked(object sender, EventArgs e)
         {
+            UserDialogs.Instance.ShowLoading("Iniciando sesión");
+            await Task.Delay(300);
             ActivityIndicator activityIndicator = new ActivityIndicator() { Color = Color.White, BackgroundColor = Color.Black };
             try
             {
@@ -78,53 +82,56 @@ namespace IURIS.MOVIL
                 activityIndicator.IsVisible = true;
                 activityIndicator.WidthRequest = DeviceDisplay.MainDisplayInfo.Width;
                 activityIndicator.HeightRequest = DeviceDisplay.MainDisplayInfo.Height;
-            Intentos++;
-            if (Intentos != 1) return;
+                Intentos++;
+                if (Intentos != 1) return;
 
-            if (string.IsNullOrWhiteSpace(EntryPasswor.Text) || string.IsNullOrWhiteSpace(EntryCorreo.Text)) return;
-            if (Connectivity.NetworkAccess == NetworkAccess.None)
-            {
-                await DisplayAlert("Error", "Sin conexión a internet", "Aceptar");
-                Intentos=0;
-                return;
-            }
-
-            string CorreoSinEspacios;
-            CorreoSinEspacios = EntryCorreo.Text.TrimStart();
-            CorreoSinEspacios = CorreoSinEspacios.TrimEnd();
-
-            _User = manejadorDeUsuarioAplicacion.EncontrarUsuario(CorreoSinEspacios, int.Parse(EntryPasswor.Text));
-            if (_User != null)
-            {
-                Settings.Recuerdame = Recuerdame;
-                if (Settings.Recuerdame)
+                if (string.IsNullOrWhiteSpace(EntryPasswor.Text) || string.IsNullOrWhiteSpace(EntryCorreo.Text)) return;
+                if (Connectivity.NetworkAccess == NetworkAccess.None)
                 {
-                    Settings.Email = _User.Correo;
-                    Settings.Contrasenia = _User.Contrasenia.ToString();
+                    await DisplayAlert("Error", "Sin conexión a internet", "Aceptar");
+                    Intentos = 0;
+                    return;
                 }
-                Settings.NumUsuario = _User.IdApp.ToString();
 
+                string CorreoSinEspacios;
+                CorreoSinEspacios = EntryCorreo.Text.TrimStart();
+                CorreoSinEspacios = CorreoSinEspacios.TrimEnd();
 
-                if (HayActualizacion()) Actualizaeyes();
+                _User = manejadorDeUsuarioAplicacion.EncontrarUsuario(CorreoSinEspacios, int.Parse(EntryPasswor.Text));
+                if (_User != null)
+                {
+                    Settings.Recuerdame = Recuerdame;
+                    if (Settings.Recuerdame)
+                    {
+                        Settings.Email = _User.Correo;
+                        Settings.Contrasenia = _User.Contrasenia.ToString();
+                    }
+                    Settings.NumUsuario = _User.IdApp.ToString();
+                    
+                    UserDialogs.Instance.HideLoading();
+                    UserDialogs.Instance.ShowLoading("Obteniendo leyes");
+                    if (HayActualizacion()) Actualizaeyes();
 
-                await Navigation.PushAsync(new FirtsView(_User), false);
+                    await Navigation.PushAsync(new FirtsView(_User), false);
                     activityIndicator.IsRunning = false;
                 }
-            else
-            {
+                else
+                {
                     activityIndicator.IsRunning = false;
                     await DisplayAlert("Error de usuario", "Por favor verifica los datos ingresados", "OK");
 
-            }
-            Intentos = 0;
+                }
+                Intentos = 0;
             }
             catch (Exception ex)
             {
                 Intentos = 0;
                 activityIndicator.IsRunning = false;
-                await DisplayAlert("Error","Error:"+ ex.Message,"ok");
+                await DisplayAlert("Error", "Error:" + ex.Message, "ok");
                 return;
             }
+            await Task.Delay(200);
+            UserDialogs.Instance.HideLoading();
         }
 
         private async void Actualizaeyes()

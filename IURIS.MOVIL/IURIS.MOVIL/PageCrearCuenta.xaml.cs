@@ -1,4 +1,5 @@
-﻿using IURIS.BIZ;
+﻿using Acr.UserDialogs;
+using IURIS.BIZ;
 using IURIS.COMMON.Entidades.Ley;
 using IURIS.COMMON.Entidades.Ley.ComponentesDeLey;
 using IURIS.COMMON.Entidades.UsuariosDeAplicacion;
@@ -38,7 +39,9 @@ namespace IURIS.MOVIL
 
         private async void BtnOK_Clicked(object sender, EventArgs e)
         {
-                ActivityIndicator activityIndicator = new ActivityIndicator();
+            UserDialogs.Instance.ShowLoading("Creando usuario\npor favor espere");
+            await Task.Delay(200);
+            ActivityIndicator activityIndicator = new ActivityIndicator();
             try
             {
 
@@ -108,6 +111,7 @@ namespace IURIS.MOVIL
                 await DisplayAlert("Error","Error: " + ex.Message, "ok");
                 return;
             }
+            UserDialogs.Instance.HideLoading();
         }
 
         private async void BtnCanselar_Clicked(object sender, EventArgs e)

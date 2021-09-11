@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using Acr.UserDialogs;
 using Foundation;
 using UIKit;
 using Xamarin.Forms;
@@ -24,7 +24,7 @@ namespace IURIS.MOVIL.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             Forms.SetFlags(new[] { "RadioButton_Experimental", "Expander_Experimental" });
-
+            //UserDialogs.Init();
             Rg.Plugins.Popup.Popup.Init();
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
