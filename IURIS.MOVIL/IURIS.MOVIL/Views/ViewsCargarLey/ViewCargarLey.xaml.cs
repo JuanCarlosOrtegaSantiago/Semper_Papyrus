@@ -1,4 +1,5 @@
-﻿using IURIS.BIZ;
+﻿using Acr.UserDialogs;
+using IURIS.BIZ;
 using IURIS.COMMON.Entidades.Ley;
 using IURIS.COMMON.Entidades.Ley.ComponentesDeLey;
 using IURIS.COMMON.Entidades.UsuariosDeAplicacion;
@@ -32,6 +33,10 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
             InitializeComponent();
             BindingContext = this;
             _User = usuarios;
+
+
+            UserDialogs.Instance.Toast("\tPara eliminar una ley.\n Desliza hacia la izquierda la ley y preciona eliminar", TimeSpan.FromMilliseconds(5000));
+
             manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
             CargarDatos();
 
@@ -46,10 +51,11 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
 
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
+
             manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
 
             bool ExisteLey = false;
-            Leyes _LeyeComprada=null;
+            Leyes _LeyComprada=null;
 
             if (_User.MisLeyes.Count >= 4)
             {
@@ -58,31 +64,33 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
             }
 
             if (string.IsNullOrEmpty(EntryCodigo.Text)) return;
-            _LeyeComprada = manejadorDeLeyes.BuscarPorCodigo(EntryCodigo.Text.ToUpper());
+            _LeyComprada = manejadorDeLeyes.BuscarPorCodigo(EntryCodigo.Text.ToUpper());
 
-            if (_LeyeComprada == null)
+            if (_LeyComprada == null)
             {
                 await DisplayAlert("Error", "Codigo incorrecto\nIntenta de nuevo", "OK");
                 return;
             }
 
             foreach (var Ley in _User.MisLeyes)
-                if (_LeyeComprada.id == Ley.id)
+                if (_LeyComprada.id == Ley.id)
                     ExisteLey = true;
+
+            //_User.MisLeyes.ForEach(r => { if (r.id == _LeyComprada.id) ExisteLey = true; });
 
             if (ExisteLey)
             {
                 await DisplayAlert("", "El codigo ingresado\nCorresponde a una ley que ya \nse encuentra en tu coleccion", "OK");
                 return;
             }
-            _LeyeComprada.FechaDeDescarga = DateTime.UtcNow.ToLocalTime();
+            _LeyComprada.FechaDeDescarga = DateTime.UtcNow.ToLocalTime();
 
-            _User.MisLeyes.Add(_LeyeComprada);
-            _User.MisLeyes.Where(w => w.CodigoLey == _LeyeComprada.CodigoLey).SingleOrDefault().Clasificaciones = new List<ClasificacionPUsuario>();
+            _User.MisLeyes.Add(_LeyComprada);
+            _User.MisLeyes.Where(w => w.CodigoLey == _LeyComprada.CodigoLey).SingleOrDefault().Clasificaciones = new List<ClasificacionPUsuario>();
             if (manejadorDeUsuarioAplicacion.Modificar(_User))
             {
-                _LeyeComprada.numDescargas += 1;
-                manejadorDeLeyes.Modificar(_LeyeComprada);
+                _LeyComprada.numDescargas += 1;
+                manejadorDeLeyes.Modificar(_LeyComprada);
                 CargarDatos();
             }
             else
@@ -120,7 +128,7 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
 
             var MiLey = ((SwipeItemView)sender).BindingContext as Leyes;
 
-            if (MiLey == null || MiLey.numDescargas < 1) return;
+            if (MiLey == null || MiLey.CodigoLey=="ley#1") return;
 
             if (_User.MiUltimaLeyCargada.Equals(MiLey.CodigoLey)) _User.MiUltimaLeyCargada = _User.MisLeyes.Where(w => w.id != MiLey.id).First().CodigoLey;
 

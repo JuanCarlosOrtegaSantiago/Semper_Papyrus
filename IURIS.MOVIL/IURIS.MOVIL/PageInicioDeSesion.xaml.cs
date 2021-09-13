@@ -73,7 +73,7 @@ namespace IURIS.MOVIL
 
         private async void BtnAceptar_Clicked(object sender, EventArgs e)
         {
-            UserDialogs.Instance.ShowLoading("Iniciando sesión");
+            UserDialogs.Instance.ShowLoading("Iniciando sesión", MaskType.Gradient);
             await Task.Delay(300);
             ActivityIndicator activityIndicator = new ActivityIndicator() { Color = Color.White, BackgroundColor = Color.Black };
             try
