@@ -73,7 +73,7 @@ namespace IURIS.MOVIL
 
         private async void BtnAceptar_Clicked(object sender, EventArgs e)
         {
-            UserDialogs.Instance.ShowLoading("Iniciando sesión", MaskType.Gradient);
+            UserDialogs.Instance.ShowLoading("Iniciando sesión", MaskType.None);
             await Task.Delay(300);
             ActivityIndicator activityIndicator = new ActivityIndicator() { Color = Color.White, BackgroundColor = Color.Black };
             try
@@ -110,6 +110,7 @@ namespace IURIS.MOVIL
                     
                     UserDialogs.Instance.HideLoading();
                     UserDialogs.Instance.ShowLoading("Obteniendo leyes");
+                    await Task.Delay(300);
                     if (HayActualizacion()) Actualizaeyes();
 
                     await Navigation.PushAsync(new FirtsView(_User), false);

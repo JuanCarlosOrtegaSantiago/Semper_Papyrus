@@ -51,6 +51,12 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
 
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
+            try
+            {
+
+
+            UserDialogs.Instance.ShowLoading("Buscando ley", MaskType.Gradient);
+            await Task.Delay(1000);
 
             manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
 
@@ -59,7 +65,10 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
 
             if (_User.MisLeyes.Count >= 4)
             {
+                UserDialogs.Instance.HideLoading();
                 await PopupNavigation.Instance.PushAsync(new WindowOfComprarEspacio());
+                UserDialogs.Instance.ShowLoading("Buscando ley", MaskType.Gradient);
+                await Task.Delay(1000);
                 return;
             }
 
@@ -68,10 +77,12 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
 
             if (_LeyComprada == null)
             {
+                UserDialogs.Instance.HideLoading();
                 await DisplayAlert("Error", "Codigo incorrecto\nIntenta de nuevo", "OK");
                 return;
             }
 
+                 
             foreach (var Ley in _User.MisLeyes)
                 if (_LeyComprada.id == Ley.id)
                     ExisteLey = true;
@@ -80,9 +91,14 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
 
             if (ExisteLey)
             {
+                UserDialogs.Instance.HideLoading();
                 await DisplayAlert("", "El codigo ingresado\nCorresponde a una ley que ya \nse encuentra en tu coleccion", "OK");
                 return;
             }
+
+            UserDialogs.Instance.HideLoading();
+            UserDialogs.Instance.ShowLoading("Agregando ley a tu lista", MaskType.Gradient);
+            await Task.Delay(1000);
             _LeyComprada.FechaDeDescarga = DateTime.UtcNow.ToLocalTime();
 
             _User.MisLeyes.Add(_LeyComprada);
@@ -91,15 +107,23 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
             {
                 _LeyComprada.numDescargas += 1;
                 manejadorDeLeyes.Modificar(_LeyComprada);
+                UserDialogs.Instance.HideLoading();
                 CargarDatos();
             }
             else
             {
 
+                UserDialogs.Instance.HideLoading();
                 await DisplayAlert("", "Ocurrio un error\nIntente mas tarde", "OK");
             }
 
             Limpiardatos();
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", "Esta acción no se puede realizar por el momento\nIntente mas tarde", "OK");
+                return;
+            }
         }
 
         private void Limpiardatos()
@@ -109,6 +133,8 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
 
         private async void clltionLeyes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            UserDialogs.Instance.Loading("Cargando ley");
+            await Task.Delay(500);
             if (clltionLeyes.SelectedItem == null) return;
 
             _User.MiUltimaLeyCargada = ((Leyes)clltionLeyes.SelectedItem).CodigoLey;
@@ -118,14 +144,15 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
                 await DisplayAlert("error", "No se ha podido cargar la ley\n por favor intente mas tarde", "OK");
                 return;
             }
-         
+            UserDialogs.Instance.HideLoading();
             App.masterDetail.IsPresented = false;
             App.masterDetail.Detail = new NavigationPage(new ViewDetail(_User));
         }
 
-        private void SwipeItem_Invoked(object sender, EventArgs e)
+        private async void SwipeItem_Invoked(object sender, EventArgs e)
         {
-
+            UserDialogs.Instance.ShowLoading("Borrando ley", MaskType.Gradient);
+            await Task.Delay(1000);
             var MiLey = ((SwipeItemView)sender).BindingContext as Leyes;
 
             if (MiLey == null || MiLey.CodigoLey=="ley#1") return;
@@ -136,7 +163,8 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
             
             if (!manejadorDeUsuarioAplicacion.Modificar(_User)) return;
 
-            DisplayAlert("", "Se borro la ley de tu colección", "Ok");
+            UserDialogs.Instance.HideLoading();
+            await DisplayAlert("", "Se borro la ley de tu lista", "Ok");
             CargarDatos();
         }
     }
