@@ -63,14 +63,14 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
             bool ExisteLey = false;
             Leyes _LeyComprada=null;
 
-            if (_User.MisLeyes.Count >= 4)
-            {
-                UserDialogs.Instance.HideLoading();
-                await PopupNavigation.Instance.PushAsync(new WindowOfComprarEspacio());
-                UserDialogs.Instance.ShowLoading("Buscando ley", MaskType.Gradient);
-                await Task.Delay(1000);
-                return;
-            }
+            //if (_User.MisLeyes.Count >= 4)
+            //{
+            //    UserDialogs.Instance.HideLoading();
+            //    await PopupNavigation.Instance.PushAsync(new WindowOfComprarEspacio());
+            //    UserDialogs.Instance.ShowLoading("Buscando ley", MaskType.Gradient);
+            //    await Task.Delay(1000);
+            //    return;
+            //}
 
             if (string.IsNullOrEmpty(EntryCodigo.Text)) return;
             _LeyComprada = manejadorDeLeyes.BuscarPorCodigo(EntryCodigo.Text.ToUpper());
@@ -133,8 +133,8 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
 
         private async void clltionLeyes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            UserDialogs.Instance.Loading("Cargando ley");
-            await Task.Delay(500);
+            UserDialogs.Instance.ShowLoading("Cargando ley");
+            await Task.Delay(200);
             if (clltionLeyes.SelectedItem == null) return;
 
             _User.MiUltimaLeyCargada = ((Leyes)clltionLeyes.SelectedItem).CodigoLey;
@@ -144,9 +144,10 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
                 await DisplayAlert("error", "No se ha podido cargar la ley\n por favor intente mas tarde", "OK");
                 return;
             }
-            UserDialogs.Instance.HideLoading();
+            
             App.masterDetail.IsPresented = false;
             App.masterDetail.Detail = new NavigationPage(new ViewDetail(_User));
+            UserDialogs.Instance.HideLoading();
         }
 
         private async void SwipeItem_Invoked(object sender, EventArgs e)
