@@ -128,6 +128,8 @@ namespace IURIS.MOVIL
             {
                 Intentos = 0;
                 activityIndicator.IsRunning = false;
+                await Task.Delay(200);
+                UserDialogs.Instance.HideLoading();
                 await DisplayAlert("Error", "Error:" + ex.Message, "ok");
                 return;
             }
