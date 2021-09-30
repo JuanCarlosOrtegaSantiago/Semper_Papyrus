@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IURIS.MOVIL.iOS", "IURIS.MO
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IURIS.MOVIL", "IURIS.MOVIL\IURIS.MOVIL\IURIS.MOVIL.csproj", "{E21FE55B-20AD-46ED-A22D-3F0DA44B2661}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo", "Ejemplo", "{056571F7-CACD-4104-81F1-C53C08D32406}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Ad-Hoc|Any CPU = Ad-Hoc|Any CPU
