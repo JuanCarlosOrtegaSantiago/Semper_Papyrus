@@ -263,6 +263,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
                 SwitchFoto.IsChecked = false;
                 LimpiarDatosFoto();
                 Fotografias = null;
+                HayFotos = false;
 
             }
             //articulo.Fotografia = HayFotoEnElArticulo == HayFoto.Si ? Fotografias : null;
@@ -456,23 +457,20 @@ namespace IURIS.DESKTOP.GUI.ADMIN
             btnFoto.Visibility = Visibility.Visible;
             btnAddPhoto.Visibility = Visibility.Visible;
             HayFotoEnElArticulo = HayFoto.Si;
-            if (!HayFotos)Fotografias = new List<Fotografia>();
+            if (!HayFotos)
+                Fotografias = new List<Fotografia>();
         }
 
         private void SwitchFoto_Unchecked(object sender, RoutedEventArgs e)
         {
-            
-            HayFotos = Fotografias.Count >= 1 ? true : false;
-            if (HayFotos)
+            HayFotos = Fotografias.Count >= 1;
+
+            if (Fotografias.Count >= 1)
             {
                 if (MessageBox.Show("¿Está seguro de borrar los datos almacenados?", "Advertencia", MessageBoxButton.OKCancel, MessageBoxImage.Warning) == MessageBoxResult.Cancel)
                 {
                     SwitchFoto.IsChecked = true;
                     return;
-                }
-                else
-                {
-                    Fotografias = null;
                 }
             }
             GridContenidoFoto.Visibility = Visibility.Hidden;
