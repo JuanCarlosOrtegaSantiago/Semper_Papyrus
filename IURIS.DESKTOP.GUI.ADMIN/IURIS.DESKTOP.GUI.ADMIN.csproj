@@ -96,11 +96,8 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Crc32C.NET, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Crc32C.NET.1.0.5.0\lib\net20\Crc32C.NET.dll</HintPath>
-    </Reference>
-    <Reference Include="DnsClient, Version=1.2.0.0, Culture=neutral, PublicKeyToken=4574bb5573c51424, processorArchitecture=MSIL">
-      <HintPath>..\packages\DnsClient.1.2.0\lib\net45\DnsClient.dll</HintPath>
+    <Reference Include="DnsClient, Version=1.5.0.0, Culture=neutral, PublicKeyToken=4574bb5573c51424, processorArchitecture=MSIL">
+      <HintPath>..\packages\DnsClient.1.5.0\lib\net45\DnsClient.dll</HintPath>
     </Reference>
     <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
       <HintPath>..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
@@ -123,8 +120,8 @@
     <Reference Include="Mono.Android">
       <HintPath>..\..\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v8.1\Mono.Android.dll</HintPath>
     </Reference>
-    <Reference Include="SharpCompress, Version=0.29.0.0, Culture=neutral, PublicKeyToken=afb0a02973931d96, processorArchitecture=MSIL">
-      <HintPath>..\packages\SharpCompress.0.29.0\lib\netstandard2.0\SharpCompress.dll</HintPath>
+    <Reference Include="SharpCompress, Version=0.30.0.0, Culture=neutral, PublicKeyToken=afb0a02973931d96, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpCompress.0.30.0\lib\net461\SharpCompress.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
