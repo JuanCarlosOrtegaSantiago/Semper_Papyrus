@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:IURIS.MOVIL.Modelos_y_clases" xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              mc:Ignorable="d"
              x:Class="IURIS.MOVIL.Views.ViewMiClasificacionPersonalizada">
 
@@ -44,27 +45,27 @@
                                         <Label Text="{Binding NombreArticulo}" FontSize="16" Style="{StaticResource TextoAMostrarColorRojo}" HorizontalTextAlignment="Start" VerticalOptions="Center" FontAttributes="Bold" Margin="5,0"/>
 
                                     </FlexLayout>
-                        <Expander HorizontalOptions="Start" VerticalOptions="Center" >
+                        <xct:Expander HorizontalOptions="Start" VerticalOptions="Center" >
 
-                            <Expander.Header>
+                            <xct:Expander.Header>
 
                                 <StackLayout Orientation="Horizontal">
                                     <Image Source="Mas.png" WidthRequest="30" HeightRequest="30" FlexLayout.Shrink="0" HorizontalOptions="Start">
                                         <Image.Triggers>
-                                            <DataTrigger TargetType="Image" Binding="{Binding Source={RelativeSource AncestorType={x:Type Expander}}, Path=IsExpanded}" Value="True">
+                                                <DataTrigger TargetType="Image" Binding="{Binding Source={RelativeSource AncestorType={x:Type xct:Expander}}, Path=IsExpanded}" Value="True">
                                                 <Setter Property="Source" Value="menos.png"/>
                                             </DataTrigger>
                                         </Image.Triggers>
                                     </Image>
                                 </StackLayout>
 
-                            </Expander.Header>
-                            <Expander.Content>
+                            </xct:Expander.Header>
+                            <xct:Expander.Content>
 
                                 <Label Text="{Binding Contenido}" FontSize="Subtitle" Style="{StaticResource TextoAMostrarColorRojo}" Margin="0,20"/>
-                            </Expander.Content>
+                            </xct:Expander.Content>
 
-                        </Expander>
+                        </xct:Expander>
                         </Grid>
                     </pv:PancakeView>
 

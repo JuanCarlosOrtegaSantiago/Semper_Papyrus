@@ -75,13 +75,8 @@ namespace IURIS.MOVIL
         {
             UserDialogs.Instance.ShowLoading("Iniciando sesión", MaskType.None);
             await Task.Delay(300);
-            ActivityIndicator activityIndicator = new ActivityIndicator() { Color = Color.White, BackgroundColor = Color.Black };
             try
             {
-                activityIndicator.IsRunning = true;
-                activityIndicator.IsVisible = true;
-                activityIndicator.WidthRequest = DeviceDisplay.MainDisplayInfo.Width;
-                activityIndicator.HeightRequest = DeviceDisplay.MainDisplayInfo.Height;
                 Intentos++;
                 if (Intentos != 1) return;
 
@@ -114,11 +109,9 @@ namespace IURIS.MOVIL
                     if (HayActualizacion()) Actualizaeyes();
 
                     await Navigation.PushAsync(new FirtsView(_User), false);
-                    activityIndicator.IsRunning = false;
                 }
                 else
                 {
-                    activityIndicator.IsRunning = false;
                     await DisplayAlert("Error de usuario", "Por favor verifica los datos ingresados", "OK");
 
                 }
@@ -127,7 +120,6 @@ namespace IURIS.MOVIL
             catch (Exception ex)
             {
                 Intentos = 0;
-                activityIndicator.IsRunning = false;
                 await Task.Delay(200);
                 UserDialogs.Instance.HideLoading();
                 await DisplayAlert("Error", "Error:" + ex.Message, "ok");

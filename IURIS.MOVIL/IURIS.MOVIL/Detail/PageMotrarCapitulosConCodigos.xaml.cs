@@ -268,11 +268,14 @@ namespace IURIS.MOVIL.Detail
 
         private void EllipceColor(object sender, EventArgs e)
         {
-            if (Ellipse_Cargado != null) Ellipse_Cargado.StrokeThickness = 0;
-
-            ColorHex = ((Ellipse)sender).Fill.ToHex();
+            if (Ellipse_Cargado != null)
+            {
+                Ellipse_Cargado.StrokeThickness = 0;
+                Ellipse_Cargado.Stroke = Brush.Transparent;
+            }
+            ColorHex = ((SolidColorBrush)(((Ellipse)sender).Fill)).Color.ToHex();
             Ellipse_Cargado = ((Ellipse)sender);
-            ((Ellipse)sender).Stroke = Color.Black;
+            ((Ellipse)sender).Stroke = Brush.Black;
             ((Ellipse)sender).StrokeThickness = 4;
         }
 

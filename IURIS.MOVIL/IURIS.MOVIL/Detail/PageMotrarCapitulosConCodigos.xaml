@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:local="clr-namespace:IURIS.MOVIL.Modelos_y_clases"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              mc:Ignorable="d"
              x:Class="IURIS.MOVIL.Detail.PageMotrarCapitulosConCodigos">
 
@@ -175,43 +176,43 @@
             </RefreshView>
         </FlexLayout>
 
-        <StackLayout x:Name="stakColores" Orientation="Horizontal" Spacing="15" HorizontalOptions="Start"  VerticalOptions="End" Margin="15,0,0,30" IsVisible="false">
+        <StackLayout x:Name="stakColores" Orientation="Horizontal" HorizontalOptions="Start"  VerticalOptions="End" Margin="15,0,0,30" IsVisible="false">
 
             <Ellipse Fill="#F7FE2E"
-         WidthRequest="30"
-         HeightRequest="30">
+         WidthRequest="40"
+         HeightRequest="40">
                 <Ellipse.GestureRecognizers>
                     <TapGestureRecognizer Tapped="EllipceColor"/>
                 </Ellipse.GestureRecognizers>
             </Ellipse>
 
             <Ellipse Fill="#60FB36 " 
-         WidthRequest="30"
-         HeightRequest="30">
+         WidthRequest="40"
+         HeightRequest="40">
                 <Ellipse.GestureRecognizers>
                     <TapGestureRecognizer Tapped="EllipceColor"/>
                 </Ellipse.GestureRecognizers>
             </Ellipse>
 
             <Ellipse Fill="#38E9FB"
-         WidthRequest="30"
-         HeightRequest="30">
+         WidthRequest="40"
+         HeightRequest="40">
                 <Ellipse.GestureRecognizers>
                     <TapGestureRecognizer Tapped="EllipceColor"/>
                 </Ellipse.GestureRecognizers>
             </Ellipse>
 
             <Ellipse Fill="#FAC437"
-         WidthRequest="30"
-         HeightRequest="30">
+         WidthRequest="40"
+         HeightRequest="40">
                 <Ellipse.GestureRecognizers>
                     <TapGestureRecognizer Tapped="EllipceColor"/>
                 </Ellipse.GestureRecognizers>
             </Ellipse>
 
             <Ellipse Fill="#FB39EB"
-         WidthRequest="30"
-         HeightRequest="30">
+         WidthRequest="40"
+         HeightRequest="40">
                 <Ellipse.GestureRecognizers>
                     <TapGestureRecognizer Tapped="EllipceColor"/>
                 </Ellipse.GestureRecognizers>
@@ -226,19 +227,19 @@
                     <pv:GradientStop Color="Transparent" Offset="1"/>
                 </pv:GradientStopCollection>
             </pv:PancakeView.BackgroundGradientStops>
-            <Expander x:Name="expandr" IsEnabled="False" Rotation="180" HorizontalOptions="End" VerticalOptions="End" State="Expanding"
+            <xct:Expander x:Name="expandr" IsEnabled="False" Rotation="180" HorizontalOptions="End" VerticalOptions="End" State="Expanding"
                           ExpandAnimationEasing="{x:Static Easing.SinOut}"
           ExpandAnimationLength="1"
           CollapseAnimationEasing="{x:Static Easing.SinOut}"
           CollapseAnimationLength="1">
-                <Expander.Header >
+                <xct:Expander.Header >
                     <Image Source="Mas.png" WidthRequest="35" HeightRequest="35">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Tapped="ExpaderForPlus"/>
                         </Image.GestureRecognizers>
                     </Image>
-                </Expander.Header>
-                <Expander.ContentTemplate>
+                </xct:Expander.Header>
+                <xct:Expander.ContentTemplate>
                     <DataTemplate>
                         <ContentView Margin="0,15,0,0">
                             <StackLayout x:Name="expanding" >
@@ -255,8 +256,8 @@
                             </StackLayout>
                         </ContentView>
                     </DataTemplate>
-                </Expander.ContentTemplate>
-            </Expander>
+                </xct:Expander.ContentTemplate>
+            </xct:Expander>
         </pv:PancakeView>
 
     </Grid>
