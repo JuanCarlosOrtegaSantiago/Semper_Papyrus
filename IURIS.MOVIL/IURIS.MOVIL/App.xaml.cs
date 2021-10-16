@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IURIS.MOVIL.Views.Baners;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
