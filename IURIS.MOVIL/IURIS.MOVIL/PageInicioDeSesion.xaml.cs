@@ -6,6 +6,7 @@ using IURIS.COMMON.Entidades.UsuariosDeAplicacion;
 using IURIS.COMMON.Interfaces;
 using IURIS.DAL;
 using IURIS.MOVIL.Utils;
+using MarcTron.Plugin.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +29,7 @@ namespace IURIS.MOVIL
         Usuarios _User;
         bool Recuerdame = false;
         List<Leyes> LeyesParaActualizar=new List<Leyes>();
-
+        List<Leyes> LeyesActualizadas;
         public PageInicioDeSesion()
         {
             InitializeComponent();
@@ -36,6 +37,11 @@ namespace IURIS.MOVIL
             lblcorreo.FontSize = Device.GetNamedSize(NamedSize.Title, lblcontra);
             manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
             manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
+            MainThread.BeginInvokeOnMainThread(async () => {
+                await Task.Delay(5000);
+                LeyesActualizadas = manejadorDeLeyes.Listar.Where(x => x.EsModificacion == true).ToList();
+            });
+
             DatosAIniciar();
         }
 
@@ -73,10 +79,13 @@ namespace IURIS.MOVIL
 
         private async void BtnAceptar_Clicked(object sender, EventArgs e)
         {
+                MainThread.BeginInvokeOnMainThread(async () => {
             UserDialogs.Instance.ShowLoading("Iniciando sesión", MaskType.None);
             await Task.Delay(300);
+
             try
             {
+            
                 Intentos++;
                 if (Intentos != 1) return;
 
@@ -93,6 +102,8 @@ namespace IURIS.MOVIL
                 CorreoSinEspacios = CorreoSinEspacios.TrimEnd();
 
                 _User = manejadorDeUsuarioAplicacion.EncontrarUsuario(CorreoSinEspacios, int.Parse(EntryPasswor.Text));
+
+
                 if (_User != null)
                 {
                     Settings.Recuerdame = Recuerdame;
@@ -109,7 +120,7 @@ namespace IURIS.MOVIL
                     if (HayActualizacion()) Actualizaeyes();
 
                     await Navigation.PushAsync(new FirtsView(_User), false);
-                }
+                    }
                 else
                 {
                     await DisplayAlert("Error de usuario", "Por favor verifica los datos ingresados", "OK");
@@ -127,6 +138,7 @@ namespace IURIS.MOVIL
             }
             await Task.Delay(200);
             UserDialogs.Instance.HideLoading();
+                });
         }
 
         private async void Actualizaeyes()
@@ -224,7 +236,7 @@ namespace IURIS.MOVIL
 
         public bool HayActualizacion()
         {
-            List<Leyes> LeyesActualizadas = manejadorDeLeyes.Listar.Where(x => x.EsModificacion == true).ToList();
+            
             if (LeyesActualizadas.Count == 0)
                 return false;
 
@@ -239,10 +251,8 @@ namespace IURIS.MOVIL
                 }
             }
 
-            if (LeyesParaActualizar.Count == 0)
-                return false;
 
-            return true;
+            return LeyesParaActualizar.Count == 0;
         }
     }
 }

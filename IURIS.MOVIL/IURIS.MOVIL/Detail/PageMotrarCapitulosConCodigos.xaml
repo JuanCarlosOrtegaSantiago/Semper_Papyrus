@@ -5,7 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:local="clr-namespace:IURIS.MOVIL.Modelos_y_clases"
-             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit" xmlns:controls="clr-namespace:MarcTron.Plugin.Controls;assembly=Plugin.MtAdmob"
              mc:Ignorable="d"
              x:Class="IURIS.MOVIL.Detail.PageMotrarCapitulosConCodigos">
 
@@ -261,6 +261,26 @@
                 </xct:Expander.ContentTemplate>
             </xct:Expander>
         </pv:PancakeView>
+
+        <StackLayout VerticalOptions="End" HorizontalOptions="Fill">
+
+            <StackLayout HorizontalOptions="EndAndExpand">
+
+                <controls:MTAdView x:Name="myAds" IsVisible="false" 
+                                   AdsId="ca-app-pub-3940256099942544/6300978111" 
+                                   VerticalOptions="EndAndExpand" >
+                    <controls:MTAdView.HeightRequest>
+                        <x:OnIdiom>
+                            <x:OnIdiom.Phone>50</x:OnIdiom.Phone>
+                            <x:OnIdiom.Tablet>90</x:OnIdiom.Tablet>
+                            <x:OnIdiom.Desktop>90</x:OnIdiom.Desktop>
+                        </x:OnIdiom>
+                    </controls:MTAdView.HeightRequest>
+                </controls:MTAdView>
+
+            </StackLayout>
+
+        </StackLayout>
 
     </Grid>
 </ContentPage>

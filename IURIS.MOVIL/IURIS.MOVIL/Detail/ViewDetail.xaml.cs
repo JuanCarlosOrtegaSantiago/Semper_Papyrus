@@ -12,7 +12,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -28,6 +28,11 @@ namespace IURIS.MOVIL.Detail
         public ViewDetail(Usuarios usuarios)
         {
             InitializeComponent();
+            MainThread.BeginInvokeOnMainThread(async () => {
+                await Task.Delay(5000);
+                myAds.IsVisible = true;
+
+            });
             _Usuario = usuarios;
             DatosAInicializar();
         }
