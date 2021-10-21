@@ -28,8 +28,9 @@ namespace IURIS.MOVIL.Detail
         public ViewDetail(Usuarios usuarios)
         {
             InitializeComponent();
+
             MainThread.BeginInvokeOnMainThread(async () => {
-                await Task.Delay(5000);
+                await Task.Delay(10000);
                 myAds.IsVisible = true;
 
             });
@@ -69,7 +70,7 @@ namespace IURIS.MOVIL.Detail
             if (titulo == null) return;
 
             MostrarSearch(false);
-            await Navigation.PushAsync(new PageMotrarCapitulosConCodigos(titulo, _Usuario, _Ley), false);
+            await Navigation.PushAsync(new PageMotrarCapitulosConCodigos(titulo, _Usuario, _Ley, myAds), false);
             ClltionTitulos.SelectedItem = null;
 
             ClassMostrarP_Cmpra _Cmpra = new ClassMostrarP_Cmpra();

@@ -22,6 +22,7 @@ using IURIS.DAL;
 using IURIS.BIZ;
 using Plugin.Clipboard;
 using Acr.UserDialogs;
+using MarcTron.Plugin.Controls;
 
 namespace IURIS.MOVIL.Detail
 {
@@ -40,8 +41,9 @@ namespace IURIS.MOVIL.Detail
         private string ColorHex;
         Ellipse Ellipse_Cargado = null;
         int numToques = 0;
-        public PageMotrarCapitulosConCodigos(Titulo titulo, Usuarios usuarios, Leyes ley)
+        public PageMotrarCapitulosConCodigos(Titulo titulo, Usuarios usuarios, Leyes ley, MTAdView adView)
         {
+            myAds = adView;
             InitializeComponent();
             BindingContext = this;
 

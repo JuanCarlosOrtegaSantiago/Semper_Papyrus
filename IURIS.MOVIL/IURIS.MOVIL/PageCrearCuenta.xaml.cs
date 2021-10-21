@@ -84,8 +84,10 @@ namespace IURIS.MOVIL
                 usuarios.MisLeyes = Mleyes;
                 usuarios.MiUltimaLeyCargada = leyes.CodigoLey;
 
+                Settings.LastCode = usuarios.MiUltimaLeyCargada;
                 Settings.NumAleatorio = 1;
                 Settings.CountParaNumAleatorio = "1";
+
 
                 if (!manejadorDeUsuarioAplicacion.AGREGAR(usuarios))
                 {

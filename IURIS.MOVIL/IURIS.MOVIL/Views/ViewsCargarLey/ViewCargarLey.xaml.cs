@@ -138,6 +138,7 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
             if (clltionLeyes.SelectedItem == null) return;
 
             _User.MiUltimaLeyCargada = ((Leyes)clltionLeyes.SelectedItem).CodigoLey;
+            Settings.LastCode = _User.MiUltimaLeyCargada;
 
             if (!manejadorDeUsuarioAplicacion.Modificar(_User))
             {

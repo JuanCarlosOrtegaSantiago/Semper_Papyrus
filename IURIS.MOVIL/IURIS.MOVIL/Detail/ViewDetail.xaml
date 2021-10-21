@@ -89,25 +89,24 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-    <StackLayout VerticalOptions="End" HorizontalOptions="Fill">
 
-        <StackLayout HorizontalOptions="EndAndExpand">
 
-            <controls:MTAdView x:Name="myAds" IsVisible="false" 
+                <StackLayout VerticalOptions="End" HorizontalOptions="EndAndExpand">
+
+                    <controls:MTAdView x:Name="myAds" IsVisible="false" 
                                    AdsId="ca-app-pub-3940256099942544/6300978111" 
-                                   VerticalOptions="EndAndExpand" >
-                <controls:MTAdView.HeightRequest>
-                    <x:OnIdiom>
-                        <x:OnIdiom.Phone>50</x:OnIdiom.Phone>
-                        <x:OnIdiom.Tablet>90</x:OnIdiom.Tablet>
-                        <x:OnIdiom.Desktop>90</x:OnIdiom.Desktop>
-                    </x:OnIdiom>
-                </controls:MTAdView.HeightRequest>
-            </controls:MTAdView>
+                                   VerticalOptions="End" >
+                        <controls:MTAdView.HeightRequest>
+                            <x:OnIdiom>
+                                <x:OnIdiom.Phone>50</x:OnIdiom.Phone>
+                                <x:OnIdiom.Tablet>90</x:OnIdiom.Tablet>
+                                <x:OnIdiom.Desktop>90</x:OnIdiom.Desktop>
+                            </x:OnIdiom>
+                        </controls:MTAdView.HeightRequest>
+                    </controls:MTAdView>
 
-        </StackLayout>
+                </StackLayout>
 
-    </StackLayout>
         </Grid>
     </ContentPage.Content>
     

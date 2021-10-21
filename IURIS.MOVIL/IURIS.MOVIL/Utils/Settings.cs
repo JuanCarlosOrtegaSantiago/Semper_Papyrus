@@ -15,13 +15,13 @@ namespace IURIS.MOVIL.Utils
         private const string NumUserSettingsKey = "Last_Num_key";
         private const string CorreoUserSettingsKey = "Last_Correo_key";
         private const string ContraseniaUserSettingsKey = "Last_Cotrasenia_key";
-        //private const string LeyCodigoUserSettingsKey = "Last_LeyCodigo_key";
+        private const string LeyCodigoUserSettingsKey = "Last_LeyCodigo_key";
         private const string ViewsOfCompraUserSettingsKey = "Last_Contador_key";
         private const int NumaleatorioSettingsKey = 1;
 
         private const bool RecuerdameUserSettingsKey = false;
         private static readonly string SettingsDefault = string.Empty;
-        //private static readonly string SettingsDefaultCodigo = string.Empty;
+        private static readonly string SettingsDefaultCodigo = string.Empty;
         private static readonly bool SettingsDefaultiBool = default;
         private static readonly int SettingsDefaultviews = 0;
         private static readonly int SettingsDefaultNumaleatorio = 0;
@@ -110,6 +110,23 @@ namespace IURIS.MOVIL.Utils
 
             }
         }
+
+
+
+        public static string LastCode
+        {
+            get
+            {
+                return Appsettings.GetValueOrDefault(LeyCodigoUserSettingsKey, SettingsDefaultCodigo);
+            }
+            set
+            {
+
+                Appsettings.AddOrUpdateValue(LeyCodigoUserSettingsKey, value);
+
+            }
+        }
+
 
     }
 }
