@@ -23,6 +23,7 @@ using IURIS.BIZ;
 using Plugin.Clipboard;
 using Acr.UserDialogs;
 using MarcTron.Plugin.Controls;
+using Xamarin.Essentials;
 
 namespace IURIS.MOVIL.Detail
 {
@@ -43,9 +44,12 @@ namespace IURIS.MOVIL.Detail
         int numToques = 0;
         public PageMotrarCapitulosConCodigos(Titulo titulo, Usuarios usuarios, Leyes ley, MTAdView adView)
         {
-            myAds = adView;
             InitializeComponent();
             BindingContext = this;
+            MainThread.BeginInvokeOnMainThread(async () => {
+                await Task.Delay(5000);
+                myAds.IsVisible = true;
+            });
 
             _titulo = titulo;
             _Usuario = usuarios;

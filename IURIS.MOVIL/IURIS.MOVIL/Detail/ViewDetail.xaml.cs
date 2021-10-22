@@ -5,6 +5,7 @@ using IURIS.MOVIL.Modelos_y_clases;
 using IURIS.MOVIL.Utils;
 using IURIS.MOVIL.Views;
 using IURIS.MOVIL.Views.ViewsVentanasEmergentes;
+using MarcTron.Plugin;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
@@ -30,10 +31,12 @@ namespace IURIS.MOVIL.Detail
             InitializeComponent();
 
             MainThread.BeginInvokeOnMainThread(async () => {
-                await Task.Delay(10000);
+                await Task.Delay(5000);
                 myAds.IsVisible = true;
-
             });
+                var test = CrossMTAdmob.Current.IsInterstitialLoaded().ToString();
+                CrossMTAdmob.Current.ShowInterstitial();
+                CrossMTAdmob.Current.LoadInterstitial("ca-app-pub-3940256099942544/1033173712");
             _Usuario = usuarios;
             DatosAInicializar();
         }

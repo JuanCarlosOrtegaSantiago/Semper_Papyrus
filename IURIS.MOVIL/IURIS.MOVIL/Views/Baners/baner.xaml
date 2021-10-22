@@ -51,13 +51,13 @@
                        Give it a try!"
                        FontSize="16" Padding="0,0,0,0"/>
 
-                <!--<Button Margin="0,10,0,0" Text="Show Reward Ad"
+                <Button Margin="0,10,0,0" Text="Show Reward Ad"
                         Clicked="Button_Clicked"
                         TextColor="White" />
 
                 <Button Margin="0,10,0,0" Text="Show Interstitial Ad"
                         Clicked="Button_Clicked_2"
-                        TextColor="White" />-->
+                        TextColor="White" />
 
                 <!--<Button Margin="0,10,0,0" Text="Show  banner"
                         Clicked="Button_Clicked_1"
