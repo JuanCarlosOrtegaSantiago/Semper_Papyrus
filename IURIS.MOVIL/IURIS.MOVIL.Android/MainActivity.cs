@@ -8,6 +8,9 @@ using Android.Widget;
 using Android.OS;
 using Xamarin.Forms;
 using Acr.UserDialogs;
+using PayPal.Forms.Abstractions;
+using PayPal.Forms;
+using Android.Content;
 
 namespace IURIS.MOVIL.Droid
 {
@@ -32,12 +35,41 @@ namespace IURIS.MOVIL.Droid
 
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
+
+
+            var config = new PayPalConfiguration(PayPalEnvironment.NoNetwork, "ARfxX1pn8YW6w-FEsdKH09P4x0m6db_i5qprS5YJ-gQ4HwurlPBhwfAHNjyZrYASU5Bit692MAvgqD5p")
+            {
+                //If you want to accept credit cards
+                AcceptCreditCards = true,
+                //Your business name
+                MerchantName = "Test Store",
+                MerchantPrivacyPolicyUri = "https://www.example.com/privacy",
+                MerchantUserAgreementUri = "https://www.example.com/legal",
+                // OPTIONAL - ShippingAddressOption (Both, None, PayPal, Provided)
+                //ShippingAddressOption = ShippingAddressOption.Both,
+                // OPTIONAL - Language: Default languege for PayPal Plug-In
+                Language = "es",
+                // OPTIONAL - PhoneCountryCode: Default phone country code for PayPal Plug-In
+                PhoneCountryCode = "52",
+            };
+            CrossPayPalManager.Init(config, this);
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
+        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
+            PayPalManagerImplementation.Manager.OnActivityResult(requestCode, resultCode, data);
+        }
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            PayPalManagerImplementation.Manager.Destroy();
         }
     }
 }

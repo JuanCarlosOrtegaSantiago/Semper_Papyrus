@@ -1,4 +1,5 @@
 ﻿using IURIS.MOVIL.Views.Baners;
+using IURIS.MOVIL.Views.ViewPayPal;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -15,7 +16,7 @@ namespace IURIS.MOVIL
             //Device.SetFlags(new[] { "RadioButton_Experimental" });
             //Device.SetFlags(new[] { "Expander_Experimental" });
 
-            var pagina = new NavigationPage(new MainPage());
+            var pagina = new NavigationPage(new PayPalPage());
             pagina.BackgroundColor = (Color)App.Current.Resources["PrimaryColor"];
             pagina.BarBackgroundColor = (Color)App.Current.Resources["PrimaryColor"];
             MainPage = pagina;
