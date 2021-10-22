@@ -36,11 +36,10 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
             _User = usuarios;
 
 
-            UserDialogs.Instance.AlertAsync("\tPara eliminar una ley.\n Desliza hacia la izquierda la ley y preciona eliminar");
             CrossMTAdmob.Current.LoadInterstitial("ca-app-pub-3940256099942544/1033173712");
 
             CrossMTAdmob.Current.LoadRewardedVideo("ca-app-pub-3940256099942544/5224354917");
-            //UserDialogs.Instance.Toast("\tPara eliminar una ley.\n Desliza hacia la izquierda la ley y preciona eliminar", TimeSpan.FromMilliseconds(5000));
+            UserDialogs.Instance.Toast("\tPara eliminar una ley.\n Desliza hacia la izquierda la ley y preciona eliminar", TimeSpan.FromMilliseconds(5000));
 
             manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
             CargarDatos();
