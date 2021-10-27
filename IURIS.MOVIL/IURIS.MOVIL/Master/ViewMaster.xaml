@@ -2,10 +2,12 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              mc:Ignorable="d"
              x:Class="IURIS.MOVIL.Master.ViewMaster"  Title="Master">
     <ContentPage.Content>
+        <Grid>
+            
         <FlexLayout JustifyContent="Start">
 
             <StackLayout Orientation="Horizontal" BackgroundColor="{StaticResource PrimaryColor}" FlexLayout.Basis="7%">
@@ -38,7 +40,23 @@
             </Label>
 
             <Label Margin="15,5" Text="Ajustes" Style="{StaticResource TextoAMostrarColorRojo}" FontSize="Large"></Label>
-            
+
         </FlexLayout>
+
+            
+            <pv:PancakeView HorizontalOptions="FillAndExpand" VerticalOptions="End" CornerRadius="0,50,0,0">
+                <pv:PancakeView.BackgroundGradientStops>
+                    <pv:GradientStopCollection>
+                        <pv:GradientStop Color="{StaticResource PrimaryColor}" Offset="0"/>
+                        <pv:GradientStop Color="{StaticResource PrimaryColor}" Offset="1"/>
+                    </pv:GradientStopCollection>
+                </pv:PancakeView.BackgroundGradientStops>
+            <Label Margin="15,20,15,25" Text="Suscripción" Style="{StaticResource TextoAMostrarColorBlanco }" FontSize="Large" Padding="15">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_4" />
+                </Label.GestureRecognizers>
+            </Label>
+            </pv:PancakeView>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

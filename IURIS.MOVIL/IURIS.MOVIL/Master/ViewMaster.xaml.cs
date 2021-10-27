@@ -2,6 +2,7 @@
 using IURIS.MOVIL.Detail;
 using IURIS.MOVIL.Views;
 using IURIS.MOVIL.Views.ViewsCargarLey;
+using IURIS.MOVIL.Views.ViewsVentanasEmergentes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -62,7 +63,13 @@ namespace IURIS.MOVIL.Master
         private void TapGestureRecognizer_Tapped_3(object sender, EventArgs e)
         {
             App.masterDetail.IsPresented = false;
-            App.masterDetail.Detail = new NavigationPage(new ViewCargarLey(User));
+            App.masterDetail.Detail = new NavigationPage(new WindowDeCopmpa(User));
+        }
+
+        private void TapGestureRecognizer_Tapped_4(object sender, EventArgs e)
+        {
+            App.masterDetail.IsPresented = false;
+            App.masterDetail.Detail = new NavigationPage(new WindowOpcionDeCompra());
         }
     }
 }

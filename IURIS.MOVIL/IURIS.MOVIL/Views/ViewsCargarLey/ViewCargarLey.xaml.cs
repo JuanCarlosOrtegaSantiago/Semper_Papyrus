@@ -22,14 +22,14 @@ using Xamarin.Forms.Xaml;
 namespace IURIS.MOVIL.Views.ViewsCargarLey
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ViewCargarLey : ContentPage
+    public partial class WindowDeCopmpa : ContentPage
     {
         IManejadorDeLeyes manejadorDeLeyes;
         IManejadorDeUsuarioAplicacion manejadorDeUsuarioAplicacion;
         
         Usuarios _User;
 
-        public ViewCargarLey(Usuarios usuarios)
+        public WindowDeCopmpa(Usuarios usuarios)
         {
             InitializeComponent();
             BindingContext = this;

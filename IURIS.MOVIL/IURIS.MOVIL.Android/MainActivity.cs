@@ -37,7 +37,7 @@ namespace IURIS.MOVIL.Droid
             LoadApplication(new App());
 
 
-            var config = new PayPalConfiguration(PayPalEnvironment.NoNetwork, "ARfxX1pn8YW6w-FEsdKH09P4x0m6db_i5qprS5YJ-gQ4HwurlPBhwfAHNjyZrYASU5Bit692MAvgqD5p")
+            var config = new PayPalConfiguration(PayPalEnvironment.NoNetwork, "AauEBKZSRHuvOo2gyEjSwxgxCKR06xI5vbt3ARQaFmyAjrPUaxyPrUXl29RX9QNRXcN0_sUTE-kF4xfT")
             {
                 //If you want to accept credit cards
                 AcceptCreditCards = true,

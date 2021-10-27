@@ -1,4 +1,5 @@
-﻿using PayPal.Forms;
+﻿using IURIS.MOVIL.Views.ViewPayPal;
+using PayPal.Forms;
 using PayPal.Forms.Abstractions;
 using System;
 using System.Collections.Generic;
@@ -10,22 +11,44 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace IURIS.MOVIL.Views.ViewPayPal
+namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PayPalPage : ContentPage
+    public partial class WindowOpcionDeCompra : ContentPage
     {
-        int _Monto;
-        public PayPalPage(int Monto)
+        public WindowOpcionDeCompra()
         {
             InitializeComponent();
-            _Monto = Monto;
         }
-        private async void BtnPayment_OnClicked(object sender, EventArgs e)
+
+        private void _Btn39Mensuales_Clicked(object sender, EventArgs e)
         {
+            SendPagePayPal(39);
+        }
+
+
+        private void _Btn49Mensuales_Clicked(object sender, EventArgs e)
+        {
+            SendPagePayPal(49);
+        }
+
+        private void _Btn479Anuales_Clicked(object sender, EventArgs e)
+        {
+            SendPagePayPal(479);
+        }
+
+        private void _Btn19PorLey_Clicked(object sender, EventArgs e)
+        {
+            SendPagePayPal(19);
+        }
+
+        private async void SendPagePayPal(int Monto)
+        {
+            //await Navigation.PopAsync();
+            //await Navigation.PushAsync(new PayPalPage(Monto), false);
             try
             {
-                var result = await CrossPayPalManager.Current.Buy(new PayPalItem("Compra en IURIS", new Decimal(_Monto), "MXN"),
+                var result = await CrossPayPalManager.Current.Buy(new PayPalItem("Compra en IURIS", new Decimal(Monto), "MXN"),
                     new Decimal(0));
                 if (result.Status == PayPalStatus.Cancelled)
                 {

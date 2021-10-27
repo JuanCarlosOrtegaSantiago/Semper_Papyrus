@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IURIS.MOVIL.Views.ViewsVentanasEmergentes.WindowOpcionDeCompra" Title="Opciones de compra">
+
+    <ContentPage.Content>
+        <ContentView BackgroundColor="White">
+
+            <FlexLayout Margin="0,0,0,15" >
+
+                <StackLayout FlexLayout.Shrink="0" Margin="0,-20,0,0" BackgroundColor="Black" Padding="20">
+                    <Image FlexLayout.Shrink="0" Source="Logo.png" Aspect="Fill" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                </StackLayout>
+
+                <Label FlexLayout.Shrink="0" Text="IURIS" HorizontalTextAlignment="Center" FontAttributes="Bold" FontSize="40" TextColor="{StaticResource PrimaryColor}"></Label>
+
+                <Button x:Name="_Btn39Mensuales" FlexLayout.Shrink="0" Text="Cero comerciales, 1 espacio más para leyes por 39 pesos mensuales" Style="{StaticResource buttonPrincipal}" BorderColor="Transparent" CornerRadius="10" Margin="30,0" Padding="15" Clicked="_Btn39Mensuales_Clicked"></Button>
+
+                <Button x:Name="_Btn49Mensuales" FlexLayout.Shrink="0" Text="Cero comerciales, espacio ilimitado para leyes por 49 pesos mensuales" Style="{StaticResource buttonPrincipal}" BorderColor="Transparent" CornerRadius="10" Margin="30,0" Padding="15" Clicked="_Btn49Mensuales_Clicked"></Button>
+
+                <Button x:Name="_Btn479Anuales" FlexLayout.Shrink="0" Text="Cero comerciales, espacio ilimitado para leyes por 479 pesos al año" Style="{StaticResource buttonPrincipal}" BorderColor="Transparent" CornerRadius="10" Margin="30,0" Padding="15" Clicked="_Btn479Anuales_Clicked"></Button>
+
+                <Button x:Name="_Btn19PorLey" FlexLayout.Shrink="0" Text="Comprar un espacio para una ley por 19 pesos de forma permanente" Style="{StaticResource buttonPrincipal}" BorderColor="Transparent" CornerRadius="10" Margin="30,0" Padding="15" Clicked="_Btn19PorLey_Clicked"></Button>
+
+            </FlexLayout>
+
+        </ContentView>
+    </ContentPage.Content>
+</ContentPage>
