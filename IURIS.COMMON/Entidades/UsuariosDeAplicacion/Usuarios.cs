@@ -2,6 +2,7 @@
 using IURIS.COMMON.Entidades.CapaBase;
 using IURIS.COMMON.Entidades.Ley;
 using IURIS.COMMON.Entidades.UsuariosDeAplicacion.ComponentesDeUsuario;
+using IURIS.COMMON.Entidades.UsuariosDeAplicacion.ComponentesDeUsuario.DatosCriticos;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -18,5 +19,6 @@ namespace IURIS.COMMON.Entidades.UsuariosDeAplicacion
         public List<Leyes> MisLeyes { get; set; }
         public List<Apunte> Apuntes { get; set; }
         public string MiUltimaLeyCargada { get; set; }
+        public DatosSobreUsuarioParaLey DatosSobreUsuario { get; set; }
     }
 }

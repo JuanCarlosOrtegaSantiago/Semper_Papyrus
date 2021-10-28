@@ -62,50 +62,46 @@
 
     <ContentPage.Content>
         <Grid>
-            
-        <CollectionView x:Name="ClltionTitulos" SelectionMode="Single" ItemsSource="{Binding Titulo}" SelectionChanged="ClltionTitulos_SelectionChanged" Style="{StaticResource colection}">
-            <CollectionView.EmptyView>
-                <StackLayout>
-                    <Label FontAttributes="Bold"  FontSize="Large" HorizontalOptions="Center" Style="{StaticResource TextoAMostrarColorRojo}">No se encontraron datos</Label>
-                </StackLayout>
-            </CollectionView.EmptyView>
-            <CollectionView.ItemsLayout>
-                <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" SnapPointsAlignment="Center"/>
-            </CollectionView.ItemsLayout>
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <ContentView >
-                        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Margin="10,5" >
-                            <Label Style="{StaticResource TextoAMostrarColorRojo}" >
-                                <Label.Text>
-                                    <MultiBinding StringFormat="{}{0} - {1}">
-                                        <Binding Path="NumTitulo" />
-                                        <Binding Path="NombreTitulo" />
-                                    </MultiBinding>
-                                </Label.Text>
-                            </Label>
-                        </StackLayout>
-                    </ContentView>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+
+            <CollectionView x:Name="ClltionTitulos" SelectionMode="Single" ItemsSource="{Binding Titulo}" SelectionChanged="ClltionTitulos_SelectionChanged" Style="{StaticResource colection}">
+                <CollectionView.EmptyView>
+                    <StackLayout>
+                        <Label FontAttributes="Bold"  FontSize="Large" HorizontalOptions="Center" Style="{StaticResource TextoAMostrarColorRojo}">No se encontraron datos</Label>
+                    </StackLayout>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" SnapPointsAlignment="Center"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <ContentView >
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Margin="10,5" >
+                                <Label Style="{StaticResource TextoAMostrarColorRojo}" >
+                                    <Label.Text>
+                                        <MultiBinding StringFormat="{}{0} - {1}">
+                                            <Binding Path="NumTitulo" />
+                                            <Binding Path="NombreTitulo" />
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
+                            </StackLayout>
+                        </ContentView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
 
-                <StackLayout VerticalOptions="End" HorizontalOptions="EndAndExpand">
-
-                    <controls:MTAdView x:Name="myAds" IsVisible="false" 
+            <controls:MTAdView x:Name="myAds" IsVisible="false" 
                                    AdsId="ca-app-pub-3940256099942544/6300978111" 
-                                   VerticalOptions="End" >
-                        <controls:MTAdView.HeightRequest>
-                            <x:OnIdiom>
-                                <x:OnIdiom.Phone>50</x:OnIdiom.Phone>
-                                <x:OnIdiom.Tablet>90</x:OnIdiom.Tablet>
-                                <x:OnIdiom.Desktop>90</x:OnIdiom.Desktop>
-                            </x:OnIdiom>
-                        </controls:MTAdView.HeightRequest>
-                    </controls:MTAdView>
-
-                </StackLayout>
+                                   VerticalOptions="End" HorizontalOptions="EndAndExpand">
+                <controls:MTAdView.HeightRequest>
+                    <x:OnIdiom>
+                        <x:OnIdiom.Phone>50</x:OnIdiom.Phone>
+                        <x:OnIdiom.Tablet>90</x:OnIdiom.Tablet>
+                        <x:OnIdiom.Desktop>90</x:OnIdiom.Desktop>
+                    </x:OnIdiom>
+                </controls:MTAdView.HeightRequest>
+            </controls:MTAdView>
 
         </Grid>
     </ContentPage.Content>

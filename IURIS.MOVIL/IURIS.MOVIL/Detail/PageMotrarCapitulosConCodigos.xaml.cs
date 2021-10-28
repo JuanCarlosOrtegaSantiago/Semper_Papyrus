@@ -46,7 +46,8 @@ namespace IURIS.MOVIL.Detail
         {
             InitializeComponent();
             BindingContext = this;
-            MainThread.BeginInvokeOnMainThread(async () => {
+            MainThread.BeginInvokeOnMainThread(async () =>
+            {
                 await Task.Delay(5000);
                 myAds.IsVisible = true;
             });

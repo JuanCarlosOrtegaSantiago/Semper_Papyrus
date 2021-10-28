@@ -4,6 +4,7 @@ using IURIS.COMMON.Entidades.Ley;
 using IURIS.COMMON.Entidades.Ley.ComponentesDeLey;
 using IURIS.COMMON.Entidades.UsuariosDeAplicacion;
 using IURIS.COMMON.Entidades.UsuariosDeAplicacion.ComponentesDeUsuario;
+using IURIS.COMMON.Entidades.UsuariosDeAplicacion.ComponentesDeUsuario.DatosCriticos;
 using IURIS.COMMON.Interfaces;
 using IURIS.DAL;
 using IURIS.MOVIL.Utils;
@@ -84,6 +85,9 @@ namespace IURIS.MOVIL
                 usuarios.MisLeyes = Mleyes;
                 usuarios.MiUltimaLeyCargada = leyes.CodigoLey;
 
+                usuarios.DatosSobreUsuario = new DatosSobreUsuarioParaLey();
+                usuarios.DatosSobreUsuario.NumLeyesPermitidas = 4;
+                
                 Settings.LastCode = usuarios.MiUltimaLeyCargada;
                 Settings.NumAleatorio = 1;
                 Settings.CountParaNumAleatorio = "1";

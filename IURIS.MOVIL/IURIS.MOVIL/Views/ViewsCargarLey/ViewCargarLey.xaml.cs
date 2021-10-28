@@ -67,16 +67,14 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
             bool ExisteLey = false;
             Leyes _LeyComprada=null;
 
-            //if (_User.MisLeyes.Count >= 4)
-            //{
-            //    UserDialogs.Instance.HideLoading();
-            //    await PopupNavigation.Instance.PushAsync(new WindowOfComprarEspacio());
-            //    UserDialogs.Instance.ShowLoading("Buscando ley", MaskType.Gradient);
-            //    await Task.Delay(1000);
-            //    return;
-            //}
+                if (_User.MisLeyes.Count >= _User.DatosSobreUsuario.NumLeyesPermitidas)
+                {
+                    UserDialogs.Instance.HideLoading();
+                    await PopupNavigation.Instance.PushAsync(new WindowOfComprarEspacio());
+                    return;
+                }
 
-            if (string.IsNullOrEmpty(EntryCodigo.Text)) return;
+                if (string.IsNullOrEmpty(EntryCodigo.Text)) return;
             _LeyComprada = manejadorDeLeyes.BuscarPorCodigo(EntryCodigo.Text.ToUpper());
 
             if (_LeyComprada == null)

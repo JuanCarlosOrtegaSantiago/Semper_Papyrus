@@ -3,6 +3,7 @@ using Acr.UserDialogs;
 using IURIS.BIZ;
 using IURIS.COMMON.Entidades.Ley;
 using IURIS.COMMON.Entidades.UsuariosDeAplicacion;
+using IURIS.COMMON.Entidades.UsuariosDeAplicacion.ComponentesDeUsuario.DatosCriticos;
 using IURIS.COMMON.Interfaces;
 using IURIS.DAL;
 using IURIS.MOVIL.Utils;
@@ -221,7 +222,14 @@ namespace IURIS.MOVIL
          
             try
             {
-            if (manejadorDeUsuarioAplicacion.Modificar(_User))
+                if (_User.DatosSobreUsuario == null)
+                {
+                    _User.DatosSobreUsuario = new DatosSobreUsuarioParaLey();
+                    _User.DatosSobreUsuario.NumLeyesPermitidas = 4;
+
+                }
+
+                if (manejadorDeUsuarioAplicacion.Modificar(_User))
                     await DisplayAlert("","la actualizacion fue exitosa", "OK");
 
             }
