@@ -2,6 +2,7 @@
 using IURIS.COMMON.Entidades.Ley.ComponentesDeLey;
 using IURIS.COMMON.Entidades.UsuariosDeAplicacion;
 using IURIS.MOVIL.Modelos_y_clases;
+using IURIS.MOVIL.Modelos_y_clases.Tools;
 using IURIS.MOVIL.Utils;
 using IURIS.MOVIL.Views;
 using IURIS.MOVIL.Views.ViewsVentanasEmergentes;
@@ -24,22 +25,31 @@ namespace IURIS.MOVIL.Detail
     {
 
 
-            ClassMostrarP_Cmpra _Cmpra = new ClassMostrarP_Cmpra();
+        ClassAnuncio Anuncio = new ClassAnuncio();
         public Usuarios _Usuario;
         Leyes _Ley;
         public ViewDetail(Usuarios usuarios)
         {
             InitializeComponent();
+            _Usuario = usuarios;
+            DatosAInicializar();
 
-            MainThread.BeginInvokeOnMainThread(async () => {
+            MainThread.BeginInvokeOnMainThread(async () =>
+            {
                 await Task.Delay(5000);
                 myAds.IsVisible = true;
             });
-                var test = CrossMTAdmob.Current.IsInterstitialLoaded().ToString();
-                CrossMTAdmob.Current.ShowInterstitial();
-                CrossMTAdmob.Current.LoadInterstitial("ca-app-pub-3940256099942544/1033173712");
-            _Usuario = usuarios;
-            DatosAInicializar();
+
+            Anuncio.MostrarAnuncioPantalla();
+
+            HerramientasGenerales herramientasGenerales = new HerramientasGenerales(_Usuario);
+            herramientasGenerales.RenovarSuscripcion();
+
+            var test = CrossMTAdmob.Current.IsInterstitialLoaded().ToString();
+            CrossMTAdmob.Current.ShowInterstitial();
+            CrossMTAdmob.Current.LoadInterstitial("ca-app-pub-3940256099942544/1033173712");
+
+
         }
 
         private void DatosAInicializar()
@@ -77,7 +87,6 @@ namespace IURIS.MOVIL.Detail
             await Navigation.PushAsync(new PageMotrarCapitulosConCodigos(titulo, _Usuario, _Ley, myAds), false);
             ClltionTitulos.SelectedItem = null;
 
-            _Cmpra.MostrarPantalla();
         }
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)

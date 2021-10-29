@@ -8,10 +8,10 @@ using MarcTron.Plugin;
 
 namespace IURIS.MOVIL.Modelos_y_clases
 {
-    public class ClassMostrarP_Cmpra
+    public class ClassAnuncio
     {
 
-        public async void MostrarPantalla()
+        public void MostrarAnuncioPantalla()
         {
 
             if (Settings.CountParaNumAleatorio != "" && Settings.NumAleatorio != 0)
@@ -28,7 +28,6 @@ namespace IURIS.MOVIL.Modelos_y_clases
                     Settings.NumAleatorio = rnd.Next(15, 100);
                     Settings.CountParaNumAleatorio = "1";
 
-                   //await PopupNavigation.Instance.PushAsync(new WindowOfMembresiaPlatino());
                     var test = CrossMTAdmob.Current.IsInterstitialLoaded().ToString();
                     CrossMTAdmob.Current.ShowInterstitial();
                     CrossMTAdmob.Current.LoadInterstitial("ca-app-pub-3940256099942544/1033173712");

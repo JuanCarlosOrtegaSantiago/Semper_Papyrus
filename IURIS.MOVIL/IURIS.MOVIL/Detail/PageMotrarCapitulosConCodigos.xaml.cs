@@ -42,7 +42,7 @@ namespace IURIS.MOVIL.Detail
         private string ColorHex;
         Ellipse Ellipse_Cargado = null;
         int numToques = 0;
-            ClassMostrarP_Cmpra _Cmpra = new ClassMostrarP_Cmpra();
+        ClassAnuncio Anuncio = new ClassAnuncio();
 
         public PageMotrarCapitulosConCodigos(Titulo titulo, Usuarios usuarios, Leyes ley, MTAdView adView)
         {
@@ -201,7 +201,7 @@ namespace IURIS.MOVIL.Detail
 
         }
 
-        private async void clltionCapitulos_PositionChanged(object sender, PositionChangedEventArgs e)
+        private void clltionCapitulos_PositionChanged(object sender, PositionChangedEventArgs e)
         {
             var Cap = ((CarouselView)sender).CurrentItem as Capitulo;
             if (!(Cap is Capitulo)) return;
@@ -209,11 +209,11 @@ namespace IURIS.MOVIL.Detail
             ActualizarDatosArticulo(Cap.ListaArticulos);
             _Capitulo = Cap;
 
-            _Cmpra.MostrarPantalla();
+            Anuncio.MostrarAnuncioPantalla();
 
         }
 
-        private async void TapGestureRecognizer_Tapped_3(object sender, EventArgs e)
+        private void TapGestureRecognizer_Tapped_3(object sender, EventArgs e)
         {
             var Cap = ((ContentView)sender).BindingContext as Capitulo;
 
@@ -222,7 +222,7 @@ namespace IURIS.MOVIL.Detail
             ActualizarDatosArticulo(Cap.ListaArticulos);
             _Capitulo = Cap;
 
-            _Cmpra.MostrarPantalla();
+            Anuncio.MostrarAnuncioPantalla();
         }
 
         private async void TapGestureRecognizer_Tapped_4(object sender, EventArgs e)

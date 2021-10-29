@@ -6,6 +6,14 @@ namespace IURIS.COMMON.Constantes
 {
     public class Const
     {
-        public int MyProperty { get; set; }
+        
+        public string _39Mensuales => nameof(_39Mensuales);
+        
+        public string _49Mensuales => nameof(_49Mensuales);
+        
+        public string _479Anuales => nameof(_479Anuales);
+        
+        public string _ComprarEspacio1Ley => nameof(_ComprarEspacio1Ley);
+            
     }
 }

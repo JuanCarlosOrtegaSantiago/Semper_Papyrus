@@ -1,11 +1,13 @@
 ﻿using Acr.UserDialogs;
 using IURIS.BIZ;
+using IURIS.COMMON.Constantes;
 using IURIS.COMMON.Entidades.Ley;
 using IURIS.COMMON.Entidades.Ley.ComponentesDeLey;
 using IURIS.COMMON.Entidades.UsuariosDeAplicacion;
 using IURIS.COMMON.Interfaces;
 using IURIS.DAL;
 using IURIS.MOVIL.Detail;
+using IURIS.MOVIL.Modelos_y_clases.Tools;
 using IURIS.MOVIL.Utils;
 using IURIS.MOVIL.Views.ViewsVentanasEmergentes;
 using MarcTron.Plugin;
@@ -28,6 +30,7 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
         IManejadorDeUsuarioAplicacion manejadorDeUsuarioAplicacion;
         
         Usuarios _User;
+        Const _Const = new Const();
 
         public WindowDeCopmpa(Usuarios usuarios)
         {
@@ -57,71 +60,73 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
         {
             try
             {
+                HerramientasGenerales herramientasGenerales = new HerramientasGenerales(_User);
+                herramientasGenerales.RenovarSuscripcion();
 
+                UserDialogs.Instance.ShowLoading("Buscando ley", MaskType.Gradient);
+                await Task.Delay(1000);
 
-            UserDialogs.Instance.ShowLoading("Buscando ley", MaskType.Gradient);
-            await Task.Delay(1000);
+                manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
 
-            manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
+                bool ExisteLey = false;
+                Leyes _LeyComprada = null;
 
-            bool ExisteLey = false;
-            Leyes _LeyComprada=null;
+                string _1LeyMas = _User.DatosSobreUsuario.TipoDeCompra.Find(w => w == _Const._ComprarEspacio1Ley || w == _Const._39Mensuales);
 
-                string _1LeyMas = _User.DatosSobreUsuario.TipoDeCompra.Find(w => w == "_ComprarEspacio1Ley" || w == "_39Mensuales");
-
-                if (_1LeyMas!=null && _User.MisLeyes.Count >= _User.DatosSobreUsuario.NumLeyesPermitidas)
+                if (_1LeyMas != null && _User.MisLeyes.Count >= _User.DatosSobreUsuario.NumLeyesPermitidas)
                 {
                     UserDialogs.Instance.HideLoading();
-                    await PopupNavigation.Instance.PushAsync(new WindowOfComprarEspacio());
+                    await PopupNavigation.Instance.PushAsync(new WindowOfComprarEspacio(_User));
                     return;
                 }
 
+
                 if (string.IsNullOrEmpty(EntryCodigo.Text)) return;
-            _LeyComprada = manejadorDeLeyes.BuscarPorCodigo(EntryCodigo.Text.ToUpper());
+                _LeyComprada = manejadorDeLeyes.BuscarPorCodigo(EntryCodigo.Text.ToUpper());
 
-            if (_LeyComprada == null)
-            {
-                UserDialogs.Instance.HideLoading();
-                await DisplayAlert("Error", "Codigo incorrecto\nIntenta de nuevo", "OK");
-                return;
-            }
+                if (_LeyComprada == null)
+                {
+                    UserDialogs.Instance.HideLoading();
+                    await DisplayAlert("Error", "Codigo incorrecto\nIntenta de nuevo", "OK");
+                    return;
+                }
 
-                 
-            foreach (var Ley in _User.MisLeyes)
-                if (_LeyComprada.id == Ley.id)
-                    ExisteLey = true;
 
-            //_User.MisLeyes.ForEach(r => { if (r.id == _LeyComprada.id) ExisteLey = true; });
+                foreach (var Ley in _User.MisLeyes)
+                    if (_LeyComprada.id == Ley.id)
+                        ExisteLey = true;
 
-            if (ExisteLey)
-            {
-                UserDialogs.Instance.HideLoading();
-                await DisplayAlert("", "El codigo ingresado\nCorresponde a una ley que ya \nse encuentra en tu coleccion", "OK");
-                return;
-            }
+                //_User.MisLeyes.ForEach(r => { if (r.id == _LeyComprada.id) ExisteLey = true; });
 
-            UserDialogs.Instance.HideLoading();
-            UserDialogs.Instance.ShowLoading("Agregando ley a tu lista", MaskType.Gradient);
-            await Task.Delay(1000);
-            _LeyComprada.FechaDeDescarga = DateTime.UtcNow.ToLocalTime();
-
-            _User.MisLeyes.Add(_LeyComprada);
-            _User.MisLeyes.Where(w => w.CodigoLey == _LeyComprada.CodigoLey).SingleOrDefault().Clasificaciones = new List<ClasificacionPUsuario>();
-            if (manejadorDeUsuarioAplicacion.Modificar(_User))
-            {
-                _LeyComprada.numDescargas += 1;
-                manejadorDeLeyes.Modificar(_LeyComprada);
-                UserDialogs.Instance.HideLoading();
-                CargarDatos();
-            }
-            else
-            {
+                if (ExisteLey)
+                {
+                    UserDialogs.Instance.HideLoading();
+                    await DisplayAlert("", "El codigo ingresado\nCorresponde a una ley que ya \nse encuentra en tu coleccion", "OK");
+                    return;
+                }
 
                 UserDialogs.Instance.HideLoading();
-                await DisplayAlert("", "Ocurrio un error\nIntente mas tarde", "OK");
-            }
+                UserDialogs.Instance.ShowLoading("Agregando ley a tu lista", MaskType.Gradient);
+                await Task.Delay(1000);
+                _LeyComprada.FechaDeDescarga = DateTime.UtcNow.ToLocalTime();
 
-            Limpiardatos();
+                _User.MisLeyes.Add(_LeyComprada);
+                _User.MisLeyes.Where(w => w.CodigoLey == _LeyComprada.CodigoLey).SingleOrDefault().Clasificaciones = new List<ClasificacionPUsuario>();
+                if (manejadorDeUsuarioAplicacion.Modificar(_User))
+                {
+                    _LeyComprada.numDescargas += 1;
+                    manejadorDeLeyes.Modificar(_LeyComprada);
+                    UserDialogs.Instance.HideLoading();
+                    CargarDatos();
+                }
+                else
+                {
+
+                    UserDialogs.Instance.HideLoading();
+                    await DisplayAlert("", "Ocurrio un error\nIntente mas tarde", "OK");
+                }
+
+                Limpiardatos();
             }
             catch (Exception ex)
             {

@@ -88,6 +88,7 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
                 }
                 else if (result.Status == PayPalStatus.Successful)
                 {
+
                     _User.DatosSobreUsuario.FechaDeCompra = DateTime.UtcNow;
                     if (_User.DatosSobreUsuario.TipoDeCompra == null) _User.DatosSobreUsuario.TipoDeCompra = new List<string>();
 
@@ -103,7 +104,7 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
 
                         if (MiCompra == TipoDeCompra._39Mensuales)
                         {
-                            _User.DatosSobreUsuario.NumLeyesPermitidas += 1;
+                            if (!_User.DatosSobreUsuario.TipoDeCompra.Contains(MiCompra.ToString())) _User.DatosSobreUsuario.NumLeyesPermitidas += 1;
                             _User.DatosSobreUsuario.NumDeMeses = 1;
                         }
                         if (MiCompra == TipoDeCompra._49Mensuales)

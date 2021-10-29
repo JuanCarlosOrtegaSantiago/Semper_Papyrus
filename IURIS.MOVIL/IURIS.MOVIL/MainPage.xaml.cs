@@ -18,12 +18,10 @@ namespace IURIS.MOVIL
     public partial class MainPage : ContentPage
     {
         int Intentos = 0;
-            ClassMostrarP_Cmpra _Cmpra = new ClassMostrarP_Cmpra();
+        ClassAnuncio Anuncio = new ClassAnuncio();
         public MainPage()
         {
             InitializeComponent();
-
-
             DatosAIniciar();
         }
 
@@ -31,7 +29,8 @@ namespace IURIS.MOVIL
         {
             if(Settings.NumUsuario !="") lblCodigoUsuario.Text = Settings.NumUsuario;
 
-            _Cmpra.MostrarPantalla();
+            Anuncio.MostrarAnuncioPantalla();
+
         }
 
         private async void BtnCrearCuenta_Clicked(object sender, EventArgs e)
