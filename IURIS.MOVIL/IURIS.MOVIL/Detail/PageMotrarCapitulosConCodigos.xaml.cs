@@ -42,6 +42,8 @@ namespace IURIS.MOVIL.Detail
         private string ColorHex;
         Ellipse Ellipse_Cargado = null;
         int numToques = 0;
+            ClassMostrarP_Cmpra _Cmpra = new ClassMostrarP_Cmpra();
+
         public PageMotrarCapitulosConCodigos(Titulo titulo, Usuarios usuarios, Leyes ley, MTAdView adView)
         {
             InitializeComponent();
@@ -207,8 +209,7 @@ namespace IURIS.MOVIL.Detail
             ActualizarDatosArticulo(Cap.ListaArticulos);
             _Capitulo = Cap;
 
-            ClassMostrarP_Cmpra _Cmpra = new ClassMostrarP_Cmpra();
-            if (_Cmpra.MostrarPantalla()) await PopupNavigation.Instance.PushAsync(new WindowOfMembresiaPlatino());
+            _Cmpra.MostrarPantalla();
 
         }
 
@@ -221,9 +222,7 @@ namespace IURIS.MOVIL.Detail
             ActualizarDatosArticulo(Cap.ListaArticulos);
             _Capitulo = Cap;
 
-            ClassMostrarP_Cmpra _Cmpra = new ClassMostrarP_Cmpra();
-            if (_Cmpra.MostrarPantalla()) await PopupNavigation.Instance.PushAsync(new WindowOfMembresiaPlatino());
-
+            _Cmpra.MostrarPantalla();
         }
 
         private async void TapGestureRecognizer_Tapped_4(object sender, EventArgs e)

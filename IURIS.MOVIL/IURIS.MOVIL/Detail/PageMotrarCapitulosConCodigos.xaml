@@ -187,7 +187,7 @@
             </pv:PancakeView.BackgroundGradientStops>
             <Grid RowDefinitions="auto,auto" RowSpacing="2.5">
 
-                <StackLayout Grid.Row="0" x:Name="stakColores" Orientation="Horizontal" HorizontalOptions="Start"  VerticalOptions="End" Margin="15,0,0,0" >
+                <StackLayout Grid.Row="0" x:Name="stakColores" Orientation="Horizontal" HorizontalOptions="Start"  VerticalOptions="End" Margin="15,0,0,0" IsVisible="false">
 
                     <Ellipse Fill="#F7FE2E" Aspect="Uniform"
          WidthRequest="40"

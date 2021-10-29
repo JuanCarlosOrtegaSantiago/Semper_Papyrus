@@ -2,13 +2,16 @@
 using IURIS.MOVIL.Utils;
 using System.Collections.Generic;
 using System.Text;
+using Rg.Plugins.Popup.Services;
+using IURIS.MOVIL.Views.ViewsVentanasEmergentes;
+using MarcTron.Plugin;
 
 namespace IURIS.MOVIL.Modelos_y_clases
 {
     public class ClassMostrarP_Cmpra
     {
 
-        public bool MostrarPantalla()
+        public async void MostrarPantalla()
         {
 
             if (Settings.CountParaNumAleatorio != "" && Settings.NumAleatorio != 0)
@@ -18,22 +21,23 @@ namespace IURIS.MOVIL.Modelos_y_clases
                 {
                     int num = int.Parse(Settings.CountParaNumAleatorio) + 1;
                     Settings.CountParaNumAleatorio = num.ToString();
-                    return false;
                 }
                 else
                 {
                     Random rnd = new Random();
-                    Settings.NumAleatorio = rnd.Next(5, 100);
+                    Settings.NumAleatorio = rnd.Next(15, 100);
                     Settings.CountParaNumAleatorio = "1";
 
-                    return true;
+                   //await PopupNavigation.Instance.PushAsync(new WindowOfMembresiaPlatino());
+                    var test = CrossMTAdmob.Current.IsInterstitialLoaded().ToString();
+                    CrossMTAdmob.Current.ShowInterstitial();
+                    CrossMTAdmob.Current.LoadInterstitial("ca-app-pub-3940256099942544/1033173712");
                 }
             }
             else
             {
                 Settings.CountParaNumAleatorio = "1";
                 Settings.NumAleatorio = 1;
-                return false;
             }
 
         }

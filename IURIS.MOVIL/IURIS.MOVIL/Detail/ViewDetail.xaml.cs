@@ -24,6 +24,7 @@ namespace IURIS.MOVIL.Detail
     {
 
 
+            ClassMostrarP_Cmpra _Cmpra = new ClassMostrarP_Cmpra();
         public Usuarios _Usuario;
         Leyes _Ley;
         public ViewDetail(Usuarios usuarios)
@@ -76,9 +77,7 @@ namespace IURIS.MOVIL.Detail
             await Navigation.PushAsync(new PageMotrarCapitulosConCodigos(titulo, _Usuario, _Ley, myAds), false);
             ClltionTitulos.SelectedItem = null;
 
-            ClassMostrarP_Cmpra _Cmpra = new ClassMostrarP_Cmpra();
-
-            if (_Cmpra.MostrarPantalla()) await PopupNavigation.Instance.PushAsync(new WindowOfMembresiaPlatino());
+            _Cmpra.MostrarPantalla();
         }
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)

@@ -67,7 +67,9 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
             bool ExisteLey = false;
             Leyes _LeyComprada=null;
 
-                if (_User.MisLeyes.Count >= _User.DatosSobreUsuario.NumLeyesPermitidas)
+                string _1LeyMas = _User.DatosSobreUsuario.TipoDeCompra.Find(w => w == "_ComprarEspacio1Ley" || w == "_39Mensuales");
+
+                if (_1LeyMas!=null && _User.MisLeyes.Count >= _User.DatosSobreUsuario.NumLeyesPermitidas)
                 {
                     UserDialogs.Instance.HideLoading();
                     await PopupNavigation.Instance.PushAsync(new WindowOfComprarEspacio());

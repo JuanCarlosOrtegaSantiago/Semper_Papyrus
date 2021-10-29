@@ -18,6 +18,7 @@ namespace IURIS.MOVIL
     public partial class MainPage : ContentPage
     {
         int Intentos = 0;
+            ClassMostrarP_Cmpra _Cmpra = new ClassMostrarP_Cmpra();
         public MainPage()
         {
             InitializeComponent();
@@ -26,14 +27,11 @@ namespace IURIS.MOVIL
             DatosAIniciar();
         }
 
-        private async void DatosAIniciar()
+        private void DatosAIniciar()
         {
             if(Settings.NumUsuario !="") lblCodigoUsuario.Text = Settings.NumUsuario;
 
-            ClassMostrarP_Cmpra _Cmpra = new ClassMostrarP_Cmpra();
-
-            if (_Cmpra.MostrarPantalla()) await PopupNavigation.Instance.PushAsync(new WindowOfMembresiaPlatino());
-
+            _Cmpra.MostrarPantalla();
         }
 
         private async void BtnCrearCuenta_Clicked(object sender, EventArgs e)
