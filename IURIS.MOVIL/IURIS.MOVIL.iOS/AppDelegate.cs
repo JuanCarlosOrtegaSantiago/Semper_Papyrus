@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Acr.UserDialogs;
 using Foundation;
+using Matcha.BackgroundService.iOS;
 using UIKit;
 using Xamarin.Forms;
 
@@ -28,7 +29,7 @@ namespace IURIS.MOVIL.iOS
             Rg.Plugins.Popup.Popup.Init();
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
-
+            BackgroundAggregator.Init(this);
             return base.FinishedLaunching(app, options);
         }
     }

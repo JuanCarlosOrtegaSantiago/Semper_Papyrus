@@ -11,6 +11,7 @@ using Acr.UserDialogs;
 using PayPal.Forms.Abstractions;
 using PayPal.Forms;
 using Android.Content;
+using Matcha.BackgroundService.Droid;
 
 namespace IURIS.MOVIL.Droid
 {
@@ -21,6 +22,8 @@ namespace IURIS.MOVIL.Droid
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
+
+            BackgroundAggregator.Init(this);
 
             base.OnCreate(savedInstanceState);
 

@@ -140,6 +140,9 @@
     <PackageReference Include="MarcTron.Admob">
       <Version>1.6.7</Version>
     </PackageReference>
+    <PackageReference Include="Matcha.BackgroundService">
+      <Version>1.0.5478</Version>
+    </PackageReference>
     <PackageReference Include="PayPal.Forms">
       <Version>2.18.6</Version>
     </PackageReference>

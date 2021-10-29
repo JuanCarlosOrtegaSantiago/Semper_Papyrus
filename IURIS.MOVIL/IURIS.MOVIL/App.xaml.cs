@@ -1,5 +1,7 @@
-﻿using IURIS.MOVIL.Views.Baners;
+﻿using IURIS.MOVIL.Modelos_y_clases.Utils;
+using IURIS.MOVIL.Views.Baners;
 using IURIS.MOVIL.Views.ViewPayPal;
+using Matcha.BackgroundService;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -24,14 +26,22 @@ namespace IURIS.MOVIL
 
         protected override void OnStart()
         {
+            //Register Periodic Tasks
+            BackgroundAggregatorService.Add(() => new BackGroundService(3));
+            //BackgroundAggregatorService.Add(() => new PeriodicCall2(4));
+
+            //Start the background service
+            BackgroundAggregatorService.StartBackgroundService();
         }
 
         protected override void OnSleep()
         {
+            BackgroundAggregatorService.StopBackgroundService();
         }
 
         protected override void OnResume()
         {
+            BackgroundAggregatorService.StartBackgroundService();
         }
     }
 }

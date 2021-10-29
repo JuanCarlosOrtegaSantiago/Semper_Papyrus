@@ -33,6 +33,7 @@
   <ItemGroup>
     <PackageReference Include="Acr.UserDialogs" Version="7.2.0.534" />
     <PackageReference Include="MarcTron.Admob" Version="1.6.7" />
+    <PackageReference Include="Matcha.BackgroundService" Version="1.0.5478" />
     <PackageReference Include="PayPal.Forms" Version="2.18.6" />
     <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.14" />
     <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
