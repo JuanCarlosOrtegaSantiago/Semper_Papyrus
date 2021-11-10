@@ -1,5 +1,6 @@
 ﻿using Acr.UserDialogs;
 using IURIS.BIZ;
+using IURIS.COMMON.Constantes;
 using IURIS.COMMON.Entidades.Ley;
 using IURIS.COMMON.Entidades.Ley.ComponentesDeLey;
 using IURIS.COMMON.Entidades.UsuariosDeAplicacion;
@@ -29,7 +30,7 @@ namespace IURIS.MOVIL
         private bool TamanioDeContraseniaCorrecta = false;
         private bool ContraseniasIguales = false;
         private string CorreoSinEspacios = "";
-
+        Const _Const = new Const();
         //List<Usuarios> Usuarios;
         public PageCrearCuenta()
         {
@@ -77,7 +78,7 @@ namespace IURIS.MOVIL
                 };
 
                 manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
-                Leyes leyes = manejadorDeLeyes.Listar.Where(w => w.CodigoLey.ToUpper() == "ley#1".ToUpper()).FirstOrDefault();
+                Leyes leyes = manejadorDeLeyes.Listar.Where(w => w.CodigoLey.ToUpper() == _Const.MiLeyPrincipal.ToUpper()).FirstOrDefault();
                 leyes.Clasificaciones = new List<ClasificacionPUsuario>();
 
                 List<Leyes> Mleyes = new List<Leyes>();

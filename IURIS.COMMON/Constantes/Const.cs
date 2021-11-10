@@ -14,6 +14,8 @@ namespace IURIS.COMMON.Constantes
         public string _479Anuales => nameof(_479Anuales);
         
         public string _ComprarEspacio1Ley => nameof(_ComprarEspacio1Ley);
-            
+
+        public string MiLeyPrincipal => "ley#1";
+
     }
 }

@@ -1,8 +1,12 @@
-﻿using IURIS.MOVIL.Modelos_y_clases.Utils;
+﻿using IURIS.DAL;
+using IURIS.MOVIL.Modelos_y_clases;
+using IURIS.MOVIL.Modelos_y_clases.DB_Local;
+using IURIS.MOVIL.Modelos_y_clases.Utils;
 using IURIS.MOVIL.Views.Baners;
 using IURIS.MOVIL.Views.ViewPayPal;
 using Matcha.BackgroundService;
 using System;
+using System.IO;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -12,6 +16,22 @@ namespace IURIS.MOVIL
     public partial class App : Application
     {
         public static MasterDetailPage masterDetail { get; set; }
+
+        public static MyUser MyUser { get; set; }
+
+        static Database database;
+
+        public static Database Database
+        {
+            get
+            {
+                if (database == null)
+                {
+                    database = new Database(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MyUserData.Iuris"));
+                }
+                return database;
+            }
+        }
         public App()
         {
             InitializeComponent();

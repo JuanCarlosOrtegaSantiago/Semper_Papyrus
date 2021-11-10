@@ -6,6 +6,7 @@ using IURIS.COMMON.Entidades.UsuariosDeAplicacion;
 using IURIS.COMMON.Entidades.UsuariosDeAplicacion.ComponentesDeUsuario.DatosCriticos;
 using IURIS.COMMON.Interfaces;
 using IURIS.DAL;
+using IURIS.MOVIL.Modelos_y_clases.DB_Local;
 using IURIS.MOVIL.Utils;
 using MarcTron.Plugin.Controls;
 using System;
@@ -100,12 +101,6 @@ namespace IURIS.MOVIL
                     if (Intentos != 1) return;
 
                     if (string.IsNullOrWhiteSpace(EntryPasswor.Text) || string.IsNullOrWhiteSpace(EntryCorreo.Text)) return;
-                    if (Connectivity.NetworkAccess == NetworkAccess.None)
-                    {
-                        await DisplayAlert("Error", "Sin conexión a internet", "Aceptar");
-                        Intentos = 0;
-                        return;
-                    }
 
                     string CorreoSinEspacios;
                     CorreoSinEspacios = EntryCorreo.Text.TrimStart();
@@ -124,6 +119,11 @@ namespace IURIS.MOVIL
                         Settings.NumUsuario = _User.IdApp.ToString();
                         Settings.LastCode = _User.MiUltimaLeyCargada;
 
+                        LocalSaveUser localSaveUser = new LocalSaveUser(_User);
+                        if (!await localSaveUser.ExisteUsuario()) localSaveUser.Save();
+                        var users = await App.Database.GetPeopleAsync();
+                        if (users.Count > 0) App.MyUser = users.First();
+
                         //UserDialogs.Instance.HideLoading();
                         //UserDialogs.Instance.ShowLoading("Obteniendo leyes");
                         //await Task.Delay(300);
@@ -138,6 +138,21 @@ namespace IURIS.MOVIL
                     }
                     Intentos = 0;
                 }
+                catch(TimeoutException)
+                {
+                    Intentos = 0;
+                    await Task.Delay(200);
+                    UserDialogs.Instance.HideLoading();
+                    await DisplayAlert("Error", "No tienes conexión a internet", "ok");
+
+                    var users = await App.Database.GetPeopleAsync();
+
+                    if(users.Count>0)App.MyUser = users.First();
+
+                    //await Navigation.PushAsync(new FirtsView(_User), false);
+                    return;
+                }
+
                 catch (Exception ex)
                 {
                     Intentos = 0;
