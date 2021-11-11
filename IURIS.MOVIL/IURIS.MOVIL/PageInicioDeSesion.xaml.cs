@@ -7,6 +7,7 @@ using IURIS.COMMON.Entidades.UsuariosDeAplicacion.ComponentesDeUsuario.DatosCrit
 using IURIS.COMMON.Interfaces;
 using IURIS.DAL;
 using IURIS.MOVIL.Modelos_y_clases.DB_Local;
+using IURIS.MOVIL.Modelos_y_clases.Tools;
 using IURIS.MOVIL.Utils;
 using MarcTron.Plugin.Controls;
 using System;
@@ -119,8 +120,12 @@ namespace IURIS.MOVIL
                         Settings.NumUsuario = _User.IdApp.ToString();
                         Settings.LastCode = _User.MiUltimaLeyCargada;
 
+                        //HerramientasGenerales herramientasGenerales = new HerramientasGenerales(_User);
+                        //herramientasGenerales.TipoDeAlmacenamiento();
+
                         LocalSaveUser localSaveUser = new LocalSaveUser(_User);
                         if (!await localSaveUser.ExisteUsuario()) localSaveUser.Save();
+                       
                         var users = await App.Database.GetPeopleAsync();
                         if (users.Count > 0) App.MyUser = users.First();
 
@@ -149,7 +154,7 @@ namespace IURIS.MOVIL
 
                     if(users.Count>0)App.MyUser = users.First();
 
-                    //await Navigation.PushAsync(new FirtsView(_User), false);
+                    await Navigation.PushAsync(new FirtsView(_User), false);
                     return;
                 }
 

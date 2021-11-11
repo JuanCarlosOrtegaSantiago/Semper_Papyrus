@@ -2,6 +2,8 @@
 using IURIS.COMMON.Entidades.Ley.ComponentesDeLey;
 using IURIS.COMMON.Entidades.UsuariosDeAplicacion;
 using IURIS.MOVIL.Modelos_y_clases;
+using IURIS.MOVIL.Modelos_y_clases.DB_Local;
+using IURIS.MOVIL.Modelos_y_clases.DB_Local.COMMON;
 using IURIS.MOVIL.Modelos_y_clases.Tools;
 using IURIS.MOVIL.Utils;
 using IURIS.MOVIL.Views;
@@ -26,12 +28,15 @@ namespace IURIS.MOVIL.Detail
 
 
         ClassAnuncio Anuncio = new ClassAnuncio();
-        public Usuarios _Usuario;
+        public Usuarios _User;
+        MyUser _MyUser;
+        MyLey _MyLey;
         Leyes _Ley;
+
         public ViewDetail(Usuarios usuarios)
         {
             InitializeComponent();
-            _Usuario = usuarios;
+            _User = usuarios;
             DatosAInicializar();
 
             MainThread.BeginInvokeOnMainThread(async () =>
@@ -42,8 +47,11 @@ namespace IURIS.MOVIL.Detail
 
             Anuncio.MostrarAnuncioPantalla();
 
-            HerramientasGenerales herramientasGenerales = new HerramientasGenerales(_Usuario);
+            if (_User != null)
+            {
+            HerramientasGenerales herramientasGenerales = new HerramientasGenerales(_User);
             herramientasGenerales.RenovarSuscripcion();
+            }
 
             var test = CrossMTAdmob.Current.IsInterstitialLoaded().ToString();
             CrossMTAdmob.Current.ShowInterstitial();
@@ -54,10 +62,21 @@ namespace IURIS.MOVIL.Detail
 
         private void DatosAInicializar()
         {
-            _Ley = _Usuario.MisLeyes.Where(e => e.CodigoLey == _Usuario.MiUltimaLeyCargada).SingleOrDefault();
-            lblTitle.Text = _Ley.NombreLey;
-            lblCodigo.Text = _Ley.CodigoLey;
-            ActualizarDatos(_Ley.ListaDeTitulos);
+            if (_User == null)
+            {
+                _MyLey = App.MyUser.MisLeyes.Where(e => e.CodigoLey == App.MyUser.MiUltimaLeyCargada).SingleOrDefault();
+                lblTitle.Text = _MyLey.NombreLey;
+                lblCodigo.Text = _MyLey.CodigoLey;
+                ActualizarDatos(_MyLey.ListaDeTitulos);
+            }
+            else
+            {
+
+                _Ley = _User.MisLeyes.Where(e => e.CodigoLey == _User.MiUltimaLeyCargada).SingleOrDefault();
+                lblTitle.Text = _Ley.NombreLey;
+                lblCodigo.Text = _Ley.CodigoLey;
+                ActualizarDatos(_Ley.ListaDeTitulos);
+            }
 
             ClltionTitulos.SelectedItem = null;
         }
@@ -84,7 +103,12 @@ namespace IURIS.MOVIL.Detail
             if (titulo == null) return;
 
             MostrarSearch(false);
-            await Navigation.PushAsync(new PageMotrarCapitulosConCodigos(titulo, _Usuario, _Ley, myAds), false);
+            if (_User == null)
+            {
+                await DisplayAlert("Error","Conectate a internet e intenta de nuevo,","ok");
+                return;
+            }
+            await Navigation.PushAsync(new PageMotrarCapitulosConCodigos(titulo, _User, _Ley, myAds), false);
             ClltionTitulos.SelectedItem = null;
 
         }
@@ -100,8 +124,18 @@ namespace IURIS.MOVIL.Detail
             if (SearchViewDetailTitle.Text == null) return;
 
             List<Titulo> titulos = new List<Titulo>();
-
-             titulos= _Ley.ListaDeTitulos.ToList().Where(e => e.NumTitulo.ToUpper().Contains(TextChange.NewTextValue.ToUpper()) == true || e.NombreTitulo.ToUpper().Contains(TextChange.NewTextValue.ToUpper()) == true).ToList();
+             titulos = _User != null?
+                _Ley.ListaDeTitulos.ToList().Where(
+                    e => e.NumTitulo.ToUpper().Contains(TextChange.NewTextValue.ToUpper()) == true 
+                    || 
+                    e.NombreTitulo.ToUpper().Contains(TextChange.NewTextValue.ToUpper()) == true)
+                .ToList()
+                : 
+                _MyLey.ListaDeTitulos.ToList().Where(
+                    e => e.NumTitulo.ToUpper().Contains(TextChange.NewTextValue.ToUpper()) == true 
+                    || 
+                    e.NombreTitulo.ToUpper().Contains(TextChange.NewTextValue.ToUpper()) == true)
+                .ToList(); ;
 
             ActualizarDatos(titulos);
             lblNumResultados.Text = TextChange.NewTextValue == "" ? "" : titulos.Count.ToString();
