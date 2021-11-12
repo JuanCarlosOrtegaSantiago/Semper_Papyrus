@@ -61,7 +61,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
             CmbxClasificacion.ItemsSource = manejadorDeClasificaciones.Listar;
 
 
-            CmbxClasificacion.Text = CopiaLey.Clasificacion.Nombre;
+            CmbxClasificacion.Text = CopiaLey.Clasificacion;
 
 
         }
@@ -307,8 +307,8 @@ namespace IURIS.DESKTOP.GUI.ADMIN
 
         private void CmbxClasificacion_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            CopiaLey.Clasificacion = (Clasificacion)CmbxClasificacion.SelectedItem;
-            CmbxClasificacion.Text = CopiaLey.Clasificacion.Nombre;
+            CopiaLey.Clasificacion = ((Clasificacion)CmbxClasificacion.SelectedItem).Nombre;
+            CmbxClasificacion.Text = CopiaLey.Clasificacion;
         }
 
     }

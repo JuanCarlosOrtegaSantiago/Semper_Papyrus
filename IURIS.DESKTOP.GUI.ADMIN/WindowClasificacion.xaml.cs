@@ -130,9 +130,9 @@ namespace IURIS.DESKTOP.GUI.ADMIN
                             foreach (var item in manejadorDeLeyes.Listar)
                             {
                                 leyes++;
-                                if (item.Clasificacion.id == clasificacion.id)
+                                if (item.Clasificacion == clasificacion.Nombre)
                                 {
-                                    item.Clasificacion = clasificacion;
+                                    item.Clasificacion = clasificacion.Nombre;
                                     manejadorDeLeyes.Modificar(item);
                                 }
                             }
@@ -168,7 +168,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
             {
                 if (MessageBox.Show("Realmente decea eliminar " + clasificacion.Nombre, "", MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.No) == MessageBoxResult.Yes)
                 {
-                    if (manejadorDeLeyes.Listar.Where(w => w.Clasificacion.Nombre == clasificacion.Nombre).Count() >= 1)
+                    if (manejadorDeLeyes.Listar.Where(w => w.Clasificacion == clasificacion.Nombre).Count() >= 1)
                     {
                         MessageBox.Show("No se puede eliminar la clasificacion\nya que tiene leyes con esta clasificación", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
 

@@ -5,6 +5,7 @@ using IURIS.COMMON.Entidades.UsuariosDeAplicacion;
 using IURIS.COMMON.Interfaces;
 using IURIS.DAL;
 using IURIS.MOVIL.Detail;
+using IURIS.MOVIL.Modelos_y_clases.DB_Local.COMMON;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using System;
@@ -25,16 +26,17 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
         readonly Titulo _Titulo;
         readonly Usuarios _User;
         readonly Articulo _Articulo;
-        readonly Leyes _Ley;
+        //readonly Leyes _Ley;
+        MyLey _MyLey;
         readonly Capitulo _Capitulo;
 
-        public WindowOfEmergencyCrearNota(Titulo titulo, Usuarios usuarios, Articulo articulo,Leyes ley, Capitulo capitulo)
+        public WindowOfEmergencyCrearNota(Titulo titulo, Usuarios usuarios, Articulo articulo,MyLey ley, Capitulo capitulo)
         {
             InitializeComponent();
             _Articulo = articulo;
             _Titulo = titulo;
             _User = usuarios;
-            _Ley = ley;
+            _MyLey = ley;
             _Capitulo = capitulo;
 
             manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());

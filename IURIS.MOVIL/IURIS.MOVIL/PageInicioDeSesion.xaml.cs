@@ -93,19 +93,36 @@ namespace IURIS.MOVIL
             MainThread.BeginInvokeOnMainThread(async () =>
             {
                 UserDialogs.Instance.ShowLoading("Iniciando sesión", MaskType.None);
-                await Task.Delay(300);
+                //await Task.Delay(200);
 
+                Intentos++;
+                if (Intentos != 1) return;
                 try
                 {
-
-                    Intentos++;
-                    if (Intentos != 1) return;
-
                     if (string.IsNullOrWhiteSpace(EntryPasswor.Text) || string.IsNullOrWhiteSpace(EntryCorreo.Text)) return;
 
                     string CorreoSinEspacios;
                     CorreoSinEspacios = EntryCorreo.Text.TrimStart();
                     CorreoSinEspacios = CorreoSinEspacios.TrimEnd();
+
+                    var users = await App.Database.GetPeopleAsync();
+                    if (users.Count > 0)
+                    {
+                        var _User = users.Find(r => r.Correo == CorreoSinEspacios && r.Contrasenia == int.Parse(EntryPasswor.Text));
+
+                        if (_User != null)
+                        {
+                            App.MyUser = _User;
+                            Intentos = 0;
+                            await Task.Delay(1000);
+                            UserDialogs.Instance.HideLoading();
+                            await Navigation.PushAsync(new FirtsView(this._User), false);
+
+                            return;
+                        }
+
+                    }
+
 
                     _User = manejadorDeUsuarioAplicacion.EncontrarUsuario(CorreoSinEspacios, int.Parse(EntryPasswor.Text));
 
@@ -125,9 +142,6 @@ namespace IURIS.MOVIL
 
                         LocalSaveUser localSaveUser = new LocalSaveUser(_User);
                         if (!await localSaveUser.ExisteUsuario()) localSaveUser.Save();
-                       
-                        var users = await App.Database.GetPeopleAsync();
-                        if (users.Count > 0) App.MyUser = users.First();
 
                         //UserDialogs.Instance.HideLoading();
                         //UserDialogs.Instance.ShowLoading("Obteniendo leyes");
@@ -143,18 +157,13 @@ namespace IURIS.MOVIL
                     }
                     Intentos = 0;
                 }
-                catch(TimeoutException)
+                catch (TimeoutException)
                 {
                     Intentos = 0;
                     await Task.Delay(200);
                     UserDialogs.Instance.HideLoading();
                     await DisplayAlert("Error", "No tienes conexión a internet", "ok");
 
-                    var users = await App.Database.GetPeopleAsync();
-
-                    if(users.Count>0)App.MyUser = users.First();
-
-                    await Navigation.PushAsync(new FirtsView(_User), false);
                     return;
                 }
 

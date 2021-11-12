@@ -24,6 +24,7 @@ using Plugin.Clipboard;
 using Acr.UserDialogs;
 using MarcTron.Plugin.Controls;
 using Xamarin.Essentials;
+using IURIS.MOVIL.Modelos_y_clases.DB_Local.COMMON;
 
 namespace IURIS.MOVIL.Detail
 {
@@ -32,7 +33,8 @@ namespace IURIS.MOVIL.Detail
     {
         readonly Titulo _titulo;
         readonly Usuarios _Usuario;
-        readonly Leyes _ley;
+        //readonly Leyes _ley;
+        MyLey _MyLey;
         public bool _ArticuloSeleccionado;
         static int _NumRecultadosEncontrados = 0;
         public Capitulo _Capitulo;
@@ -44,9 +46,10 @@ namespace IURIS.MOVIL.Detail
         int numToques = 0;
         ClassAnuncio Anuncio = new ClassAnuncio();
 
-        public PageMotrarCapitulosConCodigos(Titulo titulo, Usuarios usuarios, Leyes ley, MTAdView adView)
+        public PageMotrarCapitulosConCodigos(Titulo titulo, Usuarios usuarios, MyLey ley, MTAdView adView)
         {
             InitializeComponent();
+            _MyLey = ley;
             BindingContext = this;
             MainThread.BeginInvokeOnMainThread(async () =>
             {
@@ -56,7 +59,7 @@ namespace IURIS.MOVIL.Detail
 
             _titulo = titulo;
             _Usuario = usuarios;
-            _ley = ley;
+            //_ley = ley;
 
             manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
 
@@ -97,13 +100,11 @@ namespace IURIS.MOVIL.Detail
         private void DatosAInicializar()
         {
             lblTitle.Text = _titulo.NombreTitulo;
-            lblCodigo.Text = _ley.CodigoLey;
+            lblCodigo.Text = _MyLey.CodigoLey;
 
             cllctionArticulos.ItemsSource = null;
             cllctionArticulos.ItemsSource = _titulo.ListaCapitulos.FirstOrDefault().ListaArticulos;//modificar
             _Capitulo = _titulo.ListaCapitulos.FirstOrDefault();
-
-
 
             ActualizarDatosCapitulo(_titulo.ListaCapitulos);
 
@@ -197,7 +198,7 @@ namespace IURIS.MOVIL.Detail
             var articulo = ((Image)sender).BindingContext as Articulo;
             if (articulo == null) return;
 
-            await PopupNavigation.Instance.PushAsync(new WindowOfEmergencyCrearNota(_titulo, _Usuario, articulo, _ley, _Capitulo), false);
+            await PopupNavigation.Instance.PushAsync(new WindowOfEmergencyCrearNota(_titulo, _Usuario, articulo, _MyLey, _Capitulo), false);
 
         }
 
@@ -231,24 +232,9 @@ namespace IURIS.MOVIL.Detail
             var articulo = ((Image)sender).BindingContext as Articulo;
             if (articulo == null) return;
             _Articulo = articulo;
-            await PopupNavigation.Instance.PushAsync(new WindowOfMenuAccion(_titulo, _Usuario, articulo, _ley, _Capitulo), false);
+            await PopupNavigation.Instance.PushAsync(new WindowOfMenuAccion(_titulo, _Usuario, articulo, _MyLey, _Capitulo), false);
+            //await PopupNavigation.Instance.PushAsync(new WindowOfMenuAccion(_titulo, _Usuario, articulo, _ley, _Capitulo), false);
             expandr.IsEnabled = true;
-        }
-
-        private void ObtenerImagenesDeArticulo()
-        {
-
-            ////if (_Articulo.FotoAdjunta)
-            //{
-
-            //    //List<Fotografia> vs = _Capitulo.ListaArticulos.Where(e=> e.FotoAdjunta==true).ToList();
-
-            //    Stream stream = new MemoryStream(byteArray);
-            //    //image.Source = ImageSource.FromStream(stream);
-            //    image.Source = ImageSource.FromStream(() => { return stream; });
-            //    //ImageSource.FromStream(() => new MemoryStream(imageAsBytes));
-            //}
-
         }
 
         private void TapGestureRecognizer_Tapped_5Fotos(object sender, EventArgs e)

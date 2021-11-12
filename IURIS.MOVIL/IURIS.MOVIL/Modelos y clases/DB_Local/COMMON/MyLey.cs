@@ -26,8 +26,8 @@ namespace IURIS.MOVIL.Modelos_y_clases.DB_Local.COMMON
         //public string MyTituloBlobbed { get; set; }
 
 
-        [TextBlob("MyClasificacionBlobbed")]
-        public MyClasificacion Clasificacion { get; set; }
-        public string MyClasificacionBlobbed { get; set; }
+        public string Clasificacion { get; set; }
+        //[TextBlob("MyClasificacionBlobbed")]
+        //public string MyClasificacionBlobbed { get; set; }
     }
 }

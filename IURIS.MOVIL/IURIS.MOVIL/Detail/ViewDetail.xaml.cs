@@ -26,12 +26,9 @@ namespace IURIS.MOVIL.Detail
     public partial class ViewDetail : ContentPage
     {
 
-
         ClassAnuncio Anuncio = new ClassAnuncio();
         public Usuarios _User;
-        MyUser _MyUser;
         MyLey _MyLey;
-        Leyes _Ley;
 
         public ViewDetail(Usuarios usuarios)
         {
@@ -49,34 +46,22 @@ namespace IURIS.MOVIL.Detail
 
             if (_User != null)
             {
-            HerramientasGenerales herramientasGenerales = new HerramientasGenerales(_User);
-            herramientasGenerales.RenovarSuscripcion();
+                HerramientasGenerales herramientasGenerales = new HerramientasGenerales(_User);
+                herramientasGenerales.RenovarSuscripcion();
             }
 
             var test = CrossMTAdmob.Current.IsInterstitialLoaded().ToString();
             CrossMTAdmob.Current.ShowInterstitial();
             CrossMTAdmob.Current.LoadInterstitial("ca-app-pub-3940256099942544/1033173712");
-
-
         }
 
         private void DatosAInicializar()
         {
-            if (_User == null)
-            {
-                _MyLey = App.MyUser.MisLeyes.Where(e => e.CodigoLey == App.MyUser.MiUltimaLeyCargada).SingleOrDefault();
-                lblTitle.Text = _MyLey.NombreLey;
-                lblCodigo.Text = _MyLey.CodigoLey;
-                ActualizarDatos(_MyLey.ListaDeTitulos);
-            }
-            else
-            {
-
-                _Ley = _User.MisLeyes.Where(e => e.CodigoLey == _User.MiUltimaLeyCargada).SingleOrDefault();
-                lblTitle.Text = _Ley.NombreLey;
-                lblCodigo.Text = _Ley.CodigoLey;
-                ActualizarDatos(_Ley.ListaDeTitulos);
-            }
+            _MyLey = App.MyUser.MisLeyes.Where(e => e.CodigoLey == App.MyUser.MiUltimaLeyCargada).SingleOrDefault();
+            
+            lblTitle.Text = _MyLey.NombreLey;
+            lblCodigo.Text = _MyLey.CodigoLey;
+            ActualizarDatos(_MyLey.ListaDeTitulos);
 
             ClltionTitulos.SelectedItem = null;
         }
@@ -90,7 +75,7 @@ namespace IURIS.MOVIL.Detail
         private void MostrarSearch(bool v)
         {
             SearchViewDetailTitle.IsVisible = v;
-;            tituloLey.IsVisible = !v;
+;           tituloLey.IsVisible = !v;
             IMGBuscador.IsVisible = !v;
             lblNumResultados.IsVisible = v;
             lblNumResultados.Text = null;
@@ -103,12 +88,8 @@ namespace IURIS.MOVIL.Detail
             if (titulo == null) return;
 
             MostrarSearch(false);
-            if (_User == null)
-            {
-                await DisplayAlert("Error","Conectate a internet e intenta de nuevo,","ok");
-                return;
-            }
-            await Navigation.PushAsync(new PageMotrarCapitulosConCodigos(titulo, _User, _Ley, myAds), false);
+            
+            await Navigation.PushAsync(new PageMotrarCapitulosConCodigos(titulo, _User, _MyLey, myAds), false);
             ClltionTitulos.SelectedItem = null;
 
         }
@@ -124,13 +105,7 @@ namespace IURIS.MOVIL.Detail
             if (SearchViewDetailTitle.Text == null) return;
 
             List<Titulo> titulos = new List<Titulo>();
-             titulos = _User != null?
-                _Ley.ListaDeTitulos.ToList().Where(
-                    e => e.NumTitulo.ToUpper().Contains(TextChange.NewTextValue.ToUpper()) == true 
-                    || 
-                    e.NombreTitulo.ToUpper().Contains(TextChange.NewTextValue.ToUpper()) == true)
-                .ToList()
-                : 
+             titulos =
                 _MyLey.ListaDeTitulos.ToList().Where(
                     e => e.NumTitulo.ToUpper().Contains(TextChange.NewTextValue.ToUpper()) == true 
                     || 

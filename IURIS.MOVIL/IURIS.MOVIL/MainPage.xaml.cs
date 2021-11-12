@@ -1,4 +1,5 @@
-﻿using IURIS.MOVIL.Modelos_y_clases;
+﻿using Acr.UserDialogs;
+using IURIS.MOVIL.Modelos_y_clases;
 using IURIS.MOVIL.Utils;
 using IURIS.MOVIL.Views.ViewsVentanasEmergentes;
 using Rg.Plugins.Popup.Services;
@@ -8,6 +9,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace IURIS.MOVIL
@@ -22,6 +24,24 @@ namespace IURIS.MOVIL
         public MainPage()
         {
             InitializeComponent();
+                UserDialogs.Instance.ShowLoading("Validando\npor favor espere.", MaskType.None);
+
+            MainThread.BeginInvokeOnMainThread(async () =>
+            {
+                var users = await App.Database.GetPeopleAsync();
+                App.MyUser = users.FirstOrDefault();
+                if (App.MyUser != null)
+                {
+                    Intentos = 0;
+                    await Navigation.PushAsync(new FirtsView(null), false);
+
+                    //await Task.Delay(500);
+                    UserDialogs.Instance.HideLoading();
+                    return;
+                }
+            });
+
+                    UserDialogs.Instance.HideLoading();
             DatosAIniciar();
         }
 

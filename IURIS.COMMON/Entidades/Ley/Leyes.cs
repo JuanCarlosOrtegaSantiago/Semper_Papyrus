@@ -17,6 +17,6 @@ namespace IURIS.COMMON.Entidades.Ley
         public DateTime? FechaDeDescarga { get; set; }
         public List<Titulo> ListaDeTitulos { get; set; }
         public int numDescargas { get; set; }
-        public Clasificacion Clasificacion { get; set; }
+        public string Clasificacion { get; set; }
     }
 }

@@ -5,6 +5,7 @@ using IURIS.COMMON.Entidades.UsuariosDeAplicacion;
 using IURIS.COMMON.Entidades.UsuariosDeAplicacion.ComponentesDeUsuario;
 using IURIS.COMMON.Interfaces;
 using IURIS.DAL;
+using IURIS.MOVIL.Modelos_y_clases.DB_Local.COMMON;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,19 +22,19 @@ namespace IURIS.MOVIL.Views
     {
         ClasificacionPUsuario _Clasificacion;
         Usuarios _Usuarios;
-        Leyes _Leyes;
+        MyLey _MyLey;
         public List<Articulo> _Articulos;
 
         IManejadorDeUsuarioAplicacion manejadorDeUsuarioAplicacion;
 
-        public ViewMiClasificacionPersonalizada(ClasificacionPUsuario clasificacion, Usuarios usuarios, Leyes leyes)
+        public ViewMiClasificacionPersonalizada(ClasificacionPUsuario clasificacion, Usuarios usuarios, MyLey leyes)
         {
 
             InitializeComponent();
 
             _Clasificacion = clasificacion;
             _Usuarios = usuarios;
-            _Leyes = leyes;
+            _MyLey = leyes;
             DatosAInicializar();
         }
 

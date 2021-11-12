@@ -7,6 +7,7 @@ using IURIS.COMMON.Interfaces;
 using IURIS.DAL;
 using IURIS.MOVIL.Detail;
 using IURIS.MOVIL.Modelos_y_clases;
+using IURIS.MOVIL.Modelos_y_clases.DB_Local.COMMON;
 using IURIS.MOVIL.Views.ViewsVentanasEmergentes;
 using Rg.Plugins.Popup.Services;
 using System;
@@ -26,35 +27,36 @@ namespace IURIS.MOVIL.Views
         IManejadorDeUsuarioAplicacion manejadorDeUsuarioAplicacion;
         Usuarios _User;
         Articulo _Articulo;
-        Leyes _Leyes;
+        //Leyes _Leyes;
         public bool nuevoArticulo = false;
+        MyLey _MyLey;
 
-        public ViewsMisClasificaciones(Usuarios Usuario,Articulo articulo, Leyes leyes)
+        public ViewsMisClasificaciones(Usuarios Usuario,Articulo articulo, MyLey leyes)
         {
             InitializeComponent();
             manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
-            _Leyes = leyes;
+            _MyLey = leyes;
             _Articulo = articulo;
+            ActualizarDatos();
 
-            DatosAInicializar(Usuario);
+            //DatosAInicializar(Usuario);
         }
 
         private void DatosAInicializar(Usuarios usuarios)
         {
             _User = manejadorDeUsuarioAplicacion.EncontrarUsuario(usuarios.Correo, usuarios.Contrasenia);
-            ActualizarDatos();
         }
 
 
         void ActualizarDatos()
         {
             clltionClasificaciones.ItemsSource = null;
-            clltionClasificaciones.ItemsSource = _User.MisLeyes.Where(w => w.CodigoLey == _Leyes.CodigoLey).SingleOrDefault().Clasificaciones;
+            clltionClasificaciones.ItemsSource = App.MyUser.MisLeyes.Where(w => w.CodigoLey == _MyLey.CodigoLey).SingleOrDefault().Clasificaciones;
         }
 
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
-            await PopupNavigation.Instance.PushAsync(new WindowOfEmergencyNuevaClasificacion(_User, _Leyes,_Articulo));
+            await PopupNavigation.Instance.PushAsync(new WindowOfEmergencyNuevaClasificacion(_User, _MyLey,_Articulo));
         }
 
         private async void clltionClasificaciones_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -95,7 +97,7 @@ namespace IURIS.MOVIL.Views
                 }
 
             }
-                await Navigation.PushAsync(new ViewMiClasificacionPersonalizada(clasificacion, _User, _Leyes), false);
+                await Navigation.PushAsync(new ViewMiClasificacionPersonalizada(clasificacion, _User, _MyLey), false);
         }
 
         private void SwipeItemView_Invoked(object sender, EventArgs e)
@@ -103,7 +105,7 @@ namespace IURIS.MOVIL.Views
             var MiClasificacion = ((SwipeItemView)sender).BindingContext as ClasificacionPUsuario;
 
             if (MiClasificacion == null) return;
-            _User.MisLeyes.Where(w => w.CodigoLey == _Leyes.CodigoLey).SingleOrDefault().Clasificaciones.Remove(MiClasificacion);
+            _User.MisLeyes.Where(w => w.CodigoLey == _MyLey.CodigoLey).SingleOrDefault().Clasificaciones.Remove(MiClasificacion);
 
             if (!manejadorDeUsuarioAplicacion.Modificar(_User)) return;
             ActualizarDatos();

@@ -1,4 +1,5 @@
-﻿using IURIS.COMMON.Entidades.UsuariosDeAplicacion;
+﻿using IURIS.COMMON.Entidades.Ley;
+using IURIS.COMMON.Entidades.UsuariosDeAplicacion;
 using IURIS.MOVIL.Modelos_y_clases.DB_Local.COMMON;
 using System;
 using System.Collections.Generic;
@@ -16,12 +17,21 @@ namespace IURIS.MOVIL.Modelos_y_clases.DB_Local
             _User = usuarios;
         }
 
-        public void Save()
+        public bool Save()
         {
-            MyUser myUser=CrearUsuario();
-            
-            App.Database.SavePersonAsync(myUser);
-            App.MyUser = myUser;
+            try
+            {
+                MyUser myUser = CrearUsuario();
+
+                App.Database.SavePersonAsync(myUser);
+                App.MyUser = myUser;
+                return true;
+
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         public async Task<bool> ExisteUsuario()
@@ -40,29 +50,42 @@ namespace IURIS.MOVIL.Modelos_y_clases.DB_Local
                 MiUltimaLeyCargada = _User.MiUltimaLeyCargada,
                 IdUser = _User.id.ToString(),
                 MisLeyes = new List<MyLey>(),
-                IdApp = _User.IdApp
+                IdApp = _User.IdApp,
+                Contrasenia = _User.Contrasenia,
+                Correo = _User.Correo
             };
 
             foreach (var Ley in _User.MisLeyes)
             {
-                MyLey myLey = new MyLey()
-                {
-                    Clasificacion =new MyClasificacion() { Nombre= Ley.Clasificacion.Nombre },
-                     CodigoLey=Ley.CodigoLey,
-                      EsModificacion=Ley.EsModificacion,
-                       FechaDeDescarga=Ley.FechaDeDescarga,
-                        ListaDeTitulos=Ley.ListaDeTitulos,
-                         NombreLey=Ley.NombreLey,
-                          UltimaFechaDeModificacion=Ley.UltimaFechaDeModificacion,
-                    Clasificaciones = Ley.Clasificaciones
-
-
-                };
-                myUser.MisLeyes.Add(myLey);
-
+                myUser.MisLeyes.Add(LeyToMyley(Ley));
             }
            
             return myUser;
+        }
+
+        public MyLey LeyToMyley(Leyes Ley)
+        {
+            try
+            {
+
+                MyLey myLey = new MyLey()
+                {
+                    Clasificacion = Ley.Clasificacion,
+                    CodigoLey = Ley.CodigoLey,
+                    EsModificacion = Ley.EsModificacion,
+                    FechaDeDescarga = Ley.FechaDeDescarga,
+                    ListaDeTitulos = Ley.ListaDeTitulos,
+                    NombreLey = Ley.NombreLey,
+                    UltimaFechaDeModificacion = Ley.UltimaFechaDeModificacion,
+                    Clasificaciones = Ley.Clasificaciones
+                };
+
+                return myLey;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
     }

@@ -5,6 +5,7 @@ using IURIS.COMMON.Entidades.UsuariosDeAplicacion;
 using IURIS.COMMON.Entidades.UsuariosDeAplicacion.ComponentesDeUsuario;
 using IURIS.COMMON.Interfaces;
 using IURIS.DAL;
+using IURIS.MOVIL.Modelos_y_clases.DB_Local.COMMON;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using System;
@@ -23,13 +24,13 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
     {
         IManejadorDeUsuarioAplicacion manejadorDeUsuarioAplicacion;
         Usuarios _User;
-        Leyes _Leyes;
+        MyLey _MyLey;
         Articulo _Articulo;
-        public WindowOfEmergencyNuevaClasificacion(Usuarios usuarios,Leyes leyes, Articulo articulo)
+        public WindowOfEmergencyNuevaClasificacion(Usuarios usuarios,MyLey leyes, Articulo articulo)
         {
             InitializeComponent();
             _User = usuarios;
-            _Leyes = leyes;
+            _MyLey = leyes;
             _Articulo = articulo;
         }
 
@@ -46,9 +47,10 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
 
             if (string.IsNullOrWhiteSpace(clasificacion.Nombre)) return;
 
-            if (_Articulo != null) clasificacion.MisArticulos.Add(_Articulo);
+            if (_Articulo != null) 
+                clasificacion.MisArticulos.Add(_Articulo);
 
-            _User.MisLeyes.Where(w => w.CodigoLey == _Leyes.CodigoLey).SingleOrDefault().Clasificaciones.Add(clasificacion);
+            _User.MisLeyes.Where(w => w.CodigoLey == _MyLey.CodigoLey).SingleOrDefault().Clasificaciones.Add(clasificacion);
 
             try
             {
@@ -59,7 +61,7 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
                 {
                     await DisplayAlert("Hecho", "Agregada correctamente", "Ok");
                     App.masterDetail.IsPresented = false;
-                    App.masterDetail.Detail = new NavigationPage(new ViewsMisClasificaciones(_User, null, _Leyes));
+                    App.masterDetail.Detail = new NavigationPage(new ViewsMisClasificaciones(_User, null, _MyLey));
                 }
                 else
                 {

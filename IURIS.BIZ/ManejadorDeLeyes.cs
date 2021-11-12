@@ -33,7 +33,7 @@ namespace IURIS.BIZ
 
         public List<Leyes> BuscarEnLeyesPorClasificacion(Clasificacion clasificacion)
         {
-            return repositorio.Read.Where(w => w.Clasificacion.Nombre == clasificacion.Nombre).ToList();
+            return repositorio.Read.Where(w => w.Clasificacion == clasificacion.Nombre).ToList();
         }
 
         public Leyes BuscarPorCodigo(string codigo)

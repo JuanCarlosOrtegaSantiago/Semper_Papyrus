@@ -382,7 +382,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
                             numDescargas = 0,
                             UltimaFechaDeModificacion = DateTime.Today.Date,
                             EsModificacion = false,
-                            Clasificacion = (Clasificacion)CmbxClasificacion.SelectedItem,
+                            Clasificacion = ((Clasificacion)CmbxClasificacion.SelectedItem).Nombre,
                             //CodigosDeVentas = new List<CodigoVenta>()
                         };
                         try

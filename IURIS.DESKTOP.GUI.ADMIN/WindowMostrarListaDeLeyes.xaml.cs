@@ -39,7 +39,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
                 if (MessageBox.Show("Aun no tiene leyes agregadas", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning) == MessageBoxResult.OK)
                     this.Close();
 
-            LeyesDeClasificacion = leyes.Where(w => w.Clasificacion.Nombre == clasificacion.Nombre).ToList();
+            LeyesDeClasificacion = leyes.Where(w => w.Clasificacion == clasificacion.Nombre).ToList();
             ListLeyes.ItemsSource =  LeyesDeClasificacion;
 
         }
