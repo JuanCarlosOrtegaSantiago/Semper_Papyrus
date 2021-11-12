@@ -34,7 +34,7 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
         private void BtnAceptar_Clicked(object sender, EventArgs e)
         {
             App.masterDetail.IsPresented = false;
-            App.masterDetail.Detail = new NavigationPage(new WindowOpcionDeCompra(_User));
+            App.masterDetail.Detail = new NavigationPage(new WindowOpcionDeCompra());
         }
     }
 }

@@ -27,7 +27,7 @@ namespace IURIS.MOVIL.Modelos_y_clases.Tools
             if (_User.DatosSobreUsuario.NumDeMeses == num)
             {
                 App.masterDetail.IsPresented = false;
-                App.masterDetail.Detail = new NavigationPage(new WindowOpcionDeCompra(_User));
+                App.masterDetail.Detail = new NavigationPage(new WindowOpcionDeCompra());
             }
         }
 

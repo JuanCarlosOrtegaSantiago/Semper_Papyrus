@@ -23,33 +23,28 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
     public partial class WindowOfMenuAccion : PopupPage
     {
         readonly Titulo _Titulo;
-        readonly Usuarios _User;
         readonly Articulo _Articulo;
-        //readonly Leyes _Ley;
         MyLey _MyLey;
         readonly Capitulo _Capitulo;
-        IManejadorDeUsuarioAplicacion manejadorDeUsuarioAplicacion;
 
-        public WindowOfMenuAccion(Titulo titulo, Usuarios usuarios, Articulo articulo, MyLey ley, Capitulo capitulo)
+        public WindowOfMenuAccion(Titulo titulo, Articulo articulo, MyLey ley, Capitulo capitulo)
         {
             InitializeComponent();
             _Articulo = articulo;
             _Titulo = titulo;
-            _User = usuarios;
             _MyLey = ley;
             _Capitulo = capitulo;
-            manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
         }
 
         private async void LblCrearNota(object sender, EventArgs e)
         {
             await PopupNavigation.Instance.PopAsync(false);
-            await PopupNavigation.Instance.PushAsync(new WindowOfEmergencyCrearNota(_Titulo, _User, _Articulo, _MyLey, _Capitulo), false);
+            await PopupNavigation.Instance.PushAsync(new WindowOfEmergencyCrearNota(_Titulo, _Articulo, _MyLey, _Capitulo), false);
         }
 
         private async void LblClasificacionPersonalizada(object sender, EventArgs e)
         {
-            App.masterDetail.Detail = new NavigationPage(new ViewsMisClasificaciones(_User, _Articulo,_MyLey));
+            App.masterDetail.Detail = new NavigationPage(new ViewsMisClasificaciones(_Articulo,_MyLey));
             await PopupNavigation.Instance.PopAsync(false);
         }
 

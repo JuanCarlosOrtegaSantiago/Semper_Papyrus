@@ -21,19 +21,15 @@ namespace IURIS.MOVIL.Views
     public partial class ViewMiClasificacionPersonalizada : ContentPage
     {
         ClasificacionPUsuario _Clasificacion;
-        Usuarios _Usuarios;
         MyLey _MyLey;
         public List<Articulo> _Articulos;
 
-        IManejadorDeUsuarioAplicacion manejadorDeUsuarioAplicacion;
-
-        public ViewMiClasificacionPersonalizada(ClasificacionPUsuario clasificacion, Usuarios usuarios, MyLey leyes)
+        public ViewMiClasificacionPersonalizada(ClasificacionPUsuario clasificacion, MyLey leyes)
         {
 
             InitializeComponent();
 
             _Clasificacion = clasificacion;
-            _Usuarios = usuarios;
             _MyLey = leyes;
             DatosAInicializar();
         }
@@ -64,22 +60,18 @@ namespace IURIS.MOVIL.Views
             var Articulo = clltionMiClasificacionPersonalziada.SelectedItems;
             foreach (var item in Articulo) _Clasificacion.MisArticulos.Remove(item as Articulo);
 
-            manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
-
             try
             {
 
-                if (manejadorDeUsuarioAplicacion.Modificar(_Usuarios))
-                {
-                    await DisplayAlert("Hecho", "Se eliminaron los elementos", "Aceptar");
-                    IMGBasura.IsVisible = false;
-                    ActualizarTabla();
-                }
-                else
+                if (!await App.Database.UpdateUserAsync(App.MyUser))
                 {
                     await DisplayAlert("Error", "Por favor intenta mas tarde", "Aceptar");
+                    return;
                 }
-
+             
+                await DisplayAlert("Hecho", "Se eliminaron los elementos", "Aceptar");
+                IMGBasura.IsVisible = false;
+                ActualizarTabla();
             }
             catch (Exception ex)
             {

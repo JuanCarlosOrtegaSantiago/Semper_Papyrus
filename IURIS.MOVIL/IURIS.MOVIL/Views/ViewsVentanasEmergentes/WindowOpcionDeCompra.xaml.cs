@@ -1,4 +1,5 @@
-﻿using IURIS.BIZ;
+﻿using Acr.UserDialogs;
+using IURIS.BIZ;
 using IURIS.COMMON.Entidades.UsuariosDeAplicacion;
 using IURIS.COMMON.Entidades.UsuariosDeAplicacion.ComponentesDeUsuario.DatosCriticos;
 using IURIS.COMMON.Interfaces;
@@ -12,7 +13,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -33,13 +34,19 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
         TipoDeCompra MiCompra;
 
         Usuarios _User;
-        public WindowOpcionDeCompra(Usuarios user)
+        public WindowOpcionDeCompra()
         {
             InitializeComponent();
+            MainThread.BeginInvokeOnMainThread(async () =>
+            {
+                await Task.Delay(1000);
+                manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
+                _User = manejadorDeUsuarioAplicacion.EncontrarUsuario(App.MyUser.Correo, App.MyUser.Contrasenia);
+            });
+            UserDialogs.Instance.ShowLoading("Validando datos\nEspere...", MaskType.Gradient);
+            while (_User != null) ;
 
-            manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
-
-            _User = user;
+            UserDialogs.Instance.HideLoading();
         }
 
         private void _Btn39Mensuales_Clicked(object sender, EventArgs e)

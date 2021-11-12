@@ -32,8 +32,6 @@ namespace IURIS.MOVIL.Detail
     public partial class PageMotrarCapitulosConCodigos : ContentPage
     {
         readonly Titulo _titulo;
-        readonly Usuarios _Usuario;
-        //readonly Leyes _ley;
         MyLey _MyLey;
         public bool _ArticuloSeleccionado;
         static int _NumRecultadosEncontrados = 0;
@@ -46,7 +44,7 @@ namespace IURIS.MOVIL.Detail
         int numToques = 0;
         ClassAnuncio Anuncio = new ClassAnuncio();
 
-        public PageMotrarCapitulosConCodigos(Titulo titulo, Usuarios usuarios, MyLey ley, MTAdView adView)
+        public PageMotrarCapitulosConCodigos(Titulo titulo, MyLey ley, MTAdView adView)
         {
             InitializeComponent();
             _MyLey = ley;
@@ -58,8 +56,6 @@ namespace IURIS.MOVIL.Detail
             });
 
             _titulo = titulo;
-            _Usuario = usuarios;
-            //_ley = ley;
 
             manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
 
@@ -198,7 +194,7 @@ namespace IURIS.MOVIL.Detail
             var articulo = ((Image)sender).BindingContext as Articulo;
             if (articulo == null) return;
 
-            await PopupNavigation.Instance.PushAsync(new WindowOfEmergencyCrearNota(_titulo, _Usuario, articulo, _MyLey, _Capitulo), false);
+            await PopupNavigation.Instance.PushAsync(new WindowOfEmergencyCrearNota(_titulo, articulo, _MyLey, _Capitulo), false);
 
         }
 
@@ -228,12 +224,11 @@ namespace IURIS.MOVIL.Detail
 
         private async void TapGestureRecognizer_Tapped_4(object sender, EventArgs e)
         {
-
             var articulo = ((Image)sender).BindingContext as Articulo;
             if (articulo == null) return;
+            
             _Articulo = articulo;
-            await PopupNavigation.Instance.PushAsync(new WindowOfMenuAccion(_titulo, _Usuario, articulo, _MyLey, _Capitulo), false);
-            //await PopupNavigation.Instance.PushAsync(new WindowOfMenuAccion(_titulo, _Usuario, articulo, _ley, _Capitulo), false);
+            await PopupNavigation.Instance.PushAsync(new WindowOfMenuAccion(_titulo, articulo, _MyLey, _Capitulo), false);
             expandr.IsEnabled = true;
         }
 
@@ -371,7 +366,7 @@ namespace IURIS.MOVIL.Detail
                 _Articulo.Subrayados.Add(subrayado);
                 _Articulo.Subrayados.Add(subrayadoTemp);
 
-                if (manejadorDeUsuarioAplicacion.Modificar(_Usuario)) IsRefreshing = true;
+                if (await App.Database.UpdateUserAsync(App.MyUser)) IsRefreshing = true;
                 else await DisplayAlert("Error", "No se han guardado los cambios", "Ok");
             }
             catch (Exception ex)
@@ -418,7 +413,7 @@ namespace IURIS.MOVIL.Detail
                     _Articulo.Subrayados.Remove(subrayado);
                 }
 
-                if (manejadorDeUsuarioAplicacion.Modificar(_Usuario)) 
+                if (await App.Database.UpdateUserAsync(App.MyUser)) 
                     IsRefreshing = true;
             }
             catch (Exception)

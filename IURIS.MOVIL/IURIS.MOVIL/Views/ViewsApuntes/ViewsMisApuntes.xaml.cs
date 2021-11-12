@@ -17,15 +17,9 @@ namespace IURIS.MOVIL.Views.ViewsApuntes
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ViewsMisApuntes : ContentPage
     {
-        readonly Usuarios _User;
-        IManejadorDeUsuarioAplicacion manejadorDeUsuarioAplicacion;
-        
-        public ViewsMisApuntes(Usuarios usuarios)
+        public ViewsMisApuntes()
         {
             InitializeComponent();
-            manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
-            _User = usuarios;
-
             DatosAInicializar();
         }
 
@@ -37,7 +31,7 @@ namespace IURIS.MOVIL.Views.ViewsApuntes
         private void LlenadosDeCampos()
         {
             clltionApuntes.ItemsSource = null;
-            clltionApuntes.ItemsSource = _User.Apuntes;
+            clltionApuntes.ItemsSource = App.MyUser.Apuntes;
         }
 
         private void clltionApuntes_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -46,20 +40,20 @@ namespace IURIS.MOVIL.Views.ViewsApuntes
             if (apunte == null) return;
 
                 App.masterDetail.IsPresented = false;
-                App.masterDetail.Detail = new NavigationPage(new MisApuntes(_User, apunte));
+                App.masterDetail.Detail = new NavigationPage(new MisApuntes(apunte));
         }
 
-        private void SwipeItemView_Invoked(object sender, EventArgs e)
+        private async void SwipeItemView_Invoked(object sender, EventArgs e)
         {
             var MiApunte = ((SwipeItemView)sender).BindingContext as Apunte;
 
             if (MiApunte == null) return;
 
-            _User.Apuntes.Remove(MiApunte);
+            App.MyUser.Apuntes.Remove(MiApunte);
 
-            if (!manejadorDeUsuarioAplicacion.Modificar(_User)) return;
+            if (!await App.Database.UpdateUserAsync(App.MyUser)) return;
 
-            DisplayAlert("", "Se elimino el apunte", "Ok");
+            await DisplayAlert("", "Se elimino el apunte", "Ok");
             LlenadosDeCampos();
         }
     }

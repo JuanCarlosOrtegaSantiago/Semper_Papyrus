@@ -22,14 +22,11 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class WindowOfEmergencyNuevaClasificacion : PopupPage
     {
-        IManejadorDeUsuarioAplicacion manejadorDeUsuarioAplicacion;
-        Usuarios _User;
         MyLey _MyLey;
         Articulo _Articulo;
-        public WindowOfEmergencyNuevaClasificacion(Usuarios usuarios,MyLey leyes, Articulo articulo)
+        public WindowOfEmergencyNuevaClasificacion(MyLey leyes, Articulo articulo)
         {
             InitializeComponent();
-            _User = usuarios;
             _MyLey = leyes;
             _Articulo = articulo;
         }
@@ -50,30 +47,24 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
             if (_Articulo != null) 
                 clasificacion.MisArticulos.Add(_Articulo);
 
-            _User.MisLeyes.Where(w => w.CodigoLey == _MyLey.CodigoLey).SingleOrDefault().Clasificaciones.Add(clasificacion);
+            App.MyUser.MisLeyes.Where(w => w.CodigoLey == _MyLey.CodigoLey).SingleOrDefault().Clasificaciones.Add(clasificacion);
 
             try
             {
 
-                manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
-
-                if (manejadorDeUsuarioAplicacion.Modificar(_User))
-                {
-                    await DisplayAlert("Hecho", "Agregada correctamente", "Ok");
-                    App.masterDetail.IsPresented = false;
-                    App.masterDetail.Detail = new NavigationPage(new ViewsMisClasificaciones(_User, null, _MyLey));
-                }
-                else
+                if (!await App.Database.UpdateUserAsync(App.MyUser))
                 {
                     await DisplayAlert("Error", "No se pudo completar la operación", "OK");
+                    return;
                 }
-
+                    await DisplayAlert("Hecho", "Agregada correctamente", "Ok");
+                    App.masterDetail.IsPresented = false;
+                    App.masterDetail.Detail = new NavigationPage(new ViewsMisClasificaciones(null, _MyLey));
             }
             catch
             {
                 return;
             }
-
 
             await PopupNavigation.Instance.PopAsync(false);
         }

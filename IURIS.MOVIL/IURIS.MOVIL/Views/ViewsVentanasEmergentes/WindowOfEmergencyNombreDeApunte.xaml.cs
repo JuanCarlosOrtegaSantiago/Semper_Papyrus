@@ -20,16 +20,11 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class WindowOfEmergencyNombreDeApunte : PopupPage
     {
-        IManejadorDeUsuarioAplicacion manejadorDeUsuarioAplicacion;
-        readonly Usuarios _User;
         readonly string _TextoApunte;
-        public WindowOfEmergencyNombreDeApunte(Usuarios usuarios, string TextoApunte)
+        public WindowOfEmergencyNombreDeApunte(string TextoApunte)
         {
             InitializeComponent();
-
-            _User = usuarios;
             _TextoApunte = TextoApunte;
-
         }
 
         private void BtnCancelar_Clicked(object sender, EventArgs e)
@@ -47,14 +42,13 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
                 Nombre = EntryNombreApunte.Text
             };
 
-            _User.Apuntes.Add(apunte);
-            manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
-            if (!manejadorDeUsuarioAplicacion.Modificar(_User)) return;
+            App.MyUser.Apuntes.Add(apunte);
+            if (!await App.Database.UpdateUserAsync(App.MyUser)) return;
 
             await DisplayAlert("", "Apunte agregado correctamente", "Ok");
             await PopupNavigation.Instance.PopAsync(false);
             App.masterDetail.IsPresented = false;
-            App.masterDetail.Detail = new NavigationPage(new MisApuntes(_User, null));
+            App.masterDetail.Detail = new NavigationPage(new MisApuntes(null));
 
         }
     }

@@ -15,14 +15,12 @@ namespace IURIS.MOVIL
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FirtsView : MasterDetailPage
     {
-        static Usuarios usuario;
-        public FirtsView(Usuarios usuarios)
+        public FirtsView()
         {
             InitializeComponent();
-            usuario = usuarios;
 
-            this.Master = new ViewMaster(usuario);
-            this.Detail = new NavigationPage(new ViewDetail(usuario));
+            this.Master = new ViewMaster();
+            this.Detail = new NavigationPage(new ViewDetail());
             //Detail = new NavigationPage(new LoginRegister() { BarBackgroundColor = Color.LimeGreen, BarTextColor = Color.White });
 
             App.masterDetail = this;

@@ -24,29 +24,18 @@ namespace IURIS.MOVIL.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ViewsMisClasificaciones : ContentPage
     {
-        IManejadorDeUsuarioAplicacion manejadorDeUsuarioAplicacion;
-        Usuarios _User;
         Articulo _Articulo;
-        //Leyes _Leyes;
         public bool nuevoArticulo = false;
-        MyLey _MyLey;
+        readonly MyLey _MyLey;
 
-        public ViewsMisClasificaciones(Usuarios Usuario,Articulo articulo, MyLey leyes)
+        public ViewsMisClasificaciones(Articulo articulo, MyLey leyes)
         {
             InitializeComponent();
-            manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
+            
             _MyLey = leyes;
             _Articulo = articulo;
             ActualizarDatos();
-
-            //DatosAInicializar(Usuario);
         }
-
-        private void DatosAInicializar(Usuarios usuarios)
-        {
-            _User = manejadorDeUsuarioAplicacion.EncontrarUsuario(usuarios.Correo, usuarios.Contrasenia);
-        }
-
 
         void ActualizarDatos()
         {
@@ -56,36 +45,32 @@ namespace IURIS.MOVIL.Views
 
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
-            await PopupNavigation.Instance.PushAsync(new WindowOfEmergencyNuevaClasificacion(_User, _MyLey,_Articulo));
+            await PopupNavigation.Instance.PushAsync(new WindowOfEmergencyNuevaClasificacion(_MyLey,_Articulo));
         }
 
         private async void clltionClasificaciones_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-                ClasificacionPUsuario clasificacion = (ClasificacionPUsuario)clltionClasificaciones.SelectedItem;
+            ClasificacionPUsuario clasificacion = (ClasificacionPUsuario)clltionClasificaciones.SelectedItem;
             if (_Articulo != null)
             {
+
 
                 if (!(clasificacion.MisArticulos.Where(w => w.NumArticulo == _Articulo.NumArticulo).Count() >= 1))
                 {
 
 
                     clasificacion.MisArticulos.Add(_Articulo);
-
-                    manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
-
                     try
                     {
 
-                        if (manejadorDeUsuarioAplicacion.Modificar(_User))
+                        if (!await App.Database.UpdateUserAsync(App.MyUser))
                         {
-                            await DisplayAlert("Hecho", "Agregada correctamente", "Ok");
-                            _Articulo = null;
-                        }
-                        else
-                        {
-
                             await DisplayAlert("Error", "Por favor intenta mas tarde", "Ok");
+                            return;
                         }
+
+                        await DisplayAlert("Hecho", "Agregada correctamente", "Ok");
+                        _Articulo = null;
 
                     }
                     catch (Exception ex)
@@ -95,19 +80,18 @@ namespace IURIS.MOVIL.Views
                         return;
                     }
                 }
-
             }
-                await Navigation.PushAsync(new ViewMiClasificacionPersonalizada(clasificacion, _User, _MyLey), false);
+            await Navigation.PushAsync(new ViewMiClasificacionPersonalizada(clasificacion, _MyLey), false);
         }
 
-        private void SwipeItemView_Invoked(object sender, EventArgs e)
+        private async void SwipeItemView_Invoked(object sender, EventArgs e)
         {
             var MiClasificacion = ((SwipeItemView)sender).BindingContext as ClasificacionPUsuario;
 
             if (MiClasificacion == null) return;
-            _User.MisLeyes.Where(w => w.CodigoLey == _MyLey.CodigoLey).SingleOrDefault().Clasificaciones.Remove(MiClasificacion);
+            App.MyUser.MisLeyes.Where(w => w.CodigoLey == _MyLey.CodigoLey).SingleOrDefault().Clasificaciones.Remove(MiClasificacion);
 
-            if (!manejadorDeUsuarioAplicacion.Modificar(_User)) return;
+            if (!await App.Database.UpdateUserAsync(App.MyUser)) return;
             ActualizarDatos();
         }
     }

@@ -34,7 +34,6 @@ namespace IURIS.MOVIL
         bool Recuerdame = false;
         List<Leyes> LeyesParaActualizar=new List<Leyes>();
         List<Leyes> LeyesActualizadas;
-        Leyes _leyGuardada;
         public PageInicioDeSesion()
         {
             InitializeComponent();
@@ -106,23 +105,17 @@ namespace IURIS.MOVIL
                     CorreoSinEspacios = CorreoSinEspacios.TrimEnd();
 
                     var users = await App.Database.GetPeopleAsync();
-                    if (users.Count > 0)
+                    App.MyUser = users.Find(r => r.Correo == CorreoSinEspacios && r.Contrasenia == int.Parse(EntryPasswor.Text));
+
+                    if (App.MyUser != null)
                     {
-                        var _User = users.Find(r => r.Correo == CorreoSinEspacios && r.Contrasenia == int.Parse(EntryPasswor.Text));
+                        Intentos = 0;
+                        await Task.Delay(1000);
+                        UserDialogs.Instance.HideLoading();
+                        await Navigation.PushAsync(new FirtsView(), false);
 
-                        if (_User != null)
-                        {
-                            App.MyUser = _User;
-                            Intentos = 0;
-                            await Task.Delay(1000);
-                            UserDialogs.Instance.HideLoading();
-                            await Navigation.PushAsync(new FirtsView(this._User), false);
-
-                            return;
-                        }
-
+                        return;
                     }
-
 
                     _User = manejadorDeUsuarioAplicacion.EncontrarUsuario(CorreoSinEspacios, int.Parse(EntryPasswor.Text));
 
@@ -143,12 +136,9 @@ namespace IURIS.MOVIL
                         LocalSaveUser localSaveUser = new LocalSaveUser(_User);
                         if (!await localSaveUser.ExisteUsuario()) localSaveUser.Save();
 
-                        //UserDialogs.Instance.HideLoading();
-                        //UserDialogs.Instance.ShowLoading("Obteniendo leyes");
-                        //await Task.Delay(300);
                         //if (HayActualizacion()) Actualizaeyes();
 
-                        await Navigation.PushAsync(new FirtsView(_User), false);
+                        await Navigation.PushAsync(new FirtsView(), false);
                     }
                     else
                     {

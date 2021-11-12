@@ -22,7 +22,7 @@ namespace IURIS.MOVIL.Modelos_y_clases
         }
         public bool DeleteTable()
         {
-             _database.DropTableAsync<MyUser>().Wait();
+            _database.DropTableAsync<MyUser>().Wait();
             return true;
         }
 
@@ -36,21 +36,28 @@ namespace IURIS.MOVIL.Modelos_y_clases
         // Save registers
         public async void SavePersonAsync(MyUser User)
         {
-           await SQLiteNetExtensionsAsync.Extensions.WriteOperations.InsertWithChildrenAsync(_database, User );
+            await SQLiteNetExtensionsAsync.Extensions.WriteOperations.InsertWithChildrenAsync(_database, User);
         }
 
         // Delete registers
         public async void DeletePersonAsync(MyUser User)
         {
-            await SQLiteNetExtensionsAsync.Extensions.WriteOperations.DeleteAsync(_database, User,true);
+            await SQLiteNetExtensionsAsync.Extensions.WriteOperations.DeleteAsync(_database, User, true);
             //return _database.DeleteAsync(User);
         }
 
         // Save registers
-        public async void  UpdatePersonAsync(MyUser User)
+        public async Task<bool> UpdateUserAsync(MyUser User)
         {
-            //return _database.UpdateAsync(User);
-            await SQLiteNetExtensionsAsync.Extensions.WriteOperations.UpdateWithChildrenAsync(_database, User);
+            try
+            {
+                await SQLiteNetExtensionsAsync.Extensions.WriteOperations.UpdateWithChildrenAsync(_database, User);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
 

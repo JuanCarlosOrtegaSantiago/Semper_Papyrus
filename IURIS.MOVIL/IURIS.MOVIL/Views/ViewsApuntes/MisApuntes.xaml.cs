@@ -20,14 +20,12 @@ namespace IURIS.MOVIL.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MisApuntes : ContentPage
     {
-        readonly Usuarios _User;
         public Apunte _Apunte;
         public Apunte _ApunteCopia;
-        IManejadorDeUsuarioAplicacion manejadorDeUsuarioAplicacion;
-        public MisApuntes(Usuarios usuarios, Apunte apunte)
+        
+        public MisApuntes(Apunte apunte)
         {
             InitializeComponent();
-            _User = usuarios;
             _Apunte = apunte;
             _ApunteCopia = apunte;
 
@@ -36,7 +34,7 @@ namespace IURIS.MOVIL.Views
 
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new ViewsMisApuntes(_User), false);
+            await Navigation.PushAsync(new ViewsMisApuntes(), false);
         }
 
         private async void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
@@ -48,15 +46,18 @@ namespace IURIS.MOVIL.Views
                 if (_Apunte.MiApunte.Equals(TxtMiApunte.Text)) return;
 
                 _Apunte.MiApunte = TxtMiApunte.Text;
-                manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
-                if (!manejadorDeUsuarioAplicacion.Modificar(_User)) await DisplayAlert("Error", "Intenta mas tarde", "Aceptar");
+
+                if (!await App.Database.UpdateUserAsync(App.MyUser))
+                {
+                    await DisplayAlert("Error", "Intenta mas tarde", "Aceptar");
+                    return;
+                }
 
                 TxtMiApunte.Text = null;
             }
             else
             {
-
-                WindowOfEmergencyNombreDeApunte pantalla = new WindowOfEmergencyNombreDeApunte(_User, TxtMiApunte.Text);
+                WindowOfEmergencyNombreDeApunte pantalla = new WindowOfEmergencyNombreDeApunte(TxtMiApunte.Text);
                 await PopupNavigation.Instance.PushAsync(pantalla);
             }
         }

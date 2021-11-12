@@ -24,18 +24,15 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
     {
         readonly IManejadorDeUsuarioAplicacion manejadorDeUsuarioAplicacion;
         readonly Titulo _Titulo;
-        readonly Usuarios _User;
         readonly Articulo _Articulo;
-        //readonly Leyes _Ley;
         MyLey _MyLey;
         readonly Capitulo _Capitulo;
 
-        public WindowOfEmergencyCrearNota(Titulo titulo, Usuarios usuarios, Articulo articulo,MyLey ley, Capitulo capitulo)
+        public WindowOfEmergencyCrearNota(Titulo titulo, Articulo articulo,MyLey ley, Capitulo capitulo)
         {
             InitializeComponent();
             _Articulo = articulo;
             _Titulo = titulo;
-            _User = usuarios;
             _MyLey = ley;
             _Capitulo = capitulo;
 
@@ -64,7 +61,7 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
             PopupNavigation.Instance.PopAsync(false);
         }
 
-        private void BtnGuardar_Clicked(object sender, EventArgs e)
+        private async void BtnGuardar_Clicked(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(EntryNombreApunte.Text)) return;
 
@@ -87,22 +84,22 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
                 //int NumIndex= _User.MisLeyes.IndexOf(_LeyCopia);
                 //_User.MisLeyes.RemoveAt(NumIndex);
                 //_User.MisLeyes.Insert(NumIndex,_Ley);
-                if (!manejadorDeUsuarioAplicacion.Modificar(_User)) return;
+                if (!await App.Database.UpdateUserAsync(App.MyUser)) return;
             }
 
 
-            PopupNavigation.Instance.PopAsync(false);
+           await PopupNavigation.Instance.PopAsync(false);
 
         }
 
-        private void BtnEliminar_Clicked(object sender, EventArgs e)
+        private async void BtnEliminar_Clicked(object sender, EventArgs e)
         {
             _Articulo.NotaAdjunta = false;
             _Articulo.TextoDeNota = null;
 
-            if (!manejadorDeUsuarioAplicacion.Modificar(_User)) return;
+            if (!await App.Database.UpdateUserAsync(App.MyUser)) return;
 
-            PopupNavigation.Instance.PopAsync(false);
+            await PopupNavigation.Instance.PopAsync(false);
 
         }
     }

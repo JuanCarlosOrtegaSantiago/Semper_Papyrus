@@ -24,25 +24,38 @@ namespace IURIS.MOVIL
         public MainPage()
         {
             InitializeComponent();
-                UserDialogs.Instance.ShowLoading("Validando\npor favor espere.", MaskType.None);
+            HabilitarBotones(false);
+            UserDialogs.Instance.ShowLoading("Validando\npor favor espere.", MaskType.None);
 
             MainThread.BeginInvokeOnMainThread(async () =>
             {
+                await Task.Delay(1000);
+
                 var users = await App.Database.GetPeopleAsync();
                 App.MyUser = users.FirstOrDefault();
                 if (App.MyUser != null)
                 {
                     Intentos = 0;
-                    await Navigation.PushAsync(new FirtsView(null), false);
+                    await Navigation.PushAsync(new FirtsView(), false);
 
-                    //await Task.Delay(500);
+                    await Task.Delay(500);
                     UserDialogs.Instance.HideLoading();
                     return;
                 }
+                else
+                {
+                    HabilitarBotones(true);
+                }
             });
 
-                    UserDialogs.Instance.HideLoading();
+            UserDialogs.Instance.HideLoading();
             DatosAIniciar();
+        }
+
+        private void HabilitarBotones(bool v)
+        {
+            btnCrearCuenta.IsEnabled = v;
+            BtnEntrar.IsEnabled = v;
         }
 
         private void DatosAIniciar()

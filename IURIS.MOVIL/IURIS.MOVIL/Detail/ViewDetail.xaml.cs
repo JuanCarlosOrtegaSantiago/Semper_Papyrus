@@ -27,13 +27,11 @@ namespace IURIS.MOVIL.Detail
     {
 
         ClassAnuncio Anuncio = new ClassAnuncio();
-        public Usuarios _User;
         MyLey _MyLey;
 
-        public ViewDetail(Usuarios usuarios)
+        public ViewDetail()
         {
             InitializeComponent();
-            _User = usuarios;
             DatosAInicializar();
 
             MainThread.BeginInvokeOnMainThread(async () =>
@@ -44,11 +42,11 @@ namespace IURIS.MOVIL.Detail
 
             Anuncio.MostrarAnuncioPantalla();
 
-            if (_User != null)
-            {
-                HerramientasGenerales herramientasGenerales = new HerramientasGenerales(_User);
-                herramientasGenerales.RenovarSuscripcion();
-            }
+            //if (_User != null)
+            //{
+            //    HerramientasGenerales herramientasGenerales = new HerramientasGenerales(_User);
+            //    herramientasGenerales.RenovarSuscripcion();
+            //}
 
             var test = CrossMTAdmob.Current.IsInterstitialLoaded().ToString();
             CrossMTAdmob.Current.ShowInterstitial();
@@ -89,7 +87,7 @@ namespace IURIS.MOVIL.Detail
 
             MostrarSearch(false);
             
-            await Navigation.PushAsync(new PageMotrarCapitulosConCodigos(titulo, _User, _MyLey, myAds), false);
+            await Navigation.PushAsync(new PageMotrarCapitulosConCodigos(titulo, _MyLey, myAds), false);
             ClltionTitulos.SelectedItem = null;
 
         }

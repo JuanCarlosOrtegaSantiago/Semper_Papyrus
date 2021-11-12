@@ -17,59 +17,39 @@ namespace IURIS.MOVIL.Master
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ViewMaster : ContentPage
     {
-        readonly Usuarios _User;
-        public ViewMaster(Usuarios usuarios)
+        public ViewMaster()
         {
             InitializeComponent();
-            _User = usuarios;
         }
-
-        //private async void Primera_Clicked(object sender, EventArgs e)
-        //{
-        //    App.masterDetail.IsPresented = false;
-        //    await App.masterDetail.Detail.Navigation.PushAsync(new Page1());
-        //}
-
-        //private async void Segundo_Clicked(object sender, EventArgs e)
-        //{
-        //    App.masterDetail.IsPresented = false;
-        //    await App.masterDetail.Detail.Navigation.PushAsync(new Page1());
-
-        //}
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             App.masterDetail.IsPresented = false;
-            App.masterDetail.Detail = new NavigationPage(new ViewsMisClasificaciones(_User,null,App.MyUser.MisLeyes.Where(w=>w.CodigoLey==App.MyUser.MiUltimaLeyCargada).SingleOrDefault()));
-
-            //await App.masterDetail.Detail.Navigation.PushAsync(new ViewsMisClasificaciones(User));
+            App.masterDetail.Detail = new NavigationPage(new ViewsMisClasificaciones(null,App.MyUser.MisLeyes.Where(w=>w.CodigoLey==App.MyUser.MiUltimaLeyCargada).SingleOrDefault()));
         }
 
         private  void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
         {
             App.masterDetail.IsPresented = false;
-            App.masterDetail.Detail = new NavigationPage(new MisApuntes(_User,null));
-            //await App.masterDetail.Detail.Navigation.PushAsync(new MisApuntes());
+            App.masterDetail.Detail = new NavigationPage(new MisApuntes(null));
         }
 
         private void TapGestureRecognizer_Tapped_2(object sender, EventArgs e)
         {
-
-            //revisar para que no inicie de 0
             App.masterDetail.IsPresented = false;
-            App.masterDetail.Detail =  new NavigationPage(new ViewDetail(_User));
+            App.masterDetail.Detail =  new NavigationPage(new ViewDetail());
         }
 
         private void TapGestureRecognizer_Tapped_3(object sender, EventArgs e)
         {
             App.masterDetail.IsPresented = false;
-            App.masterDetail.Detail = new NavigationPage(new WindowDeCopmpa(_User));
+            App.masterDetail.Detail = new NavigationPage(new WindowDeCopmpa());
         }
 
         private void TapGestureRecognizer_Tapped_4(object sender, EventArgs e)
         {
             App.masterDetail.IsPresented = false;
-            App.masterDetail.Detail = new NavigationPage(new WindowOpcionDeCompra(_User));
+            App.masterDetail.Detail = new NavigationPage(new WindowOpcionDeCompra());
         }
     }
 }
