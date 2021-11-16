@@ -25,7 +25,14 @@ namespace IURIS.MOVIL
         {
             InitializeComponent();
             HabilitarBotones(false);
+            DatosAValidar();
+            DatosAIniciar();
+        }
+
+        private async void DatosAValidar()
+        {
             UserDialogs.Instance.ShowLoading("Validando\npor favor espere.", MaskType.None);
+            await Task.Delay(1000);
 
             MainThread.BeginInvokeOnMainThread(async () =>
             {
@@ -38,7 +45,7 @@ namespace IURIS.MOVIL
                     Intentos = 0;
                     await Navigation.PushAsync(new FirtsView(), false);
 
-                    await Task.Delay(500);
+                    await Task.Delay(1000);
                     UserDialogs.Instance.HideLoading();
                     return;
                 }
@@ -49,7 +56,6 @@ namespace IURIS.MOVIL
             });
 
             UserDialogs.Instance.HideLoading();
-            DatosAIniciar();
         }
 
         private void HabilitarBotones(bool v)

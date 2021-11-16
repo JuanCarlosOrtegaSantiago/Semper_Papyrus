@@ -18,7 +18,7 @@
     <FlexLayout >
         <StackLayout Orientation="Horizontal" FlexLayout.Shrink="0" Margin="10,5">
 
-            <Local:CustomEntry x:Name="EntryCodigo" TextColor="{StaticResource PrimaryColor}" Placeholder="  Introducir codigo" PlaceholderColor="{StaticResource PrimaryColor}" FontSize="Title" HorizontalOptions="FillAndExpand" Completed="TapGestureRecognizer_Tapped"/>
+            <Local:CustomEntry x:Name="EntryCodigo" TextColor="{StaticResource PrimaryColor}" Placeholder="  Introducir código" PlaceholderColor="{StaticResource PrimaryColor}" FontSize="Title" HorizontalOptions="FillAndExpand" Completed="TapGestureRecognizer_Tapped"/>
             <Image Source="Refresh.png" WidthRequest="40" HorizontalOptions="End" VerticalOptions="Center" HeightRequest="40" Margin="20,0" >
                 <Image.GestureRecognizers>
                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>

@@ -30,17 +30,24 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
     {
         IManejadorDeLeyes manejadorDeLeyes;
         IManejadorDeUsuarioAplicacion manejadorDeUsuario;
+        List<Leyes> Leyes;
         Const _Const = new Const();
         public WindowDeCopmpa()
         {
             InitializeComponent();
             BindingContext = this;
-
+         
+            MainThread.BeginInvokeOnMainThread(async () =>
+            {
+                await Task.Delay(500);
+                manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
+                Leyes = manejadorDeLeyes.Listar;
+            });
 
             CrossMTAdmob.Current.LoadInterstitial("ca-app-pub-3940256099942544/1033173712");
 
             CrossMTAdmob.Current.LoadRewardedVideo("ca-app-pub-3940256099942544/5224354917");
-            UserDialogs.Instance.Toast("\tPara eliminar una ley.\n Desliza hacia la izquierda la ley y preciona eliminar", TimeSpan.FromMilliseconds(5000));
+            UserDialogs.Instance.Toast(" Para eliminar una ley,\n desliza hacia la izquierda la ley y preciona eliminar", TimeSpan.FromMilliseconds(3000));
 
             CargarDatos();
 
@@ -57,100 +64,101 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
         {
             try
             {
-                    UserDialogs.Instance.ShowLoading("Validando datos\nEspere...", MaskType.Gradient);
-                MainThread.BeginInvokeOnMainThread(async () =>
+                UserDialogs.Instance.ShowLoading("Validando datos\nEspere...", MaskType.Gradient);
+                await Task.Delay(1000);
+                
+                manejadorDeUsuario = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
+                Usuarios _User = manejadorDeUsuario.EncontrarUsuario(App.MyUser.Correo, App.MyUser.Contrasenia);
+
+                if (_User == null)
                 {
-                    await Task.Delay(1000);
-
-                    manejadorDeUsuario = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
-
-                    Usuarios _User = manejadorDeUsuario.EncontrarUsuario(App.MyUser.Correo, App.MyUser.Contrasenia);
-
-                    if(_User== null)
-                    {
-                        UserDialogs.Instance.HideLoading();
-                        return;
-                    }
-
-                    HerramientasGenerales herramientasGenerales = new HerramientasGenerales(_User);
-                    herramientasGenerales.RenovarSuscripcion();
-
                     UserDialogs.Instance.HideLoading();
-                    UserDialogs.Instance.ShowLoading("Buscando ley", MaskType.Gradient);
-                    await Task.Delay(1000);
+                    return;
+                }
 
-                    manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
+                HerramientasGenerales herramientasGenerales = new HerramientasGenerales(_User);
+                herramientasGenerales.RenovarSuscripcion();
 
-                    bool ExisteLey = false;
-                    Leyes _LeyComprada = null;
-                    string _1LeyMas = null;
-                    if (_User.DatosSobreUsuario.TipoDeCompra != null) _1LeyMas = _User.DatosSobreUsuario.TipoDeCompra.Find(w => w == _Const._ComprarEspacio1Ley || w == _Const._39Mensuales);
+                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.ShowLoading("Buscando ley", MaskType.Gradient);
+                await Task.Delay(1000);
 
-                    if (_1LeyMas != null && _User.MisLeyes.Count >= _User.DatosSobreUsuario.NumLeyesPermitidas)
-                    {
-                        UserDialogs.Instance.HideLoading();
-                        await PopupNavigation.Instance.PushAsync(new WindowOfComprarEspacio(_User));
-                        return;
-                    }
+                bool ExisteLey = false;
+                Leyes _LeyComprada = null;
+                string _1LeyMas = null;
 
+                if (_User.DatosSobreUsuario.TipoDeCompra != null) _1LeyMas = _User.DatosSobreUsuario.TipoDeCompra.Find(w => w == _Const._ComprarEspacio1Ley || w == _Const._39Mensuales);
 
-                    if (string.IsNullOrEmpty(EntryCodigo.Text)) return;
-                    _LeyComprada = manejadorDeLeyes.BuscarPorCodigo(EntryCodigo.Text.ToUpper());
-
-                    if (_LeyComprada == null)
-                    {
-                        UserDialogs.Instance.HideLoading();
-                        await DisplayAlert("Error", "Codigo incorrecto\nIntenta de nuevo", "OK");
-                        return;
-                    }
-
-
-                    foreach (var Ley in _User.MisLeyes)
-                        if (_LeyComprada.id == Ley.id)
-                            ExisteLey = true;
-
-                    //_User.MisLeyes.ForEach(r => { if (r.id == _LeyComprada.id) ExisteLey = true; });
-
-                    if (ExisteLey)
-                    {
-                        UserDialogs.Instance.HideLoading();
-                        await DisplayAlert("", "El codigo ingresado\nCorresponde a una ley que ya \nse encuentra en tu coleccion", "OK");
-                        return;
-                    }
-
+                if (_1LeyMas != null && _User.MisLeyes.Count >= _User.DatosSobreUsuario.NumLeyesPermitidas)
+                {
                     UserDialogs.Instance.HideLoading();
-                    UserDialogs.Instance.ShowLoading("Agregando ley a tu lista", MaskType.Gradient);
-                    await Task.Delay(1000);
-                    _LeyComprada.FechaDeDescarga = DateTime.UtcNow.ToLocalTime();
+                    await PopupNavigation.Instance.PushAsync(new WindowOfComprarEspacio(_User));
+                    return;
+                }
 
-                    LocalSaveUser localSaveUser = new LocalSaveUser(_User);
 
-                    App.MyUser.MisLeyes.Add(localSaveUser.LeyToMyley(_LeyComprada));
-                    App.MyUser.MisLeyes.Where(w => w.CodigoLey == _LeyComprada.CodigoLey).SingleOrDefault().Clasificaciones = new List<ClasificacionPUsuario>();
+                if (string.IsNullOrEmpty(EntryCodigo.Text)) return;
+                while (Leyes==null);
 
-                    if (await App.Database.UpdateUserAsync(App.MyUser))
-                    {
-                        _LeyComprada.numDescargas += 1;
-                        manejadorDeLeyes.Modificar(_LeyComprada);
-                        UserDialogs.Instance.HideLoading();
-                        CargarDatos();
-                    }
-                    else
-                    {
-                        UserDialogs.Instance.HideLoading();
-                        await DisplayAlert("", "Ocurrio un error\nIntente mas tarde", "OK");
-                    }
 
-                    Limpiardatos();
+                _LeyComprada = Leyes.Find(w => w.CodigoLey.ToUpper() == EntryCodigo.Text.ToUpper());
+
+                if (_LeyComprada == null)
+                {
                     UserDialogs.Instance.HideLoading();
+                    await DisplayAlert("Error", "Codigo incorrecto\nIntenta de nuevo", "OK");
+                    return;
+                }
+
+
+                //foreach (var Ley in _User.MisLeyes)
+                //    if (_LeyComprada.id == Ley.id)
+                //        ExisteLey = true;
+
+                App.MyUser.MisLeyes.ForEach(r =>
+                {
+                    //if (r.id == _LeyComprada.id) ExisteLey = true;
+                    ExisteLey = r.CodigoLey == _LeyComprada.CodigoLey;
                 });
+
+                if (ExisteLey)
+                {
+                    UserDialogs.Instance.HideLoading();
+                    await DisplayAlert("", "El codigo ingresado\nCorresponde a una ley que ya \nse encuentra en tu lista", "OK");
+                    return;
+                }
+
+                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.ShowLoading("Agregando ley a tu lista", MaskType.Gradient);
+                await Task.Delay(1000);
+                _LeyComprada.FechaDeDescarga = DateTime.UtcNow.ToLocalTime();
+
+                LocalSaveUser localSaveUser = new LocalSaveUser(_User);
+
+                App.MyUser.MisLeyes.Add(localSaveUser.LeyToMyley(_LeyComprada));
+                App.MyUser.MisLeyes.Where(w => w.CodigoLey == _LeyComprada.CodigoLey).SingleOrDefault().Clasificaciones = new List<ClasificacionPUsuario>();
+
+                if (await App.Database.UpdateUserAsync(App.MyUser))
+                {
+                    _LeyComprada.numDescargas += 1;
+                    manejadorDeLeyes.Modificar(_LeyComprada);
+                    UserDialogs.Instance.HideLoading();
+                    CargarDatos();
+                }
+                else
+                {
+                    UserDialogs.Instance.HideLoading();
+                    await DisplayAlert("", "Ocurrio un error\nIntente mas tarde", "OK");
+                }
+
+                Limpiardatos();
             }
             catch (Exception ex)
             {
+                UserDialogs.Instance.HideLoading();
                 await DisplayAlert("Error", "Esta acción no se puede realizar por el momento\nIntente mas tarde", "OK");
                 return;
             }
-                UserDialogs.Instance.HideLoading();
         }
 
         private void Limpiardatos()

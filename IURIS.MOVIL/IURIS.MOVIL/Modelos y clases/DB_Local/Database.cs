@@ -17,12 +17,17 @@ namespace IURIS.MOVIL.Modelos_y_clases
         {
             //Establishing the conection
             _database = new SQLiteAsyncConnection(dbPath);
-            _database.CreateTableAsync<MyUser>().Wait();
+            CreateTable();
             _Path = dbPath;
         }
         public bool DeleteTable()
         {
             _database.DropTableAsync<MyUser>().Wait();
+            return true;
+        }
+        public bool CreateTable()
+        {
+            _database.CreateTableAsync<MyUser>().Wait();
             return true;
         }
 

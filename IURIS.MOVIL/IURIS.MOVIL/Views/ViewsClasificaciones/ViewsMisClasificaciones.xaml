@@ -7,7 +7,7 @@
              x:Class="IURIS.MOVIL.Views.ViewsMisClasificaciones" Title="Mis clasificaciones">
     <FlexLayout >
         
-        <Button Text="Crear clasificacion" Style="{StaticResource buttonSecundario}" FlexLayout.Shrink="0" FlexLayout.Basis="8%" FontSize="Title" Clicked="TapGestureRecognizer_Tapped" Margin="-5"/>
+        <Button Text="Crear clasificación" Style="{StaticResource buttonSecundario}" FlexLayout.Shrink="0" FlexLayout.Basis="8%" FontSize="Title" Clicked="TapGestureRecognizer_Tapped" Margin="-5"/>
 
         <CollectionView x:Name="clltionClasificaciones" SelectionMode="Single" ItemsSource="{Binding Clasificaciones}" SelectionChanged="clltionClasificaciones_SelectionChanged" >
             <CollectionView.EmptyView>
