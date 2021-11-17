@@ -26,7 +26,8 @@ namespace IURIS.DESKTOP.GUI.ADMIN
         public WindowOperaciones( )
         {
             InitializeComponent();
-
+            Background = (Brush)new BrushConverter().ConvertFrom(App.color);
+            ChkDataDev.IsChecked = App.AddDataDev;
             //try
             //{
             //    string mail = "salut";
@@ -52,9 +53,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
 
         private void BtnSubirNuevaLey_Click(object sender, RoutedEventArgs e)
         {
-            //EsNuevaLey = true;
             WindowOperacionesDeLeyes windowOperacionesDeLeyes = new WindowOperacionesDeLeyes();
-            //WindowOperacionesDeLeyes windowOperacionesDeLeyes = new WindowOperacionesDeLeyes(EsNuevaLey);
             this.Close();
             windowOperacionesDeLeyes.Show();
         }
@@ -107,20 +106,22 @@ namespace IURIS.DESKTOP.GUI.ADMIN
             windowClasificacion.Show();
         }
 
-        //private void BtnNuevaVenta_Click(object sender, RoutedEventArgs e)
-        //{
-        //    VenderLey = true;
-        //    WindowMostrarClasificaciones windowMostrarClasificaciones = new WindowMostrarClasificaciones(EditarLey, VenderLey);
-        //    //WindowOperacionesDeLeyes windowOperacionesDeLeyes = new WindowOperacionesDeLeyes(EsNuevaLey);
-        //    if (windowMostrarClasificaciones.HayInternet)
-        //    {
-        //        this.Close();
-        //        windowMostrarClasificaciones.Show();
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("Revisa tu conexion a internet", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-        //    }
-        //}
+        private void ChkDataDev_Checked(object sender, RoutedEventArgs e)
+        {
+            SetColor("#184a6e",true);
+        }
+
+        private void SetColor(string color, bool V)
+        {
+            App.AddDataDev = V;
+            App.color = color;
+            Background = (Brush)new BrushConverter().ConvertFrom(color);
+        }
+
+        private void ChkDataDev_Unchecked(object sender, RoutedEventArgs e)
+        {
+            SetColor("#640404",false);
+        }
+
     }
 }

@@ -36,6 +36,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
         bool CodigoExistente=false;
         readonly IManejadorDeLeyes manejadorDeLeyes;
         readonly IManejadorDeClasificaciones manejadorDeClasificaciones;
+        readonly IManejadorDeLeyes manejadorDeLeyesDev;
         public bool HayInternet = true;
         List<Fotografia> Fotografias;
         bool HayFotos;
@@ -49,11 +50,13 @@ namespace IURIS.DESKTOP.GUI.ADMIN
         public WindowOperacionesDeLeyes()
         {
             InitializeComponent();
-
+            Background = (Brush)new BrushConverter().ConvertFrom(App.color);
             try
             {
                 manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
                 manejadorDeClasificaciones = new ManejadorDeClasificaciones(new RepositorioGenerico<Clasificacion>());
+
+                if (App.AddDataDev) manejadorDeLeyesDev = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>(true));
                 DatosAInicializar();
 
             }
@@ -391,6 +394,15 @@ namespace IURIS.DESKTOP.GUI.ADMIN
                             {
                                 MessageBox.Show("La ley ha subida con exito", "Correcto", MessageBoxButton.OK, MessageBoxImage.Information);
                                 EstadoDeCajas(false);
+                            }
+
+                            if (App.AddDataDev)
+                            {
+                                if (manejadorDeLeyesDev.AGREGAR(ley))
+                                {
+                                    MessageBox.Show("La ley ha subida con exito", "Correcto", MessageBoxButton.OK, MessageBoxImage.Information);
+                                    EstadoDeCajas(false);
+                                }
                             }
 
                         }

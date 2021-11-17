@@ -30,12 +30,13 @@ namespace IURIS.DESKTOP.GUI.ADMIN
         public WindowMostrarClasificaciones()
         {
             InitializeComponent();
+            Background = (Brush)new BrushConverter().ConvertFrom(App.color);
             manejadorDeClasificaciones = new ManejadorDeClasificaciones(new RepositorioGenerico<Clasificacion>());
 
             try
             {
-            ListaDeClasificaciones.ItemsSource = null;
-            ListaDeClasificaciones.ItemsSource = manejadorDeClasificaciones.Listar;
+                ListaDeClasificaciones.ItemsSource = null;
+                ListaDeClasificaciones.ItemsSource = manejadorDeClasificaciones.Listar;
 
             }
             catch (Exception ex)

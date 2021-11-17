@@ -13,5 +13,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
     /// </summary>
     public partial class App : Application
     {
+        public static string color { get; set; }
+        public static bool AddDataDev { get; set; }
     }
 }

@@ -127,20 +127,20 @@ namespace IURIS.DESKTOP.GUI.ADMIN
             if (CmbxUsuario.SelectedItem == null)
             {
                 MessageBox.Show("Aún no has seleccionado tu usuario", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
             }
-            else
+
+            if (PswrDeUsuario.Password != contrasenia.Password)
             {
-                if (PswrDeUsuario.Password == contrasenia.Password)
-                {
-                    WindowOperaciones windowOperaciones = new WindowOperaciones();
-                    this.Close();
-                    windowOperaciones.Show();
-                }
-                else
-                {
-                    LblErrorDeContrasenia.Visibility = Visibility.Visible;
-                }
+                LblErrorDeContrasenia.Visibility = Visibility.Visible;
+                return;
             }
+
+            App.color = "#640404";
+            App.AddDataDev = false;
+            WindowOperaciones windowOperaciones = new WindowOperaciones();
+            this.Close();
+            windowOperaciones.Show();
         }
 
         private void PswrDeUsuario_KeyDown(object sender, KeyEventArgs e)
@@ -148,13 +148,11 @@ namespace IURIS.DESKTOP.GUI.ADMIN
             if (e.Key != Key.Enter) 
             {
                 LblErrorDeContrasenia.Visibility = Visibility.Collapsed;
-
+                return;
             }
-            if (e.Key == Key.Enter)
-            {
-                AccionEntrar();
+         
+            AccionEntrar();
 
-            }
         }
         
     }

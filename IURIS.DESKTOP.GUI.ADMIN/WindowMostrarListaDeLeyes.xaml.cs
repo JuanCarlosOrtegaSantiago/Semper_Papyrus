@@ -31,6 +31,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
         public WindowMostrarListaDeLeyes(Clasificacion clasificacion)
         {
             InitializeComponent();
+            Background = (Brush)new BrushConverter().ConvertFrom(App.color);
             manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
 
             List<Leyes> leyes = manejadorDeLeyes.Listar;
@@ -84,13 +85,11 @@ namespace IURIS.DESKTOP.GUI.ADMIN
 
         private void BtnEditarLey_Click(object sender, RoutedEventArgs e)
         {
-            if (ListLeyes.SelectedItem != null)
-            {
-                    Leyes ley = ListLeyes.SelectedItem as Leyes;
-                    WindowEditarLey windowEditarLey = new WindowEditarLey(ley);
-                    this.Close();
-                    windowEditarLey.Show();
-            }
+            if (ListLeyes.SelectedItem == null) return;
+
+            WindowEditarLey windowEditarLey = new WindowEditarLey(ListLeyes.SelectedItem as Leyes);
+            this.Close();
+            windowEditarLey.Show();
         }
     }
 }

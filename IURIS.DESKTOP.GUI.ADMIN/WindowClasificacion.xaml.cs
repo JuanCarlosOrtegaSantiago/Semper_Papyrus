@@ -26,9 +26,11 @@ namespace IURIS.DESKTOP.GUI.ADMIN
     public partial class WindowClasificacion : Window
     {
         readonly IManejadorDeClasificaciones ManejadorDeClasificaciones;
+        readonly IManejadorDeClasificaciones ManejadorDeClasificacionesDev;
         readonly IManejadorDeLeyes manejadorDeLeyes;
         bool EsEditar = false;
         public Clasificacion clasificacion = null;
+        public Clasificacion clasificacion_Dev = null;
         public bool NoHayClasificacion_Agregar = false;
         public bool SeAgregoUnaClasificacion = false;
 
@@ -36,10 +38,13 @@ namespace IURIS.DESKTOP.GUI.ADMIN
         public WindowClasificacion()
         {
             InitializeComponent();
+            Background = (Brush)new BrushConverter().ConvertFrom(App.color);
 
             //UsuarioGlobal = usuarioGlobal;
             ManejadorDeClasificaciones = new ManejadorDeClasificaciones(new RepositorioGenerico<Clasificacion>());
             manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
+
+            if (App.AddDataDev) ManejadorDeClasificacionesDev = new ManejadorDeClasificaciones(new RepositorioGenerico<Clasificacion>(true));
 
             CargarDatos();
             CamposHabilitados(false);
@@ -74,6 +79,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
             LimpiarCampos();
             WrpAgregarNuevaClasificacion.Visibility = Visibility.Visible;
             DTGClasificaciones.Visibility = Visibility.Collapsed;
+            EsEditar = false;
         }
 
         private void BtnGuardar_Click(object sender, RoutedEventArgs e)
@@ -89,6 +95,19 @@ namespace IURIS.DESKTOP.GUI.ADMIN
                     };
                     if (ManejadorDeClasificaciones.AGREGAR(clasificacion))
                     {
+                        try
+                        {
+                        if(App.AddDataDev)
+                            if (ManejadorDeClasificacionesDev.AGREGAR(clasificacion))
+                                MessageBox.Show("La clasificación se agrego correctamente", "Desarrollo", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                        }
+                        catch (Exception ex)
+                        {
+
+                            throw;
+                        }
+
                         MessageBox.Show("La clasificación se agrego correctamente", "", MessageBoxButton.OK, MessageBoxImage.Information);
                         CamposHabilitados(false);
                         LimpiarCampos();
@@ -113,16 +132,22 @@ namespace IURIS.DESKTOP.GUI.ADMIN
             {
                 if (!string.IsNullOrWhiteSpace(TxtNombreClasificacion.Text))
                 {
+
                     clasificacion.Nombre = TxtNombreClasificacion.Text;
+                    clasificacion_Dev.Nombre = TxtNombreClasificacion.Text;
+
                     if (ManejadorDeClasificaciones.Modificar(clasificacion))
                     {
+                        if (App.AddDataDev)
+                            if (ManejadorDeClasificacionesDev.Modificar(clasificacion_Dev)) MessageBox.Show("La clasificación se agrego correctamente", "Desarrollo", MessageBoxButton.OK, MessageBoxImage.Information);
+                       
                         MessageBox.Show("La clasificación se modifico correctamente", "", MessageBoxButton.OK, MessageBoxImage.Information);
                         CamposHabilitados(false);
                         LimpiarCampos();
                         CargarDatos();
                         WrpAgregarNuevaClasificacion.Visibility = Visibility.Collapsed;
                         DTGClasificaciones.Visibility = Visibility.Visible;
-
+                    
                         int leyes = 0;
                         while (leyes <= manejadorDeLeyes.Listar.Count())
                         {
@@ -163,7 +188,6 @@ namespace IURIS.DESKTOP.GUI.ADMIN
         private void BtnEliminar_Click(object sender, RoutedEventArgs e)
         {
             Clasificacion clasificacion = (Clasificacion)DTGClasificaciones.SelectedItem;
-
             if (clasificacion != null)
             {
                 if (MessageBox.Show("Realmente decea eliminar " + clasificacion.Nombre, "", MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.No) == MessageBoxResult.Yes)
@@ -177,6 +201,15 @@ namespace IURIS.DESKTOP.GUI.ADMIN
                     {
                         if (ManejadorDeClasificaciones.Eliminar(clasificacion.id))
                         {
+
+                            if (App.AddDataDev)
+                            {
+                                clasificacion_Dev = ManejadorDeClasificacionesDev.Listar.Find(r => r.Nombre == clasificacion.Nombre);
+                                if (ManejadorDeClasificacionesDev.Eliminar(clasificacion_Dev.id))
+                                    MessageBox.Show("La clasificación se elimino correctamente", "Desarrollo", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                            }
+
                             MessageBox.Show("La clasificación se elimino correctamente", "", MessageBoxButton.OK, MessageBoxImage.Information);
                             CargarDatos();
                             CamposHabilitados(false);
@@ -225,6 +258,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
                 DTGClasificaciones.Visibility = Visibility.Collapsed;
 
                 TxtNombreClasificacion.Text = clasificacion.Nombre;
+                if (App.AddDataDev) clasificacion_Dev = ManejadorDeClasificacionesDev.Listar.Find(r => r.Nombre == clasificacion.Nombre);
 
                 EsEditar = true;
             }

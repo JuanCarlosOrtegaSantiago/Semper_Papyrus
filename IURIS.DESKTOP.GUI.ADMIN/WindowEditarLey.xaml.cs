@@ -30,21 +30,29 @@ namespace IURIS.DESKTOP.GUI.ADMIN
         bool Articulo;
 
         Leyes CopiaLey;
+        Leyes CopiaLey_Dev;
 
         Titulo _titulo = null;
         Capitulo _capitulo = null;
         Articulo _articulo = null;
 
         IManejadorDeLeyes manejadorDeLeyes;
+        IManejadorDeLeyes manejadorDeLeyesDev;
         IManejadorDeClasificaciones manejadorDeClasificaciones;
 
         public WindowEditarLey(Leyes Ley)
         {
             InitializeComponent();
+            Background = (Brush)new BrushConverter().ConvertFrom(App.color);
             CopiaLey = Ley;
             manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
             manejadorDeClasificaciones = new ManejadorDeClasificaciones(new RepositorioGenerico<Clasificacion>());
 
+            if (App.AddDataDev)
+            {
+                manejadorDeLeyesDev = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>(true));
+                CopiaLey_Dev =manejadorDeLeyesDev.BuscarPorCodigo(Ley.CodigoLey);
+            }
             DatosAInicializar();
 
         }
@@ -122,6 +130,14 @@ namespace IURIS.DESKTOP.GUI.ADMIN
 
                     if (manejadorDeLeyes.Modificar(CopiaLey))
                     {
+
+
+                        if (App.AddDataDev)
+                        {
+                            CopiaLey.id = CopiaLey_Dev.id;
+                            if (manejadorDeLeyesDev.Modificar(CopiaLey))
+                                MessageBox.Show("Ley modificada satisfactoriamente", "Desarrollo", MessageBoxButton.OK, MessageBoxImage.Information);
+                        }
 
                         MessageBox.Show("Ley modificada satisfactoriamente", "Carga correcta", MessageBoxButton.OK, MessageBoxImage.Information);
                         WindowOperaciones windowOperaciones = new WindowOperaciones();
