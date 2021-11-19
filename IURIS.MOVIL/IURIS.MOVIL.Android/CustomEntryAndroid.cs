@@ -35,7 +35,14 @@ namespace IURIS.MOVIL.Droid
                 GradientDrawable gd = new GradientDrawable();
                 gd.SetColor(global::Android.Graphics.Color.Transparent);
                 Control.SetBackgroundDrawable(gd);
-                Control.SetCursorVisible(false);
+                //Control.SetCursorVisible(true);
+                //GradientDrawable g = new GradientDrawable();
+                //g.SetColor(global::Android.Graphics.Color.Green);
+                //Control.TextCursorDrawable = g;
+                //Control.SetTextCursorDrawable(0);
+
+                EditText nativeEditText = (global::Android.Widget.EditText)Control;
+                nativeEditText.SetTextCursorDrawable(Resource.Drawable.xml_file_name);
             }
 
         }

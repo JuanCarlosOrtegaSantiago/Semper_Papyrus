@@ -22,7 +22,6 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class WindowOfEmergencyCrearNota : PopupPage
     {
-        readonly IManejadorDeUsuarioAplicacion manejadorDeUsuarioAplicacion;
         readonly Titulo _Titulo;
         readonly Articulo _Articulo;
         MyLey _MyLey;
@@ -35,8 +34,6 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
             _Titulo = titulo;
             _MyLey = ley;
             _Capitulo = capitulo;
-
-            manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
 
             DatosAInicializar();
 

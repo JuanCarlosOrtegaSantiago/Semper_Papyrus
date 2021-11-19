@@ -21,7 +21,7 @@ namespace IURIS.MOVIL
         public PageRecuperarCuenta()
         {
             InitializeComponent();
-            manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
+            manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>(true));
         }
 
         private async void btnBuscar_Clicked(object sender, EventArgs e)

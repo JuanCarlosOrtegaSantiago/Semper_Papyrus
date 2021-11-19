@@ -36,7 +36,7 @@ namespace IURIS.MOVIL
 
             MainThread.BeginInvokeOnMainThread(async () =>
             {
-                await Task.Delay(1000);
+                await Task.Delay(100);
 
                 var users = await App.Database.GetPeopleAsync();
                 App.MyUser = users.FirstOrDefault();

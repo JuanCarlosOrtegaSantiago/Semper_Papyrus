@@ -38,7 +38,6 @@ namespace IURIS.MOVIL.Detail
         public Capitulo _Capitulo;
         public Articulo _Articulo;
         bool isRefreshing;
-        IManejadorDeUsuarioAplicacion manejadorDeUsuarioAplicacion;
         private string ColorHex;
         Ellipse Ellipse_Cargado = null;
         int numToques = 0;
@@ -56,8 +55,6 @@ namespace IURIS.MOVIL.Detail
             });
 
             _titulo = titulo;
-
-            manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
 
             DatosAInicializar();
             

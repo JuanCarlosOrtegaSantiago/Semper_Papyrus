@@ -40,7 +40,7 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
             MainThread.BeginInvokeOnMainThread(async () =>
             {
                 await Task.Delay(1000);
-                manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
+                manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>(true));
                 _User = manejadorDeUsuarioAplicacion.EncontrarUsuario(App.MyUser.Correo, App.MyUser.Contrasenia);
             });
             UserDialogs.Instance.ShowLoading("Validando datos\nEspere...", MaskType.Gradient);

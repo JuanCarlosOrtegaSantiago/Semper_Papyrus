@@ -36,7 +36,7 @@ namespace IURIS.MOVIL
         {
             InitializeComponent();
 
-            manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
+            manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>(true));
         }
 
         private async void BtnOK_Clicked(object sender, EventArgs e)

@@ -264,10 +264,13 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\eraser.png" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\xml_file_name.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties XamarinHotReloadDebuggerTimeoutExceptionIURISMOVILAndroidHideInfoBar="True" XamarinHotReloadUnhandledDeviceExceptionIURISMOVILAndroidHideInfoBar="True" />
+      <UserProperties XamarinHotReloadUnhandledDeviceExceptionIURISMOVILAndroidHideInfoBar="True" XamarinHotReloadDebuggerTimeoutExceptionIURISMOVILAndroidHideInfoBar="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

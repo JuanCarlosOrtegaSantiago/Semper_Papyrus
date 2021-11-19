@@ -37,7 +37,7 @@ namespace IURIS.MOVIL
         public PageInicioDeSesion()
         {
             InitializeComponent();
-            manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
+            manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>(true));
 
             //manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
             //MainThread.BeginInvokeOnMainThread(async () => {

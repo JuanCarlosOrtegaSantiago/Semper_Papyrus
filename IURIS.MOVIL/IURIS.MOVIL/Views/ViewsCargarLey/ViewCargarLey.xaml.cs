@@ -40,7 +40,7 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
             MainThread.BeginInvokeOnMainThread(async () =>
             {
                 await Task.Delay(500);
-                manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
+                manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>(true));
                 Leyes = manejadorDeLeyes.Listar;
             });
 

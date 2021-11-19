@@ -35911,6 +35911,9 @@ namespace IURIS.MOVIL.Droid
 			// aapt resource value: 0x7F0700AD
 			public const int Tres_Puntos_Rojos = 2131165357;
 			
+			// aapt resource value: 0x7F0700AE
+			public const int xml_file_name = 2131165358;
+			
 			static Drawable()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
