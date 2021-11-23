@@ -1,5 +1,7 @@
 ﻿using IURIS.COMMON.Entidades.UsuariosDeAplicacion;
 using IURIS.MOVIL.Detail;
+using IURIS.MOVIL.Modelos_y_clases.DB_Local.COMMON;
+using IURIS.MOVIL.Utils;
 using IURIS.MOVIL.Views;
 using IURIS.MOVIL.Views.ViewsCargarLey;
 using IURIS.MOVIL.Views.ViewsVentanasEmergentes;
@@ -50,6 +52,19 @@ namespace IURIS.MOVIL.Master
         {
             App.masterDetail.IsPresented = false;
             App.masterDetail.Detail = new NavigationPage(new WindowOpcionDeCompra());
+        }
+
+        private async void TapGestureRecognizer_Tapped_5(object sender, EventArgs e)
+        {
+            Settings.Recuerdame = false;
+            Settings.Email = "";
+            Settings.Contrasenia = "";
+            var ultimosUsuarios = await App.ultimoUser.GetUltimoUserAsync();
+            App.ultimoUser.DeleteUltimoUserAsync(ultimosUsuarios.FirstOrDefault());
+
+            App.masterDetail.IsPresented = false;
+            await Navigation.PushAsync(new PageInicioDeSesion(), false);
+
         }
     }
 }

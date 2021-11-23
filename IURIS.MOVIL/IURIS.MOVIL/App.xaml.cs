@@ -20,6 +20,7 @@ namespace IURIS.MOVIL
         public static MyUser MyUser { get; set; }
 
         static Database database;
+        static LocalDataUltimoUser UltimoUser;
 
         public static Database Database
         {
@@ -30,6 +31,18 @@ namespace IURIS.MOVIL
                     database = new Database(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MyUserData.Iuris"));
                 }
                 return database;
+            }
+        }
+
+        public static LocalDataUltimoUser ultimoUser
+        {
+            get
+            {
+                if (UltimoUser == null)
+                {
+                    UltimoUser = new LocalDataUltimoUser(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MyUserData.Iuris"));
+                }
+                return UltimoUser;
             }
         }
         public App()

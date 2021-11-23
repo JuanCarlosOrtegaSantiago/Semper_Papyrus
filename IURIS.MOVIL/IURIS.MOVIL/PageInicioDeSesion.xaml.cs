@@ -7,6 +7,7 @@ using IURIS.COMMON.Entidades.UsuariosDeAplicacion.ComponentesDeUsuario.DatosCrit
 using IURIS.COMMON.Interfaces;
 using IURIS.DAL;
 using IURIS.MOVIL.Modelos_y_clases.DB_Local;
+using IURIS.MOVIL.Modelos_y_clases.DB_Local.COMMON;
 using IURIS.MOVIL.Modelos_y_clases.Tools;
 using IURIS.MOVIL.Utils;
 using MarcTron.Plugin.Controls;
@@ -71,7 +72,7 @@ namespace IURIS.MOVIL
             Intentos++;
             if (Intentos != 1) return;
 
-            await Navigation.PopAsync();
+            await Navigation.PushAsync(new MainPage(), false);
             Intentos = 0;
         }
 
@@ -98,24 +99,31 @@ namespace IURIS.MOVIL
                 if (Intentos != 1) return;
                 try
                 {
+
+                    var ultimoUsers= await App.ultimoUser.GetUltimoUserAsync();
+                    UltimoUser _UltimoUser = ultimoUsers.FirstOrDefault();
+                    if (_UltimoUser != null)
+                    {
+
+                        var usuarios = await App.Database.GetPeopleAsync();
+                        App.MyUser = usuarios.Find(r => r.Id==_UltimoUser.IdUser);
+                        if (App.MyUser != null)
+                        {
+                            Intentos = 0;
+                            await Navigation.PushAsync(new FirtsView(), false);
+
+                            UserDialogs.Instance.HideLoading();
+                            return;
+                        }
+                    }
+
+
                     if (string.IsNullOrWhiteSpace(EntryPasswor.Text) || string.IsNullOrWhiteSpace(EntryCorreo.Text)) return;
 
                     string CorreoSinEspacios;
                     CorreoSinEspacios = EntryCorreo.Text.TrimStart();
                     CorreoSinEspacios = CorreoSinEspacios.TrimEnd();
 
-                    var users = await App.Database.GetPeopleAsync();
-                    App.MyUser = users.Find(r => r.Correo == CorreoSinEspacios && r.Contrasenia == int.Parse(EntryPasswor.Text));
-
-                    if (App.MyUser != null)
-                    {
-                        Intentos = 0;
-                        await Task.Delay(1000);
-                        UserDialogs.Instance.HideLoading();
-                        await Navigation.PushAsync(new FirtsView(), false);
-
-                        return;
-                    }
 
                     _User = manejadorDeUsuarioAplicacion.EncontrarUsuario(CorreoSinEspacios, int.Parse(EntryPasswor.Text));
 
@@ -135,6 +143,23 @@ namespace IURIS.MOVIL
 
                         LocalSaveUser localSaveUser = new LocalSaveUser(_User);
                         if (!await localSaveUser.ExisteUsuario()) localSaveUser.Save();
+
+                        UltimoUserLocal _Ultimo = new UltimoUserLocal();
+
+                        if (_UltimoUser != null)
+                        {
+
+                            _UltimoUser.IdUser = App.MyUser.Id;
+                            await _Ultimo.Update(_UltimoUser);
+                        }
+                        else
+                        {
+                             _Ultimo.Save(App.MyUser.Id);
+                        }
+
+
+
+
 
                         //if (HayActualizacion()) Actualizaeyes();
 

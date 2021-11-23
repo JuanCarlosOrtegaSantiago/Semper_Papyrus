@@ -37,8 +37,8 @@ namespace IURIS.MOVIL.Modelos_y_clases.DB_Local
         public async Task<bool> ExisteUsuario()
         {
             var data = await App.Database.GetPeopleAsync();
-
-            return data.Find(e=>e.IdApp==_User.IdApp)!=null;
+            App.MyUser = data.Find(e => e.IdApp == _User.IdApp);
+            return App.MyUser!=null;
         }
 
         private MyUser CrearUsuario()
@@ -89,4 +89,5 @@ namespace IURIS.MOVIL.Modelos_y_clases.DB_Local
         }
 
     }
+
 }
