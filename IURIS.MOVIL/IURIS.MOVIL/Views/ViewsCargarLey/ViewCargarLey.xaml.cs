@@ -34,15 +34,16 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
         Const _Const = new Const();
         public WindowDeCopmpa()
         {
+
             InitializeComponent();
-            BindingContext = this;
-         
             MainThread.BeginInvokeOnMainThread(async () =>
             {
-                await Task.Delay(500);
-                manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>(true));
+                await Task.Delay(1000);
+                manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
                 Leyes = manejadorDeLeyes.Listar;
             });
+            BindingContext = this;
+         
 
             CrossMTAdmob.Current.LoadInterstitial("ca-app-pub-3940256099942544/1033173712");
 
@@ -67,7 +68,7 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
                 UserDialogs.Instance.ShowLoading("Validando datos\nEspere...", MaskType.Gradient);
                 await Task.Delay(1000);
                 
-                manejadorDeUsuario = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
+                manejadorDeUsuario = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>(true));
                 Usuarios _User = manejadorDeUsuario.EncontrarUsuario(App.MyUser.Correo, App.MyUser.Contrasenia);
 
                 if (_User == null)
@@ -140,8 +141,8 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
 
                 if (await App.Database.UpdateUserAsync(App.MyUser))
                 {
-                    _LeyComprada.numDescargas += 1;
-                    manejadorDeLeyes.Modificar(_LeyComprada);
+                    //_LeyComprada.numDescargas += 1;
+                    //manejadorDeLeyes.Modificar(_LeyComprada);
                     UserDialogs.Instance.HideLoading();
                     CargarDatos();
                 }

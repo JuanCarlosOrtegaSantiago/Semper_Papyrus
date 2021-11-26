@@ -92,8 +92,9 @@ namespace IURIS.MOVIL
         {
             MainThread.BeginInvokeOnMainThread(async () =>
             {
+                await Task.Delay(1000);
                 UserDialogs.Instance.ShowLoading("Iniciando sesión", MaskType.None);
-                //await Task.Delay(200);
+                await Task.Delay(200);
 
                 Intentos++;
                 if (Intentos != 1) return;
