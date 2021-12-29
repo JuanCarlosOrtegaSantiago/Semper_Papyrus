@@ -32,52 +32,9 @@ namespace IURIS.MOVIL.Modelos_y_clases.Utils
 
                 // YOUR CODE HERE
                 // THIS CODE WILL BE EXECUTE EVERY INTERVAL
-                manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
+                //manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
 
-                var _user = manejadorDeUsuarioAplicacion.EncontrarUsuario(App.MyUser.Correo, App.MyUser.Contrasenia);
-
-                return true; //return false when you want to stop or trigger only once
-            }
-            catch (Exception)
-            {
-
-                return false;
-            }
-        }
-
-        public async Task<bool> UserModifiqued()
-        {
-            try
-            {
-                MainThread.BeginInvokeOnMainThread(async () =>
-                {
-                    await Task.Delay(500);
-                    manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
-
-                    var _user = manejadorDeUsuarioAplicacion.EncontrarUsuario(App.MyUser.Correo, App.MyUser.Contrasenia);
-                    _user.ApellidoPaterno = "Ortega";
-                    manejadorDeUsuarioAplicacion.Modificar(_user);
-
-                });
-                return true; //return false when you want to stop or trigger only once
-            }
-            catch (Exception)
-            {
-
-                return false;
-            }
-        }
-
-        public async Task<bool> ModificarUsuario()
-        {
-            try
-            {
-                manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
-
-                var _user = manejadorDeUsuarioAplicacion.EncontrarUsuario(App.MyUser.Correo, App.MyUser.Contrasenia);
-
-                _user.ApellidoMaterno = "Santiago";
-                manejadorDeUsuarioAplicacion.Modificar(_user);
+                //var _user = manejadorDeUsuarioAplicacion.EncontrarUsuario(App.MyUser.Correo, App.MyUser.Contrasenia);
 
                 return true; //return false when you want to stop or trigger only once
             }
@@ -87,5 +44,7 @@ namespace IURIS.MOVIL.Modelos_y_clases.Utils
                 return false;
             }
         }
+
+      
     }
 }

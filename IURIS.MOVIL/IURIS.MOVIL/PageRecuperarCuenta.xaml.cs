@@ -32,21 +32,21 @@ namespace IURIS.MOVIL
                 return;
             }
 
-            User = manejadorDeUsuarioAplicacion.NoRecuerdoMiContrasenia(EntryNombre.Text, EntryApellidoPaterno.Text, EntryApellidoMaterno.Text, EntryCorreoElectronico.Text);
+            //User = manejadorDeUsuarioAplicacion.NoRecuerdoMiContrasenia(EntryNombre.Text, EntryApellidoPaterno.Text, EntryApellidoMaterno.Text, EntryCorreoElectronico.Text);
 
-            if ( User!= null)
-            {
+            //if ( User!= null)
+            //{
 
-                string Nombre = string.Format("{0} {1}\ntu contraseña es: {2}", EntryNombre.Text, EntryApellidoPaterno.Text, User.Contrasenia.ToString());
-                await DisplayAlert("Usuario", Nombre, "Aceptar");
-                await Navigation.PopAsync();
-                await Navigation.PushAsync(new PageInicioDeSesion(), true);
-            }
-            else
-            {
+            //    string Nombre = string.Format("{0} {1}\ntu contraseña es: {2}", EntryNombre.Text, EntryApellidoPaterno.Text, User.Contrasenia.ToString());
+            //    await DisplayAlert("Usuario", Nombre, "Aceptar");
+            //    await Navigation.PopAsync();
+            //    await Navigation.PushAsync(new PageInicioDeSesion(), true);
+            //}
+            //else
+            //{
 
-                await DisplayAlert("Usuario", "Usuario no encontrado\n por favor verifique sus datos", "Aceptar");
-            }
+            //    await DisplayAlert("Usuario", "Usuario no encontrado\n por favor verifique sus datos", "Aceptar");
+            //}
             
         }
            

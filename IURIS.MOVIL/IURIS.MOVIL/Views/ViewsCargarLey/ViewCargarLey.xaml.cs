@@ -29,7 +29,7 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
     public partial class WindowDeCopmpa : ContentPage
     {
         IManejadorDeLeyes manejadorDeLeyes;
-        IManejadorDeUsuarioAplicacion manejadorDeUsuario;
+        //IManejadorDeUsuarioAplicacion manejadorDeUsuario;
         List<Leyes> Leyes;
         Const _Const = new Const();
         public WindowDeCopmpa()
@@ -68,16 +68,18 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
                 UserDialogs.Instance.ShowLoading("Validando datos\nEspere...", MaskType.Gradient);
                 await Task.Delay(1000);
                 
-                manejadorDeUsuario = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>(true));
-                Usuarios _User = manejadorDeUsuario.EncontrarUsuario(App.MyUser.Correo, App.MyUser.Contrasenia);
+                //manejadorDeUsuario = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>(true));
+                //Usuarios _User = manejadorDeUsuario.EncontrarUsuarioID(App.MyUser.IdApp);
 
-                if (_User == null)
-                {
-                    UserDialogs.Instance.HideLoading();
-                    return;
-                }
+                //if (_User == null)
+                //{
+                //    UserDialogs.Instance.HideLoading();
+                //    return;
+                //}
 
-                HerramientasGenerales herramientasGenerales = new HerramientasGenerales(_User);
+                
+
+                HerramientasGenerales herramientasGenerales = new HerramientasGenerales();
                 herramientasGenerales.RenovarSuscripcion();
 
                 UserDialogs.Instance.HideLoading();
@@ -88,12 +90,12 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
                 Leyes _LeyComprada = null;
                 string _1LeyMas = null;
 
-                if (_User.DatosSobreUsuario.TipoDeCompra != null) _1LeyMas = _User.DatosSobreUsuario.TipoDeCompra.Find(w => w == _Const._ComprarEspacio1Ley || w == _Const._39Mensuales);
+                if (App.MyUser.DatosSobreUsuario.TipoDeCompra != null) _1LeyMas = App.MyUser.DatosSobreUsuario.TipoDeCompra.Find(w => w == _Const._ComprarEspacio1Ley || w == _Const._39Mensuales);
 
-                if (_1LeyMas != null && _User.MisLeyes.Count >= _User.DatosSobreUsuario.NumLeyesPermitidas)
+                if (_1LeyMas != null && App.MyUser.MisLeyes.Count >= App.MyUser.DatosSobreUsuario.NumLeyesPermitidas)
                 {
                     UserDialogs.Instance.HideLoading();
-                    await PopupNavigation.Instance.PushAsync(new WindowOfComprarEspacio(_User));
+                    await PopupNavigation.Instance.PushAsync(new WindowOfComprarEspacio());
                     return;
                 }
 
@@ -134,7 +136,7 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
                 await Task.Delay(1000);
                 _LeyComprada.FechaDeDescarga = DateTime.UtcNow.ToLocalTime();
 
-                LocalSaveUser localSaveUser = new LocalSaveUser(_User);
+                LocalSaveUser localSaveUser = new LocalSaveUser();
 
                 App.MyUser.MisLeyes.Add(localSaveUser.LeyToMyley(_LeyComprada));
                 App.MyUser.MisLeyes.Where(w => w.CodigoLey == _LeyComprada.CodigoLey).SingleOrDefault().Clasificaciones = new List<ClasificacionPUsuario>();

@@ -126,52 +126,52 @@ namespace IURIS.MOVIL
                     CorreoSinEspacios = CorreoSinEspacios.TrimEnd();
 
 
-                    _User = manejadorDeUsuarioAplicacion.EncontrarUsuario(CorreoSinEspacios, int.Parse(EntryPasswor.Text));
+                    //_User = manejadorDeUsuarioAplicacion.EncontrarUsuario(CorreoSinEspacios, int.Parse(EntryPasswor.Text));
 
-                    if (_User != null)
-                    {
-                        Settings.Recuerdame = Recuerdame;
-                        if (Settings.Recuerdame)
-                        {
-                            Settings.Email = _User.Correo;
-                            Settings.Contrasenia = _User.Contrasenia.ToString();
-                        }
-                        Settings.NumUsuario = _User.IdApp.ToString();
-                        Settings.LastCode = _User.MiUltimaLeyCargada;
+                    //if (_User != null)
+                    //{
+                    //    Settings.Recuerdame = Recuerdame;
+                    //    if (Settings.Recuerdame)
+                    //    {
+                    //        Settings.Email = _User.Correo;
+                    //        Settings.Contrasenia = _User.Contrasenia.ToString();
+                    //    }
+                    //    Settings.NumUsuario = _User.IdApp.ToString();
+                    //    Settings.LastCode = _User.MiUltimaLeyCargada;
 
-                        //HerramientasGenerales herramientasGenerales = new HerramientasGenerales(_User);
-                        //herramientasGenerales.TipoDeAlmacenamiento();
+                    //    //HerramientasGenerales herramientasGenerales = new HerramientasGenerales(_User);
+                    //    //herramientasGenerales.TipoDeAlmacenamiento();
 
-                        LocalSaveUser localSaveUser = new LocalSaveUser(_User);
-                        if (!await localSaveUser.ExisteUsuario()) localSaveUser.Save();
+                    //    LocalSaveUser localSaveUser = new LocalSaveUser(_User);
+                    //    if (!await localSaveUser.ExisteUsuario()) localSaveUser.Save();
 
-                        UltimoUserLocal _Ultimo = new UltimoUserLocal();
+                    //    UltimoUserLocal _Ultimo = new UltimoUserLocal();
 
-                        if (_UltimoUser != null)
-                        {
+                    //    if (_UltimoUser != null)
+                    //    {
 
-                            _UltimoUser.IdUser = App.MyUser.Id;
-                            await _Ultimo.Update(_UltimoUser);
-                        }
-                        else
-                        {
-                             _Ultimo.Save(App.MyUser.Id);
-                        }
-
-
+                    //        _UltimoUser.IdUser = App.MyUser.Id;
+                    //        await _Ultimo.Update(_UltimoUser);
+                    //    }
+                    //    else
+                    //    {
+                    //         _Ultimo.Save(App.MyUser.Id);
+                    //    }
 
 
 
-                        //if (HayActualizacion()) Actualizaeyes();
 
-                        await Navigation.PushAsync(new FirtsView(), false);
-                    }
-                    else
-                    {
-                        await DisplayAlert("Error de usuario", "Por favor verifica los datos ingresados", "OK");
 
-                    }
-                    Intentos = 0;
+                    //    //if (HayActualizacion()) Actualizaeyes();
+
+                    //    await Navigation.PushAsync(new FirtsView(), false);
+                    //}
+                    //else
+                    //{
+                    //    await DisplayAlert("Error de usuario", "Por favor verifica los datos ingresados", "OK");
+
+                    //}
+                    //Intentos = 0;
                 }
                 catch (TimeoutException)
                 {

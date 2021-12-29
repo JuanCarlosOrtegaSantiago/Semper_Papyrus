@@ -54,58 +54,58 @@ namespace IURIS.MOVIL
 
                 if (!CorreoCorrecto || !TamanioDeContraseniaCorrecta) return;
 
-                if (manejadorDeUsuarioAplicacion.ExisteCorreo(EntryCorreoElectronico.Text))
-                {
-                    lblCorreoExistente.IsVisible = true;
-                    return;
-                }
+                //if (manejadorDeUsuarioAplicacion.ExisteCorreo(EntryCorreoElectronico.Text))
+                //{
+                //    lblCorreoExistente.IsVisible = true;
+                //    return;
+                //}
 
                 lblCorreoExistente.IsVisible = false;
 
                 if (!ContraseniasIguales) return;
 
                 int numUsuario = manejadorDeUsuarioAplicacion.Listar.Count + 1;
-                Usuarios usuarios = new Usuarios()
-                {
-                    Nombre = EntryNombre.Text,
-                    ApellidoPaterno = EntryApellidoPaterno.Text,
-                    ApellidoMaterno = EntryApellidoMaterno.Text,
-                    Correo = CorreoSinEspacios,
-                    IdApp = numUsuario,
-                    Contrasenia = int.Parse(EntryContrasenia.Text),
-                    Apuntes = new List<Apunte>(),
+                //Usuarios usuarios = new Usuarios()
+                //{
+                //    Nombre = EntryNombre.Text,
+                //    ApellidoPaterno = EntryApellidoPaterno.Text,
+                //    ApellidoMaterno = EntryApellidoMaterno.Text,
+                //    Correo = CorreoSinEspacios,
+                //    IdApp = numUsuario,
+                //    Contrasenia = int.Parse(EntryContrasenia.Text),
+                //    Apuntes = new List<Apunte>(),
 
-                };
+                //};
 
-                manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
-                Leyes leyes = manejadorDeLeyes.Listar.Where(w => w.CodigoLey.ToUpper() == _Const.MiLeyPrincipal.ToUpper()).FirstOrDefault();
-                leyes.Clasificaciones = new List<ClasificacionPUsuario>();
+                //manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
+                //Leyes leyes = manejadorDeLeyes.Listar.Where(w => w.CodigoLey.ToUpper() == _Const.MiLeyPrincipal.ToUpper()).FirstOrDefault();
+                //leyes.Clasificaciones = new List<ClasificacionPUsuario>();
 
-                List<Leyes> Mleyes = new List<Leyes>();
-                Mleyes.Add(leyes);
-                usuarios.MisLeyes = Mleyes;
-                usuarios.MiUltimaLeyCargada = leyes.CodigoLey;
+                //List<Leyes> Mleyes = new List<Leyes>();
+                //Mleyes.Add(leyes);
+                //usuarios.MisLeyes = Mleyes;
+                //usuarios.MiUltimaLeyCargada = leyes.CodigoLey;
 
-                usuarios.DatosSobreUsuario = new DatosSobreUsuarioParaLey();
-                usuarios.DatosSobreUsuario.NumLeyesPermitidas = 4;
+                //usuarios.DatosSobreUsuario = new DatosSobreUsuarioParaLey();
+                //usuarios.DatosSobreUsuario.NumLeyesPermitidas = 4;
                 
-                Settings.LastCode = usuarios.MiUltimaLeyCargada;
-                Settings.NumAleatorio = 1;
-                Settings.CountParaNumAleatorio = "1";
+                //Settings.LastCode = usuarios.MiUltimaLeyCargada;
+                //Settings.NumAleatorio = 1;
+                //Settings.CountParaNumAleatorio = "1";
 
 
-                if (!manejadorDeUsuarioAplicacion.AGREGAR(usuarios))
-                {
-                    await DisplayAlert("Crear cuenta", "No se puede efectuar por el momento\n intente mas tarde", "OK");
-                    return;
-                }
+                //if (!manejadorDeUsuarioAplicacion.AGREGAR(usuarios))
+                //{
+                //    await DisplayAlert("Crear cuenta", "No se puede efectuar por el momento\n intente mas tarde", "OK");
+                //    return;
+                //}
 
-                stackCodigoDeUsuario.IsVisible = true;
-                lblCodigoUsuario.Text = usuarios.IdApp.ToString();
+                //stackCodigoDeUsuario.IsVisible = true;
+                //lblCodigoUsuario.Text = usuarios.IdApp.ToString();
 
-                UserDialogs.Instance.HideLoading();
+                //UserDialogs.Instance.HideLoading();
 
-                await DisplayAlert("Usuario creado", "Su reguistro fue exitoso", "OK");
+                //await DisplayAlert("Usuario creado", "Su reguistro fue exitoso", "OK");
 
                 await Navigation.PushAsync(new PageInicioDeSesion(), true);
             }

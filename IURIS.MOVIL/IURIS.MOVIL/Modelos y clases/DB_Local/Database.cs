@@ -17,6 +17,7 @@ namespace IURIS.MOVIL.Modelos_y_clases
         {
             //Establishing the conection
             _database = new SQLiteAsyncConnection(dbPath);
+            //DeleteTable();
             CreateTable();
             _Path = dbPath;
         }

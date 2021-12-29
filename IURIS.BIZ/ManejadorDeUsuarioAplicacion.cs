@@ -28,20 +28,25 @@ namespace IURIS.BIZ
             return Listar.Where(e => e.id == Id).SingleOrDefault();
         }
 
-        public Usuarios BuscarUsuarioParaContrasenia(string Correo, string Nombre, string ApellidoPaterno, string ApellidoMaterno)
-        {
-            return Listar.Where(e => e.Nombre.ToUpper() == Nombre.ToUpper() && e.ApellidoMaterno.ToUpper() == ApellidoMaterno.ToUpper() && e.ApellidoPaterno.ToUpper() == ApellidoPaterno.ToUpper() && e.Correo == Correo).SingleOrDefault();
-        }
+        //public Usuarios BuscarUsuarioParaContrasenia(string Correo, string Nombre, string ApellidoPaterno, string ApellidoMaterno)
+        //{
+        //    return Listar.Where(e => e.Nombre.ToUpper() == Nombre.ToUpper() && e.ApellidoMaterno.ToUpper() == ApellidoMaterno.ToUpper() && e.ApellidoPaterno.ToUpper() == ApellidoPaterno.ToUpper() && e.Correo == Correo).SingleOrDefault();
+        //}
 
         public bool Eliminar(ObjectId id)
         {
             return repositorio.Delete(id);
         }
 
-        public Usuarios EncontrarUsuario(string Correo, int contrasenia)
-        {
-            return Listar.Where(e => e.Correo == Correo && e.Contrasenia == contrasenia).SingleOrDefault();
-        }
+        //public Usuarios EncontrarUsuarioID(int numUsuaro)
+        //{
+        //    return Listar.Where(e => e.IdApp==numUsuaro).SingleOrDefault();
+        //}
+
+        //public Usuarios EncontrarUsuario(string Correo, int contrasenia)
+        //{
+        //    return Listar.Where(e => e.Correo == Correo && e.Contrasenia == contrasenia).SingleOrDefault();
+        //}
 
         public bool ExisteCorreo(string Email)
         {
@@ -53,9 +58,9 @@ namespace IURIS.BIZ
             return repositorio.Update(entidad);
         }
 
-        public Usuarios NoRecuerdoMiContrasenia(string Nombre, string ApelidoPaterno, string ApellidoMaterno, string Correo)
-        {
-            return Listar.Where(e => e.Nombre.ToUpper() == Nombre.ToUpper() && e.ApellidoPaterno.ToUpper()==ApelidoPaterno.ToUpper()&& e.ApellidoMaterno.ToUpper()==ApellidoMaterno.ToUpper() && e.Correo==Correo).SingleOrDefault();
-        }
+        //public Usuarios NoRecuerdoMiContrasenia(string Nombre, string ApelidoPaterno, string ApellidoMaterno, string Correo)
+        //{
+        //    return Listar.Where(e => e.Nombre.ToUpper() == Nombre.ToUpper() && e.ApellidoPaterno.ToUpper()==ApelidoPaterno.ToUpper()&& e.ApellidoMaterno.ToUpper()==ApellidoMaterno.ToUpper() && e.Correo==Correo).SingleOrDefault();
+        //}
     }
 }

@@ -4,6 +4,7 @@ using IURIS.COMMON.Entidades.UsuariosDeAplicacion;
 using IURIS.COMMON.Entidades.UsuariosDeAplicacion.ComponentesDeUsuario.DatosCriticos;
 using IURIS.COMMON.Interfaces;
 using IURIS.DAL;
+using IURIS.MOVIL.Modelos_y_clases.DB_Local;
 using IURIS.MOVIL.Views.ViewPayPal;
 using PayPal.Forms;
 using PayPal.Forms.Abstractions;
@@ -22,7 +23,7 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class WindowOpcionDeCompra : ContentPage
     {
-        IManejadorDeUsuarioAplicacion manejadorDeUsuarioAplicacion;
+        //IManejadorDeUsuarioAplicacion manejadorDeUsuarioAplicacion;
 
         enum TipoDeCompra
         {
@@ -33,18 +34,18 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
         }
         TipoDeCompra MiCompra;
 
-        Usuarios _User;
+        //Usuarios _User;
         public WindowOpcionDeCompra()
         {
             InitializeComponent();
-            MainThread.BeginInvokeOnMainThread(async () =>
-            {
-                await Task.Delay(1000);
-                manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>(true));
-                _User = manejadorDeUsuarioAplicacion.EncontrarUsuario(App.MyUser.Correo, App.MyUser.Contrasenia);
-            });
-            UserDialogs.Instance.ShowLoading("Validando datos\nEspere...", MaskType.Gradient);
-            while (_User != null) ;
+            //MainThread.BeginInvokeOnMainThread(async () =>
+            //{
+            //    await Task.Delay(1000);
+            //    manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>(true));
+            //    _User = manejadorDeUsuarioAplicacion.EncontrarUsuarioID(App.MyUser.IdApp);
+            //});
+            //UserDialogs.Instance.ShowLoading("Validando datos\nEspere...", MaskType.Gradient);
+            //while (_User != null) ;
 
             UserDialogs.Instance.HideLoading();
         }
@@ -96,14 +97,14 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
                 else if (result.Status == PayPalStatus.Successful)
                 {
 
-                    _User.DatosSobreUsuario.FechaDeCompra = DateTime.UtcNow;
-                    if (_User.DatosSobreUsuario.TipoDeCompra == null) _User.DatosSobreUsuario.TipoDeCompra = new List<string>();
+                    App.MyUser.DatosSobreUsuario.FechaDeCompra = DateTime.UtcNow;
+                    if (App.MyUser.DatosSobreUsuario.TipoDeCompra == null) App.MyUser.DatosSobreUsuario.TipoDeCompra = new List<string>();
 
 
                     if (MiCompra == TipoDeCompra._ComprarEspacio1Ley)
                     {
 
-                        _User.DatosSobreUsuario.NumLeyesPermitidas = _User.DatosSobreUsuario.NumLeyesPermitidas == default ? 5 : _User.DatosSobreUsuario.NumLeyesPermitidas + 1;
+                        App.MyUser.DatosSobreUsuario.NumLeyesPermitidas = App.MyUser.DatosSobreUsuario.NumLeyesPermitidas == default ? 5 : App.MyUser.DatosSobreUsuario.NumLeyesPermitidas + 1;
 
                     }
                     else
@@ -111,30 +112,31 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
 
                         if (MiCompra == TipoDeCompra._39Mensuales)
                         {
-                            if (!_User.DatosSobreUsuario.TipoDeCompra.Contains(MiCompra.ToString())) _User.DatosSobreUsuario.NumLeyesPermitidas += 1;
-                            _User.DatosSobreUsuario.NumDeMeses = 1;
+                            if (!App.MyUser.DatosSobreUsuario.TipoDeCompra.Contains(MiCompra.ToString())) App.MyUser.DatosSobreUsuario.NumLeyesPermitidas += 1;
+                            App.MyUser.DatosSobreUsuario.NumDeMeses = 1;
                         }
                         if (MiCompra == TipoDeCompra._49Mensuales)
                         {
-                            _User.DatosSobreUsuario.TipoDeCompra = new List<string>();
-                            _User.DatosSobreUsuario.NumLeyesPermitidas =default;
-                            _User.DatosSobreUsuario.NumDeMeses = 1;
+                            App.MyUser.DatosSobreUsuario.TipoDeCompra = new List<string>();
+                            App.MyUser.DatosSobreUsuario.NumLeyesPermitidas =default;
+                            App.MyUser.DatosSobreUsuario.NumDeMeses = 1;
 
                         }
                         if (MiCompra == TipoDeCompra._479Anuales)
                         {
-                            _User.DatosSobreUsuario.TipoDeCompra = new List<string>();
-                            _User.DatosSobreUsuario.NumLeyesPermitidas=default;
-                            _User.DatosSobreUsuario.NumDeMeses = 12;
+                            App.MyUser.DatosSobreUsuario.TipoDeCompra = new List<string>();
+                            App.MyUser.DatosSobreUsuario.NumLeyesPermitidas=default;
+                            App.MyUser.DatosSobreUsuario.NumDeMeses = 12;
 
                         }
 
                         
                     }
                    
-                    if (_User.DatosSobreUsuario.TipoDeCompra.Where(e => e.ToString() == MiCompra.ToString()).Count() == 0) _User.DatosSobreUsuario.TipoDeCompra.Add(MiCompra.ToString());
-                    
-                    while (!manejadorDeUsuarioAplicacion.Modificar(_User));
+                    if (App.MyUser.DatosSobreUsuario.TipoDeCompra.Where(e => e.ToString() == MiCompra.ToString()).Count() == 0) App.MyUser.DatosSobreUsuario.TipoDeCompra.Add(MiCompra.ToString());
+
+                    LocalSaveUser saveUser = new LocalSaveUser();
+                    await saveUser.UpdateUser();
 
                 }
             }

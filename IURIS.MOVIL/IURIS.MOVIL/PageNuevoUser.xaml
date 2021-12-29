@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:IURIS.MOVIL.Modelos_y_clases"
+             x:Class="IURIS.MOVIL.PageNuevoUser" Title="Nuevo usuario" BackgroundColor="{StaticResource PrimaryColor}"  NavigationPage.HasBackButton="False">
+
+        <StackLayout>
+
+            <StackLayout>
+
+                <local:CustomEntry x:Name="EntryNombre" Margin="15,5,0,0" Placeholder="Nombre..." ClearButtonVisibility="WhileEditing" ReturnType="Next" Style="{StaticResource EntryCrearUsuario}" IsTextPredictionEnabled="True"/>
+
+                <local:CustomEntry x:Name="EntryApellidoPaterno" Margin="15,5,0,0" Placeholder="Apellido paterno..." ClearButtonVisibility="WhileEditing" ReturnType="Next" Style="{StaticResource EntryCrearUsuario}" IsTextPredictionEnabled="True"/>
+
+                <local:CustomEntry x:Name="EntryApellidoMaterno" Margin="15,5,0,0" Placeholder="Apellido materno..." ClearButtonVisibility="WhileEditing" ReturnType="Next" Style="{StaticResource EntryCrearUsuario}" IsTextPredictionEnabled="True"/>
+
+            </StackLayout>
+            
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="-1" Margin="-2,30,-2,50">
+                <Button Grid.Column="0" Text="Ok" FontSize="Large" x:Name="btnOK" Style="{StaticResource buttonPrincipal}" Clicked="btnOK_Clicked"/>
+                <Button Grid.Column="1" FontSize="Large" Text="Cancelar" x:Name="btnCanselar" Style="{StaticResource buttonPrincipal}"/>
+            </Grid>
+
+            <StackLayout Padding="10">
+                <Image FlexLayout.Shrink="0" Source="Logo.png" Aspect="Fill" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+            </StackLayout>
+        </StackLayout>
+
+
+</ContentPage>

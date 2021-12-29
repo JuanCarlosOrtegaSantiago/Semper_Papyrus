@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IURIS.MOVIL.PagePrimeravista" BackgroundColor="{StaticResource PrimaryColor}" NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+
+            <Image Source="Logo.png" Aspect="Fill" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,0,0,20"/>
+            <Label x:Name="lblEntrar" Text="Entrar" Style="{StaticResource TextoAMostrarColorBlanco}" FontSize="50" FontAttributes="Italic" HorizontalOptions="Center" IsVisible="false"/>
+            
+            
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+            </StackLayout.GestureRecognizers>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

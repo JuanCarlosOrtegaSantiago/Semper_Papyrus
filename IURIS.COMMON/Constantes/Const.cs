@@ -15,7 +15,7 @@ namespace IURIS.COMMON.Constantes
         
         public string _ComprarEspacio1Ley => nameof(_ComprarEspacio1Ley);
 
-        public string MiLeyPrincipal => "ley#1";
+        public string MiLeyPrincipal => "FED001";
         
         public string TypeDBLocal => "Local";
         

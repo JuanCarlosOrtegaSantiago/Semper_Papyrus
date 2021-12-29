@@ -15,13 +15,10 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class WindowOfComprarEspacio : PopupPage
     {
-
-        Usuarios _User;
-
-        public WindowOfComprarEspacio(Usuarios usuarios)
+        
+        public WindowOfComprarEspacio()
         {
             InitializeComponent();
-            _User = usuarios;
             lblNoCuentas.Text = "No cuentas con espacio\npara descargar otra ley";
             lblContent.Text = "Comprar un espacio \nmás para leyes por \n$9.00 M.N";
         }

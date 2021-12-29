@@ -1,8 +1,16 @@
-﻿using IURIS.COMMON.Entidades.Ley;
+﻿using IURIS.BIZ;
+using IURIS.COMMON.Constantes;
+using IURIS.COMMON.Entidades.Ley;
+using IURIS.COMMON.Entidades.Ley.ComponentesDeLey;
 using IURIS.COMMON.Entidades.UsuariosDeAplicacion;
+using IURIS.COMMON.Entidades.UsuariosDeAplicacion.ComponentesDeUsuario;
+using IURIS.COMMON.Entidades.UsuariosDeAplicacion.ComponentesDeUsuario.DatosCriticos;
+using IURIS.COMMON.Interfaces;
+using IURIS.DAL;
 using IURIS.MOVIL.Modelos_y_clases.DB_Local.COMMON;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,15 +18,23 @@ namespace IURIS.MOVIL.Modelos_y_clases.DB_Local
 {
     public class LocalSaveUser
     {
+        string _Nombre;
+        string _APaterno;
+        string _AMaterno;
 
-        Usuarios _User;
-        public LocalSaveUser(Usuarios usuarios)
+        IManejadorDeLeyes manejadorDeLeyes;
+        
+        Const _Const = new Const();
+        public LocalSaveUser()
         {
-            _User = usuarios;
+            
         }
 
-        public bool Save()
+        public bool SaveUser(string Nombre, string APaterno, string AMaterno)
         {
+            _Nombre = Nombre;
+            _APaterno = APaterno;
+            _AMaterno = AMaterno;
             try
             {
                 MyUser myUser = CrearUsuario();
@@ -34,32 +50,45 @@ namespace IURIS.MOVIL.Modelos_y_clases.DB_Local
             }
         }
 
-        public async Task<bool> ExisteUsuario()
+        public async Task<bool> UpdateUser()
         {
-            var data = await App.Database.GetPeopleAsync();
-            App.MyUser = data.Find(e => e.IdApp == _User.IdApp);
-            return App.MyUser!=null;
+            try
+            {
+                await App.Database.UpdateUserAsync(App.MyUser);
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
         }
+
 
         private MyUser CrearUsuario()
         {
+            manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
+            Leyes ley = manejadorDeLeyes.Listar.Where(w => w.CodigoLey.ToUpper() == _Const.MiLeyPrincipal.ToUpper()).FirstOrDefault();
+            ley.Clasificaciones = new List<ClasificacionPUsuario>();
 
             MyUser myUser = new MyUser
             {
-                Apuntes = _User.Apuntes,
-                MiUltimaLeyCargada = _User.MiUltimaLeyCargada,
-                IdUser = _User.id.ToString(),
+                Apuntes = new List<Apunte>(),
                 MisLeyes = new List<MyLey>(),
-                IdApp = _User.IdApp,
-                Contrasenia = _User.Contrasenia,
-                Correo = _User.Correo
-            };
+                ApellidoMaterno = _AMaterno,
+                ApellidoPaterno = _APaterno,
+                Nombre = _Nombre,
+                 DatosSobreUsuario=new MyDatosSobreUsuarioParaLey()
 
-            foreach (var Ley in _User.MisLeyes)
-            {
-                myUser.MisLeyes.Add(LeyToMyley(Ley));
-            }
-           
+            };
+            
+            myUser.MisLeyes.Add(LeyToMyley(ley));
+            myUser.MiUltimaLeyCargada = ley.CodigoLey;
+            //foreach (var Ley in _User.MisLeyes)
+            //{
+            //    myUser.MisLeyes.Add(LeyToMyley(Ley));
+            //}
+
             return myUser;
         }
 

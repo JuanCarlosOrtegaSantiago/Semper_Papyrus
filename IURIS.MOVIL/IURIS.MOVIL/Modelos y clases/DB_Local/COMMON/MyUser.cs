@@ -26,6 +26,14 @@ namespace IURIS.MOVIL.Modelos_y_clases.DB_Local
         public string Correo { get; set; }
         public int Contrasenia { get; set; }
 
+        //public string IdUser { get; set; }
+        public string Nombre { get; set; }
+        public string ApellidoPaterno { get; set; }
+        public string ApellidoMaterno { get; set; }
+
+        [TextBlob("MyDatosSobreUsuarioParaLeyBlobbed")]
+        public MyDatosSobreUsuarioParaLey DatosSobreUsuario { get; set; }
+        public string MyDatosSobreUsuarioParaLeyBlobbed { get; set; }
 
         [TextBlob("MysLeyesBlobbed")]
         public List<MyLey> MisLeyes { get; set; }

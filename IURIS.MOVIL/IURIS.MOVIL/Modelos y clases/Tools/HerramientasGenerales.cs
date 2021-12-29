@@ -14,6 +14,11 @@ namespace IURIS.MOVIL.Modelos_y_clases.Tools
         Usuarios _User;
         Const Const;
 
+        public HerramientasGenerales()
+        {
+            Const = new Const();
+        }
+
         public HerramientasGenerales(Usuarios usuarios)
         {
             _User = usuarios;
@@ -22,9 +27,9 @@ namespace IURIS.MOVIL.Modelos_y_clases.Tools
 
         public void RenovarSuscripcion()
         {
-            var num = GetMonthDifference(_User.DatosSobreUsuario.FechaDeCompra);
+            var num = GetMonthDifference(App.MyUser.DatosSobreUsuario.FechaDeCompra);
 
-            if (_User.DatosSobreUsuario.NumDeMeses == num)
+            if (App.MyUser.DatosSobreUsuario.NumDeMeses == num)
             {
                 App.masterDetail.IsPresented = false;
                 App.masterDetail.Detail = new NavigationPage(new WindowOpcionDeCompra());
@@ -39,9 +44,9 @@ namespace IURIS.MOVIL.Modelos_y_clases.Tools
     
         public void TipoDeAlmacenamiento()
         {
-            var x = _User.DatosSobreUsuario.TipoDeCompra.Find(e => e == Const._39Mensuales || e == Const._ComprarEspacio1Ley || e == Const._49Mensuales);
+            var x = App.MyUser.DatosSobreUsuario.TipoDeCompra.Find(e => e == Const._39Mensuales || e == Const._ComprarEspacio1Ley || e == Const._49Mensuales);
 
-            Settings.TypeDB = _User.DatosSobreUsuario.TipoDeCompra == null || x != null ? Const.TypeDBLocal : Const.TypeDBNube;
+            Settings.TypeDB = App.MyUser.DatosSobreUsuario.TipoDeCompra == null || x != null ? Const.TypeDBLocal : Const.TypeDBNube;
         }
     }
 }

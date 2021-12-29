@@ -51,7 +51,7 @@ namespace IURIS.MOVIL
             //Device.SetFlags(new[] { "RadioButton_Experimental" });
             //Device.SetFlags(new[] { "Expander_Experimental" });
 
-            var pagina = new NavigationPage(new MainPage());
+            var pagina = new NavigationPage(new PagePrimeravista());
             pagina.BackgroundColor = (Color)App.Current.Resources["PrimaryColor"];
             pagina.BarBackgroundColor = (Color)App.Current.Resources["PrimaryColor"];
             MainPage = pagina;

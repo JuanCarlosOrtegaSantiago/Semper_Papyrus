@@ -49,6 +49,14 @@
                 <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
             </Style>
 
+            <Style x:Key="EntryCrearUsuario" TargetType="Entry">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontSize" Value="30"/>
+                <Setter Property="PlaceholderColor" Value="White"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+            </Style>
+
             <Style x:Key="LabelCrearCuenta" TargetType="Label">
                 <Setter Property="TextColor" Value="White"/>
                 <Setter Property="FontSize" Value="Large"/>
