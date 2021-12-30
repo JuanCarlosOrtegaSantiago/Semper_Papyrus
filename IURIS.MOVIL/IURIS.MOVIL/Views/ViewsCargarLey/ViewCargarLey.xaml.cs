@@ -23,7 +23,7 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace IURIS.MOVIL.Views.ViewsCargarLey
+namespace IURIS.MOVIL.Views.ViewsCargarLey 
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class WindowDeCopmpa : ContentPage
@@ -38,9 +38,15 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
             InitializeComponent();
             MainThread.BeginInvokeOnMainThread(async () =>
             {
-                await Task.Delay(1000);
+                await Task.Delay(30);
+                CargarDatos();
+                if (App.MyUser.MisLeyes.Count == 1)
+                {
+
+                    UserDialogs.Instance.Toast(" Para eliminar una ley,\n desliza hacia la izquierda la ley y preciona eliminar", TimeSpan.FromMilliseconds(3000));
+                }
                 manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
-                Leyes = manejadorDeLeyes.Listar;
+
             });
             BindingContext = this;
          
@@ -48,9 +54,7 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
             CrossMTAdmob.Current.LoadInterstitial("ca-app-pub-3940256099942544/1033173712");
 
             CrossMTAdmob.Current.LoadRewardedVideo("ca-app-pub-3940256099942544/5224354917");
-            UserDialogs.Instance.Toast(" Para eliminar una ley,\n desliza hacia la izquierda la ley y preciona eliminar", TimeSpan.FromMilliseconds(3000));
 
-            CargarDatos();
 
         }
 
@@ -101,6 +105,7 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
 
 
                 if (string.IsNullOrEmpty(EntryCodigo.Text)) return;
+                Leyes = manejadorDeLeyes.Listar;
                 while (Leyes==null);
 
 

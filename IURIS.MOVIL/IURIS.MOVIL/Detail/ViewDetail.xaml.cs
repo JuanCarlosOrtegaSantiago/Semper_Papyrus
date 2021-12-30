@@ -83,8 +83,11 @@ namespace IURIS.MOVIL.Detail
         {
 
             Titulo titulo = ClltionTitulos.SelectedItem as Titulo;
-            if (titulo == null) return;
-
+            if (titulo == null || titulo.ListaCapitulos == null || titulo.ListaCapitulos.Count == 0)
+            {
+                ClltionTitulos.SelectedItem = null;
+                return;
+            }
             MostrarSearch(false);
             
             await Navigation.PushAsync(new PageMotrarCapitulosConCodigos(titulo, _MyLey, myAds), false);
