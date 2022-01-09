@@ -89,7 +89,7 @@
                             />
             </StackLayout>
 
-            <RefreshView  IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshCommand}" FlexLayout.Shrink="2.2" FlexLayout.Grow="1">
+            <RefreshView  IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshCommand}" FlexLayout.Shrink="2.2" FlexLayout.Grow="1" Margin="0,0,0,60">
 
                 <CollectionView x:Name="cllctionArticulos" ItemsSource="{Binding ListaArticulos}" Margin="10">
                     <CollectionView.EmptyView>
@@ -264,7 +264,7 @@
 
                 <controls:MTAdView Grid.Row="1" x:Name="myAds" IsVisible="false" 
                                    AdsId="ca-app-pub-3940256099942544/6300978111" 
-                                   VerticalOptions="End"  HorizontalOptions="FillAndExpand">
+                                   VerticalOptions="End"  HorizontalOptions="FillAndExpand" Margin="0,0,0,5">
                     <controls:MTAdView.HeightRequest>
                         <x:OnIdiom>
                             <x:OnIdiom.Phone>50</x:OnIdiom.Phone>

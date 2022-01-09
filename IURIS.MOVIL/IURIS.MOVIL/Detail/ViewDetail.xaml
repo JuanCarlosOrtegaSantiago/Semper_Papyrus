@@ -63,7 +63,7 @@
     <ContentPage.Content>
         <Grid>
 
-            <CollectionView x:Name="ClltionTitulos" SelectionMode="Single" ItemsSource="{Binding Titulo}" SelectionChanged="ClltionTitulos_SelectionChanged" Style="{StaticResource colection}">
+            <CollectionView x:Name="ClltionTitulos" SelectionMode="Single" ItemsSource="{Binding Titulo}" SelectionChanged="ClltionTitulos_SelectionChanged" Style="{StaticResource colection}" Margin="0,0,0,60">
                 <CollectionView.EmptyView>
                     <StackLayout>
                         <Label FontAttributes="Bold"  FontSize="Large" HorizontalOptions="Center" Style="{StaticResource TextoAMostrarColorRojo}">No se encontraron datos</Label>
