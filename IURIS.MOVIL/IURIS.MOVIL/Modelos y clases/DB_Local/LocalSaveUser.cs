@@ -68,7 +68,7 @@ namespace IURIS.MOVIL.Modelos_y_clases.DB_Local
         private MyUser CrearUsuario()
         {
             manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
-            Leyes ley = manejadorDeLeyes.Listar.Where(w => w.CodigoLey.ToUpper() == _Const.MiLeyPrincipal.ToUpper()).FirstOrDefault();
+            Leyes ley = manejadorDeLeyes.Listar.Where(w => w.CodigoLey.ToUpper() == _Const.MiLeyPrincipal.ToUpper() && w.Clasificacion== "LeyInicial").FirstOrDefault();
             ley.Clasificaciones = new List<ClasificacionPUsuario>();
 
             MyUser myUser = new MyUser
