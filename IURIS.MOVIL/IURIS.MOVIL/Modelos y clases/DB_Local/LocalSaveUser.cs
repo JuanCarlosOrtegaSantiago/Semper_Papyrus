@@ -22,7 +22,7 @@ namespace IURIS.MOVIL.Modelos_y_clases.DB_Local
         string _APaterno;
         string _AMaterno;
 
-        IManejadorDeLeyes manejadorDeLeyes;
+        IManejadorDeLeyPrincipal manejadorDeLeyPrincipal;
         
         Const _Const = new Const();
         public LocalSaveUser()
@@ -67,8 +67,8 @@ namespace IURIS.MOVIL.Modelos_y_clases.DB_Local
 
         private MyUser CrearUsuario()
         {
-            manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
-            Leyes ley = manejadorDeLeyes.Listar.Where(w => w.CodigoLey.ToUpper() == _Const.MiLeyPrincipal.ToUpper() && w.Clasificacion== "LeyInicial").FirstOrDefault();
+            manejadorDeLeyPrincipal = new ManejadorDeLeyPrincipal(new RepositorioGenerico<LeyPrincipal>());
+            Leyes ley = (Leyes)manejadorDeLeyPrincipal.Listar.Where(w => w.CodigoLey.ToUpper() == _Const.MiLeyPrincipal.ToUpper() && w.Clasificacion== "LeyInicial").FirstOrDefault();
             ley.Clasificaciones = new List<ClasificacionPUsuario>();
 
             MyUser myUser = new MyUser

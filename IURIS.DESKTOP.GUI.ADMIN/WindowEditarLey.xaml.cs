@@ -39,6 +39,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
         IManejadorDeLeyes manejadorDeLeyes;
         IManejadorDeLeyes manejadorDeLeyesDev;
         IManejadorDeClasificaciones manejadorDeClasificaciones;
+        IManejadorDeLeyPrincipal ManejadorDeLeyPrincipal;
 
         public WindowEditarLey(Leyes Ley)
         {
@@ -47,11 +48,12 @@ namespace IURIS.DESKTOP.GUI.ADMIN
             CopiaLey = Ley;
             manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
             manejadorDeClasificaciones = new ManejadorDeClasificaciones(new RepositorioGenerico<Clasificacion>());
+            ManejadorDeLeyPrincipal = new ManejadorDeLeyPrincipal(new RepositorioGenerico<LeyPrincipal>());
 
             if (App.AddDataDev)
             {
                 manejadorDeLeyesDev = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>(true));
-                CopiaLey_Dev =manejadorDeLeyesDev.BuscarPorCodigo(Ley.CodigoLey);
+                CopiaLey_Dev = manejadorDeLeyesDev.BuscarPorCodigo(Ley.CodigoLey);
             }
             DatosAInicializar();
 
@@ -71,7 +73,21 @@ namespace IURIS.DESKTOP.GUI.ADMIN
 
             CmbxClasificacion.Text = CopiaLey.Clasificacion;
 
+            var leyes = ManejadorDeLeyPrincipal.Listar.SingleOrDefault();
+            if (leyes != null)
+            {
 
+                if (leyes.CodigoLey == CopiaLey.CodigoLey)
+                {
+                    chkLeyPrincipal.IsChecked = true;
+                    chkLeyPrincipal.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    chkLeyPrincipal.IsChecked = false;
+                    chkLeyPrincipal.Visibility = Visibility.Collapsed;
+                }
+            }
         }
 
         private void ActualizarLista()
@@ -327,5 +343,35 @@ namespace IURIS.DESKTOP.GUI.ADMIN
             CmbxClasificacion.Text = CopiaLey.Clasificacion;
         }
 
+        private void chkLeyPrincipal_Checked(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+
+                LeyPrincipal ley = new LeyPrincipal()
+                {
+                    Clasificacion = CopiaLey.Clasificacion,
+                    Clasificaciones = CopiaLey.Clasificaciones,
+                    CodigoLey = CopiaLey.CodigoLey,
+                    EsModificacion = CopiaLey.EsModificacion,
+                    FechaDeDescarga = CopiaLey.FechaDeDescarga,
+                    id = CopiaLey.id,
+                    ListaDeTitulos = CopiaLey.ListaDeTitulos,
+                    NombreLey = CopiaLey.NombreLey,
+                    numDescargas = CopiaLey.numDescargas,
+                    UltimaFechaDeModificacion = CopiaLey.UltimaFechaDeModificacion
+                };
+
+                if (ManejadorDeLeyPrincipal.Listar.Count <= 0)
+                {
+                    ManejadorDeLeyPrincipal.AGREGAR(ley);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

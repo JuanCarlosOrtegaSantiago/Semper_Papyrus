@@ -144,6 +144,11 @@
                     </Button>
                 </WrapPanel>
             </WrapPanel>
+            <WrapPanel VerticalAlignment="Center">
+                <CheckBox x:Name="chkLeyPrincipal" Content="Ley Principal" Foreground="White" FontSize="20" VerticalContentAlignment="Center" Checked="chkLeyPrincipal_Checked">
+                    
+                </CheckBox>
+            </WrapPanel>
         </WrapPanel>
 
 
