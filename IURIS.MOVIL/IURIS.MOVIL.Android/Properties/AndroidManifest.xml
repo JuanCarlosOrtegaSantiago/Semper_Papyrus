@@ -1,10 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.SemperPapyrus.IURIS.movil" android:installLocation="internalOnly">
-	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="29" android:textAllCaps="false" />
-  <!-- Sample AdMob App ID: ca-app-pub-9229118148963816~2600565533 -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.1" package="com.SemperPapyrus.IURIS.movil" android:installLocation="internalOnly">
+	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="30" android:textAllCaps="false" />
+	<!-- Sample AdMob App ID: ca-app-pub-9229118148963816~2600565533 -->
 	<application android:label="IURIS" android:icon="@mipmap/IURIS">
-    
-  <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="ca-app-pub-9229118148963816~2600565533"></meta-data>
-  </application>
-  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+		<meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="ca-app-pub-9229118148963816~2600565533"></meta-data>
+	</application>
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 </manifest>
