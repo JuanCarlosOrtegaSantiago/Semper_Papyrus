@@ -103,7 +103,16 @@
     <EmbeddedResource Update="Views\ViewsApuntes\ViewsMisApuntes.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\ViewsCargarLey\TabbPage\TabbedPageCargar_CambiarLey.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\ViewsCargarLey\ViewCargarLey.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ViewsCargarLey\ViewClasificaciones\ViewPageLeyes\ViewLeyes.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ViewsCargarLey\ViewClasificaciones\ViewOfClasificaciones.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ViewsClasificaciones\ViewMiClasificacionPersonalizada.xaml">

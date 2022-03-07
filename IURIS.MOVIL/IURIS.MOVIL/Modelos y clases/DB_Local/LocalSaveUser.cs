@@ -59,7 +59,6 @@ namespace IURIS.MOVIL.Modelos_y_clases.DB_Local
             }
             catch (Exception)
             {
-
                 return false;
             }
         }

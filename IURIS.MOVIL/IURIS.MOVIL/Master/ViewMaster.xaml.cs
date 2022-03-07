@@ -4,6 +4,8 @@ using IURIS.MOVIL.Modelos_y_clases.DB_Local.COMMON;
 using IURIS.MOVIL.Utils;
 using IURIS.MOVIL.Views;
 using IURIS.MOVIL.Views.ViewsCargarLey;
+using IURIS.MOVIL.Views.ViewsCargarLey.TabbPage;
+using IURIS.MOVIL.Views.ViewsCargarLey.ViewClasificaciones;
 using IURIS.MOVIL.Views.ViewsVentanasEmergentes;
 using System;
 using System.Collections.Generic;
@@ -45,7 +47,8 @@ namespace IURIS.MOVIL.Master
         private void TapGestureRecognizer_Tapped_3(object sender, EventArgs e)
         {
             App.masterDetail.IsPresented = false;
-            App.masterDetail.Detail = new NavigationPage(new WindowDeCopmpa());
+            //App.masterDetail.Detail = new NavigationPage(new WindowDeCopmpa());
+            App.masterDetail.Detail = new NavigationPage(new TabbedPageCargar_CambiarLey());
         }
 
         private void TapGestureRecognizer_Tapped_4(object sender, EventArgs e)

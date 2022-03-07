@@ -21,6 +21,7 @@ namespace IURIS.MOVIL
 
         static Database database;
         static LocalDataUltimoUser UltimoUser;
+        static SaveMyClasificacionDeLey SaveMyClasificacionDeLey;
 
         public static Database Database
         {
@@ -45,6 +46,19 @@ namespace IURIS.MOVIL
                 return UltimoUser;
             }
         }
+
+        public static SaveMyClasificacionDeLey MyClasificacionDeLey
+        {
+            get
+            {
+                if (SaveMyClasificacionDeLey == null)
+                {
+                    SaveMyClasificacionDeLey = new SaveMyClasificacionDeLey(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MyUserData.Iuris"));
+                }
+                return SaveMyClasificacionDeLey;
+            }
+        }
+
         public App()
         {
             InitializeComponent();
@@ -60,7 +74,7 @@ namespace IURIS.MOVIL
         protected override void OnStart()
         {
             //Register Periodic Tasks
-            BackgroundAggregatorService.Add(() => new BackGroundService(3));
+            BackgroundAggregatorService.Add(() => new GetClasificaiciones(10));
             //BackgroundAggregatorService.Add(() => new PeriodicCall2(4));
 
             //Start the background service
@@ -76,5 +90,8 @@ namespace IURIS.MOVIL
         {
             BackgroundAggregatorService.StartBackgroundService();
         }
+
+        
     }
+
 }

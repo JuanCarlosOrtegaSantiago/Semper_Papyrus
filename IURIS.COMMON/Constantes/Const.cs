@@ -20,6 +20,7 @@ namespace IURIS.COMMON.Constantes
         public string TypeDBLocal => "Local";
         
         public string TypeDBNube => "Nube";
+        public string NombreDeClasificaiconExcluir => "LeyInicial";
 
     }
 }

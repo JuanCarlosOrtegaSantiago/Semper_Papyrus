@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:IURIS.MOVIL.Views.ViewsCargarLey.ViewClasificaciones" xmlns:local1="clr-namespace:IURIS.MOVIL.Views.ViewsCargarLey"
+            x:Class="IURIS.MOVIL.Views.ViewsCargarLey.TabbPage.TabbedPageCargar_CambiarLey">
+    <NavigationPage.TitleView>
+
+        <StackLayout Orientation="Horizontal" >
+            <Image Source="Logo.png" Margin="0,5,5,5" VerticalOptions="Center" WidthRequest="40" HeightRequest="40"></Image>
+            <Label Text="IURIS" Style="{StaticResource LabelCrearCuenta}" FontAttributes="Bold" FontSize="Title" Margin="15,0" VerticalOptions="Center" ></Label>
+        </StackLayout>
+
+    </NavigationPage.TitleView>
+
+    <local1:WindowDeCopmpa x:Name="cambiar" Title="Cambiar Ley" IconImageSource="shuffle.png"/>
+
+    <local:ViewOfClasificaciones Title="Buscar Ley" IconImageSource="Buscador.png"/>
+</TabbedPage>

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:Local="clr-namespace:IURIS.MOVIL.Modelos_y_clases"
+             x:Class="IURIS.MOVIL.Views.ViewsCargarLey.ViewClasificaciones.ViewOfClasificaciones">
+    <NavigationPage.TitleView>
+
+        <StackLayout Orientation="Horizontal" >
+            <Image Source="Logo.png" Margin="0,5,5,5" VerticalOptions="Center" WidthRequest="40" HeightRequest="40"></Image>
+            <Label Text="IURIS" Style="{StaticResource LabelCrearCuenta}" FontAttributes="Bold" FontSize="Title" Margin="15,0" VerticalOptions="Center" ></Label>
+        </StackLayout>
+
+    </NavigationPage.TitleView>
+
+    <FlexLayout >
+        <StackLayout Orientation="Horizontal" FlexLayout.Shrink="0" Margin="10,5">
+            <Local:CustomEntry x:Name="EntryCodigo" TextColor="{StaticResource PrimaryColor}" Placeholder="Buscar clasificación..." PlaceholderColor="{StaticResource PrimaryColor}" FontSize="Title" HorizontalOptions="FillAndExpand" Completed="TapGestureRecognizer_Tapped" TextChanged="EntryCodigo_TextChanged"/>
+        </StackLayout>
+        
+        <Frame FlexLayout.Shrink="0" BackgroundColor="{StaticResource PrimaryColor}" HorizontalOptions="FillAndExpand" HeightRequest="1" Padding="0,1.5"/>
+
+        <CollectionView Grid.Row="1" x:Name="clltionClasificaciones" Margin="10" SelectionMode="Single" SelectionChanged="clltionClasificaciones_SelectionChanged">
+            <CollectionView.EmptyView>
+                <Label FontAttributes="Bold" HorizontalTextAlignment="Center" FontSize="Large" HorizontalOptions="Center" Style="{StaticResource TextoAMostrarColorRojo}">No se encontraron datos</Label>
+            </CollectionView.EmptyView>
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="5" SnapPointsAlignment="Center"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                        <FlexLayout JustifyContent="Start" Margin="15,0" >
+                        <Label Text="{Binding Nombre}" MaxLines="1" FontSize="25" FontAttributes="Bold" Style="{StaticResource TextoAMostrarColorRojo}" HorizontalOptions="Start" Margin="20,0"/>
+                        <Frame BackgroundColor="{StaticResource PrimaryColor}" HeightRequest="1" Padding="0.5" Margin="5,0"/>
+                        </FlexLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </FlexLayout>
+</ContentPage>
