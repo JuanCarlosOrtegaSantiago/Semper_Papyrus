@@ -17,5 +17,6 @@ namespace IURIS.COMMON.Interfaces
         bool Delete(ObjectId id);
         Leyes Consult(string key);
         Task<List<Leyes>> Consults(string key);
+        Task<List<Leyes>> ConsultsDesktop(string key);
     }
 }

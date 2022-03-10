@@ -16,6 +16,7 @@ namespace IURIS.COMMON.Interfaces
         List<Leyes> MostrarLeyes { get; }
         Leyes Consult(string key);
         Task<List<Leyes>> Consults(string key);
+        Task<List<Leyes>> ConsultsDesktop(string key);
 
     }
 }

@@ -107,5 +107,17 @@ namespace IURIS.DAL
 
             return vv.FindAsync((X => X.Clasificacion == key),findOptions).Result.ToListAsync().Result;
         }
+
+        
+            public async Task<List<Leyes>> ConsultsDesktop(string key)
+        {
+            var vv = db.GetCollection<Leyes>("Leyes");
+
+            var projection = Builders<Leyes>.Projection.Include("NombreLey").Include("CodigoLey").Include("UltimaFechaDeModificacion");
+            var findOptions = new FindOptions<Leyes>() { Projection = projection };
+
+            return vv.FindAsync((X => X.Clasificacion == key), findOptions).Result.ToListAsync().Result;
+        }
+
     }
 }

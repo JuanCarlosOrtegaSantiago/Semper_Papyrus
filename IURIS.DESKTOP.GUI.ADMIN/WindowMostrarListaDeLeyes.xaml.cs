@@ -31,6 +31,9 @@ namespace IURIS.DESKTOP.GUI.ADMIN
         public WindowMostrarListaDeLeyes(Clasificacion clasificacion)
         {
             InitializeComponent();
+            try
+            {
+
             Background = (Brush)new BrushConverter().ConvertFrom(App.color);
             manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
 
@@ -42,6 +45,17 @@ namespace IURIS.DESKTOP.GUI.ADMIN
 
             LeyesDeClasificacion = leyes.Where(w => w.Clasificacion == clasificacion.Nombre).ToList();
             ListLeyes.ItemsSource =  LeyesDeClasificacion;
+            }
+            catch (Exception ex)
+            {
+
+                //if (ex.HResult == ExSinInternet.HResult)
+                //{
+                //    HayInternet = false;
+                //    return;
+                //}
+                MessageBox.Show(ex.Message, "Error");
+            }
 
         }
 

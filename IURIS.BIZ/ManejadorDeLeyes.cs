@@ -57,6 +57,11 @@ namespace IURIS.BIZ
             return repositorio.Consults(key);
         }
 
+        public Task<List<Leyes>> ConsultsDesktop(string key)
+        {
+            return repositorio.ConsultsDesktop(key);
+        }
+
         public bool Eliminar(ObjectId id)
         {
             return repositorio.Delete(id);

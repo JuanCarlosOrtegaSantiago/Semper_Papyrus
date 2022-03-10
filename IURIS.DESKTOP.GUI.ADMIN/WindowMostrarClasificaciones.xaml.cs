@@ -47,11 +47,17 @@ namespace IURIS.DESKTOP.GUI.ADMIN
                     HayInternet = false;
                     return;
                 }
+        
+                    MessageBox.Show(ex.Message,"Error");
+                
             }
         }
 
         private void ListaDeClasificaciones_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            try
+            {
+
             Clasificacion clasificacion = (Clasificacion)ListaDeClasificaciones.SelectedItem;
             if (clasificacion != null)
             {
@@ -59,6 +65,18 @@ namespace IURIS.DESKTOP.GUI.ADMIN
                 this.Close();
                 windowMostrarListaDeLeyes.Show();
             }
+            }
+            catch (Exception ex)
+            {
+
+                if (ex.HResult == ExSinInternet.HResult)
+                {
+                    HayInternet = false;
+                    return;
+                }
+                MessageBox.Show(ex.Message, "Error");
+            }
+        
         }
 
         private void BtnRegresarAMenuDeOperaciones_Click(object sender, RoutedEventArgs e)
