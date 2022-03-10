@@ -77,10 +77,10 @@ namespace IURIS.MOVIL.Modelos_y_clases.DB_Local
                 ApellidoMaterno = _AMaterno,
                 ApellidoPaterno = _APaterno,
                 Nombre = _Nombre,
-                 DatosSobreUsuario=new MyDatosSobreUsuarioParaLey()
+                 DatosSobreUsuario=new MyDatosSobreUsuarioParaLey(), 
 
             };
-            
+            myUser.DatosSobreUsuario.NumLeyesPermitidas = _Const.NumDeLeyesInicial;
             myUser.MisLeyes.Add(LeyToMyley(ley));
             myUser.MiUltimaLeyCargada = ley.CodigoLey;
             //foreach (var Ley in _User.MisLeyes)

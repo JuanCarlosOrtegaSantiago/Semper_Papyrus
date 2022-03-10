@@ -21,6 +21,7 @@ namespace IURIS.COMMON.Constantes
         
         public string TypeDBNube => "Nube";
         public string NombreDeClasificaiconExcluir => "LeyInicial";
+        public int NumDeLeyesInicial => 4;
 
     }
 }

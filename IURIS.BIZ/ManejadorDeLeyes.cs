@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace IURIS.BIZ
 {
@@ -44,6 +45,16 @@ namespace IURIS.BIZ
         public Leyes BuscarPorID(ObjectId Id)
         {
             return Listar.Where(e => e.id == Id).SingleOrDefault();
+        }
+
+        public Leyes Consult(string key)
+        {
+            return repositorio.Consult(key);
+        }
+
+        public Task<List<Leyes>> Consults(string key)
+        {
+            return repositorio.Consults(key);
         }
 
         public bool Eliminar(ObjectId id)

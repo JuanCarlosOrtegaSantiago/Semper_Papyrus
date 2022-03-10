@@ -49,6 +49,7 @@ namespace IURIS.MOVIL.Master
             App.masterDetail.IsPresented = false;
             //App.masterDetail.Detail = new NavigationPage(new WindowDeCopmpa());
             App.masterDetail.Detail = new NavigationPage(new TabbedPageCargar_CambiarLey());
+
         }
 
         private void TapGestureRecognizer_Tapped_4(object sender, EventArgs e)

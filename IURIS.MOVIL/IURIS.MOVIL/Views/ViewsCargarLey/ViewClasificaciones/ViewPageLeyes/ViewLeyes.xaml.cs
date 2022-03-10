@@ -3,6 +3,8 @@ using IURIS.BIZ;
 using IURIS.COMMON.Entidades.Ley;
 using IURIS.COMMON.Interfaces;
 using IURIS.DAL;
+using IURIS.MOVIL.Modelos_y_clases.Tools;
+using IURIS.MOVIL.Views.ViewsCargarLey.TabbPage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,8 +31,9 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey.ViewClasificaciones.ViewLeyes
             {
                 await Task.Delay(1000);
                 manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
-                _Leyes = manejadorDeLeyes.Listar.Where(e => e.Clasificacion.ToUpper().Equals(Clasificacion.ToUpper())).ToList();
+                _Leyes = await manejadorDeLeyes.Consults(Clasificacion);
                 clltionLeyes.ItemsSource = _Leyes;
+                // clltionLeyes.ItemsSource = _Leyes;
                 UserDialogs.Instance.HideLoading();
             });
         }
@@ -48,6 +51,36 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey.ViewClasificaciones.ViewLeyes
         private void EntryCodigo_Completed(object sender, EventArgs e)
         {
             SearchText(EntryCodigo.Text);
+        }
+
+        private async void clltionLeyes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                UserDialogs.Instance.ShowLoading("Buscando ley", MaskType.Gradient);
+                await Task.Delay(1000);
+
+
+                HerramientasGenerales herramientasGenerales = new HerramientasGenerales();
+                string x = await herramientasGenerales.AgragarLEyAsync(((Leyes)clltionLeyes.SelectedItem).CodigoLey);
+                string[] subs = x.Split('|');
+
+                if (subs[0] != "OK")
+                {
+                    await DisplayAlert(subs[0], subs[1], subs[2]);
+                }
+                App.masterDetail.IsPresented = false;
+                //App.masterDetail.Detail = new NavigationPage(new WindowDeCopmpa());
+                App.masterDetail.Detail = new NavigationPage(new TabbedPageCargar_CambiarLey());
+
+
+
+            }
+            catch (Exception ex)
+            {
+                UserDialogs.Instance.HideLoading();
+            }
+            
         }
     }
 }

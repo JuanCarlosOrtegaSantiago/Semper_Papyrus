@@ -15,7 +15,7 @@
             <Local:CustomEntry x:Name="EntryCodigo" TextColor="{StaticResource PrimaryColor}" Placeholder="Buscar nombre de ley..." PlaceholderColor="{StaticResource PrimaryColor}" FontSize="Title" HorizontalOptions="FillAndExpand" Completed="EntryCodigo_Completed" TextChanged="EntryCodigo_TextChanged"/>
         </StackLayout>
 
-        <CollectionView Grid.Row="1" x:Name="clltionLeyes" Margin="10" SelectionMode="Single" >
+        <CollectionView Grid.Row="1" x:Name="clltionLeyes" Margin="10" SelectionMode="Single" ItemsUpdatingScrollMode="KeepItemsInView" SelectionChanged="clltionLeyes_SelectionChanged">
             <CollectionView.EmptyView>
                 <Label FontAttributes="Bold" HorizontalTextAlignment="Center" FontSize="Large" HorizontalOptions="Center" Style="{StaticResource TextoAMostrarColorRojo}">No se encontraron datos</Label>
             </CollectionView.EmptyView>
@@ -24,10 +24,13 @@
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <FlexLayout JustifyContent="Start" Margin="15,0" >
-                        <Label Text="{Binding NombreLey}" MaxLines="1" FontSize="25" FontAttributes="Bold" Style="{StaticResource TextoAMostrarColorRojo}" HorizontalOptions="Start" Margin="20,0"/>
+                    <StackLayout>
+                        <FlexLayout JustifyContent="Start" Margin="15,0" >
+                            <Label Text="{Binding NombreLey}" MaxLines="1" FontSize="17" FontAttributes="Bold" Style="{StaticResource TextoAMostrarColorRojo}" HorizontalOptions="Start"/>
+                            <Label Text="{Binding CodigoLey}" FontSize="15" Style="{StaticResource TextoAMostrarColorRojo}" HorizontalOptions="Start"/>
+                        </FlexLayout>
                         <Frame BackgroundColor="{StaticResource PrimaryColor}" HeightRequest="1" Padding="0.5" Margin="5,0"/>
-                    </FlexLayout>
+                    </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

@@ -15,7 +15,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -37,10 +37,20 @@ namespace IURIS.MOVIL.Views
             ActualizarDatos();
         }
 
-        void ActualizarDatos()
+         void ActualizarDatos()
         {
-            clltionClasificaciones.ItemsSource = null;
-            clltionClasificaciones.ItemsSource = App.MyUser.MisLeyes.Where(w => w.CodigoLey == _MyLey.CodigoLey).SingleOrDefault().Clasificaciones;
+            MainThread.BeginInvokeOnMainThread(async () =>
+            {
+                await Task.Delay(100);
+
+                clltionClasificaciones.ItemsSource = null;
+                var clas = App.MyUser.MisLeyes.Find(w => w.CodigoLey == _MyLey.CodigoLey).Clasificaciones;
+                clltionClasificaciones.ItemsSource = clas;
+                if (_Articulo != null && clas.Count == 0)
+                {
+                    await PopupNavigation.Instance.PushAsync(new WindowOfEmergencyNuevaClasificacion(_MyLey, _Articulo));
+                }
+            });
         }
 
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
@@ -71,7 +81,7 @@ namespace IURIS.MOVIL.Views
 
                         await DisplayAlert("Hecho", "Agregada correctamente", "Ok");
                         _Articulo = null;
-
+                        return;
                     }
                     catch (Exception ex)
                     {

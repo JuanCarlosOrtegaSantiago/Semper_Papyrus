@@ -1,10 +1,14 @@
 ﻿using IURIS.COMMON.Entidades.CapaBase;
+using IURIS.COMMON.Entidades.Ley;
 using IURIS.COMMON.Interfaces;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
+using static MongoDB.Bson.Serialization.BsonDeserializationContext;
 
 namespace IURIS.DAL
 {
@@ -85,6 +89,23 @@ namespace IURIS.DAL
             {
                 return false;
             }
+        }
+
+        public Leyes Consult(string key)
+        {
+            var vv = db.GetCollection<Leyes>("Leyes");
+
+            return vv.Find(x => x.CodigoLey.ToUpper()==key.ToUpper()).SingleOrDefault();
+        }
+
+        public async Task< List<Leyes>> Consults(string key)
+        {
+            var vv = db.GetCollection<Leyes>("Leyes");
+
+            var projection = Builders<Leyes>.Projection.Include("NombreLey").Include("CodigoLey");
+            var findOptions = new FindOptions<Leyes>() { Projection = projection };
+
+            return vv.FindAsync((X => X.Clasificacion == key),findOptions).Result.ToListAsync().Result;
         }
     }
 }

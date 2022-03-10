@@ -29,7 +29,11 @@
 
             <Grid ColumnDefinitions="*,Auto" ColumnSpacing="5" >
                 <FlexLayout Grid.Column="0" x:Name="tituloLey" Direction="Column" AlignItems="Center" AlignContent="Center" Margin="0,0,0,5">
-                    <Local:CustomLabel x:Name="lblTitle" Style="{StaticResource TextoAMostrarColorBlanco}" HorizontalTextAlignment="Center" HorizontalOptions="Center"/>
+                    <Label x:Name="lblTitle" MaxLines="1" LineBreakMode="MiddleTruncation" LineHeight="10" Style="{StaticResource TextoAMostrarColorBlanco}" HorizontalTextAlignment="Center" HorizontalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
                     <Label x:Name="lblCodigo" Style="{StaticResource TextoAMostrarColorBlanco}" FontSize="Small" VerticalOptions="End" VerticalTextAlignment="End" HorizontalOptions="Center" HorizontalTextAlignment="Center" Margin="0,2,0,10"/>
                 </FlexLayout>
 

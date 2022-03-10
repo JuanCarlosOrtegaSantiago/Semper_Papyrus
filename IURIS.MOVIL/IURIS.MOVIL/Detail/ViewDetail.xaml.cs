@@ -1,4 +1,5 @@
-﻿using IURIS.COMMON.Entidades.Ley;
+﻿using Acr.UserDialogs;
+using IURIS.COMMON.Entidades.Ley;
 using IURIS.COMMON.Entidades.Ley.ComponentesDeLey;
 using IURIS.COMMON.Entidades.UsuariosDeAplicacion;
 using IURIS.MOVIL.Modelos_y_clases;
@@ -128,6 +129,11 @@ namespace IURIS.MOVIL.Detail
         {
             MostrarSearch(false);
             SearchViewDetailTitle.Text = null;
+        }
+
+        private void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
+        {
+            UserDialogs.Instance.Alert(_MyLey.NombreLey, "Ok");
         }
     }
 }

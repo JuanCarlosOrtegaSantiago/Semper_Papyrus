@@ -47,7 +47,7 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
             if (_Articulo != null) 
                 clasificacion.MisArticulos.Add(_Articulo);
 
-            App.MyUser.MisLeyes.Where(w => w.CodigoLey == _MyLey.CodigoLey).SingleOrDefault().Clasificaciones.Add(clasificacion);
+            App.MyUser.MisLeyes.Find(w => w.CodigoLey == _MyLey.CodigoLey).Clasificaciones.Add(clasificacion);
 
             try
             {
@@ -58,6 +58,11 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
                     return;
                 }
                     await DisplayAlert("Hecho", "Agregada correctamente", "Ok");
+                if (_Articulo != null)
+                {
+                    await PopupNavigation.Instance.PopAsync(false);
+                    return;
+                }
                     App.masterDetail.IsPresented = false;
                     App.masterDetail.Detail = new NavigationPage(new ViewsMisClasificaciones(null, _MyLey));
             }
@@ -65,8 +70,8 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
             {
                 return;
             }
-
-            await PopupNavigation.Instance.PopAsync(false);
+            await PopupNavigation.Instance.PopAllAsync(false);
+            
         }
 
         private void BtnCancelar_Clicked(object sender, EventArgs e)

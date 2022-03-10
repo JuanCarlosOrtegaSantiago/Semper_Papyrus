@@ -1,8 +1,10 @@
 ﻿using IURIS.COMMON.Entidades.CapaBase;
+using IURIS.COMMON.Entidades.Ley;
 using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace IURIS.COMMON.Interfaces
 {
@@ -13,5 +15,7 @@ namespace IURIS.COMMON.Interfaces
         bool Update(T EntidadModificada);
         //Cuando se conecte a mongo cambiar el tipo de identidicador para ObjectId
         bool Delete(ObjectId id);
+        Leyes Consult(string key);
+        Task<List<Leyes>> Consults(string key);
     }
 }
