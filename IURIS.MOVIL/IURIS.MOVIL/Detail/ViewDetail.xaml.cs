@@ -131,9 +131,20 @@ namespace IURIS.MOVIL.Detail
             SearchViewDetailTitle.Text = null;
         }
 
-        private void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
+        private  async void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
         {
-            UserDialogs.Instance.Alert(_MyLey.NombreLey, "Ok");
+            try
+            {
+                await PopupNavigation.Instance.PushAsync(new WindowAlert(_MyLey.NombreLey), false);
+                await Task.Delay(3000);
+                await PopupNavigation.Instance.PopAsync(false);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
         }
     }
 }

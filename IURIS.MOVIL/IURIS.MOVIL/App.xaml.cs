@@ -74,7 +74,7 @@ namespace IURIS.MOVIL
         protected override void OnStart()
         {
             //Register Periodic Tasks
-            BackgroundAggregatorService.Add(() => new GetClasificaiciones(10));
+            BackgroundAggregatorService.Add(() => new GetClasificaiciones(24));
             //BackgroundAggregatorService.Add(() => new PeriodicCall2(4));
 
             //Start the background service
@@ -88,7 +88,16 @@ namespace IURIS.MOVIL
 
         protected override void OnResume()
         {
+            try
+            {
             BackgroundAggregatorService.StartBackgroundService();
+
+            }
+            catch (Exception)
+            {
+
+                return;
+            }
         }
 
         

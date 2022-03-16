@@ -50,6 +50,7 @@ namespace IURIS.MOVIL
                     if (App.MyUser != null)
                     {
                         Intentos = 0;
+                        await Navigation.PopAsync();
                         await Navigation.PushAsync(new FirtsView(), false);
 
                         UserDialogs.Instance.HideLoading();

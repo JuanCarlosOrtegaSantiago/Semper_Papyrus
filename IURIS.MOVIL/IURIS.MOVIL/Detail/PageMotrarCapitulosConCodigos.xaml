@@ -5,9 +5,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:local="clr-namespace:IURIS.MOVIL.Modelos_y_clases"
-             xmlns:xct="http://xamarin.com/schemas/2020/toolkit" xmlns:controls="clr-namespace:MarcTron.Plugin.Controls;assembly=Plugin.MtAdmob"
-             mc:Ignorable="d"
-             x:Class="IURIS.MOVIL.Detail.PageMotrarCapitulosConCodigos">
+             
+             xmlns:controls="clr-namespace:MarcTron.Plugin.Controls;assembly=Plugin.MtAdmob"
+             x:Class="IURIS.MOVIL.Detail.PageMotrarCapitulosConCodigos"
+             
+             
+             
+             
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             mc:Ignorable="d">
 
     <ContentPage.Resources>
         <ResourceDictionary>

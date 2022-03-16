@@ -44,39 +44,57 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
             await PopupNavigation.Instance.PushAsync(new WindowOfEmergencyCrearNota(_Titulo, _Articulo, _MyLey, _Capitulo), false);
         }
 
+        private async Task showAlert(string mensaje)
+        {
+            try
+            {
+                await PopupNavigation.Instance.PushAsync(new WindowAlert(mensaje), false);
+                await Task.Delay(2000);
+                await PopupNavigation.Instance.PopAsync(false);
+                return;
+            }
+            catch (Exception)
+            {
+                return;
+
+            }
+        }
+
         private async void LblClasificacionPersonalizada(object sender, EventArgs e)
         {
-
+            //await Task.Delay(2000);
+            //await PopupNavigation.Instance.PopAsync(false);
             if (_MyLey.Clasificaciones.Count() > 0)
             {
-                List<String> name = new List<String>();
-                _MyLey.Clasificaciones.ForEach(d => name.Add(d.Nombre));
-                string[] Opciones = new[] { "Cancelar", "Crear nueva clasificación" };
+            await PopupNavigation.Instance.PushAsync(new WindowListadoDeClasificaciones(_MyLey,_Articulo), false);
+                //List<String> name = new List<String>();
+                //_MyLey.Clasificaciones.ForEach(d => name.Add(d.Nombre));
+                //string[] Opciones = new[] { "Cancelar", "Crear nueva clasificación" };
 
-                var Clasificaicon = await UserDialogs.Instance.ActionSheetAsync("Elige una clasificación", Opciones[0], Opciones[1], CancellationToken.None, name.ToArray());
+                //var Clasificaicon = await UserDialogs.Instance.ActionSheetAsync("Elige una clasificación", Opciones[0], Opciones[1], CancellationToken.None, name.ToArray());
 
-                if (!string.IsNullOrEmpty(Clasificaicon)&& !Clasificaicon.Equals(Opciones[0]))
-                {
+                //if (!string.IsNullOrEmpty(Clasificaicon)&& !Clasificaicon.Equals(Opciones[0]))
+                //{
 
-                    if (Clasificaicon.Equals(Opciones[1]))
-                    {
+                //    if (Clasificaicon.Equals(Opciones[1]))
+                //    {
                         
                             
-                            await PopupNavigation.Instance.PushAsync(new WindowOfEmergencyNuevaClasificacion(_MyLey, _Articulo));
-                        //await Navigation.PushAsync(new ViewsMisClasificaciones(_Articulo, _MyLey), false);
-                        //await PopupNavigation.Instance.PopAllAsync(IsAnimating);
+                //            await PopupNavigation.Instance.PushAsync(new WindowOfEmergencyNuevaClasificacion(_MyLey, _Articulo));
+                //        //await Navigation.PushAsync(new ViewsMisClasificaciones(_Articulo, _MyLey), false);
+                //        //await PopupNavigation.Instance.PopAllAsync(IsAnimating);
                         
-                    }
-                    else
-                    {
-                        _MyLey.Clasificaciones.Find(clasi => clasi.Nombre.Equals(Clasificaicon)).MisArticulos.Add(_Articulo);
+                //    }
+                //    else
+                //    {
+                //        _MyLey.Clasificaciones.Find(clasi => clasi.Nombre.Equals(Clasificaicon)).MisArticulos.Add(_Articulo);
 
-                        string[] datos = await App.Database.UpdateUserAsync(App.MyUser) ? new[] { "Ok", "Artículo agregado" } : new[] { "Error", "Intente más tarde" };
+                //        string[] datos = await App.Database.UpdateUserAsync(App.MyUser) ? new[] { "Ok", "Artículo agregado" } : new[] { "Error", "Intente más tarde" };
 
-                        UserDialogs.Instance.Alert(datos[0], datos[1]);
-                        await PopupNavigation.Instance.PopAsync(false);
-                    }
-                }
+                //        UserDialogs.Instance.Alert(datos[0], datos[1]);
+                //        await PopupNavigation.Instance.PopAsync(false);
+                //    }
+                //}
             }
             else
             {

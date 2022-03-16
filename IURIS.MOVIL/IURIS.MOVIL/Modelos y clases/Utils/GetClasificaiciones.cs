@@ -23,7 +23,7 @@ namespace IURIS.MOVIL.Modelos_y_clases.Utils
 
         public GetClasificaiciones(int min)
         {
-            Interval = TimeSpan.FromMinutes(min);
+            Interval = TimeSpan.FromHours(min);
 
         }
 

@@ -29,32 +29,14 @@ namespace IURIS.MOVIL
             {
                 await Task.Delay(1000);
 
-                //var ultimoUsers = await App.ultimoUser.GetUltimoUserAsync();
-                //UltimoUser _UltimoUser = ultimoUsers.FirstOrDefault();
-                //if (_UltimoUser == null)
-                //{
-                    
-                //        UserDialogs.Instance.HideLoading();
-                //        lblEntrar.IsVisible = true;
-                //        return;
-                    
-                //}
-                
                 var usuarios = await App.Database.GetPeopleAsync();
                 App.MyUser = usuarios.FirstOrDefault();
-                if (App.MyUser != null)
-                {
-                    await Navigation.PushAsync(new FirtsView(), false);
 
-                    UserDialogs.Instance.HideLoading();
-                    return;
-                }
-                else
-                {
-                    UserDialogs.Instance.HideLoading();
-                    lblEntrar.IsVisible = true;
-                    return;
-                }
+                if (App.MyUser != null) await Navigation.PushModalAsync(new FirtsView(), false);
+                else lblEntrar.IsVisible = true;
+
+                UserDialogs.Instance.HideLoading();
+                await Navigation.PopAsync(false);
             });
 
         }

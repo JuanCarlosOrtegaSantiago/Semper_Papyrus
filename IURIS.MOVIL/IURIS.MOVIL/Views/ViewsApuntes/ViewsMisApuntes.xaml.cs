@@ -3,6 +3,8 @@ using IURIS.COMMON.Entidades.UsuariosDeAplicacion;
 using IURIS.COMMON.Entidades.UsuariosDeAplicacion.ComponentesDeUsuario;
 using IURIS.COMMON.Interfaces;
 using IURIS.DAL;
+using IURIS.MOVIL.Views.ViewsVentanasEmergentes;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,8 +55,19 @@ namespace IURIS.MOVIL.Views.ViewsApuntes
 
             if (!await App.Database.UpdateUserAsync(App.MyUser)) return;
 
-            await DisplayAlert("", "Se elimino el apunte", "Ok");
-            LlenadosDeCampos();
+                LlenadosDeCampos();
+            try
+            {
+                await PopupNavigation.Instance.PushAsync(new WindowAlert("Se elimino el apunte"), false);
+                await Task.Delay(2000);
+                await PopupNavigation.Instance.PopAsync(false);
+                return;
+            }
+            catch (Exception)
+            {
+                return;
+
+            }
         }
     }
 }

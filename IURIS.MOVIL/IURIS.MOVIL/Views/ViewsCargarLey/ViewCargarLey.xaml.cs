@@ -43,7 +43,19 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
                 if (App.MyUser.MisLeyes.Count == 1)
                 {
 
-                    UserDialogs.Instance.Toast(" Para eliminar una ley,\n desliza hacia la izquierda la ley y preciona eliminar", TimeSpan.FromMilliseconds(3000));
+                    //UserDialogs.Instance.Toast(" Para eliminar una ley,\n desliza hacia la izquierda la ley y preciona eliminar", TimeSpan.FromMilliseconds(3000));
+                    try
+                    {
+                        await PopupNavigation.Instance.PushAsync(new WindowAlert("Para eliminar una ley,\n desliza hacia la izquierda la ley y preciona eliminar"), false);
+                        await Task.Delay(2000);
+                        await PopupNavigation.Instance.PopAsync(false);
+                        return;
+                    }
+                    catch (Exception)
+                    {
+                        return;
+
+                    }
                 }
                 manejadorDeLeyes = new ManejadorDeLeyes(new RepositorioGenerico<Leyes>());
 
@@ -71,7 +83,7 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
             {
                 UserDialogs.Instance.ShowLoading("Validando datos\nEspere...", MaskType.Gradient);
                 await Task.Delay(1000);
-                
+
                 //manejadorDeUsuario = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>(true));
                 //Usuarios _User = manejadorDeUsuario.EncontrarUsuarioID(App.MyUser.IdApp);
 
@@ -81,7 +93,7 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
                 //    return;
                 //}
 
-                
+
 
                 HerramientasGenerales herramientasGenerales = new HerramientasGenerales();
                 herramientasGenerales.RenovarSuscripcion();
@@ -92,22 +104,33 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
 
 
                 HerramientasGenerales herramientasGenerales1 = new HerramientasGenerales();
-                string x= await herramientasGenerales.AgragarLEyAsync(EntryCodigo.Text);
+                string x = await herramientasGenerales.AgragarLEyAsync(EntryCodigo.Text);
                 string[] subs = x.Split('|');
+
+                UserDialogs.Instance.HideLoading();
 
                 if (subs[0] != "OK")
                 {
-                    await DisplayAlert(subs[0], subs[1], subs[2]);
+                    await PopupNavigation.Instance.PushAsync(new WindowAlert(subs[0], subs[1], subs[2]), false);
+                    await Task.Delay(2000);
+                    await PopupNavigation.Instance.PopAsync(false);
+                    return;
                 }
-                    CargarDatos();
 
-
+                await PopupNavigation.Instance.PushAsync(new WindowAlert("Ley agregada"), false);
+                await Task.Delay(2000);
+                await PopupNavigation.Instance.PopAsync(false);
+             
+                CargarDatos();
                 Limpiardatos();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 UserDialogs.Instance.HideLoading();
-                await DisplayAlert("Error", "Esta acción no se puede realizar por el momento\nIntente mas tarde", "OK");
+                //await DisplayAlert("Error", "Esta acción no se puede realizar por el momento\nIntente mas tarde", "OK");
+                await PopupNavigation.Instance.PushAsync(new WindowAlert("Error", "Esta acción no se puede realizar por el momento\nIntente mas tarde", "OK"), false);
+                await Task.Delay(2000);
+                await PopupNavigation.Instance.PopAsync(false);
                 return;
             }
         }
@@ -126,15 +149,19 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
             App.MyUser.MiUltimaLeyCargada = ((MyLey)clltionLeyes.SelectedItem).CodigoLey;
             Settings.LastCode = App.MyUser.MiUltimaLeyCargada;
 
+            UserDialogs.Instance.HideLoading();
             if (!await App.Database.UpdateUserAsync(App.MyUser))
             {
-                await DisplayAlert("error", "No se ha podido cargar la ley\n por favor intente mas tarde", "OK");
+
+                await PopupNavigation.Instance.PushAsync(new WindowAlert("error", "No se ha podido cargar la ley\n por favor intente mas tarde", "OK"), false);
+                await Task.Delay(2000);
+                await PopupNavigation.Instance.PopAsync(false);
+                
                 return;
             }
             
             App.masterDetail.IsPresented = false;
             App.masterDetail.Detail = new NavigationPage(new ViewDetail());
-            UserDialogs.Instance.HideLoading();
         }
 
         private async void SwipeItem_Invoked(object sender, EventArgs e)
@@ -152,8 +179,12 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
             if (!await App.Database.UpdateUserAsync(App.MyUser)) return;
 
             UserDialogs.Instance.HideLoading();
-            await DisplayAlert("", "Se borro la ley de tu lista", "Ok");
             CargarDatos();
+
+            await PopupNavigation.Instance.PushAsync(new WindowAlert("Se borro la ley de tu lista"), false);
+            await Task.Delay(2000);
+            await PopupNavigation.Instance.PopAsync(false);
+
         }
     }
 }

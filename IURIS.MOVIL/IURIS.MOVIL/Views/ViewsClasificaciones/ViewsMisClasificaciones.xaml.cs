@@ -75,18 +75,18 @@ namespace IURIS.MOVIL.Views
 
                         if (!await App.Database.UpdateUserAsync(App.MyUser))
                         {
-                            await DisplayAlert("Error", "Por favor intenta mas tarde", "Ok");
+                            await showAlert("Por favor intenta mas tarde");
                             return;
                         }
 
-                        await DisplayAlert("Hecho", "Agregada correctamente", "Ok");
+                        await showAlert("Agregada correctamente");
                         _Articulo = null;
                         return;
                     }
                     catch (Exception ex)
                     {
 
-                        await DisplayAlert("Error", "Por el momento no se peude agregar su clasificacion\n por favor intente mas tarde\nError:" + ex.Message, "Aceptar");
+                        await showAlert("Por el momento no se peude agregar su clasificacion\n por favor intente mas tarde\nError:" + ex.Message);
                         return;
                     }
                 }
@@ -103,6 +103,22 @@ namespace IURIS.MOVIL.Views
 
             if (!await App.Database.UpdateUserAsync(App.MyUser)) return;
             ActualizarDatos();
+        }
+
+        private async Task showAlert(string mensaje)
+        {
+            try
+            {
+                await PopupNavigation.Instance.PushAsync(new WindowAlert(mensaje), false);
+                await Task.Delay(2000);
+                await PopupNavigation.Instance.PopAsync(false);
+                return;
+            }
+            catch (Exception)
+            {
+                return;
+
+            }
         }
     }
 }

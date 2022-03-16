@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Pages:PopupPage   xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IURIS.MOVIL.Views.ViewsVentanasEmergentes.WindowAlert" BackgroundColor="Transparent"
+    xmlns:Pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                  
+             
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:Local="clr-namespace:IURIS.MOVIL.Modelos_y_clases"
+                  mc:Ignorable="d">
+
+    <Frame BackgroundColor="{StaticResource PrimaryColor}"
+           Margin="50"
+           Padding="5"
+           HorizontalOptions="FillAndExpand"
+           VerticalOptions="EndAndExpand"
+           CornerRadius="7" 
+            Opacity="0.75">
+        <Grid ColumnDefinitions="auto,*,auto" RowDefinitions="auto,*,auto" ColumnSpacing="0" RowSpacing="0" VerticalOptions="Center" HorizontalOptions="Center" Padding="15">
+
+            <Label x:Name="LblTitulo" IsVisible="false" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalTextAlignment="Start" VerticalOptions="Center" VerticalTextAlignment="Center" Style="{StaticResource TextoAMostrarColorBlanco}" ></Label>
+            <Label x:Name="LblMensaje" IsVisible="false" Grid.Row="1" Grid.Column="1" HorizontalTextAlignment="Center" VerticalOptions="Center" VerticalTextAlignment="Center" Style="{StaticResource TextoAMostrarColorBlanco}" ></Label>
+            
+            <Button Style="{StaticResource buttonPrincipal}" x:Name="LblCancelar" IsVisible="false" Grid.Row="2" Grid.Column="0" VerticalOptions="Center" ></Button>
+            <Button Style="{StaticResource buttonPrincipal}" x:Name="LblAceptar" IsVisible="false" Grid.Row="2" Grid.Column="2"  VerticalOptions="Center" Clicked="LblAceptar_Clicked" ></Button>
+        </Grid>
+
+    </Frame>
+</Pages:PopupPage>

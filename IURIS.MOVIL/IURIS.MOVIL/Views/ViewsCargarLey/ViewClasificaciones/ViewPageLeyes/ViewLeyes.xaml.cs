@@ -5,6 +5,8 @@ using IURIS.COMMON.Interfaces;
 using IURIS.DAL;
 using IURIS.MOVIL.Modelos_y_clases.Tools;
 using IURIS.MOVIL.Views.ViewsCargarLey.TabbPage;
+using IURIS.MOVIL.Views.ViewsVentanasEmergentes;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -67,16 +69,22 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey.ViewClasificaciones.ViewLeyes
 
                 if (subs[0] != "OK")
                 {
-                    await DisplayAlert(subs[0], subs[1], subs[2]);
+                    await PopupNavigation.Instance.PushAsync(new WindowAlert(subs[0], subs[1], subs[2]), false);
+                    await Task.Delay(3000);
+                    await PopupNavigation.Instance.PopAsync(false);
+                    return;
                 }
+
+                await PopupNavigation.Instance.PushAsync(new WindowAlert("Ley agregada"), false);
+                await Task.Delay(2000);
+                await PopupNavigation.Instance.PopAsync(false);
+
                 App.masterDetail.IsPresented = false;
                 //App.masterDetail.Detail = new NavigationPage(new WindowDeCopmpa());
                 App.masterDetail.Detail = new NavigationPage(new TabbedPageCargar_CambiarLey());
 
-
-
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 UserDialogs.Instance.HideLoading();
             }

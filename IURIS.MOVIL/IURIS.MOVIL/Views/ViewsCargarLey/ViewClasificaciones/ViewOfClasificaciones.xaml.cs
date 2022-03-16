@@ -19,7 +19,6 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey.ViewClasificaciones
     public partial class ViewOfClasificaciones : ContentPage
     {
         IManejadorDeClasificaciones manejadorDeClasificaciones;
-        List<Clasificacion> _Clasificacions;
         public ViewOfClasificaciones()
         {
             UserDialogs.Instance.ShowLoading("Obteniendo datos...", MaskType.None);

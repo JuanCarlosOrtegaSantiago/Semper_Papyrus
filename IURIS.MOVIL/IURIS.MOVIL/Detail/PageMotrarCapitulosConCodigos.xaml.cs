@@ -263,7 +263,7 @@ namespace IURIS.MOVIL.Detail
             ((Ellipse)sender).StrokeThickness = 4;
         }
 
-        private void ExpaderForPlus(object sender, EventArgs e)
+        private async void ExpaderForPlus(object sender, EventArgs e)
         {
             numToques += 1;
             if (numToques == 2)
@@ -273,7 +273,17 @@ namespace IURIS.MOVIL.Detail
                 _Articulo = null;
             }
             stakColores.IsVisible = stakColores.IsVisible==false? true:false;
-            UserDialogs.Instance.Toast("Selecciona el texto, copialo y elije un color\nposteriormente realiza la accion de tu agrado", TimeSpan.FromMilliseconds(2500));
+            try
+            {
+
+                await PopupNavigation.Instance.PushAsync(new WindowAlert("Selecciona el texto, copialo y elije un color\nposteriormente realiza la accion de tu agrado"), false);
+                await Task.Delay(4000);
+                await PopupNavigation.Instance.PopAsync(false);
+            }
+            catch (Exception ex)
+            {
+                return;
+            }
 
         }
 
@@ -363,12 +373,40 @@ namespace IURIS.MOVIL.Detail
                 _Articulo.Subrayados.Add(subrayado);
                 _Articulo.Subrayados.Add(subrayadoTemp);
 
-                if (await App.Database.UpdateUserAsync(App.MyUser)) IsRefreshing = true;
-                else await DisplayAlert("Error", "No se han guardado los cambios", "Ok");
+                if (await App.Database.UpdateUserAsync(App.MyUser))
+                {
+                    IsRefreshing = true;
+                    return;
+                }
+                else
+                {
+                    try
+                    {
+                        await PopupNavigation.Instance.PushAsync(new WindowAlert("Error", "No se han guardado los cambios", "Ok"), false);
+                        await Task.Delay(3000);
+                        await PopupNavigation.Instance.PopAsync(false);
+                    }
+                    catch (Exception)
+                    {
+
+                        return;
+                    }
+                }
             }
             catch (Exception ex)
             {
-                await DisplayAlert("Error", "Error: " + ex.Message, "ok");
+                //await DisplayAlert("Error", "Error: " + ex.Message, "ok");
+                try
+                {
+                    await PopupNavigation.Instance.PushAsync(new WindowAlert("Error",ex.Message,"Ok"), false);
+                    await Task.Delay(5000);
+                    await PopupNavigation.Instance.PopAsync(false);
+                }
+                catch (Exception)
+                {
+
+                    return;
+                }
                 return;
             }
         }
@@ -415,7 +453,18 @@ namespace IURIS.MOVIL.Detail
             }
             catch (Exception)
             {
-                await DisplayAlert("Error", "No se ha podido borrar el subrayado,\npor favor intente mas tarde", "ok");
+                //await DisplayAlert("Error", "No se ha podido borrar el subrayado,\npor favor intente mas tarde", "ok");
+                try
+                {
+                    await PopupNavigation.Instance.PushAsync(new WindowAlert("Error", "No se ha podido borrar el subrayado,\npor favor intente mas tarde", "Ok"), false);
+                    await Task.Delay(5000);
+                    await PopupNavigation.Instance.PopAsync(false);
+                }
+                catch (Exception)
+                {
+
+                    return;
+                }
             }
         }
     }

@@ -46,14 +46,24 @@ namespace IURIS.MOVIL.Views
                 if (_Apunte.MiApunte.Equals(TxtMiApunte.Text)) return;
 
                 _Apunte.MiApunte = TxtMiApunte.Text;
+                TxtMiApunte.Text = null;
 
                 if (!await App.Database.UpdateUserAsync(App.MyUser))
                 {
-                    await DisplayAlert("Error", "Intenta mas tarde", "Aceptar");
-                    return;
+                    try
+                    {
+                        await PopupNavigation.Instance.PushAsync(new WindowAlert("Error", "Intenta mas tarde", "Aceptar"), false);
+                        await Task.Delay(3000);
+                        await PopupNavigation.Instance.PopAsync(false);
+                        return;
+                    }
+                    catch (Exception)
+                    {
+                        return;
+
+                    }
                 }
 
-                TxtMiApunte.Text = null;
             }
             else
             {

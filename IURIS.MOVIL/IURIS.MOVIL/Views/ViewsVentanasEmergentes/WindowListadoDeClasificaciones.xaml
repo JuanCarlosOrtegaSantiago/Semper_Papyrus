@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Pages:PopupPage  xmlns:Pages="http://rotorgames.com" xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IURIS.MOVIL.Views.ViewsVentanasEmergentes.WindowListadoDeClasificaciones" 
+                  BackgroundColor="Transparent" Padding="15,30" >
+
+    <Frame BackgroundColor="{StaticResource PrimaryColor}"
+           Margin="0,50"
+           Padding="15"
+           HorizontalOptions="FillAndExpand"
+           VerticalOptions="EndAndExpand"
+           CornerRadius="10" 
+            Opacity="0.8">
+        <StackLayout Orientation="Vertical">
+
+            <CollectionView BackgroundColor="{StaticResource PrimaryColor} " 
+            Opacity="0.8" x:Name="clltionClasificaciones" SelectionMode="Single" ItemsSource="{Binding Clasificaciones}" SelectionChanged="clltionClasificaciones_SelectionChanged" >
+                <CollectionView.Header>
+                    <StackLayout>
+                        <Label FlexLayout.Basis="7%" Text="Elige una clasificación" Style="{StaticResource TextoAMostrarColorBlanco}" FontSize="Title" VerticalOptions="Center" Padding="15,10"></Label>
+                        <Frame BackgroundColor="{StaticResource PrimaryColor}" HeightRequest="1" Padding="0.5" Margin="5,0"/>
+                    </StackLayout>
+                </CollectionView.Header>
+                <CollectionView.EmptyView>
+                    <Label FlexLayout.Basis="7%" FontAttributes="Italic" FontSize="Large" HorizontalTextAlignment="Center" Style="{StaticResource TextoAMostrarColorBlanco}">Aún no tienes ninguna clasificación</Label>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Label FlexLayout.Basis="7%" Text="{Binding Nombre}" Style="{StaticResource TextoAMostrarColorBlanco}" FontSize="Title" VerticalOptions="Center" Padding="15,10"></Label>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <Button Style="{StaticResource buttonPrincipal}" x:Name="LblCancelar" HorizontalOptions="StartAndExpand" BorderColor="Transparent" VerticalOptions="Center" Text="Cancelar" Clicked="LblCancelar_Clicked" ></Button>
+                <Button Style="{StaticResource buttonPrincipal}" x:Name="LblAceptar" HorizontalOptions="EndAndExpand" BorderColor="Transparent" VerticalOptions="Center" Text="Crear nueva clasificación" Clicked="LblAceptar_Clicked"></Button>
+            </StackLayout>
+        </StackLayout>
+    </Frame>
+</Pages:PopupPage>

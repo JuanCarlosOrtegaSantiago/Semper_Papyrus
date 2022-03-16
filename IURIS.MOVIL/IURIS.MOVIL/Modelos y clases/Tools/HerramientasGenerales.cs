@@ -7,6 +7,7 @@ using IURIS.COMMON.Entidades.UsuariosDeAplicacion;
 using IURIS.COMMON.Interfaces;
 using IURIS.DAL;
 using IURIS.MOVIL.Modelos_y_clases.DB_Local;
+using IURIS.MOVIL.Modelos_y_clases.DB_Local.COMMON;
 using IURIS.MOVIL.Utils;
 using IURIS.MOVIL.Views.ViewsVentanasEmergentes;
 using Rg.Plugins.Popup.Services;
@@ -60,7 +61,6 @@ namespace IURIS.MOVIL.Modelos_y_clases.Tools
 
             Settings.TypeDB = App.MyUser.DatosSobreUsuario.TipoDeCompra == null || x != null ? Const.TypeDBLocal : Const.TypeDBNube;
         }
-
 
         public async Task<string> AgragarLEyAsync(string Codigo)
         {
@@ -117,6 +117,22 @@ namespace IURIS.MOVIL.Modelos_y_clases.Tools
             {
                 UserDialogs.Instance.HideLoading();
                 return "Error|Ocurrio un error\nIntente mas tarde|OK";
+            }
+        }
+   
+        public async void ShowAlert(WindowAlert _WindowAlert, int duracion)
+        {
+            //string[] datos = await App.Database.UpdateUserAsync(App.MyUser) ? new[] { "Ok", "Artículo agregado" } : new[] { "Error", "Intente más tarde" };
+            try
+            {
+                await PopupNavigation.Instance.PushAsync(_WindowAlert , false);
+                await Task.Delay(duracion);
+                await PopupNavigation.Instance.PopAsync(false);
+                //return true;
+            }
+            catch (Exception ex)
+            {
+                return;
             }
         }
     }

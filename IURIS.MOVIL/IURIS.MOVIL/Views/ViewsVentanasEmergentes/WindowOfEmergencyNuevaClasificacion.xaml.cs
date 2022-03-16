@@ -54,10 +54,11 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
 
                 if (!await App.Database.UpdateUserAsync(App.MyUser))
                 {
-                    await DisplayAlert("Error", "No se pudo completar la operación", "OK");
+                    await showAlert("No se pudo completar la operación");
                     return;
                 }
-                    await DisplayAlert("Hecho", "Agregada correctamente", "Ok");
+                
+                await showAlert("Agregada correctamente");
                 if (_Articulo != null)
                 {
                     await PopupNavigation.Instance.PopAsync(false);
@@ -77,6 +78,22 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
         private void BtnCancelar_Clicked(object sender, EventArgs e)
         {
             PopupNavigation.Instance.PopAsync(false);
+        }
+
+        private async Task showAlert(string mensaje)
+        {
+            try
+            {
+                await PopupNavigation.Instance.PushAsync(new WindowAlert(mensaje), false);
+                await Task.Delay(2000);
+                await PopupNavigation.Instance.PopAsync(false);
+                return;
+            }
+            catch (Exception)
+            {
+                return;
+
+            }
         }
     }
 }

@@ -45,10 +45,20 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
             App.MyUser.Apuntes.Add(apunte);
             if (!await App.Database.UpdateUserAsync(App.MyUser)) return;
 
-            await DisplayAlert("", "Apunte agregado correctamente", "Ok");
-            await PopupNavigation.Instance.PopAsync(false);
-            App.masterDetail.IsPresented = false;
-            App.masterDetail.Detail = new NavigationPage(new MisApuntes(null));
+            try
+            {
+                await PopupNavigation.Instance.PushAsync(new WindowAlert("Apunte agregado correctamente"), false);
+                await Task.Delay(2000);
+                await PopupNavigation.Instance.PopAsync(false);
+                App.masterDetail.IsPresented = false;
+                App.masterDetail.Detail = new NavigationPage(new MisApuntes(null));
+                return;
+            }
+            catch (Exception)
+            {
+                return;
+
+            }
 
         }
     }
