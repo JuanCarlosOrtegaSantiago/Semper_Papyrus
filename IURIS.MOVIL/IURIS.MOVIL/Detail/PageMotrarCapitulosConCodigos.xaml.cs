@@ -36,14 +36,16 @@ namespace IURIS.MOVIL.Detail
         public bool _ArticuloSeleccionado;
         static int _NumRecultadosEncontrados = 0;
         public Capitulo _Capitulo;
+        public Capitulo _CapituloFind;
         public Articulo _Articulo;
+        public Articulo _ArticuloFin;
         bool isRefreshing;
         private string ColorHex;
         Ellipse Ellipse_Cargado = null;
         int numToques = 0;
         ClassAnuncio Anuncio = new ClassAnuncio();
 
-        public PageMotrarCapitulosConCodigos(Titulo titulo, MyLey ley, MTAdView adView)
+        public PageMotrarCapitulosConCodigos(Titulo titulo, MyLey ley, MTAdView adView, Capitulo CapAIniciar,Articulo articulo)
         {
             InitializeComponent();
             _MyLey = ley;
@@ -55,8 +57,11 @@ namespace IURIS.MOVIL.Detail
             });
 
             _titulo = titulo;
-
+            _CapituloFind = CapAIniciar;
+            _ArticuloFin = articulo;
             DatosAInicializar();
+
+
             
         }
 
@@ -89,17 +94,32 @@ namespace IURIS.MOVIL.Detail
                 });
             }
         }
-        
+
         private void DatosAInicializar()
         {
+            ActualizarDatosCapitulo(_titulo.ListaCapitulos);
             lblTitle.Text = _titulo.NombreTitulo;
             lblCodigo.Text = _MyLey.CodigoLey;
-
             cllctionArticulos.ItemsSource = null;
-            cllctionArticulos.ItemsSource = _titulo.ListaCapitulos.FirstOrDefault().ListaArticulos;//modificar
-            _Capitulo = _titulo.ListaCapitulos.FirstOrDefault();
 
-            ActualizarDatosCapitulo(_titulo.ListaCapitulos);
+            if (_CapituloFind != null)
+            {
+
+                cllctionArticulos.ItemsSource = _titulo.ListaCapitulos.Find(s => s.id.Equals(_CapituloFind.id)).ListaArticulos;
+                clltionCapitulos.Position = _titulo.ListaCapitulos.IndexOf(_CapituloFind);
+                if (_ArticuloFin != null)
+                {
+                    List<Articulo> ar=new List<Articulo>(){ _ArticuloFin};
+                    cllctionArticulos.ItemsSource = ar;
+                }
+            }
+            else
+            {
+
+                cllctionArticulos.ItemsSource = _titulo.ListaCapitulos.FirstOrDefault().ListaArticulos;//modificar
+                _Capitulo = _titulo.ListaCapitulos.FirstOrDefault();
+            }
+
 
         }
 
@@ -107,10 +127,6 @@ namespace IURIS.MOVIL.Detail
         {
             clltionCapitulos.ItemsSource = null;
             clltionCapitulos.ItemsSource = listaCapitulos;
-
-            //cllctionArticulos.ItemsSource = null;
-            //cllctionArticulos.ItemsSource = listaCapitulos.FirstOrDefault().ListaArticulos;//modificar
-            //_Capitulo = listaCapitulos.FirstOrDefault();
         }
 
         private void ActualizarDatosArticulo(List<Articulo> listaArticulos)
@@ -275,10 +291,13 @@ namespace IURIS.MOVIL.Detail
             stakColores.IsVisible = stakColores.IsVisible==false? true:false;
             try
             {
+                if (!expandr.IsExpanded)
+                {
 
-                await PopupNavigation.Instance.PushAsync(new WindowAlert("Selecciona el texto, copialo y elije un color\nposteriormente realiza la accion de tu agrado"), false);
+                await PopupNavigation.Instance.PushAsync(new WindowAlert("Selecciona tu color favorito y guardalo/eliminalo"), false);
                 await Task.Delay(4000);
                 await PopupNavigation.Instance.PopAsync(false);
+                }
             }
             catch (Exception ex)
             {
@@ -465,6 +484,20 @@ namespace IURIS.MOVIL.Detail
 
                     return;
                 }
+            }
+        }
+
+        private async void TapGestureRecognizer_Tapped_7(object sender, EventArgs e)
+        {
+            try
+            {
+                await PopupNavigation.Instance.PushAsync(new WindowAlert(_titulo.NombreTitulo), false);
+                await Task.Delay(2500);
+                await PopupNavigation.Instance.PopAsync(false);
+            }
+            catch (Exception)
+            {
+                return;
             }
         }
     }

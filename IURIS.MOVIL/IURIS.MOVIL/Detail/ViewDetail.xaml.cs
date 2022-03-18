@@ -27,6 +27,22 @@ namespace IURIS.MOVIL.Detail
     public partial class ViewDetail : ContentPage
     {
 
+        protected override bool OnBackButtonPressed()
+        {
+            if (ClltionDarEncontrados.IsVisible)
+            {
+                ClltionDarEncontrados.IsVisible = false;
+                ClltionTitulos.IsVisible = true;
+                return true;
+            }
+            else
+            {
+
+                return false;
+            }
+
+        }
+
         ClassAnuncio Anuncio = new ClassAnuncio();
         MyLey _MyLey;
 
@@ -42,13 +58,6 @@ namespace IURIS.MOVIL.Detail
             });
 
             Anuncio.MostrarAnuncioPantalla();
-
-            //if (_User != null)
-            //{
-            //    HerramientasGenerales herramientasGenerales = new HerramientasGenerales(_User);
-            //    herramientasGenerales.RenovarSuscripcion();
-            //}
-
             var test = CrossMTAdmob.Current.IsInterstitialLoaded().ToString();
             CrossMTAdmob.Current.ShowInterstitial();
             CrossMTAdmob.Current.LoadInterstitial("ca-app-pub-3940256099942544/1033173712");
@@ -91,7 +100,7 @@ namespace IURIS.MOVIL.Detail
             }
             MostrarSearch(false);
             
-            await Navigation.PushAsync(new PageMotrarCapitulosConCodigos(titulo, _MyLey, myAds), false);
+            await Navigation.PushAsync(new PageMotrarCapitulosConCodigos(titulo, _MyLey, myAds,null,null), false);
             ClltionTitulos.SelectedItem = null;
 
         }
@@ -104,21 +113,98 @@ namespace IURIS.MOVIL.Detail
 
         private void BuscarTexto(TextChangedEventArgs TextChange)
         {
-            if (SearchViewDetailTitle.Text == null) return;
+            if (SearchViewDetailTitle.Text == null || TextChange.NewTextValue=="")
+            {
+                ClltionDarEncontrados.IsVisible = false;
+                ClltionTitulos.IsVisible = true;
+                return;
+            }
 
-            List<Titulo> titulos = new List<Titulo>();
-             titulos =
-                _MyLey.ListaDeTitulos.ToList().Where(
-                    e => e.NumTitulo.ToUpper().Contains(TextChange.NewTextValue.ToUpper()) == true 
-                    || 
-                    e.NombreTitulo.ToUpper().Contains(TextChange.NewTextValue.ToUpper()) == true)
-                .ToList(); ;
+            List<Dat> _DatosEncontrados = new List<Dat>();
 
-            ActualizarDatos(titulos);
-            lblNumResultados.Text = TextChange.NewTextValue == "" ? "" : titulos.Count.ToString();
+            foreach (var item in _MyLey.ListaDeTitulos)
+            {
+                if (item.NumTitulo.ToUpper().Contains(TextChange.NewTextValue.ToUpper()) || item.NombreTitulo.ToUpper().Contains(TextChange.NewTextValue.ToUpper()))
+                {
+                    string cadena = string.Format("{0} - {1}", item.NumTitulo, item.NombreTitulo);
+                    _DatosEncontrados.Add(new Dat()
+                    {
+                        id = item.id,
+                        tipo = "Titulo",
+                        Subrayados = new List<Subrayado>() { Getsubrayado(cadena, TextChange.NewTextValue) }
+                    });
+                }
+
+                foreach (var con in item.ListaCapitulos)
+                {
+                    if (con.NombreCapitulo.ToUpper().Contains(TextChange.NewTextValue.ToUpper()) || con.NumCapitulo.ToUpper().Contains(TextChange.NewTextValue.ToUpper()))
+                    {
+
+                        string cadena = string.Format("{0} - {1}", con.NumCapitulo, con.NombreCapitulo);
+                        _DatosEncontrados.Add(new Dat()
+                        {
+                            id = con.id,
+                            tipo = "Capitulo",
+                            Subrayados = new List<Subrayado>() { Getsubrayado(cadena, TextChange.NewTextValue) }
+                        });
+                    }
+
+                    foreach (var arti in con.ListaArticulos)
+                    {
+                        if (arti.NombreArticulo.ToUpper().Contains(TextChange.NewTextValue.ToUpper()) || arti.NumArticulo.ToUpper().Contains(TextChange.NewTextValue.ToUpper()) || arti.Contenido.ToUpper().Contains(TextChange.NewTextValue.ToUpper()))
+                        {
+
+                            string cadena = string.Format("{0} - {1}\n{2}", arti.NumArticulo, arti.NombreArticulo,arti.Contenido);
+                            _DatosEncontrados.Add(new Dat
+                            {
+                                id = arti.id,
+                                tipo = "Articulo",
+                                Subrayados = new List<Subrayado>() { Getsubrayado(cadena, TextChange.NewTextValue) },
+                            });
+                        }
+                    }
+                }
+            }
+
+            ClltionDarEncontrados.ItemsSource = _DatosEncontrados;
+            ClltionDarEncontrados.IsVisible = true;
+            ClltionTitulos.IsVisible = false;
+
+            //List<Titulo> titulos = new List<Titulo>();
+            //titulos =
+            //   _MyLey.ListaDeTitulos.Where(
+            //       e => e.NumTitulo.ToUpper().Contains(TextChange.NewTextValue.ToUpper())
+            //       ||
+            //       e.NombreTitulo.ToUpper().Contains(TextChange.NewTextValue.ToUpper())
+            //       ).ToList();
+
+            //ActualizarDatos(titulos);
+            lblNumResultados.Text = TextChange.NewTextValue == "" ? "" : _DatosEncontrados.Count.ToString();
 
         }
 
+        private Subrayado Getsubrayado(string cadena, string txt)
+        {
+            try
+            {
+
+                int x = cadena.ToUpper().IndexOf(txt.ToUpper());
+                int y = txt.Length;
+
+                return new Subrayado()
+                {
+                    ColorTextoHex = "#eef21f",
+                    TextoContenidoAnteriror = cadena.Substring(0, x),
+                    TextoContenidoSeleccionado = txt,
+                    TextoContenidoDespues = cadena.Substring(x + y)
+                };
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
+        }
 
         private void SearchViewDetailTitle_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -136,13 +222,78 @@ namespace IURIS.MOVIL.Detail
             try
             {
                 await PopupNavigation.Instance.PushAsync(new WindowAlert(_MyLey.NombreLey), false);
-                await Task.Delay(3000);
+                await Task.Delay(2500);
                 await PopupNavigation.Instance.PopAsync(false);
             }
             catch (Exception)
             {
+                return;
+            }
 
-                throw;
+        }
+
+        private class Dat
+        {
+            public string id { get; set; }
+            public string tipo { get; set; }
+            public List<Subrayado> Subrayados { get; set; }
+        }
+
+        private async void ClltionDarEncontrados_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (ClltionDarEncontrados.SelectedItem == null) return;
+
+            var x = (Dat)ClltionDarEncontrados.SelectedItem;
+
+            if (x.tipo.Equals("Titulo")){
+                var d=_MyLey.ListaDeTitulos.Find(g => g.id == x.id);
+                ClltionTitulos.SelectedItem = d;
+                ClltionTitulos.SelectedItem = null;
+            }
+
+            if (x.tipo.Equals("Capitulo"))
+            {
+                Titulo titu=null;
+                Capitulo NumCap=null;
+                foreach (var tit in _MyLey.ListaDeTitulos)
+                {
+                    titu = tit;
+                    NumCap = tit.ListaCapitulos.Find(capi => capi.id.Equals(x.id));
+                    break;
+                }
+
+                ClltionTitulos.SelectedItem = titu;
+                await Navigation.PushAsync(new PageMotrarCapitulosConCodigos(titu, _MyLey, myAds,NumCap,null), false);
+                ClltionTitulos.SelectedItem = null;
+
+            }
+            if (x.tipo.Equals("Articulo"))
+            {
+                Titulo titu = null;
+                Capitulo NumCap = null;
+                Articulo Numarticulo = null;
+                foreach (var titulo in _MyLey.ListaDeTitulos)
+                {
+                    foreach (var capitulo in titulo.ListaCapitulos)
+                    {
+
+                        foreach (var aticulo in capitulo.ListaArticulos)
+                        {
+                            if (aticulo.id.Equals(x.id))
+                            {
+                                titu = titulo;
+                                NumCap = capitulo;
+                                Numarticulo = aticulo;
+                                break;
+                            }
+                        }
+
+                    }
+                }
+
+                ClltionTitulos.SelectedItem = titu;
+                await Navigation.PushAsync(new PageMotrarCapitulosConCodigos(titu, _MyLey, myAds, NumCap, Numarticulo), false);
+                ClltionTitulos.SelectedItem = null;
             }
 
         }

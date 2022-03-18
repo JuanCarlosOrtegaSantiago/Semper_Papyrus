@@ -13,7 +13,7 @@
            Margin="50"
            Padding="5"
            HorizontalOptions="FillAndExpand"
-           VerticalOptions="EndAndExpand"
+           VerticalOptions="Center"
            CornerRadius="7" 
             Opacity="0.75">
         <Grid ColumnDefinitions="auto,*,auto" RowDefinitions="auto,*,auto" ColumnSpacing="0" RowSpacing="0" VerticalOptions="Center" HorizontalOptions="Center" Padding="15">

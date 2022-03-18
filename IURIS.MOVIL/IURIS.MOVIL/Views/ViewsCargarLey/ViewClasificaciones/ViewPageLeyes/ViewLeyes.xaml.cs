@@ -22,7 +22,7 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey.ViewClasificaciones.ViewLeyes
     public partial class ViewLeyes : ContentPage
     {
         IManejadorDeLeyes manejadorDeLeyes;
-        List<Leyes> _Leyes;
+        List<Leyes> _Leyes=null;
         public ViewLeyes(string Clasificacion)
         {
             UserDialogs.Instance.ShowLoading("Descargando leyes\nde nuestro servidor", MaskType.None);

@@ -122,8 +122,18 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
 
         private async void GuardarSeleccion(object sender, EventArgs e)
         {
+            try
+            {
+
                 await PopupNavigation.Instance.PopAsync(false);
-         }
+                await showAlert("Preciona el boton de +,\nselecciona el texto y da en copiar");
+            }
+            catch (Exception)
+            {
+
+                return;
+            }
+        }
 
     }
 }

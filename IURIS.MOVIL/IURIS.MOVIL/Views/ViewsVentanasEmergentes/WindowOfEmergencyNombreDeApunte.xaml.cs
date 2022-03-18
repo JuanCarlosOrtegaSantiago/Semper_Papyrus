@@ -47,6 +47,7 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
 
             try
             {
+                await PopupNavigation.Instance.PopAllAsync();
                 await PopupNavigation.Instance.PushAsync(new WindowAlert("Apunte agregado correctamente"), false);
                 await Task.Delay(2000);
                 await PopupNavigation.Instance.PopAsync(false);

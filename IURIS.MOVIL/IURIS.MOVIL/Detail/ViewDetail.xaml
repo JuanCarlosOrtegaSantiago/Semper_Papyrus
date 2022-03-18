@@ -5,6 +5,23 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:Local="clr-namespace:IURIS.MOVIL.Modelos_y_clases" xmlns:controls="clr-namespace:MarcTron.Plugin.Controls;assembly=Plugin.MtAdmob"
              mc:Ignorable="d"
              x:Class="IURIS.MOVIL.Detail.ViewDetail" >
+    <ContentPage.Resources>
+        <Style TargetType="StackLayout">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="LightSkyBlue" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
 
     <NavigationPage.TitleView>
         <FlexLayout Direction="Row" Wrap="Wrap">
@@ -23,7 +40,8 @@
                 Completed="SearchViewDetailTitle_SearchButtonPressed"
                 ReturnType="Search"
                 IsSpellCheckEnabled="True"
-                IsVisible="false"/>
+                IsVisible="false"
+                />
 
             <Label x:Name="lblNumResultados" HorizontalOptions="End" Margin="0,0,10,3" IsVisible="false" Style="{StaticResource TextoAMostrarColorBlanco}" VerticalOptions="Center" VerticalTextAlignment="Center" FontSize="Body"></Label>
 
@@ -67,7 +85,7 @@
     <ContentPage.Content>
         <Grid>
 
-            <CollectionView x:Name="ClltionTitulos" SelectionMode="Single" ItemsSource="{Binding Titulo}" SelectionChanged="ClltionTitulos_SelectionChanged" Style="{StaticResource colection}" Margin="0,0,0,60">
+            <CollectionView x:Name="ClltionTitulos" SelectionMode="Single" ItemsSource="{Binding Titulo}" SelectionChanged="ClltionTitulos_SelectionChanged" Margin="0,0,0,60">
                 <CollectionView.EmptyView>
                     <StackLayout>
                         <Label FontAttributes="Bold"  FontSize="Large" HorizontalOptions="Center" Style="{StaticResource TextoAMostrarColorRojo}">No se encontraron datos</Label>
@@ -88,6 +106,39 @@
                                         </MultiBinding>
                                     </Label.Text>
                                 </Label>
+                            </StackLayout>
+                        </ContentView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+
+            <CollectionView x:Name="ClltionDarEncontrados" SelectionMode="Single" Style="{StaticResource colection}" Margin="0,0,0,60" IsVisible="false" SelectionChanged="ClltionDarEncontrados_SelectionChanged">
+                <CollectionView.EmptyView>
+                    <StackLayout>
+                        <Label FontAttributes="Bold"  FontSize="Large" HorizontalOptions="Center" Style="{StaticResource TextoAMostrarColorRojo}">No se encontraron datos</Label>
+                    </StackLayout>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" SnapPointsAlignment="Center"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <ContentView >
+                            <StackLayout BindableLayout.ItemsSource="{Binding Subrayados}" BindingContext="{Binding .}" Margin="0,10, 0,0" Spacing="-1"    >
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <Label BindingContext="{Binding .}" FontSize="Subtitle"  Style="{StaticResource TextoAMostrarColorRojo}" >
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{Binding TextoContenidoAnteriror}"/>
+                                                    <Span Text="{Binding TextoContenidoSeleccionado}" BackgroundColor="{Binding ColorTextoHex}" TextColor="Black"/>
+                                                    <Span Text="{Binding TextoContenidoDespues}"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
                             </StackLayout>
                         </ContentView>
                     </DataTemplate>

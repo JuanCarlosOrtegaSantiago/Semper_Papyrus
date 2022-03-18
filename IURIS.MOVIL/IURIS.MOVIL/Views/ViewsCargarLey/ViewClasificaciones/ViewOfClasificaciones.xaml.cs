@@ -48,6 +48,7 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey.ViewClasificaciones
         {
             var x= clltionClasificaciones.SelectedItem as MyClasificacionDeLey;
             await Navigation.PushAsync(new ViewLeyes.ViewLeyes(x.Nombre), false);
+            //clltionClasificaciones.SelectedItem = null;
         }
     }
 }
