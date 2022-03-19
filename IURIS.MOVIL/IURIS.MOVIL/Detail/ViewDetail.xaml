@@ -5,16 +5,29 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:Local="clr-namespace:IURIS.MOVIL.Modelos_y_clases" xmlns:controls="clr-namespace:MarcTron.Plugin.Controls;assembly=Plugin.MtAdmob"
              mc:Ignorable="d"
              x:Class="IURIS.MOVIL.Detail.ViewDetail" >
+
+    <!--<VisualStateManager.VisualStateGroups>
+        <VisualStateGroup x:Name="CommonStates">
+            <VisualState x:Name="Normal"/>
+            <VisualState x:Name="Selected">
+                <VisualState.Setters>
+                    <Setter Property="BackgroundColor" Value="{StaticResource PrimaryColor}" />
+                    <Setter Property="Opacity" Value="0,2"/>
+                </VisualState.Setters>
+            </VisualState>
+        </VisualStateGroup>
+    </VisualStateManager.VisualStateGroups>-->
+
     <ContentPage.Resources>
-        <Style TargetType="StackLayout">
+        <Style TargetType="ContentView">
             <Setter Property="VisualStateManager.VisualStateGroups">
                 <VisualStateGroupList>
                     <VisualStateGroup x:Name="CommonStates">
                         <VisualState x:Name="Normal" />
                         <VisualState x:Name="Selected">
                             <VisualState.Setters>
-                                <Setter Property="BackgroundColor"
-                                        Value="LightSkyBlue" />
+                                <Setter Property="BackgroundColor" Value="LightBlue" />
+                                <Setter Property="Opacity" Value="0.8"/>
                             </VisualState.Setters>
                         </VisualState>
                     </VisualStateGroup>
@@ -64,28 +77,10 @@
         </FlexLayout>
     </NavigationPage.TitleView>
 
-    <!--<ContentPage.Resources>
-        <Style TargetType="CollectionView" x:Key="colection" x:Name="colectionview" >
-            <Setter Property="VisualStateManager.VisualStateGroups">
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal" />
-                        <VisualState x:Name="Selected">
-                            <VisualState.Setters>
-                                <Setter Property="BackgroundColor"
-                                        Value="LightSkyBlue"/>
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </Setter>
-        </Style>
-    </ContentPage.Resources>-->
-
     <ContentPage.Content>
         <Grid>
 
-            <CollectionView x:Name="ClltionTitulos" SelectionMode="Single" ItemsSource="{Binding Titulo}" SelectionChanged="ClltionTitulos_SelectionChanged" Margin="0,0,0,60">
+            <CollectionView x:Name="ClltionTitulos" SelectionMode="Single" SelectionChanged="ClltionTitulos_SelectionChanged" Margin="0,0,0,60">
                 <CollectionView.EmptyView>
                     <StackLayout>
                         <Label FontAttributes="Bold"  FontSize="Large" HorizontalOptions="Center" Style="{StaticResource TextoAMostrarColorRojo}">No se encontraron datos</Label>
@@ -99,6 +94,16 @@
                         <ContentView >
                             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Margin="10,5" >
                                 <Label Style="{StaticResource TextoAMostrarColorRojo}" >
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Normal"/>
+                                            <VisualState x:Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="TextColor" Value="White" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
                                     <Label.Text>
                                         <MultiBinding StringFormat="{}{0} - {1}">
                                             <Binding Path="NumTitulo" />
@@ -116,7 +121,7 @@
             <CollectionView x:Name="ClltionDarEncontrados" SelectionMode="Single" Style="{StaticResource colection}" Margin="0,0,0,60" IsVisible="false" SelectionChanged="ClltionDarEncontrados_SelectionChanged">
                 <CollectionView.EmptyView>
                     <StackLayout>
-                        <Label FontAttributes="Bold"  FontSize="Large" HorizontalOptions="Center" Style="{StaticResource TextoAMostrarColorRojo}">No se encontraron datos</Label>
+                        <Label FontAttributes="Bold"  FontSize="Large"  HorizontalOptions="Center" Style="{StaticResource TextoAMostrarColorRojo}">No se encontraron datos</Label>
                     </StackLayout>
                 </CollectionView.EmptyView>
                 <CollectionView.ItemsLayout>

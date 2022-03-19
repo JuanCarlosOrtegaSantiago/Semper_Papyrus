@@ -19,7 +19,6 @@
                 </Label.GestureRecognizers>
             </Label>
             <Frame BackgroundColor="{StaticResource SecundaryColor}" HorizontalOptions="FillAndExpand" HeightRequest="1" Margin="-50,0" Padding="0,1"/>
-            <!--<Frame BackgroundColor="{StaticResource PrimaryColor}" HorizontalOptions="FillAndExpand" HeightRequest="1" Margin="20,0" Padding="0,1"/>-->
             <Label Text="Crear Nota" Style="{StaticResource TextoAMostrarColorBlanco}" FontSize="Large" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" VerticalOptions="Center">
                 <Label.GestureRecognizers >
                     <TapGestureRecognizer Tapped="LblCrearNota"/>
@@ -27,7 +26,6 @@
             </Label>
 
             <Frame BackgroundColor="{StaticResource SecundaryColor}" HorizontalOptions="FillAndExpand" HeightRequest="1" Margin="-50,0" Padding="0,1"/>
-            <!--<Frame BackgroundColor="{StaticResource PrimaryColor}" HorizontalOptions="FillAndExpand" HeightRequest="1" Margin="20,0" Padding="0,1"/>-->
             <Label Text="Habilitar de subrayado" Style="{StaticResource TextoAMostrarColorBlanco}" FontSize="Large" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" VerticalOptions="Center">
                 <Label.GestureRecognizers >
                     <TapGestureRecognizer Tapped="GuardarSeleccion"/>

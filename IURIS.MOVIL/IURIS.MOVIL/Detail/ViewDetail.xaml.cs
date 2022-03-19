@@ -37,7 +37,7 @@ namespace IURIS.MOVIL.Detail
             }
             else
             {
-
+                System.Diagnostics.Process.GetCurrentProcess().CloseMainWindow();
                 return false;
             }
 
@@ -120,14 +120,14 @@ namespace IURIS.MOVIL.Detail
                 return;
             }
 
-            List<Dat> _DatosEncontrados = new List<Dat>();
+            List<DatosDeSubrayado> _DatosEncontrados = new List<DatosDeSubrayado>();
 
             foreach (var item in _MyLey.ListaDeTitulos)
             {
                 if (item.NumTitulo.ToUpper().Contains(TextChange.NewTextValue.ToUpper()) || item.NombreTitulo.ToUpper().Contains(TextChange.NewTextValue.ToUpper()))
                 {
                     string cadena = string.Format("{0} - {1}", item.NumTitulo, item.NombreTitulo);
-                    _DatosEncontrados.Add(new Dat()
+                    _DatosEncontrados.Add(new DatosDeSubrayado()
                     {
                         id = item.id,
                         tipo = "Titulo",
@@ -141,7 +141,7 @@ namespace IURIS.MOVIL.Detail
                     {
 
                         string cadena = string.Format("{0} - {1}", con.NumCapitulo, con.NombreCapitulo);
-                        _DatosEncontrados.Add(new Dat()
+                        _DatosEncontrados.Add(new DatosDeSubrayado()
                         {
                             id = con.id,
                             tipo = "Capitulo",
@@ -155,7 +155,7 @@ namespace IURIS.MOVIL.Detail
                         {
 
                             string cadena = string.Format("{0} - {1}\n{2}", arti.NumArticulo, arti.NombreArticulo,arti.Contenido);
-                            _DatosEncontrados.Add(new Dat
+                            _DatosEncontrados.Add(new DatosDeSubrayado
                             {
                                 id = arti.id,
                                 tipo = "Articulo",
@@ -232,7 +232,7 @@ namespace IURIS.MOVIL.Detail
 
         }
 
-        private class Dat
+        private class DatosDeSubrayado
         {
             public string id { get; set; }
             public string tipo { get; set; }
@@ -243,31 +243,29 @@ namespace IURIS.MOVIL.Detail
         {
             if (ClltionDarEncontrados.SelectedItem == null) return;
 
-            var x = (Dat)ClltionDarEncontrados.SelectedItem;
+            var DatosSub = (DatosDeSubrayado)ClltionDarEncontrados.SelectedItem;
 
-            if (x.tipo.Equals("Titulo")){
-                var d=_MyLey.ListaDeTitulos.Find(g => g.id == x.id);
+            if (DatosSub.tipo.Equals("Titulo")){
+                var d=_MyLey.ListaDeTitulos.Find(g => g.id == DatosSub.id);
                 ClltionTitulos.SelectedItem = d;
-                ClltionTitulos.SelectedItem = null;
             }
 
-            if (x.tipo.Equals("Capitulo"))
+            if (DatosSub.tipo.Equals("Capitulo"))
             {
                 Titulo titu=null;
                 Capitulo NumCap=null;
                 foreach (var tit in _MyLey.ListaDeTitulos)
                 {
                     titu = tit;
-                    NumCap = tit.ListaCapitulos.Find(capi => capi.id.Equals(x.id));
+                    NumCap = tit.ListaCapitulos.Find(capi => capi.id.Equals(DatosSub.id));
                     break;
                 }
 
                 ClltionTitulos.SelectedItem = titu;
                 await Navigation.PushAsync(new PageMotrarCapitulosConCodigos(titu, _MyLey, myAds,NumCap,null), false);
-                ClltionTitulos.SelectedItem = null;
 
             }
-            if (x.tipo.Equals("Articulo"))
+            if (DatosSub.tipo.Equals("Articulo"))
             {
                 Titulo titu = null;
                 Capitulo NumCap = null;
@@ -279,7 +277,7 @@ namespace IURIS.MOVIL.Detail
 
                         foreach (var aticulo in capitulo.ListaArticulos)
                         {
-                            if (aticulo.id.Equals(x.id))
+                            if (aticulo.id.Equals(DatosSub.id))
                             {
                                 titu = titulo;
                                 NumCap = capitulo;
@@ -293,9 +291,9 @@ namespace IURIS.MOVIL.Detail
 
                 ClltionTitulos.SelectedItem = titu;
                 await Navigation.PushAsync(new PageMotrarCapitulosConCodigos(titu, _MyLey, myAds, NumCap, Numarticulo), false);
-                ClltionTitulos.SelectedItem = null;
             }
 
+                ClltionTitulos.SelectedItem = null;
         }
     }
 }

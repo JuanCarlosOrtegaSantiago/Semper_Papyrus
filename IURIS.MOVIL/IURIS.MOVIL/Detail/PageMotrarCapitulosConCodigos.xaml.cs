@@ -109,8 +109,9 @@ namespace IURIS.MOVIL.Detail
                 clltionCapitulos.Position = _titulo.ListaCapitulos.IndexOf(_CapituloFind);
                 if (_ArticuloFin != null)
                 {
-                    List<Articulo> ar=new List<Articulo>(){ _ArticuloFin};
+                    List<Articulo> ar = new List<Articulo>() { _ArticuloFin };
                     cllctionArticulos.ItemsSource = ar;
+                    cllctionArticulos.ScrollTo(_ArticuloFin, position: ScrollToPosition.Start);
                 }
             }
             else
@@ -119,7 +120,6 @@ namespace IURIS.MOVIL.Detail
                 cllctionArticulos.ItemsSource = _titulo.ListaCapitulos.FirstOrDefault().ListaArticulos;//modificar
                 _Capitulo = _titulo.ListaCapitulos.FirstOrDefault();
             }
-
 
         }
 
