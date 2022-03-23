@@ -1,8 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Pages:PopupPage  xmlns:Pages="http://rotorgames.com" xmlns="http://xamarin.com/schemas/2014/forms"
+<Pages:PopupPage  xmlns:Pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                  xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="IURIS.MOVIL.Views.ViewsVentanasEmergentes.WindowListadoDeClasificaciones" 
-                  BackgroundColor="Transparent" Padding="15,30" >
+                  BackgroundColor="Transparent"
+                  Padding="15,30" >
 
     <Frame BackgroundColor="{StaticResource PrimaryColor}"
            Margin="0,50"

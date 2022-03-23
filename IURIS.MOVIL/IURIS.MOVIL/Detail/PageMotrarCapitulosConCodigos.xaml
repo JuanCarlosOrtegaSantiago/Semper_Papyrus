@@ -3,17 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:local="clr-namespace:IURIS.MOVIL.Modelos_y_clases"
-             
-             xmlns:controls="clr-namespace:MarcTron.Plugin.Controls;assembly=Plugin.MtAdmob"
+             xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             mc:Ignorable="d"
              x:Class="IURIS.MOVIL.Detail.PageMotrarCapitulosConCodigos"
-             
-             
-             
-             
-             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-             mc:Ignorable="d">
+             xmlns:controls="clr-namespace:MarcTron.Plugin.Controls;assembly=Plugin.MtAdmob" 
+             xmlns:extensions="http://xamarin.com/schemas/2020/toolkit">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -238,21 +233,22 @@
                             <TapGestureRecognizer Tapped="EllipceColor"/>
                         </Ellipse.GestureRecognizers>
                     </Ellipse>
+               
                 </StackLayout>
 
-                <xct:Expander Grid.Row="0" x:Name="expandr" IsEnabled="False" Rotation="180" HorizontalOptions="End" VerticalOptions="End" State="Expanding"
+                <extensions:Expander Grid.Row="0" x:Name="expandr" IsEnabled="False" Rotation="180" HorizontalOptions="End" VerticalOptions="End" State="Expanding"
                           ExpandAnimationEasing="{x:Static Easing.SinOut}"
           ExpandAnimationLength="1"
           CollapseAnimationEasing="{x:Static Easing.SinOut}"
           CollapseAnimationLength="1">
-                    <xct:Expander.Header >
+                    <extensions:Expander.Header >
                         <Image Source="Mas.png" WidthRequest="35" HeightRequest="35">
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="ExpaderForPlus"/>
                             </Image.GestureRecognizers>
                         </Image>
-                    </xct:Expander.Header>
-                    <xct:Expander.ContentTemplate>
+                    </extensions:Expander.Header>
+                    <extensions:Expander.ContentTemplate>
                         <DataTemplate>
                             <ContentView Margin="0,15,0,0">
                                 <StackLayout x:Name="expanding" >
@@ -269,8 +265,8 @@
                                 </StackLayout>
                             </ContentView>
                         </DataTemplate>
-                    </xct:Expander.ContentTemplate>
-                </xct:Expander>
+                    </extensions:Expander.ContentTemplate>
+                </extensions:Expander>
 
                 <controls:MTAdView Grid.Row="1" x:Name="myAds" IsVisible="false" 
                                    AdsId="ca-app-pub-3940256099942544/6300978111" 
