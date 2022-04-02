@@ -38071,9 +38071,6 @@ namespace IURIS.MOVIL.Droid
 			// aapt resource value: 0x7F0700AF
 			public const int xml_file_name = 2131165359;
 			
-			// aapt resource value: 0x7F0700B0
-			public const int xml_file_name_2 = 2131165360;
-			
 			static Drawable()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
