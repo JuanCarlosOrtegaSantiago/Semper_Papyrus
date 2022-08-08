@@ -12,7 +12,7 @@
 
             <StackLayout Orientation="Horizontal" BackgroundColor="{StaticResource PrimaryColor}" FlexLayout.Basis="7%">
                 <Image Source="Logo.png" Margin="15,5"/>
-                <Label Text="IURIS" Style="{StaticResource LabelCrearCuenta}" FontAttributes="Bold" FontSize="Title" VerticalTextAlignment="Center"/>
+                <Label x:Name="lblIDUser" Style="{StaticResource LabelCrearCuenta}" FontAttributes="Bold" FontSize="Title" VerticalTextAlignment="Center"/>
             </StackLayout>
 
             <Label Style="{StaticResource TextoAMostrarColorRojo}" Margin="15,10,0,5" HorizontalTextAlignment="Start" Text="Inicio" FontSize="Large" >
@@ -39,7 +39,11 @@
                 </Label.GestureRecognizers>
             </Label>
 
-            <Label Margin="15,5" Text="Ajustes" Style="{StaticResource TextoAMostrarColorRojo}" FontSize="Large"></Label>
+            <Label Margin="15,5" Text="Ajustes" Style="{StaticResource TextoAMostrarColorRojo}" FontSize="Large">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_6" />
+                    </Label.GestureRecognizers>
+                </Label>
 
 
                 <!--<Label Style="{StaticResource TextoAMostrarColorRojo}" Margin="15,5" HorizontalTextAlignment="Start" VerticalTextAlignment="End" Text="Cerrar sesión" FontSize="Large" >
@@ -50,7 +54,7 @@
             
             </FlexLayout>
 
-            
+
             <pv:PancakeView HorizontalOptions="FillAndExpand" VerticalOptions="End" CornerRadius="0,50,0,0">
                 <pv:PancakeView.BackgroundGradientStops>
                     <pv:GradientStopCollection>
@@ -58,11 +62,22 @@
                         <pv:GradientStop Color="{StaticResource PrimaryColor}" Offset="1"/>
                     </pv:GradientStopCollection>
                 </pv:PancakeView.BackgroundGradientStops>
-            <Label Margin="15,20,15,25" Text="Suscripción" Style="{StaticResource TextoAMostrarColorBlanco }" FontSize="Large" Padding="15">
-                <Label.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_4" />
-                </Label.GestureRecognizers>
-            </Label>
+                <Label Margin="10,15,10,20" Text=" para mas espacio " Style="{StaticResource TextoAMostrarColorBlanco }" FontSize="Large" Padding="15">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Solo cuentas con 2 espacios para leyes de forma gratuita. &#10;"></Span>
+                            <Span Text="Para solicitar mas espacio ponte en contacto con: "></Span>
+                            <Span Text="iurisespacio@gmail.com" TextDecorations="Underline" FontSize="Body" FontAttributes="Bold">
+                                <!--<Span.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                </Span.GestureRecognizers>-->
+                            </Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                    <!--<Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_4" />
+                    </Label.GestureRecognizers>-->
+                </Label>
             </pv:PancakeView>
         </Grid>
     </ContentPage.Content>

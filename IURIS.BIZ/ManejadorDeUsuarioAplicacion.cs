@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace IURIS.BIZ
 {
@@ -26,6 +27,11 @@ namespace IURIS.BIZ
         public Usuarios BuscarPorID(ObjectId Id)
         {
             return Listar.Where(e => e.id == Id).SingleOrDefault();
+        }
+
+        public Task<Usuarios> ConsultUsuario(string IdApp, string Nombre, string A_Paterno, string A_Materno)
+        {
+            return repositorio.ConsultaUser(IdApp, Nombre, A_Paterno, A_Materno);
         }
 
         //public Usuarios BuscarUsuarioParaContrasenia(string Correo, string Nombre, string ApellidoPaterno, string ApellidoMaterno)

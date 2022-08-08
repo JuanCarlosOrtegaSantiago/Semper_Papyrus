@@ -9,7 +9,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:Local="clr-namespace:IURIS.MOVIL.Modelos_y_clases"
                   mc:Ignorable="d">
 
-    <Frame BackgroundColor="{StaticResource PrimaryColor}"
+    <Frame x:Name="Frame"
+           BackgroundColor="{StaticResource PrimaryColor}"
            Margin="50"
            Padding="5"
            HorizontalOptions="FillAndExpand"
@@ -19,7 +20,20 @@
         <Grid ColumnDefinitions="auto,*,auto" RowDefinitions="auto,*,auto" ColumnSpacing="0" RowSpacing="0" VerticalOptions="Center" HorizontalOptions="Center" Padding="15">
 
             <Label x:Name="LblTitulo" IsVisible="false" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalTextAlignment="Start" VerticalOptions="Center" VerticalTextAlignment="Center" Style="{StaticResource TextoAMostrarColorBlanco}" ></Label>
-            <Label x:Name="LblMensaje" IsVisible="false" Grid.Row="1" Grid.Column="1" HorizontalTextAlignment="Center" VerticalOptions="Center" VerticalTextAlignment="Center" Style="{StaticResource TextoAMostrarColorBlanco}" ></Label>
+            <Label x:Name="LblMensaje" IsVisible="false" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" HorizontalTextAlignment="Center" VerticalOptions="Center" VerticalTextAlignment="Center" Style="{StaticResource TextoAMostrarColorBlanco}" ></Label>
+            <Label x:Name="LblMensajeAgregarLey" IsVisible="false" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" HorizontalTextAlignment="Center" VerticalOptions="Center" VerticalTextAlignment="Center" Style="{StaticResource TextoAMostrarColorBlanco}" >
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Has utilizado los espacios gratuitos,si requieres de mas espacio para agregar leyes a tu lista ponte en contacto al correo: &#10;"></Span>
+                        <Span Text="Para solicitar mas espacio ponte en contacto con: "></Span>
+                        <Span Text="iurisespacio@gmail.com" TextDecorations="Underline" FontSize="Body" FontAttributes="Bold">
+                            <!--<Span.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                </Span.GestureRecognizers>-->
+                        </Span>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
             
             <Button Style="{StaticResource buttonPrincipal}" x:Name="LblCancelar" IsVisible="false" Grid.Row="2" Grid.Column="0" VerticalOptions="Center" ></Button>
             <Button Style="{StaticResource buttonPrincipal}" x:Name="LblAceptar" IsVisible="false" Grid.Row="2" Grid.Column="2"  VerticalOptions="Center" Clicked="LblAceptar_Clicked" ></Button>

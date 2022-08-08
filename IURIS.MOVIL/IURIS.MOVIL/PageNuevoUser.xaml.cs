@@ -38,6 +38,11 @@ namespace IURIS.MOVIL
                    await Navigation.PushAsync(new FirtsView(), false);
                     UserDialogs.Instance.HideLoading();
                 }
+                else
+                {
+                    await DisplayAlert("","Error no se ha podido creare el usuario, intenta mas tarde","Aceptar");
+                    await Navigation.PopAsync();
+                }
             });
 
         }

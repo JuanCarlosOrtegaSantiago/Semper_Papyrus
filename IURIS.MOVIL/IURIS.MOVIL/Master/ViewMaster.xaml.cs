@@ -24,6 +24,8 @@ namespace IURIS.MOVIL.Master
         public ViewMaster()
         {
             InitializeComponent();
+
+            lblIDUser.Text = String.Format("IURIS Id: {0}",App.MyUser.IdApp);
         }
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
@@ -68,6 +70,11 @@ namespace IURIS.MOVIL.Master
 
             App.masterDetail.IsPresented = false;
             await Navigation.PushAsync(new PageInicioDeSesion(), false);
+
+        }
+
+        private void TapGestureRecognizer_Tapped_6(object sender, EventArgs e)
+        {
 
         }
     }

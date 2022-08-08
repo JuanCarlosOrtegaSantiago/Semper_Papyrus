@@ -269,7 +269,7 @@
                 </extensions:Expander>
 
                 <controls:MTAdView Grid.Row="1" x:Name="myAds" IsVisible="false" 
-                                   AdsId="ca-app-pub-3940256099942544/6300978111" 
+                                   AdsId="ca-app-pub-2336879831564913/3076562549" 
                                    VerticalOptions="End"  HorizontalOptions="FillAndExpand" Margin="0,0,0,5">
                     <controls:MTAdView.HeightRequest>
                         <x:OnIdiom>

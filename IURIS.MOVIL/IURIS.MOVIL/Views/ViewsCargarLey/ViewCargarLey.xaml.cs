@@ -95,8 +95,8 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
 
 
 
-                HerramientasGenerales herramientasGenerales = new HerramientasGenerales();
-                herramientasGenerales.RenovarSuscripcion();
+                //HerramientasGenerales herramientasGenerales = new HerramientasGenerales();
+                //herramientasGenerales.RenovarSuscripcion();
 
                 UserDialogs.Instance.HideLoading();
                 UserDialogs.Instance.ShowLoading("Buscando ley", MaskType.Gradient);
@@ -104,15 +104,15 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
 
 
                 HerramientasGenerales herramientasGenerales1 = new HerramientasGenerales();
-                string x = await herramientasGenerales.AgragarLEyAsync(EntryCodigo.Text);
+                string x = await herramientasGenerales1.AgragarLEyAsync(EntryCodigo.Text);
                 string[] subs = x.Split('|');
 
                 UserDialogs.Instance.HideLoading();
 
                 if (subs[0] != "OK")
                 {
-                    await PopupNavigation.Instance.PushAsync(new WindowAlert(subs[0], subs[1], subs[2]), false);
-                    await Task.Delay(2000);
+                    await PopupNavigation.Instance.PushAsync(new WindowAlert(subs[0],true), false);
+                    await Task.Delay(5000);
                     await PopupNavigation.Instance.PopAsync(false);
                     return;
                 }

@@ -40,13 +40,13 @@ namespace IURIS.MOVIL.Modelos_y_clases.Tools
 
         public void RenovarSuscripcion()
         {
-            var num = GetMonthDifference(App.MyUser.DatosSobreUsuario.FechaDeCompra);
+            //var num = GetMonthDifference(App.MyUser.DatosSobreUsuario.FechaDeCompra);
 
-            if (App.MyUser.DatosSobreUsuario.NumDeMeses == num)
-            {
-                App.masterDetail.IsPresented = false;
-                App.masterDetail.Detail = new NavigationPage(new WindowOpcionDeCompra());
-            }
+            //if (App.MyUser.DatosSobreUsuario.NumDeMeses == num)
+            //{
+            //    App.masterDetail.IsPresented = false;
+            //    App.masterDetail.Detail = new NavigationPage(new WindowOpcionDeCompra());
+            //}
         }
 
         private int GetMonthDifference(DateTime startDate)
@@ -57,9 +57,9 @@ namespace IURIS.MOVIL.Modelos_y_clases.Tools
     
         public void TipoDeAlmacenamiento()
         {
-            var x = App.MyUser.DatosSobreUsuario.TipoDeCompra.Find(e => e == Const._39Mensuales || e == Const._ComprarEspacio1Ley || e == Const._49Mensuales);
+            //var x = App.MyUser.DatosSobreUsuario.TipoDeCompra.Find(e => e == Const._39Mensuales || e == Const._ComprarEspacio1Ley || e == Const._49Mensuales);
 
-            Settings.TypeDB = App.MyUser.DatosSobreUsuario.TipoDeCompra == null || x != null ? Const.TypeDBLocal : Const.TypeDBNube;
+            //Settings.TypeDB = App.MyUser.DatosSobreUsuario.TipoDeCompra == null || x != null ? Const.TypeDBLocal : Const.TypeDBNube;
         }
 
         public async Task<string> AgragarLEyAsync(string Codigo)
@@ -68,13 +68,14 @@ namespace IURIS.MOVIL.Modelos_y_clases.Tools
             Leyes _LeyComprada = null;
             string _1LeyMas = null;
 
-            if (App.MyUser.DatosSobreUsuario.TipoDeCompra != null) _1LeyMas = App.MyUser.DatosSobreUsuario.TipoDeCompra.Find(w => w == Const._ComprarEspacio1Ley || w == Const._39Mensuales);
+            //if (App.MyUser.DatosSobreUsuario.TipoDeCompra != null) _1LeyMas = App.MyUser.DatosSobreUsuario.TipoDeCompra.Find(w => w == Const._ComprarEspacio1Ley || w == Const._39Mensuales);
 
-            if (_1LeyMas != null && App.MyUser.MisLeyes.Count >= App.MyUser.DatosSobreUsuario.NumLeyesPermitidas)
+            if (App.MyUser.MisLeyes.Count >= App.MyUser.DatosSobreUsuario.NumLeyesPermitidas) //_1LeyMas != null 
             {
                 UserDialogs.Instance.HideLoading();
-                await PopupNavigation.Instance.PushAsync(new WindowOfComprarEspacio());
-                return "Error|Necesitas mas espacio|OK";
+                //await PopupNavigation.Instance.PushAsync(new WindowOfComprarEspacio());
+                
+                return "Aviso|Has utilizado los espacios gratuitos,\nsi requieres de mas espacio para agregar leyes a tu lista\n ponte en contacto al correo\niurisespacio@gmail.com\nCon el asunto ESPACIO|OK";
             }
 
 

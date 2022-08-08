@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IURIS.MOVIL.Views.ViewsVentanasEmergentes.PageVistaSinInternet"
+             BackgroundColor="{StaticResource PrimaryColor}"
+             NavigationPage.HasBackButton="False" NavigationPage.HasNavigationBar="False">
+    
+    <ContentPage.Content>
+        <FlexLayout Padding="20"  JustifyContent="Center">
+            
+            <StackLayout Padding="50,0,50,30">
+
+                <Image FlexLayout.Shrink="0" Source="SinConection.png"  Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center"/>
+
+                <Image FlexLayout.Shrink="0" Source="op.png" Aspect="AspectFit"  HorizontalOptions="Center" VerticalOptions="Center"/>
+            </StackLayout>
+
+            <Label x:Name="txtData" Margin="0,20" TextColor="White" FontSize="40" FontAttributes="Bold" HorizontalTextAlignment="Center" ></Label>
+            <Button x:Name="btnIntentarDeNuevo" Margin="60,40,60,0" FontSize="20" Text="Volver a Intentar" Clicked="btnIntentarDeNuevo_Clicked" HorizontalOptions="CenterAndExpand" CornerRadius="20" BackgroundColor="White" TextColor="{StaticResource PrimaryColor}" BorderColor="Black"></Button>
+        
+        </FlexLayout>
+    </ContentPage.Content>
+</ContentPage>

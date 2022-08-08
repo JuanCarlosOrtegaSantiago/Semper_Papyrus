@@ -60,7 +60,7 @@ namespace IURIS.MOVIL.Detail
             Anuncio.MostrarAnuncioPantalla();
             var test = CrossMTAdmob.Current.IsInterstitialLoaded().ToString();
             CrossMTAdmob.Current.ShowInterstitial();
-            CrossMTAdmob.Current.LoadInterstitial("ca-app-pub-3940256099942544/1033173712");
+            CrossMTAdmob.Current.LoadInterstitial("ca-app-pub-2336879831564913/4601945943");
         }
 
         private void DatosAInicializar()

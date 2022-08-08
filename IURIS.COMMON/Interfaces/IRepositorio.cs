@@ -1,5 +1,6 @@
 ﻿using IURIS.COMMON.Entidades.CapaBase;
 using IURIS.COMMON.Entidades.Ley;
+using IURIS.COMMON.Entidades.UsuariosDeAplicacion;
 using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
@@ -18,5 +19,6 @@ namespace IURIS.COMMON.Interfaces
         Leyes Consult(string key);
         Task<List<Leyes>> Consults(string key);
         Task<List<Leyes>> ConsultsDesktop(string key);
+        Task<Usuarios> ConsultaUser(string IdApp, string Nombre, string A_Paterno, string A_Materno);
     }
 }

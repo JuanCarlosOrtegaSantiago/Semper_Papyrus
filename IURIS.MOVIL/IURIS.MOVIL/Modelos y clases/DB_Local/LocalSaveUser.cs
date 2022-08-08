@@ -23,7 +23,8 @@ namespace IURIS.MOVIL.Modelos_y_clases.DB_Local
         string _AMaterno;
 
         IManejadorDeLeyPrincipal manejadorDeLeyPrincipal;
-        
+        IManejadorDeUsuarioAplicacion manejadorDeUsuarioAplicacion;
+
         Const _Const = new Const();
         public LocalSaveUser()
         {
@@ -38,13 +39,16 @@ namespace IURIS.MOVIL.Modelos_y_clases.DB_Local
             try
             {
                 MyUser myUser = CrearUsuario();
+                if (myUser == null) return false;
+
+
 
                 App.Database.SavePersonAsync(myUser);
                 App.MyUser = myUser;
                 return true;
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return false;
             }
@@ -67,6 +71,8 @@ namespace IURIS.MOVIL.Modelos_y_clases.DB_Local
         private MyUser CrearUsuario()
         {
             manejadorDeLeyPrincipal = new ManejadorDeLeyPrincipal(new RepositorioGenerico<LeyPrincipal>());
+            manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
+            int NumUser = manejadorDeUsuarioAplicacion.Listar.Count+1;
             Leyes ley = (Leyes)manejadorDeLeyPrincipal.Listar.Where(w => w.CodigoLey.ToUpper() == _Const.MiLeyPrincipal.ToUpper() && w.Clasificacion== "LeyInicial").FirstOrDefault();
             ley.Clasificaciones = new List<ClasificacionPUsuario>();
 
@@ -78,15 +84,33 @@ namespace IURIS.MOVIL.Modelos_y_clases.DB_Local
                 ApellidoPaterno = _APaterno,
                 Nombre = _Nombre,
                  DatosSobreUsuario=new MyDatosSobreUsuarioParaLey(), 
-
+                 IdApp=NumUser
             };
             myUser.DatosSobreUsuario.NumLeyesPermitidas = _Const.NumDeLeyesInicial;
             myUser.MisLeyes.Add(LeyToMyley(ley));
             myUser.MiUltimaLeyCargada = ley.CodigoLey;
-            //foreach (var Ley in _User.MisLeyes)
-            //{
-            //    myUser.MisLeyes.Add(LeyToMyley(Ley));
-            //}
+
+
+            Usuarios user = new Usuarios()
+            {
+                IdApp = NumUser,
+                ApellidoPaterno = _APaterno,
+                 ApellidoMaterno=_AMaterno,
+                Nombre = _Nombre,
+                DatosSobreUsuario = new DatosSobreUsuarioParaLey()
+            };
+            user.DatosSobreUsuario.NumLeyesPermitidas = _Const.NumDeLeyesInicial;
+           
+            
+            try
+            {
+            manejadorDeUsuarioAplicacion.AGREGAR(user);
+            }
+            catch (Exception)
+            {
+
+                myUser = null;
+            }
 
             return myUser;
         }

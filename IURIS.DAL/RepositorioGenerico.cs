@@ -1,5 +1,6 @@
 ﻿using IURIS.COMMON.Entidades.CapaBase;
 using IURIS.COMMON.Entidades.Ley;
+using IURIS.COMMON.Entidades.UsuariosDeAplicacion;
 using IURIS.COMMON.Interfaces;
 using MongoDB.Bson;
 using MongoDB.Driver;
@@ -117,6 +118,17 @@ namespace IURIS.DAL
             var findOptions = new FindOptions<Leyes>() { Projection = projection };
 
             return vv.FindAsync((X => X.Clasificacion == key), findOptions).Result.ToListAsync().Result;
+        }
+
+
+        public async Task<Usuarios> ConsultaUser(string IdApp, string Nombre, string A_Paterno, string A_Materno)
+        {
+            var vv = db.GetCollection<Usuarios>("Usuarios");
+
+            var projection = Builders<Usuarios>.Projection.Include("DatosSobreUsuario").Include("IdApp");
+            var findOptions = new FindOptions<Usuarios>() { Projection = projection };
+
+            return vv.FindAsync((X => X.IdApp == int.Parse(IdApp) && X.Nombre==Nombre && X.ApellidoPaterno== A_Paterno && X.ApellidoMaterno==A_Materno), findOptions).Result.ToListAsync().Result.FirstOrDefault();
         }
 
     }

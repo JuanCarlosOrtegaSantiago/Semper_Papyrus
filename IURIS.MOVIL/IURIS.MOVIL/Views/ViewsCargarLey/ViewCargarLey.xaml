@@ -50,8 +50,8 @@
                         </SwipeView.RightItems>
                         <StackLayout>
                             <FlexLayout JustifyContent="Start" Margin="15,0" >
-                                <Label Text="{Binding NombreLey}" MaxLines="1" FontSize="17" FontAttributes="Bold" Style="{StaticResource TextoAMostrarColorRojo}" HorizontalOptions="Start"/>
-                                <Label Text="{Binding CodigoLey}" FontSize="17" Style="{StaticResource TextoAMostrarColorRojo}" HorizontalOptions="Start"/>
+                                <Label Text="{Binding NombreLey}" MaxLines="3" FontSize="15" FontAttributes="Bold" Style="{StaticResource TextoAMostrarColorRojo}" HorizontalOptions="Start"/>
+                                <Label Text="{Binding CodigoLey}" FontSize="14" Style="{StaticResource TextoAMostrarColorRojo}" HorizontalOptions="Start"/>
                             </FlexLayout>
                             <Frame BackgroundColor="{StaticResource PrimaryColor}" HeightRequest="1" Padding="0.5" Margin="5,0"/>
                         </StackLayout>

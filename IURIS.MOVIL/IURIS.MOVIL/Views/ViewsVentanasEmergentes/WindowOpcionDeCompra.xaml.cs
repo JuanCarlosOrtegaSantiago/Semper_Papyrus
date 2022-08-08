@@ -97,8 +97,8 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
                 else if (result.Status == PayPalStatus.Successful)
                 {
 
-                    App.MyUser.DatosSobreUsuario.FechaDeCompra = DateTime.UtcNow;
-                    if (App.MyUser.DatosSobreUsuario.TipoDeCompra == null) App.MyUser.DatosSobreUsuario.TipoDeCompra = new List<string>();
+                    //App.MyUser.DatosSobreUsuario.FechaDeCompra = DateTime.UtcNow;
+                    //if (App.MyUser.DatosSobreUsuario.TipoDeCompra == null) App.MyUser.DatosSobreUsuario.TipoDeCompra = new List<string>();
 
 
                     if (MiCompra == TipoDeCompra._ComprarEspacio1Ley)
@@ -112,28 +112,28 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
 
                         if (MiCompra == TipoDeCompra._39Mensuales)
                         {
-                            if (!App.MyUser.DatosSobreUsuario.TipoDeCompra.Contains(MiCompra.ToString())) App.MyUser.DatosSobreUsuario.NumLeyesPermitidas += 1;
-                            App.MyUser.DatosSobreUsuario.NumDeMeses = 1;
+                            //if (!App.MyUser.DatosSobreUsuario.TipoDeCompra.Contains(MiCompra.ToString())) App.MyUser.DatosSobreUsuario.NumLeyesPermitidas += 1;
+                            //App.MyUser.DatosSobreUsuario.NumDeMeses = 1;
                         }
                         if (MiCompra == TipoDeCompra._49Mensuales)
                         {
-                            App.MyUser.DatosSobreUsuario.TipoDeCompra = new List<string>();
-                            App.MyUser.DatosSobreUsuario.NumLeyesPermitidas =default;
-                            App.MyUser.DatosSobreUsuario.NumDeMeses = 1;
+                            //App.MyUser.DatosSobreUsuario.TipoDeCompra = new List<string>();
+                            //App.MyUser.DatosSobreUsuario.NumLeyesPermitidas =default;
+                            //App.MyUser.DatosSobreUsuario.NumDeMeses = 1;
 
                         }
                         if (MiCompra == TipoDeCompra._479Anuales)
                         {
-                            App.MyUser.DatosSobreUsuario.TipoDeCompra = new List<string>();
-                            App.MyUser.DatosSobreUsuario.NumLeyesPermitidas=default;
-                            App.MyUser.DatosSobreUsuario.NumDeMeses = 12;
+                            //App.MyUser.DatosSobreUsuario.TipoDeCompra = new List<string>();
+                            //App.MyUser.DatosSobreUsuario.NumLeyesPermitidas=default;
+                            //App.MyUser.DatosSobreUsuario.NumDeMeses = 12;
 
                         }
 
                         
                     }
                    
-                    if (App.MyUser.DatosSobreUsuario.TipoDeCompra.Where(e => e.ToString() == MiCompra.ToString()).Count() == 0) App.MyUser.DatosSobreUsuario.TipoDeCompra.Add(MiCompra.ToString());
+                    //if (App.MyUser.DatosSobreUsuario.TipoDeCompra.Where(e => e.ToString() == MiCompra.ToString()).Count() == 0) App.MyUser.DatosSobreUsuario.TipoDeCompra.Add(MiCompra.ToString());
 
                     LocalSaveUser saveUser = new LocalSaveUser();
                     await saveUser.UpdateUser();

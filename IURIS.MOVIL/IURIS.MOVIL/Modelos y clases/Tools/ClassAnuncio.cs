@@ -25,12 +25,12 @@ namespace IURIS.MOVIL.Modelos_y_clases
                 else
                 {
                     Random rnd = new Random();
-                    Settings.NumAleatorio = rnd.Next(15, 100);
+                    Settings.NumAleatorio = rnd.Next(15, 60);
                     Settings.CountParaNumAleatorio = "1";
 
                     var test = CrossMTAdmob.Current.IsInterstitialLoaded().ToString();
                     CrossMTAdmob.Current.ShowInterstitial();
-                    CrossMTAdmob.Current.LoadInterstitial("ca-app-pub-3940256099942544/1033173712");
+                    CrossMTAdmob.Current.LoadInterstitial("ca-app-pub-2336879831564913/8704842488");
                 }
             }
             else

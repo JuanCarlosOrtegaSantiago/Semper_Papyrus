@@ -69,8 +69,8 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey.ViewClasificaciones.ViewLeyes
 
                 if (subs[0] != "OK")
                 {
-                    await PopupNavigation.Instance.PushAsync(new WindowAlert(subs[0], subs[1], subs[2]), false);
-                    await Task.Delay(3000);
+                    await PopupNavigation.Instance.PushAsync(new WindowAlert(subs[0],true), false);
+                    await Task.Delay(6000);
                     await PopupNavigation.Instance.PopAsync(false);
                     return;
                 }

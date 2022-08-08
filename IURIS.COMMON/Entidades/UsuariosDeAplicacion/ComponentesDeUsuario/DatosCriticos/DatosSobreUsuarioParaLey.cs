@@ -7,8 +7,8 @@ namespace IURIS.COMMON.Entidades.UsuariosDeAplicacion.ComponentesDeUsuario.Datos
     public class DatosSobreUsuarioParaLey
     {
         public int NumLeyesPermitidas { get; set; }
-        public DateTime FechaDeCompra { get; set; }
-        public int NumDeMeses { get; set; }
-        public List<string> TipoDeCompra { get; set; }
+        //public DateTime FechaDeCompra { get; set; }
+        //public int NumDeMeses { get; set; }
+        //public List<string> TipoDeCompra { get; set; }
     }
 }

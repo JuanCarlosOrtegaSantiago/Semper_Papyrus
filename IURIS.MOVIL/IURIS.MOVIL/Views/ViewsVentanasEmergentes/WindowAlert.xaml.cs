@@ -14,6 +14,7 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class WindowAlert : PopupPage
 	{
+		
 		public WindowAlert(string Mensaje)
 		{
 			InitializeComponent();
@@ -30,6 +31,19 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
 
 			LblMensaje.Text = Mensaje;
 			LblTitulo.Text= Titulo;
+
+		}
+
+		public WindowAlert(string Titulo, bool AñadirMasEspacio)
+		{
+			InitializeComponent();
+			
+			LblMensajeAgregarLey.IsVisible = AñadirMasEspacio;
+			LblTitulo.IsVisible = AñadirMasEspacio;
+
+			
+			LblTitulo.Text = Titulo;
+			Frame.Opacity=1;
 
 		}
 
