@@ -66,12 +66,12 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
                 }
                     App.masterDetail.IsPresented = false;
                     App.masterDetail.Detail = new NavigationPage(new ViewsMisClasificaciones(null, _MyLey));
-            }
-            catch
-            {
-                return;
-            }
             await PopupNavigation.Instance.PopAllAsync(false);
+            }
+            catch(Exception ex)
+            {
+                
+            }
             
         }
 
@@ -89,9 +89,9 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
                 await PopupNavigation.Instance.PopAsync(false);
                 return;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return;
+                
 
             }
         }

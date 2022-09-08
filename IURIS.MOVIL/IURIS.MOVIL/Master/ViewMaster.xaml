@@ -39,11 +39,13 @@
                 </Label.GestureRecognizers>
             </Label>
 
+            <!--
             <Label Margin="15,5" Text="Ajustes" Style="{StaticResource TextoAMostrarColorRojo}" FontSize="Large">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_6" />
                     </Label.GestureRecognizers>
                 </Label>
+            -->
 
 
                 <!--<Label Style="{StaticResource TextoAMostrarColorRojo}" Margin="15,5" HorizontalTextAlignment="Start" VerticalTextAlignment="End" Text="Cerrar sesión" FontSize="Large" >

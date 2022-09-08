@@ -25,6 +25,12 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
     {
         //IManejadorDeUsuarioAplicacion manejadorDeUsuarioAplicacion;
 
+        protected override bool OnBackButtonPressed()
+        {
+            Navigation.PopAsync(false);
+            Navigation.PushModalAsync(new FirtsView(), false);
+            return true;
+        }
         enum TipoDeCompra
         {
             _39Mensuales,

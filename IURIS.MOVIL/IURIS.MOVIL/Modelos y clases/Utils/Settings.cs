@@ -18,7 +18,9 @@ namespace IURIS.MOVIL.Utils
         private const string LeyCodigoUserSettingsKey = "Last_LeyCodigo_key";
         private const string TypeDBSettingsKey = "Last_TypeDB_key";
         private const string ViewsOfCompraUserSettingsKey = "Last_Contador_key";
+        private const string ViewsOfAnuncioTituloSettingsKey = "Last_ContadorTitulo_key";
         private const int NumaleatorioSettingsKey = 1;
+        private const int NumaleatorioTituloSettingsKey = 1;
 
         private const bool RecuerdameUserSettingsKey = false;
         private static readonly string SettingsDefault = string.Empty;
@@ -99,6 +101,21 @@ namespace IURIS.MOVIL.Utils
             }
         }
 
+
+        public static string CountParaNumAleatorioTitulos
+        {
+            get
+            {
+                return Appsettings.GetValueOrDefault(ViewsOfAnuncioTituloSettingsKey, SettingsDefault);
+            }
+            set
+            {
+
+                Appsettings.AddOrUpdateValue(ViewsOfAnuncioTituloSettingsKey, value);
+
+            }
+        }
+
         public static int NumAleatorio
         {
             get
@@ -109,6 +126,20 @@ namespace IURIS.MOVIL.Utils
             {
 
                 Appsettings.AddOrUpdateValue(NumaleatorioSettingsKey.ToString(), value);
+
+            }
+        }
+
+        public static int NumAleatorioTitulos
+        {
+            get
+            {
+                return Appsettings.GetValueOrDefault(NumaleatorioTituloSettingsKey.ToString(), SettingsDefaultviews);
+            }
+            set
+            {
+
+                Appsettings.AddOrUpdateValue(NumaleatorioTituloSettingsKey.ToString(), value);
 
             }
         }

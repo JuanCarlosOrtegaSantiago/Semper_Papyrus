@@ -13,7 +13,7 @@
            VerticalOptions="EndAndExpand"
            CornerRadius="10" 
             >
-        <StackLayout Orientation="Vertical">
+        <StackLayout>
 
             <CollectionView BackgroundColor="{StaticResource PrimaryColor} " 
             Opacity="0.8" x:Name="clltionClasificaciones" SelectionMode="Single" ItemsSource="{Binding Clasificaciones}" SelectionChanged="clltionClasificaciones_SelectionChanged" >
@@ -34,10 +34,12 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                <Button Style="{StaticResource buttonPrincipal}" x:Name="LblCancelar" HorizontalOptions="StartAndExpand" BorderColor="Transparent" VerticalOptions="Center" Text="Cancelar" Clicked="LblCancelar_Clicked" ></Button>
-                <Button Style="{StaticResource buttonPrincipal}" x:Name="LblAceptar" HorizontalOptions="EndAndExpand" BorderColor="Transparent" VerticalOptions="Center" Text="Crear nueva clasificación" Clicked="LblAceptar_Clicked"></Button>
-            </StackLayout>
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="5" Margin="5" >
+
+                <Button Grid.Column="0" Style="{StaticResource buttonPrincipal}"  x:Name="LblCancelar" FontSize="Subtitle"  CornerRadius="8" BorderColor="White"  Text="Cancelar" Clicked="LblCancelar_Clicked" ></Button>
+                <Button Grid.Column="1" Style="{StaticResource buttonPrincipal}" x:Name="LblAceptar" FontSize="Subtitle" CornerRadius="8" BorderColor="White"  Text="Crear nueva clasificación" Clicked="LblAceptar_Clicked"></Button>
+            
+            </Grid>
         </StackLayout>
     </Frame>
 </Pages:PopupPage>

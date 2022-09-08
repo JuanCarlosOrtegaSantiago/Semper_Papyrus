@@ -52,7 +52,7 @@ namespace IURIS.MOVIL.Detail
             BindingContext = this;
             MainThread.BeginInvokeOnMainThread(async () =>
             {
-                await Task.Delay(5000);
+                await Task.Delay(1500);
                 myAds.IsVisible = true;
             });
 
@@ -97,6 +97,9 @@ namespace IURIS.MOVIL.Detail
 
         private void DatosAInicializar()
         {
+
+            Anuncio.MostrarAnuncioPantallaParaTitulos();
+
             ActualizarDatosCapitulo(_titulo.ListaCapitulos);
             lblTitle.Text = _titulo.NombreTitulo;
             lblCodigo.Text = _MyLey.CodigoLey;
@@ -219,7 +222,7 @@ namespace IURIS.MOVIL.Detail
             ActualizarDatosArticulo(Cap.ListaArticulos);
             _Capitulo = Cap;
 
-            Anuncio.MostrarAnuncioPantalla();
+            Anuncio.MostrarAnuncioPantallaParaTitulos();
 
         }
 

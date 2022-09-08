@@ -22,7 +22,13 @@ namespace IURIS.MOVIL.Views
     {
         public Apunte _Apunte;
         public Apunte _ApunteCopia;
-        
+
+        protected override bool OnBackButtonPressed()
+        {
+            Navigation.PopAsync(false);
+            Navigation.PushModalAsync(new FirtsView(), false);
+            return true;
+        }
         public MisApuntes(Apunte apunte)
         {
             InitializeComponent();

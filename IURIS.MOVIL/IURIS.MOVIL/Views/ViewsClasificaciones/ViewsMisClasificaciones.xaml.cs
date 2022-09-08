@@ -28,6 +28,15 @@ namespace IURIS.MOVIL.Views
         public bool nuevoArticulo = false;
         readonly MyLey _MyLey;
 
+
+        protected  override bool OnBackButtonPressed()
+        {
+            Navigation.PopAsync(false);
+            Navigation.PushModalAsync(new FirtsView(), false);
+            return true;
+        }
+
+
         public ViewsMisClasificaciones(Articulo articulo, MyLey leyes)
         {
             InitializeComponent();
@@ -55,7 +64,16 @@ namespace IURIS.MOVIL.Views
 
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
+            try
+            {
+
             await PopupNavigation.Instance.PushAsync(new WindowOfEmergencyNuevaClasificacion(_MyLey,_Articulo));
+            }
+            catch(Exception ex)
+            {
+
+            }
+
         }
 
         private async void clltionClasificaciones_SelectionChanged(object sender, SelectionChangedEventArgs e)

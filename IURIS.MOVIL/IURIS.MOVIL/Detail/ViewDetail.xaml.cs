@@ -53,7 +53,7 @@ namespace IURIS.MOVIL.Detail
 
             MainThread.BeginInvokeOnMainThread(async () =>
             {
-                await Task.Delay(5000);
+                await Task.Delay(1500);
                 myAds.IsVisible = true;
             });
 
@@ -61,7 +61,6 @@ namespace IURIS.MOVIL.Detail
             var test = CrossMTAdmob.Current.IsInterstitialLoaded().ToString();
             CrossMTAdmob.Current.ShowInterstitial();
             CrossMTAdmob.Current.LoadInterstitial("ca-app-pub-2336879831564913/4601945943");
-            CrossMTAdmob.Current.LoadRewardedVideo("ca-app-pub-3940256099942544/1033173712");
         }
 
         private void DatosAInicializar()
