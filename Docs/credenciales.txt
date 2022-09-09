@@ -1,4 +1,39 @@
+##########################################################
+			BASE DE DATOS
+##########################################################
 
 Datos acceso MongoDB
-dataiuris21@gmail.com
-Data@0_1Iuris
+	User -	dataiuris21@gmail.com
+	psw -	Data@0_1Iuris
+
+
+##########################################################
+			PLAY CONSOLE
+##########################################################
+
+Datos acceso a play Console
+	user -	semperupapp@gmail.com
+	psw -	S3mp3rupAPP#22
+
+
+##########################################################
+			COMERCIALES
+##########################################################
+
+Datos acceso a Admob
+	user -	comercialesiuris@gmail.com
+	psw -	C0m3rc14l3s.22
+
+
+##########################################################
+			KEYSTORE
+##########################################################
+
+Keystore Path: "Semper_Papyrus\Docs\Keystore\Semper Papyrus - 2\"
+Nombre de Alias: semper papyrus
+Fecha de Creación: 8 sep 2022
+Tipo de Entrada: PrivateKeyEntry
+Longitud de la Cadena de Certificado: 0
+psw -	12345678
+
+##########################################################
