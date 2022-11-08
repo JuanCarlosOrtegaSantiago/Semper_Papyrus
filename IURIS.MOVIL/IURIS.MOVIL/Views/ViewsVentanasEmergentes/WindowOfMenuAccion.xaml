@@ -26,7 +26,7 @@
             </Label>
 
             <Frame BackgroundColor="{StaticResource SecundaryColor}" HorizontalOptions="FillAndExpand" HeightRequest="1" Margin="-50,0" Padding="0,1"/>
-            <Label Text="Habilitar de subrayado" Style="{StaticResource TextoAMostrarColorBlanco}" FontSize="Large" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" VerticalOptions="Center">
+            <Label Text="Habilitar subrayado" Style="{StaticResource TextoAMostrarColorBlanco}" FontSize="Large" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" VerticalOptions="Center">
                 <Label.GestureRecognizers >
                     <TapGestureRecognizer Tapped="GuardarSeleccion"/>
                 </Label.GestureRecognizers>

@@ -17,7 +17,7 @@
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
-    <TargetFrameworkVersion>v11.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v12.1</TargetFrameworkVersion>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
     <AndroidUseAapt2>true</AndroidUseAapt2>
     <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
@@ -60,6 +60,12 @@
     <AndroidPackageFormat>aab</AndroidPackageFormat>
     <AndroidUseAapt2>true</AndroidUseAapt2>
     <AndroidCreatePackagePerAbi>false</AndroidCreatePackagePerAbi>
+    <AndroidKeyStore>true</AndroidKeyStore>
+    <AndroidSigningKeyStore>C:\Users\ortegaju\Downloads\deployment_cert.der</AndroidSigningKeyStore>
+    <AndroidSigningStorePass>12345678</AndroidSigningStorePass>
+    <AndroidSigningKeyAlias>Semper Papyrus</AndroidSigningKeyAlias>
+    <AndroidSigningKeyPass>12345678</AndroidSigningKeyPass>
+    <AndroidSupportedAbis />
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
@@ -106,7 +112,7 @@
       <Version>2.18.6</Version>
     </PackageReference>
     <PackageReference Include="Rg.Plugins.Popup">
-      <Version>2.0.0.14</Version>
+      <Version>2.1.0</Version>
     </PackageReference>
     <PackageReference Include="SQLiteNetExtensions.Async">
       <Version>2.1.0</Version>
@@ -117,11 +123,20 @@
     <PackageReference Include="Xam.Plugins.Settings">
       <Version>3.1.1</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.CommunityToolkit">
-      <Version>1.3.1</Version>
+    <PackageReference Include="Xamarin.AndroidX.Core">
+      <Version>1.8.0.1</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2291" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
+    <PackageReference Include="Xamarin.AndroidX.Lifecycle.LiveData">
+      <Version>2.5.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.AndroidX.Work.Runtime">
+      <Version>2.7.1.4</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.CommunityToolkit">
+      <Version>2.0.4</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2515" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.3" />
     <PackageReference Include="Xamarin.Forms.PancakeView">
       <Version>2.3.0.759</Version>
     </PackageReference>
@@ -287,7 +302,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties XamarinHotReloadDebuggerTimeoutExceptionIURISMOVILAndroidHideInfoBar="True" XamarinHotReloadUnhandledDeviceExceptionIURISMOVILAndroidHideInfoBar="True" XamarinHotReloadGenericExceptionInfoBarIURISMOVILAndroidHideInfoBar="True" />
+      <UserProperties XamarinHotReloadGenericExceptionInfoBarIURISMOVILAndroidHideInfoBar="True" XamarinHotReloadUnhandledDeviceExceptionIURISMOVILAndroidHideInfoBar="True" XamarinHotReloadDebuggerTimeoutExceptionIURISMOVILAndroidHideInfoBar="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

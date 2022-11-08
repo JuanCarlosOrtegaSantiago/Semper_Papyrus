@@ -17,6 +17,12 @@
       }
     },
     {
+      "name": "@factorial/drupal-breakpoints-css",
+      "description": "JSON Schema for @factorial/drupal-breakpoints-css config file",
+      "fileMatch": ["breakpoints.config.yml"],
+      "url": "https://json.schemastore.org/factorial-drupal-breakpoints-css-0.1.0.json"
+    },
+    {
       "name": ".adonisrc.json",
       "description": "AdonisJS configuration file",
       "fileMatch": [".adonisrc.json"],
@@ -42,7 +48,7 @@
     {
       "name": "Airlock Microgateway",
       "description": "Airlock Microgateway configuration schema",
-      "url": "https://json.schemastore.org/airlock-microgateway-3.1.json",
+      "url": "https://json.schemastore.org/airlock-microgateway-3.2.json",
       "fileMatch": [
         "microgateway-config.yaml",
         "microgateway-config.yml",
@@ -51,7 +57,8 @@
       ],
       "versions": {
         "3.0": "https://json.schemastore.org/airlock-microgateway-3.0.json",
-        "3.1": "https://json.schemastore.org/airlock-microgateway-3.1.json"
+        "3.1": "https://json.schemastore.org/airlock-microgateway-3.1.json",
+        "3.2": "https://json.schemastore.org/airlock-microgateway-3.2.json"
       }
     },
     {
@@ -75,31 +82,37 @@
     {
       "name": "Ansible Execution Environment",
       "description": "Ansible execution-environment.yml file",
-      "url": "https://raw.githubusercontent.com/ansible-community/schemas/main/f/ansible-ee.json",
+      "url": "https://raw.githubusercontent.com/ansible/schemas/main/f/ansible-ee.json",
       "fileMatch": ["**/execution-environment.yml"]
     },
     {
       "name": "Ansible Meta",
       "description": "Ansible meta/main.yml file",
-      "url": "https://raw.githubusercontent.com/ansible-community/schemas/main/f/ansible-meta.json",
+      "url": "https://raw.githubusercontent.com/ansible/schemas/main/f/ansible-meta.json",
       "fileMatch": ["**/meta/main.yml"]
     },
     {
       "name": "Ansible Meta Runtime",
       "description": "Ansible meta/runtime.yml file",
-      "url": "https://raw.githubusercontent.com/ansible-community/schemas/main/f/ansible-meta-runtime.json",
+      "url": "https://raw.githubusercontent.com/ansible/schemas/main/f/ansible-meta-runtime.json",
       "fileMatch": ["**/meta/runtime.yml"]
+    },
+    {
+      "name": "Ansible Argument Specs",
+      "description": "Ansible meta/argument_specs.yml file",
+      "url": "https://github.com/ansible/schemas/raw/main/f/ansible-argument-specs.json",
+      "fileMatch": ["**/meta/argument_specs.yml"]
     },
     {
       "name": "Ansible Requirements",
       "description": "Ansible requirements file",
-      "url": "https://raw.githubusercontent.com/ansible-community/schemas/main/f/ansible-requirements.json",
+      "url": "https://raw.githubusercontent.com/ansible/schemas/main/f/ansible-requirements.json",
       "fileMatch": ["requirements.yml"]
     },
     {
       "name": "Ansible Vars File",
       "description": "Ansible variables File",
-      "url": "https://raw.githubusercontent.com/ansible-community/schemas/main/f/ansible-vars.json",
+      "url": "https://raw.githubusercontent.com/ansible/schemas/main/f/ansible-vars.json",
       "fileMatch": [
         "**/vars/*.yml",
         "**/vars/*.yaml",
@@ -114,7 +127,7 @@
     {
       "name": "Ansible Tasks File",
       "description": "Ansible tasks file",
-      "url": "https://raw.githubusercontent.com/ansible-community/schemas/main/f/ansible.json#/$defs/tasks",
+      "url": "https://raw.githubusercontent.com/ansible/schemas/main/f/ansible.json#/$defs/tasks",
       "fileMatch": [
         "**/tasks/*.yml",
         "**/tasks/*.yaml",
@@ -125,7 +138,7 @@
     {
       "name": "Ansible Playbook",
       "description": "Ansible playbook files",
-      "url": "https://raw.githubusercontent.com/ansible-community/schemas/main/f/ansible.json#/$defs/playbook",
+      "url": "https://raw.githubusercontent.com/ansible/schemas/main/f/ansible.json#/$defs/playbook",
       "fileMatch": [
         "playbook.yml",
         "playbook.yaml",
@@ -138,19 +151,19 @@
     {
       "name": "Ansible Inventory",
       "description": "Ansible inventory files",
-      "url": "https://raw.githubusercontent.com/ansible-community/schemas/main/f/ansible-inventory.json",
+      "url": "https://raw.githubusercontent.com/ansible/schemas/main/f/ansible-inventory.json",
       "fileMatch": ["inventory.yml", "inventory.yaml"]
     },
     {
       "name": "Ansible Collection Galaxy",
       "description": "Ansible Collection Galaxy metadata",
-      "url": "https://raw.githubusercontent.com/ansible-community/schemas/main/f/ansible-galaxy.json",
+      "url": "https://raw.githubusercontent.com/ansible/schemas/main/f/ansible-galaxy.json",
       "fileMatch": ["galaxy.yml"]
     },
     {
       "name": "Ansible-lint Configuration",
       "description": "Ansible-lint Configuration",
-      "url": "https://raw.githubusercontent.com/ansible-community/schemas/main/f/ansible-lint.json",
+      "url": "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible-lint-config.json",
       "fileMatch": [".ansible-lint", ".config/ansible-lint.yml"]
     },
     {
@@ -534,12 +547,13 @@
     {
       "name": "BX CI",
       "description": "CI configuration for Amdocs Bill Experience projects",
-      "url": "https://json.schemastore.org/bxci.schema-2.0.0.json",
+      "url": "https://json.schemastore.org/bxci.schema-2.x.json",
       "fileMatch": ["**/bxci.yaml", "**/bxci.yml"],
       "versions": {
         "1.0": "https://json.schemastore.org/bxci.schema-1.0.json",
         "1.0.1": "https://json.schemastore.org/bxci.schema-1.0.1.json",
-        "2.0.0": "https://json.schemastore.org/bxci.schema-2.0.0.json"
+        "2.0.0": "https://json.schemastore.org/bxci.schema-2.0.0.json",
+        "2.x": "https://json.schemastore.org/bxci.schema-2.x.json"
       }
     },
     {
@@ -602,6 +616,12 @@
       "name": "CityJSON",
       "description": "Schema for the representation of 3D city models",
       "url": "https://raw.githubusercontent.com/cityjson/specs/master/schemas/cityjson.min.schema.json"
+    },
+    {
+      "name": "Conjure",
+      "description": "Conjure Human-Readable Format",
+      "url": "https://raw.githubusercontent.com/palantir/conjure/master/conjure.schema.json",
+      "fileMatch": ["**/conjure/**.yml"]
     },
     {
       "name": "CNC Codes JSON Schema",
@@ -1092,6 +1112,19 @@
       "url": "https://json.schemastore.org/dockerd.json"
     },
     {
+      "name": "docker-seq schema",
+      "description": "Schema for docker-seq.\n\nSee at: https://gitlab.com/sbenv/veroxis/docker-seq",
+      "fileMatch": [
+        "docker-seq.yaml",
+        "docker-seq.json",
+        "docker-seq.yml",
+        "*.docker-seq.yaml",
+        "*.docker-seq.json",
+        "*.docker-seq.yml"
+      ],
+      "url": "https://gitlab.com/sbenv/veroxis/docker-seq/-/raw/HEAD/docker-seq.schema.json"
+    },
+    {
       "name": "docfx.json",
       "description": "A JSON schema for DocFx configuration files",
       "fileMatch": ["docfx.json"],
@@ -1257,15 +1290,22 @@
       "name": "Expo SDK",
       "description": "JSON schema for Expo SDK app manifest",
       "fileMatch": ["app.json"],
-      "url": "https://json.schemastore.org/expo-41.0.0.json",
+      "url": "https://json.schemastore.org/expo-46.0.0.json",
       "versions": {
         "37.0.0": "https://json.schemastore.org/expo-37.0.0.json",
         "38.0.0": "https://json.schemastore.org/expo-38.0.0.json",
         "39.0.0": "https://json.schemastore.org/expo-39.0.0.json",
         "40.0.0": "https://json.schemastore.org/expo-40.0.0.json",
         "41.0.0": "https://json.schemastore.org/expo-41.0.0.json",
-        "42.0.0": "https://json.schemastore.org/expo-42.0.0.json"
+        "42.0.0": "https://json.schemastore.org/expo-42.0.0.json",
+        "46.0.0": "https://json.schemastore.org/expo-46.0.0.json"
       }
+    },
+    {
+      "name": "ezd schema",
+      "description": "Schema for ezd task runner.\n\nSee at: https://gitlab.com/sbenv/veroxis/ezd-rs",
+      "fileMatch": ["ezd.yaml", "ezd.json", "ezd.yml"],
+      "url": "https://gitlab.com/sbenv/veroxis/ezd-rs/-/raw/HEAD/ezd.schema.json"
     },
     {
       "name": ".eslintrc",
@@ -1672,6 +1712,18 @@
       "description": "Jenkins X Requirements YAML configuration file",
       "fileMatch": ["jx-requirements.yml"],
       "url": "https://jenkins-x.io/schemas/jx-requirements.json"
+    },
+    {
+      "name": "JDownloader2 crawler single-rule schema",
+      "description": "A schema for validating a single jdownloader2 rule",
+      "fileMatch": ["*.jd2cr", "*.jd2cr.json"],
+      "url": "https://raw.githubusercontent.com/sergxerj/jdownloader2-crawler-rule-json-schema/main/jd2cr.schema.json"
+    },
+    {
+      "name": "JDownloader2 crawler multi-rule schema",
+      "description": "A schema for validating an array of jdownloader2 rules.",
+      "fileMatch": ["*.jd2mcr", "*.jd2mcr.json", "*.linkcrawlerrules.json"],
+      "url": "https://raw.githubusercontent.com/sergxerj/jdownloader2-crawler-rule-json-schema/main/jd2mcr.schema.json"
     },
     {
       "name": "JFrog File Spec",
@@ -2192,27 +2244,43 @@
       "url": "https://raw.githubusercontent.com/ory/kratos/master/.schema/version.schema.json"
     },
     {
+      "name": "OSS Review Toolkit configuration",
+      "description": "Schema for ORT's main configuration file",
+      "fileMatch": ["**/.ort/config/config.yml", "**/.ort/config/config.yaml"],
+      "url": "https://raw.githubusercontent.com/oss-review-toolkit/ort/main/integrations/schemas/ort-configuration-schema.json"
+    },
+    {
       "name": "OSS Review Toolkit curation",
       "description": "Schema for ORT's curation files",
-      "fileMatch": ["curations/**/*.yml", "curations.yml"],
+      "fileMatch": [
+        "curations/**/*.yml",
+        "curations/**/*.yaml",
+        "curations.yml",
+        "curations.yaml"
+      ],
       "url": "https://raw.githubusercontent.com/oss-review-toolkit/ort/main/integrations/schemas/curations-schema.json"
     },
     {
       "name": "OSS Review Toolkit package configuration",
       "description": "Schema for ORT's package configuration file",
-      "fileMatch": ["vcs.yml", "source-artifact.yml"],
+      "fileMatch": [
+        "vcs.yml",
+        "vcs.yaml",
+        "source-artifact.yml",
+        "source-artifact.yaml"
+      ],
       "url": "https://raw.githubusercontent.com/oss-review-toolkit/ort/main/integrations/schemas/package-configuration-schema.json"
     },
     {
       "name": "OSS Review Toolkit repository configuration",
       "description": "Schema for ORT's repository configuration file",
-      "fileMatch": ["*.ort.yml"],
+      "fileMatch": ["*.ort.yml", "*.ort.yaml"],
       "url": "https://raw.githubusercontent.com/oss-review-toolkit/ort/main/integrations/schemas/repository-configuration-schema.json"
     },
     {
       "name": "OSS Review Toolkit resolutions",
       "description": "Schema for ORT's resolutions file",
-      "fileMatch": ["resolutions.yml"],
+      "fileMatch": ["resolutions.yml", "resolutions.yaml"],
       "url": "https://raw.githubusercontent.com/oss-review-toolkit/ort/main/integrations/schemas/resolutions-schema.json"
     },
     {
@@ -2714,6 +2782,12 @@
       "url": "https://json.schemastore.org/solidaritySchema.json"
     },
     {
+      "name": "Solution filters",
+      "description": "File that specifies which MSBuild solution to launch and which projects to load",
+      "fileMatch": ["*.slnf"],
+      "url": "https://json.schemastore.org/solution-filter.json"
+    },
+    {
       "name": "Source Maps v3",
       "description": "Source Map files version 3",
       "fileMatch": ["*.map"],
@@ -2874,6 +2948,12 @@
       }
     },
     {
+      "name": "tizen_workspace.json",
+      "description": "Tizen project workspace configuration file",
+      "fileMatch": ["tizen_workspace.yaml"],
+      "url": "https://json.schemastore.org/tizen_workspace.json"
+    },
+    {
       "name": "tmLanguage",
       "description": "Language grammar description files in Textmate and compatible editors",
       "fileMatch": ["*.tmLanguage.json"],
@@ -2943,6 +3023,12 @@
       "description": "TypeScript Lint configuration file",
       "fileMatch": ["tslint.json", "tslint.yaml", "tslint.yml"],
       "url": "https://json.schemastore.org/tslint.json"
+    },
+    {
+      "name": "TSON",
+      "description": "Schema for TSON (Tuning-Spectrum Object Notation) data",
+      "fileMatch": ["*.tson", "*.tson.yaml", "*.tson.yml", "*.tson.json"],
+      "url": "https://raw.githubusercontent.com/spectral-discord/TSON/main/schema/tson.json"
     },
     {
       "name": "typewiz.json",
@@ -3020,6 +3106,32 @@
       "description": "Vela Pipeline Configuration File",
       "fileMatch": [".vela.yml", ".vela.yaml"],
       "url": "https://github.com/go-vela/types/releases/latest/download/schema.json"
+    },
+    {
+      "name": "venvironment.yaml",
+      "description": "Simulation and test environment for Vector CANoe4SW Server Edition",
+      "fileMatch": [
+        "venvironment.yaml",
+        "*.venvironment.yaml",
+        "venvironment.yml",
+        "*.venvironment.yml",
+        "venvironment.json",
+        "*.venvironment.json"
+      ],
+      "url": "https://json.schemastore.org/venvironment-schema.json"
+    },
+    {
+      "name": "venvironment-basic.yaml",
+      "description": "Test environment for Vector Test Unit Runner",
+      "fileMatch": [
+        "venvironment-basic.yaml",
+        "*.venvironment-basic.yaml",
+        "venvironment-basic.yml",
+        "*.venvironment-basic.yml",
+        "venvironment-basic.json",
+        "*.venvironment-basic.json"
+      ],
+      "url": "https://json.schemastore.org/venvironment-basic-schema.json"
     },
     {
       "name": "version.json",
@@ -3746,7 +3858,7 @@
         "stackhawk-*.yml",
         "stackhawk-*.yaml"
       ],
-      "url": "https://download.stackhawk.com/hawk/jsonconfig/hawkconfig.json"
+      "url": "https://download.stackhawk.com/hawk/jsonschema/hawkconfig.json"
     },
     {
       "name": "Serverless Framework Configuration",
@@ -3832,7 +3944,7 @@
       "url": "https://raw.githubusercontent.com/statelyai/xstate/main/packages/core/src/machine.schema.json"
     },
     {
-      "name": "Butane config schema",
+      "name": "Butane Config",
       "description": "Schema to validate butane files for Fedora CoreOS",
       "fileMatch": ["*.bu"],
       "url": "https://raw.githubusercontent.com/Relativ-IT/Butane-Schemas/Release/Butane-Schema.json"
@@ -4018,6 +4130,45 @@
       "url": "https://json.schemastore.org/petstore-v1.0.json",
       "versions": {
         "1.0": "https://json.schemastore.org/petstore-v1.0.json"
+      }
+    },
+    {
+      "name": "JFrog Pipelines YML DSL",
+      "description": "Schema for JFrog Pipelines YML based DSL schema definition",
+      "fileMatch": [
+        "**/.jfrog-pipelines/**/*.yml",
+        "**/.jfrog-pipelines/**/*.yaml"
+      ],
+      "url": "https://json.schemastore.org/jfrog-pipelines.json"
+    },
+    {
+      "name": "StrmPrivacy batch job configuration file",
+      "description": "StrmPrivacy derived from the BatchJob protobuf definition",
+      "fileMatch": ["*batch-job-config*.json", "*batch-job-config*.yaml"],
+      "url": "https://docs.strmprivacy.io/jsonschema/BatchJob.json",
+      "versions": {
+        "1.0": "https://docs.strmprivacy.io/jsonschema/BatchJob.json"
+      }
+    },
+    {
+      "name": "Keycloak REST API",
+      "description": "REST API schema for Keycloak Admin",
+      "url": "https://raw.githubusercontent.com/dahag-ag/keycloak-openapi/main/OpenApiDefinitions/keycloak-19.0.0.json",
+      "versions": {
+        "16.0": "https://raw.githubusercontent.com/dahag-ag/keycloak-openapi/main/OpenApiDefinitions/keycloak-16.0.json",
+        "17.0.1": "https://raw.githubusercontent.com/dahag-ag/keycloak-openapi/main/OpenApiDefinitions/keycloak-17.0.1.json",
+        "18.0.0": "https://raw.githubusercontent.com/dahag-ag/keycloak-openapi/main/OpenApiDefinitions/keycloak-18.0.0.json",
+        "19.0.0": "https://raw.githubusercontent.com/dahag-ag/keycloak-openapi/main/OpenApiDefinitions/keycloak-19.0.0.json"
+      }
+    },
+    {
+      "name": "ize.toml",
+      "description": "TOML Schema ❯ize Infra Tool",
+      "fileMatch": ["ize.toml"],
+      "url": "https://raw.githubusercontent.com/hazelops/ize/1.1.5/internal/schema/ize-spec.json",
+      "versions": {
+        "1.1.5": "https://raw.githubusercontent.com/hazelops/ize/1.1.5/internal/schema/ize-spec.json",
+        "1.1.4": "https://raw.githubusercontent.com/hazelops/ize/1.1.4/internal/schema/ize-spec.json"
       }
     }
   ],
