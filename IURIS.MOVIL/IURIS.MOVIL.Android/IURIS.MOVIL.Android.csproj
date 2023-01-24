@@ -61,7 +61,7 @@
     <AndroidUseAapt2>true</AndroidUseAapt2>
     <AndroidCreatePackagePerAbi>false</AndroidCreatePackagePerAbi>
     <AndroidKeyStore>true</AndroidKeyStore>
-    <AndroidSigningKeyStore>C:\Users\ortegaju\Downloads\deployment_cert.der</AndroidSigningKeyStore>
+    <AndroidSigningKeyStore>C:\Semper_Papyrus\Docs\Keystore\Semper_Papyrus_2\Semper Papyrus.keystore</AndroidSigningKeyStore>
     <AndroidSigningStorePass>12345678</AndroidSigningStorePass>
     <AndroidSigningKeyAlias>Semper Papyrus</AndroidSigningKeyAlias>
     <AndroidSigningKeyPass>12345678</AndroidSigningKeyPass>
@@ -299,10 +299,13 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\Op.png" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\hiper.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties XamarinHotReloadGenericExceptionInfoBarIURISMOVILAndroidHideInfoBar="True" XamarinHotReloadUnhandledDeviceExceptionIURISMOVILAndroidHideInfoBar="True" XamarinHotReloadDebuggerTimeoutExceptionIURISMOVILAndroidHideInfoBar="True" />
+	  <UserProperties XamarinHotReloadGenericExceptionInfoBarIURISMOVILAndroidHideInfoBar="True" XamarinHotReloadUnhandledDeviceExceptionIURISMOVILAndroidHideInfoBar="True" XamarinHotReloadDebuggerTimeoutExceptionIURISMOVILAndroidHideInfoBar="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

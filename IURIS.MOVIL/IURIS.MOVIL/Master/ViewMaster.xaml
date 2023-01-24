@@ -7,39 +7,51 @@
              x:Class="IURIS.MOVIL.Master.ViewMaster"  Title="Master">
     <ContentPage.Content>
         <Grid>
-            
-        <FlexLayout JustifyContent="Start">
 
-            <StackLayout Orientation="Horizontal" BackgroundColor="{StaticResource PrimaryColor}" FlexLayout.Basis="7%">
-                <Image Source="Logo.png" Margin="15,5"/>
-                <Label x:Name="lblIDUser" Style="{StaticResource LabelCrearCuenta}" FontAttributes="Bold" FontSize="Title" VerticalTextAlignment="Center"/>
-            </StackLayout>
+            <FlexLayout JustifyContent="Start">
 
-            <Label Style="{StaticResource TextoAMostrarColorRojo}" Margin="15,10,0,5" HorizontalTextAlignment="Start" Text="Inicio" FontSize="Large" >
-                <Label.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_2" />
-                </Label.GestureRecognizers>
-            </Label>
+                <StackLayout Orientation="Horizontal" BackgroundColor="{StaticResource PrimaryColor}" FlexLayout.Basis="7%">
+                    <Image Source="Logo.png" Margin="15,5"/>
+                    <Label x:Name="lblIDUser" Style="{StaticResource LabelCrearCuenta}" FontAttributes="Bold" FontSize="Title" VerticalTextAlignment="Center"/>
+                </StackLayout>
 
-            <Label Style="{StaticResource TextoAMostrarColorRojo}" Margin="15,5" HorizontalTextAlignment="Start" Text="Clasificación personalizada" FontSize="Large" >
-                <Label.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
-                </Label.GestureRecognizers>
-            </Label>
+                <Label Style="{StaticResource TextoAMostrarColorRojo}" Margin="15,10,0,5" HorizontalTextAlignment="Start" Text="Inicio" FontSize="Large" >
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_2" />
+                    </Label.GestureRecognizers>
+                </Label>
 
-            <Label Style="{StaticResource TextoAMostrarColorRojo}" Margin="15,5" HorizontalTextAlignment="Start" Text="Mis apuntes"  FontSize="Large" >
-                <Label.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" />
-                </Label.GestureRecognizers>
-            </Label>
+                <Label Style="{StaticResource TextoAMostrarColorRojo}" Margin="15,5" HorizontalTextAlignment="Start" Text="Clasificación personalizada" FontSize="Large" >
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                    </Label.GestureRecognizers>
+                </Label>
 
-            <Label Style="{StaticResource TextoAMostrarColorRojo}" Margin="15,5" HorizontalTextAlignment="Start" Text="Cargar / cambiar ley" FontSize="Large" >
-                <Label.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_3" />
-                </Label.GestureRecognizers>
-            </Label>
+                <Label Style="{StaticResource TextoAMostrarColorRojo}" Margin="15,5" HorizontalTextAlignment="Start" Text="Categoría por color"  FontSize="Large" >
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_8" />
+                    </Label.GestureRecognizers>
+                </Label>
 
-            <!--
+                <Label Style="{StaticResource TextoAMostrarColorRojo}" Margin="15,5" HorizontalTextAlignment="Start" Text="Mostrar hipervínculos"  FontSize="Large" >
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_9" />
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Label Style="{StaticResource TextoAMostrarColorRojo}" Margin="15,5" HorizontalTextAlignment="Start" Text="Mis apuntes"  FontSize="Large" >
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" />
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Label Style="{StaticResource TextoAMostrarColorRojo}" Margin="15,5" HorizontalTextAlignment="Start" Text="Cargar / cambiar ley" FontSize="Large" >
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_3" />
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <!--
             <Label Margin="15,5" Text="Ajustes" Style="{StaticResource TextoAMostrarColorRojo}" FontSize="Large">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_6" />
@@ -53,7 +65,7 @@
                         <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_5" />
                     </Label.GestureRecognizers>
                 </Label>-->
-            
+
             </FlexLayout>
 
 

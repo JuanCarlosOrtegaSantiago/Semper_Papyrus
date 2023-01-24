@@ -75,6 +75,7 @@ namespace IURIS.MOVIL.Modelos_y_clases.DB_Local
             int NumUser = manejadorDeUsuarioAplicacion.Listar.Count+1;
             Leyes ley = (Leyes)manejadorDeLeyPrincipal.Listar.Where(w => w.CodigoLey.ToUpper() == _Const.MiLeyPrincipal.ToUpper() && w.Clasificacion== "LeyInicial").FirstOrDefault();
             ley.Clasificaciones = new List<ClasificacionPUsuario>();
+            ley.ClasificacionesPorColores = new List<ClasificacionPorColor>();
 
             MyUser myUser = new MyUser
             {

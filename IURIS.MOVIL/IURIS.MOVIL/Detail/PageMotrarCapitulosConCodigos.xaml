@@ -104,9 +104,22 @@
                     </CollectionView.EmptyView>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Grid RowDefinitions="auto,auto,auto" RowSpacing="0" >
+                            <Grid RowDefinitions="auto,auto,auto" RowSpacing="0"  BindingContext="{Binding .}" >
 
                                 <StackLayout Grid.Row="0" Orientation="Horizontal" VerticalOptions="Start" Spacing="5">
+
+                                    <extensions:Expander HorizontalOptions="Start" VerticalOptions="Center" Padding="10,0" Margin="20,10" IsVisible="false" Direction="Right" BindingContext="{Binding .}" >
+                                        <extensions:Expander.Header >
+                                            <Image Source="hiper.png" HorizontalOptions="Start" WidthRequest="35" HeightRequest="35" />
+                                        </extensions:Expander.Header>
+                                        <extensions:Expander.ContentTemplate>
+                                            <DataTemplate >
+                                                <ContentView BackgroundColor="{StaticResource PrimaryColor}">
+                                                    <Label Text="Eliminar hipervinculo" Style="{StaticResource TextoAMostrarColorBlanco}" FontSize="Title" Margin="0,10"/>
+                                                </ContentView>
+                                            </DataTemplate>
+                                        </extensions:Expander.ContentTemplate>
+                                    </extensions:Expander>
 
                                     <Image Source="LapizNota.png" WidthRequest="25" HeightRequest="25" IsVisible="{Binding NotaAdjunta}" BindingContext="{Binding .}" VerticalOptions="Center" HorizontalOptions="Start">
                                         <Image.GestureRecognizers>
@@ -123,7 +136,7 @@
                                         </local:CustomLabeJustifity.Text>
                                     </local:CustomLabeJustifity>
 
-                                    <Image Source="Tres_Puntos_Rojos.png" WidthRequest="25" HeightRequest="25" BindingContext="{Binding .}" VerticalOptions="Center" HorizontalOptions="End">
+                                    <Image x:Name="jj" Source="Tres_Puntos_Rojos.png" WidthRequest="25" HeightRequest="25" BindingContext="{Binding .}" VerticalOptions="Center" HorizontalOptions="End">
                                         <Image.GestureRecognizers>
                                             <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_4"/>
                                         </Image.GestureRecognizers>
@@ -158,7 +171,6 @@
                                             </local:CustomLabeJustifity>
                                         </DataTemplate>
                                     </BindableLayout.ItemTemplate>
-
                                 </StackLayout>
 
 
@@ -175,7 +187,9 @@
                                     </CarouselView.ItemTemplate>
                                 </CarouselView>
 
-
+                                <Grid.GestureRecognizers>
+                                    <DropGestureRecognizer  Drop="DropGestureRecognizer_DragOver" BindingContext="{Binding .}" DropCommandParameter="{Binding jj}" DropCommand="{Binding this}"></DropGestureRecognizer>
+                                </Grid.GestureRecognizers>
                             </Grid>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
@@ -183,7 +197,24 @@
             </RefreshView>
         </FlexLayout>
 
-        <pv:PancakeView HorizontalOptions="FillAndExpand" VerticalOptions="End">
+        <extensions:Expander x:Name="Hipertex" HorizontalOptions="Start" VerticalOptions="Start" Padding="10,0" Margin="20,10" IsVisible="false" Direction="Right">
+            <extensions:Expander.Header >
+                <Image Source="hiper.png" HorizontalOptions="Start" WidthRequest="35" HeightRequest="35" >
+                    <Image.GestureRecognizers>
+                        <DragGestureRecognizer></DragGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
+            </extensions:Expander.Header>
+            <extensions:Expander.ContentTemplate>
+                <DataTemplate >
+                    <ContentView BackgroundColor="{StaticResource PrimaryColor}" AnchorY="+50">
+                        <Label Text="Eliminar hipervinculo" Style="{StaticResource TextoAMostrarColorBlanco}" FontSize="Title" Margin="0,10"/>
+                    </ContentView>
+                </DataTemplate>
+            </extensions:Expander.ContentTemplate>
+        </extensions:Expander>
+
+            <pv:PancakeView HorizontalOptions="FillAndExpand" VerticalOptions="End" Padding="10,0">
             <pv:PancakeView.BackgroundGradientStops>
                 <pv:GradientStopCollection>
                     <pv:GradientStop Color="Transparent" Offset="0"/>
@@ -191,8 +222,34 @@
                 </pv:GradientStopCollection>
             </pv:PancakeView.BackgroundGradientStops>
             <Grid RowDefinitions="auto,auto" RowSpacing="2.5">
+               <extensions:Expander  x:Name="expan" HorizontalOptions="Start" VerticalOptions="End" Direction="Up">
+                    <extensions:Expander.Header >
+                        <Image Source="hiper.png" HorizontalOptions="Start" WidthRequest="35" HeightRequest="35" />
+                    </extensions:Expander.Header>
+                    <extensions:Expander.ContentTemplate>
+                        <DataTemplate >
+                            <ContentView BackgroundColor="{StaticResource PrimaryColor}" AnchorY="+50">
+                                <StackLayout x:Name="expanding" HorizontalOptions="End" Margin="10,0" >
+                                    <Label Text="Crear hipervinculos" Style="{StaticResource TextoAMostrarColorBlanco}" FontSize="Title" Margin="0,10" >
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="CrearHipervinculo"/>
+                                        </Label.GestureRecognizers>
+                                    </Label>
 
-                <StackLayout Grid.Row="0" x:Name="stakColores" Orientation="Horizontal" HorizontalOptions="Start"  VerticalOptions="End" Margin="15,0,0,0" IsVisible="false">
+                                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" Margin="-5,0" Color="White" FlexLayout.Shrink="0"/>
+                                    <Label Text="Mostrar hipervinculos" Style="{StaticResource TextoAMostrarColorBlanco}" FontSize="Title" Margin="0,10">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="MostrarHipervinculo"/>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                </StackLayout>
+                            </ContentView>
+                        </DataTemplate>
+                    </extensions:Expander.ContentTemplate>
+                </extensions:Expander>
+
+
+                <StackLayout Grid.Row="0" x:Name="stakColores" Orientation="Horizontal" HorizontalOptions="Start"  VerticalOptions="End" Margin="60,0,0,0" IsVisible="false">
 
                     <Ellipse Fill="#F7FE2E" Aspect="Uniform"
          WidthRequest="40"
@@ -282,6 +339,7 @@
 
             </Grid>
         </pv:PancakeView>
+    
     </Grid>
 </ContentPage>
 

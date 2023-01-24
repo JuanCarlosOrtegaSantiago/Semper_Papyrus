@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:xct="http://xamarin.com/schemas/2020/toolkit" xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:local="clr-namespace:IURIS.MOVIL.Modelos_y_clases"
+             x:Class="IURIS.MOVIL.Views.ViewsHipervinculos.PageHipervinculos">
+    <NavigationPage.TitleView>
+        <FlexLayout Grid.Column="0" Direction="Column" AlignContent="Center" AlignItems="Center"  Margin="0,0,0,5">
+            <Label x:Name="lblTitle" MaxLines="1" LineBreakMode="MiddleTruncation" LineHeight="10" Style="{StaticResource TextoAMostrarColorBlanco}" HorizontalTextAlignment="Center" HorizontalOptions="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_7"/>
+                </Label.GestureRecognizers>
+            </Label>
+            <Label x:Name="lblCodigo" Style="{StaticResource TextoAMostrarColorBlanco}" FontSize="Small" VerticalOptions="End" VerticalTextAlignment="End" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+        </FlexLayout>
+    </NavigationPage.TitleView>
+
+    <FlexLayout  AlignItems="Center">
+        <StackLayout Margin="0,20,0,0" Spacing="15" Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" FlexLayout.Shrink="0" FlexLayout.Basis="8%">
+            <Label FontSize="Title" Style="{StaticResource TextoAMostrarColorRojo}" VerticalTextAlignment="Center">Mostrar hipervinculos: Tiene 0 hipervínculos</Label>
+        </StackLayout>
+
+        <CollectionView  x:Name="clltionCategoriaPorColor" SelectionMode="Single" >
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <pv:PancakeView  HorizontalOptions="FillAndExpand" >
+                        <Grid>
+
+                            <FlexLayout Direction="Row" Margin="40,0,0,0" JustifyContent="Start">
+
+                                <StackLayout>
+                                    <StackLayout  Orientation="Horizontal" VerticalOptions="Start" Spacing="5">
+                                        <local:CustomLabeJustifity FontSize="17"  HorizontalTextAlignment="Start" Style="{StaticResource TextoAMostrarColorBlanco}" FontAttributes="Bold" HorizontalOptions="StartAndExpand" VerticalOptions="Center">
+                                            <local:CustomLabeJustifity.Text>
+                                                <MultiBinding StringFormat="{}{0}  {1}">
+                                                    <Binding Path="_Articulo.NumArticulo" />
+                                                    <Binding Path="_Articulo.NombreArticulo" />
+                                                </MultiBinding>
+                                            </local:CustomLabeJustifity.Text>
+                                        </local:CustomLabeJustifity>
+
+                                    </StackLayout>
+
+
+                                </StackLayout>
+                            </FlexLayout>
+                        </Grid>
+                    </pv:PancakeView>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </FlexLayout>
+</ContentPage>

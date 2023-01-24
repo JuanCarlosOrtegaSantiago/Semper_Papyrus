@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:IURIS.MOVIL.Modelos_y_clases" xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="IURIS.MOVIL.Views.ViewsCategoriaPorColor.PageClasificacionPorColor" BackgroundColor="{StaticResource PrimaryColor}">
+    <NavigationPage.TitleView>
+        <FlexLayout Grid.Column="0" Direction="Column" AlignContent="Center" AlignItems="Center"  Margin="0,0,0,5">
+            <Label x:Name="lblTitle" MaxLines="1" LineBreakMode="MiddleTruncation" LineHeight="10" Style="{StaticResource TextoAMostrarColorBlanco}" HorizontalTextAlignment="Center" HorizontalOptions="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_7"/>
+                </Label.GestureRecognizers>
+            </Label>
+            <Label x:Name="lblCodigo" Style="{StaticResource TextoAMostrarColorBlanco}" FontSize="Small" VerticalOptions="End" VerticalTextAlignment="End" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+        </FlexLayout>
+    </NavigationPage.TitleView>
+
+    <FlexLayout  AlignItems="Center">
+        <StackLayout Margin="0,20,0,0" Spacing="15" Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" FlexLayout.Shrink="0" FlexLayout.Basis="8%">
+            <Label FontSize="Title" Style="{StaticResource TextoAMostrarColorBlanco}" VerticalTextAlignment="Center">CATEGORIA POR COLOR</Label>
+            <Ellipse x:Name="eclipPrincipal" Fill="#F7FE2E" Aspect="Uniform" WidthRequest="30" HeightRequest="30" Stroke="Black" StrokeThickness="4"></Ellipse>
+        </StackLayout>
+
+        <CollectionView  x:Name="clltionCategoriaPorColor" SelectionMode="Single" >
+            <CollectionView.EmptyView>
+                <Label FlexLayout.Basis="7%" FontAttributes="Bold" FontSize="Large" HorizontalTextAlignment="Center" Style="{StaticResource TextoAMostrarColorBlanco}">No hay datos registrados...</Label>
+            </CollectionView.EmptyView>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <pv:PancakeView  HorizontalOptions="FillAndExpand" >
+                        <Grid>
+
+                            <FlexLayout Direction="Row" Margin="40,0,0,0" JustifyContent="Start">
+
+                                <StackLayout>
+                                    <StackLayout  Orientation="Horizontal" VerticalOptions="Start" Spacing="5">
+                                        <local:CustomLabeJustifity FontSize="17"  HorizontalTextAlignment="Start" Style="{StaticResource TextoAMostrarColorBlanco}" FontAttributes="Bold" HorizontalOptions="StartAndExpand" VerticalOptions="Center">
+                                            <local:CustomLabeJustifity.Text>
+                                                <MultiBinding StringFormat="{}{0}  {1}">
+                                                    <Binding Path="_Articulo.NumArticulo" />
+                                                    <Binding Path="_Articulo.NombreArticulo" />
+                                                </MultiBinding>
+                                            </local:CustomLabeJustifity.Text>
+                                        </local:CustomLabeJustifity>
+
+                                    </StackLayout>
+
+                                    
+                                </StackLayout>
+                            </FlexLayout>
+                            <xct:Expander HorizontalOptions="Start" VerticalOptions="Center" >
+
+                                <xct:Expander.Header>
+
+                                    <StackLayout Orientation="Horizontal">
+                                        <Image Source="Mas.png" WidthRequest="30" HeightRequest="30" FlexLayout.Shrink="0" HorizontalOptions="Start">
+                                            <Image.Triggers>
+                                                <DataTrigger TargetType="Image" Binding="{Binding Source={RelativeSource AncestorType={x:Type xct:Expander}}, Path=IsExpanded}" Value="True">
+                                                    <Setter Property="Source" Value="menos.png"/>
+                                                </DataTrigger>
+                                            </Image.Triggers>
+                                        </Image>
+                                    </StackLayout>
+
+                                </xct:Expander.Header>
+                                <xct:Expander.Content>
+
+                                    <Label TextColor="{Binding ColorHexDeClasificado}" FlexLayout.Basis="7%" Text="{Binding Clasificados.TextoContenidoSeleccionado}"  FontSize="Title" VerticalOptions="Center" Padding="15,10"></Label>
+                                </xct:Expander.Content>
+
+                            </xct:Expander>
+                        </Grid>
+                    </pv:PancakeView>
+                    
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <StackLayout Orientation="Horizontal" FlexLayout.Grow="1" Padding="20,0" VerticalOptions="End" FlexLayout.Shrink="0" FlexLayout.AlignSelf="Stretch" FlexLayout.Basis="8%">
+
+            <Ellipse Fill="#F7FE2E" Aspect="Uniform" HorizontalOptions="CenterAndExpand"
+         WidthRequest="30"
+         HeightRequest="30">
+                <Ellipse.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="EllipceColor"/>
+                </Ellipse.GestureRecognizers>
+            </Ellipse>
+
+            <Ellipse Fill="#60FB36" Aspect="Uniform" HorizontalOptions="CenterAndExpand"
+         WidthRequest="30"
+         HeightRequest="30">
+                <Ellipse.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="EllipceColor"/>
+                </Ellipse.GestureRecognizers>
+            </Ellipse>
+
+            <Ellipse Fill="#38E9FB" Aspect="Uniform" HorizontalOptions="CenterAndExpand"
+         WidthRequest="30"
+         HeightRequest="30">
+                <Ellipse.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="EllipceColor"/>
+                </Ellipse.GestureRecognizers>
+            </Ellipse>
+
+            <Ellipse Fill="#FAC437" Aspect="Uniform" HorizontalOptions="CenterAndExpand"
+         WidthRequest="30"
+         HeightRequest="30">
+                <Ellipse.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="EllipceColor"/>
+                </Ellipse.GestureRecognizers>
+            </Ellipse>
+
+            <Ellipse Fill="#FB39EB" Aspect="Uniform" HorizontalOptions="CenterAndExpand"
+         WidthRequest="30"
+         HeightRequest="30">
+                <Ellipse.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="EllipceColor"/>
+                </Ellipse.GestureRecognizers>
+            </Ellipse>
+
+        </StackLayout>
+    </FlexLayout>
+</ContentPage>

@@ -15,6 +15,7 @@ namespace IURIS.MOVIL.Modelos_y_clases.DB_Local.COMMON
         public DateTime UltimaFechaDeModificacion { get; set; }
         public DateTime? FechaDeDescarga { get; set; }
         public List<ClasificacionPUsuario> Clasificaciones { get; set; }
+        public List<ClasificacionPorColor> ClasificacionesPorColores { get; set; }
         public List<Titulo> ListaDeTitulos { get; set; }
 
         

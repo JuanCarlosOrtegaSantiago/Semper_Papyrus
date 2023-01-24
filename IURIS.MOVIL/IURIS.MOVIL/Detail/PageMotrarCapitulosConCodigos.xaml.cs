@@ -25,6 +25,8 @@ using Acr.UserDialogs;
 using MarcTron.Plugin.Controls;
 using Xamarin.Essentials;
 using IURIS.MOVIL.Modelos_y_clases.DB_Local.COMMON;
+using Xamarin.CommunityToolkit.UI.Views;
+using System.Diagnostics;
 
 namespace IURIS.MOVIL.Detail
 {
@@ -325,7 +327,9 @@ namespace IURIS.MOVIL.Detail
                 if (ColorHex == null) return;
                    if(!_Articulo.TieneColorDeTexto) _Articulo.TieneColorDeTexto=true;
                     if (_Articulo.Subrayados == null)  _Articulo.Subrayados = new List<Subrayado>();
-
+                if (_MyLey.ClasificacionesPorColores == null) 
+                    _MyLey.ClasificacionesPorColores= new List<ClasificacionPorColor>();
+                 
                 //if (_Articulo.Subrayados.Find(w => w.ColorTextoHex == ColorHex) != null)
                 //{
                 //    await DisplayAlert("Error","Ya tienes ese color por favor elije otro","ok");
@@ -395,6 +399,15 @@ namespace IURIS.MOVIL.Detail
                 _Articulo.Subrayados.Add(subrayado);
                 _Articulo.Subrayados.Add(subrayadoTemp);
 
+                ClasificacionPorColor porColor = new ClasificacionPorColor
+                {
+                    ColorHexDeClasificado = ColorHex,
+                    _Articulo = this._Articulo,
+                    Clasificados = subrayado
+                };
+
+                _MyLey.ClasificacionesPorColores.Add(porColor);
+
                 if (await App.Database.UpdateUserAsync(App.MyUser))
                 {
                     IsRefreshing = true;
@@ -430,6 +443,11 @@ namespace IURIS.MOVIL.Detail
                     return;
                 }
                 return;
+            }
+            finally
+            {
+                expandr.IsExpanded = false;
+                stakColores.IsVisible = false;
             }
         }
 
@@ -488,6 +506,11 @@ namespace IURIS.MOVIL.Detail
                     return;
                 }
             }
+            finally
+            {
+                expandr.IsExpanded = false;
+                stakColores.IsVisible = false;
+            }
         }
 
         private async void TapGestureRecognizer_Tapped_7(object sender, EventArgs e)
@@ -501,6 +524,32 @@ namespace IURIS.MOVIL.Detail
             catch (Exception)
             {
                 return;
+            }
+        }
+
+        private void CrearHipervinculo(object sender, EventArgs e)
+        {
+            Hipertex.IsVisible = true;
+            expan.IsExpanded = false;
+        }
+
+        private void MostrarHipervinculo(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void DropGestureRecognizer_DragOver(object sender, DragEventArgs e)
+        {
+            try
+            {
+                var articulo = (sender as Element).BindingContext as Articulo;
+                
+                
+            }
+            catch (Exception)
+            {
+                await PopupNavigation.Instance.PushAsync(new WindowAlert("Bien", "sasasa", "Ok"), false);
+
             }
         }
     }

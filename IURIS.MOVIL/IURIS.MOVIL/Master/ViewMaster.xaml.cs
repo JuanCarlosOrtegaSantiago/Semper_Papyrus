@@ -6,6 +6,8 @@ using IURIS.MOVIL.Views;
 using IURIS.MOVIL.Views.ViewsCargarLey;
 using IURIS.MOVIL.Views.ViewsCargarLey.TabbPage;
 using IURIS.MOVIL.Views.ViewsCargarLey.ViewClasificaciones;
+using IURIS.MOVIL.Views.ViewsCategoriaPorColor;
+using IURIS.MOVIL.Views.ViewsHipervinculos;
 using IURIS.MOVIL.Views.ViewsVentanasEmergentes;
 using System;
 using System.Collections.Generic;
@@ -76,6 +78,23 @@ namespace IURIS.MOVIL.Master
         private void TapGestureRecognizer_Tapped_6(object sender, EventArgs e)
         {
 
+        }
+
+        private void TapGestureRecognizer_Tapped_7(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TapGestureRecognizer_Tapped_8(object sender, EventArgs e)
+        {
+            App.masterDetail.IsPresented = false;
+            App.masterDetail.Detail = new NavigationPage(new PageClasificacionPorColor(App.MyUser.MisLeyes.Where(w => w.CodigoLey == App.MyUser.MiUltimaLeyCargada).SingleOrDefault()));
+        }
+
+        private void TapGestureRecognizer_Tapped_9(object sender, EventArgs e)
+        {
+            App.masterDetail.IsPresented = false;
+            App.masterDetail.Detail = new NavigationPage(new PageHipervinculos(App.MyUser.MisLeyes.Where(w => w.CodigoLey == App.MyUser.MiUltimaLeyCargada).SingleOrDefault()));
         }
     }
 }
