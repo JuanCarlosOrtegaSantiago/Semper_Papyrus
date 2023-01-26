@@ -76,6 +76,7 @@ namespace IURIS.MOVIL.Modelos_y_clases.DB_Local
             Leyes ley = (Leyes)manejadorDeLeyPrincipal.Listar.Where(w => w.CodigoLey.ToUpper() == _Const.MiLeyPrincipal.ToUpper() && w.Clasificacion== "LeyInicial").FirstOrDefault();
             ley.Clasificaciones = new List<ClasificacionPUsuario>();
             ley.ClasificacionesPorColores = new List<ClasificacionPorColor>();
+            ley.Hipervinculos = new List<hipervinculo>();
 
             MyUser myUser = new MyUser
             {
@@ -130,7 +131,9 @@ namespace IURIS.MOVIL.Modelos_y_clases.DB_Local
                     ListaDeTitulos = Ley.ListaDeTitulos,
                     NombreLey = Ley.NombreLey,
                     UltimaFechaDeModificacion = Ley.UltimaFechaDeModificacion,
-                    Clasificaciones = Ley.Clasificaciones
+                    Clasificaciones = Ley.Clasificaciones,
+                    ClasificacionesPorColores=Ley.ClasificacionesPorColores,
+                    Hipervinculos=Ley.Hipervinculos
                 };
 
                 return myLey;

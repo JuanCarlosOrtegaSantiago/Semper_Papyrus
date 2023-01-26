@@ -27,6 +27,7 @@ using Xamarin.Essentials;
 using IURIS.MOVIL.Modelos_y_clases.DB_Local.COMMON;
 using Xamarin.CommunityToolkit.UI.Views;
 using System.Diagnostics;
+using System.Reflection;
 
 namespace IURIS.MOVIL.Detail
 {
@@ -45,6 +46,7 @@ namespace IURIS.MOVIL.Detail
         private string ColorHex;
         Ellipse Ellipse_Cargado = null;
         int numToques = 0;
+        public static bool res;
         ClassAnuncio Anuncio = new ClassAnuncio();
 
         public PageMotrarCapitulosConCodigos(Titulo titulo, MyLey ley, MTAdView adView, Capitulo CapAIniciar,Articulo articulo)
@@ -59,12 +61,11 @@ namespace IURIS.MOVIL.Detail
             });
 
             _titulo = titulo;
+            _Capitulo = CapAIniciar;
             _CapituloFind = CapAIniciar;
             _ArticuloFin = articulo;
             DatosAInicializar();
 
-
-            
         }
 
         public bool IsRefreshing
@@ -109,14 +110,14 @@ namespace IURIS.MOVIL.Detail
 
             if (_CapituloFind != null)
             {
-
-                cllctionArticulos.ItemsSource = _titulo.ListaCapitulos.Find(s => s.id.Equals(_CapituloFind.id)).ListaArticulos;
+                List<Articulo> articulosfind = _titulo.ListaCapitulos.Find(s => s.id.Equals(_CapituloFind.id)).ListaArticulos;
+                cllctionArticulos.ItemsSource = articulosfind;
                 clltionCapitulos.Position = _titulo.ListaCapitulos.IndexOf(_CapituloFind);
                 if (_ArticuloFin != null)
                 {
                     List<Articulo> ar = new List<Articulo>() { _ArticuloFin };
-                    cllctionArticulos.ItemsSource = ar;
-                    cllctionArticulos.ScrollTo(_ArticuloFin, position: ScrollToPosition.Start);
+                    int pos= articulosfind.FindIndex(r => r.id.Equals(_ArticuloFin.id));
+                    cllctionArticulos.ScrollTo(4, ScrollToPosition.MakeVisible);//, null, ScrollToPosition.MakeVisible, true
                 }
             }
             else
@@ -527,15 +528,27 @@ namespace IURIS.MOVIL.Detail
             }
         }
 
-        private void CrearHipervinculo(object sender, EventArgs e)
+        private async void CrearHipervinculo(object sender, EventArgs e)
         {
+            try
+            {
             Hipertex.IsVisible = true;
             expan.IsExpanded = false;
+                await PopupNavigation.Instance.PushAsync(new WindowAlert("Arrastra y suelta"), false);
+                await Task.Delay(1000);
+                await PopupNavigation.Instance.PopAsync(false);
+            }
+            catch (Exception)
+            {
+
+                return;
+            }
         }
 
         private void MostrarHipervinculo(object sender, EventArgs e)
         {
-
+            stkNavegarHiper.IsVisible = true;
+            expan.IsExpanded = false;
         }
 
         private async void DropGestureRecognizer_DragOver(object sender, DragEventArgs e)
@@ -543,14 +556,69 @@ namespace IURIS.MOVIL.Detail
             try
             {
                 var articulo = (sender as Element).BindingContext as Articulo;
-                
-                
+                _Articulo = articulo;
+
+                if (_Articulo == null || _Capitulo == null || _titulo == null || _Articulo.TieneHipervinculo)
+                    return;
+
+
+                _Articulo.TieneHipervinculo = true;
+
+                hipervinculo hiper = new hipervinculo()
+                {
+                    _Articulo = _Articulo,
+                    _Capitulo = _Capitulo,
+                    _Titulo = _titulo
+                };
+                if (_MyLey.Hipervinculos == null)
+                    _MyLey.Hipervinculos = new List<hipervinculo>();
+
+                _MyLey.Hipervinculos.Add(hiper);
+                Hipertex.IsVisible = false;
+
+                if (await App.Database.UpdateUserAsync(App.MyUser))
+                    IsRefreshing = true;
+
             }
             catch (Exception)
             {
-                await PopupNavigation.Instance.PushAsync(new WindowAlert("Bien", "sasasa", "Ok"), false);
+                try
+                {
+                    await PopupNavigation.Instance.PushAsync(new WindowAlert("Error", "No se ha podido crear el hipervinculo,\npor favor intente mas tarde", "Ok"), false);
+                    await Task.Delay(5000);
+                    await PopupNavigation.Instance.PopAsync(false);
+                }
+                catch (Exception)
+                {
 
+                    return;
+                }
             }
+        }
+
+        private void TapGestureRecognizer_Tapped_9(object sender, EventArgs e)
+        {
+            var articulo = ((Image)sender).BindingContext as Articulo;
+            PopupNavigation.Instance.PushAsync(new WindowEliminarHiper(articulo, _MyLey), false);
+            isRefreshing = true;
+        }
+
+        private void TapGestureRecognizer_Tapped_8(object sender, EventArgs e)
+        {
+            stkNavegarHiper.IsVisible = false;
+            Hipertex.IsVisible = false;
+            expan.IsExpanded = false;
+
+        }
+
+        private void NavegarHiperAtras(object sender, EventArgs e)
+        {
+
+        }
+
+        private void NavegarHiperAdelante(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -17,11 +17,11 @@ namespace IURIS.MOVIL.Modelos_y_clases.DB_Local.COMMON
         public List<ClasificacionPUsuario> Clasificaciones { get; set; }
         public List<ClasificacionPorColor> ClasificacionesPorColores { get; set; }
         public List<Titulo> ListaDeTitulos { get; set; }
+        public List<hipervinculo> Hipervinculos { get; set; }
 
-        
         //[TextBlob("MyClasificacionPUsuarioBlobbed")]
         //public string MyClasificacionPUsuarioBlobbed { get; set; }
-        
+
 
         //[TextBlob("MyTituloBlobbed")]
         //public string MyTituloBlobbed { get; set; }

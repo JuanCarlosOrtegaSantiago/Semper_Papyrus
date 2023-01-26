@@ -15,36 +15,32 @@
 
     <FlexLayout  AlignItems="Center">
         <StackLayout Margin="0,20,0,0" Spacing="15" Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" FlexLayout.Shrink="0" FlexLayout.Basis="8%">
-            <Label FontSize="Title" Style="{StaticResource TextoAMostrarColorRojo}" VerticalTextAlignment="Center">Mostrar hipervinculos: Tiene 0 hipervínculos</Label>
+            <Label x:Name="lblhiper" FontSize="Title" Style="{StaticResource TextoAMostrarColorRojo}" VerticalTextAlignment="Center"></Label>
         </StackLayout>
 
-        <CollectionView  x:Name="clltionCategoriaPorColor" SelectionMode="Single" >
+        <CollectionView  x:Name="clltionHipervinculos" SelectionMode="None" ItemsSource="{Binding Hipervinculos}">
 
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <pv:PancakeView  HorizontalOptions="FillAndExpand" >
-                        <Grid>
+                    <StackLayout  Orientation="Horizontal" VerticalOptions="Center" Spacing="10" Margin="40,5">
+                        
+                        <Image Source="hiper.png" x:Name="Hipertex" BindingContext="{Binding .}" WidthRequest="30" HeightRequest="30" VerticalOptions="Center">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        
+                        <local:CustomLabeJustifity FontSize="17" Style="{StaticResource TextoAMostrarColorRojo}" FontAttributes="Bold" VerticalTextAlignment="Center">
+                            <local:CustomLabeJustifity.Text>
+                                <MultiBinding StringFormat="{}{0}  {1}">
+                                    <Binding Path="_Articulo.NumArticulo" />
+                                    <Binding Path="_Articulo.NombreArticulo" />
+                                </MultiBinding>
+                            </local:CustomLabeJustifity.Text>
+                        </local:CustomLabeJustifity>
 
-                            <FlexLayout Direction="Row" Margin="40,0,0,0" JustifyContent="Start">
+                    </StackLayout>
 
-                                <StackLayout>
-                                    <StackLayout  Orientation="Horizontal" VerticalOptions="Start" Spacing="5">
-                                        <local:CustomLabeJustifity FontSize="17"  HorizontalTextAlignment="Start" Style="{StaticResource TextoAMostrarColorBlanco}" FontAttributes="Bold" HorizontalOptions="StartAndExpand" VerticalOptions="Center">
-                                            <local:CustomLabeJustifity.Text>
-                                                <MultiBinding StringFormat="{}{0}  {1}">
-                                                    <Binding Path="_Articulo.NumArticulo" />
-                                                    <Binding Path="_Articulo.NombreArticulo" />
-                                                </MultiBinding>
-                                            </local:CustomLabeJustifity.Text>
-                                        </local:CustomLabeJustifity>
-
-                                    </StackLayout>
-
-
-                                </StackLayout>
-                            </FlexLayout>
-                        </Grid>
-                    </pv:PancakeView>
 
                 </DataTemplate>
             </CollectionView.ItemTemplate>

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IURIS.MOVIL.Views.ViewsVentanasEmergentes.WindowEliminarHiper"
+             BackgroundColor="Transparent"
+    xmlns:Pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup">
+    <Frame x:Name="Frame"
+           BackgroundColor="{StaticResource PrimaryColor}"
+           Margin="50"
+           Padding="5"
+           HorizontalOptions="FillAndExpand"
+           VerticalOptions="Center"
+           CornerRadius="7" 
+            Opacity="0.75">
+        <Grid RowDefinitions="auto,auto"  VerticalOptions="Center" HorizontalOptions="Center" Padding="15">
+
+            <Label Grid.Row="0" Text="¿Eliminar hipervinculo?" Style="{StaticResource TextoAMostrarColorBlanco}" FontSize="Title" Margin="0,10"/>
+            <StackLayout Grid.Row="1" Spacing="10" Orientation="Horizontal">
+
+                <Button Style="{StaticResource buttonPrincipal}" Text="Aceptar" x:Name="LblAceptar" VerticalOptions="Center" Clicked="LblAceptar_Clicked" ></Button>
+                <Button Style="{StaticResource buttonPrincipal}" Text="Cancelar"  x:Name="LblCancelar" VerticalOptions="Center" Clicked="LblCancelar_Clicked"></Button>
+            </StackLayout>
+        </Grid>
+
+    </Frame>
+</Pages:PopupPage>

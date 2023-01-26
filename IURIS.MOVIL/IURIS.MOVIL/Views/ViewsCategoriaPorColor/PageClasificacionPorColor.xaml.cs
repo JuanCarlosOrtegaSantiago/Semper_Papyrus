@@ -21,6 +21,15 @@ namespace IURIS.MOVIL.Views.ViewsCategoriaPorColor
         string ColorInicial;
         Ellipse Ellipse_Cargado = null;
         private string ColorHex;
+
+        protected override bool OnBackButtonPressed()
+        {
+            Navigation.PopAsync(false);
+            Navigation.PushModalAsync(new FirtsView(), false);
+            return true;
+        }
+
+
         public PageClasificacionPorColor(MyLey MyLey)
         {
             InitializeComponent();

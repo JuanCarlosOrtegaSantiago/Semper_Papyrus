@@ -20,6 +20,6 @@ namespace IURIS.COMMON.Entidades.Ley.ComponentesDeLey
         public string TextoContenidoAnteriror { get; set; }
         public string TextoContenidoSeleccionado { get; set; }
         public string TextoContenidoDespues { get; set; }
-
+        public bool TieneHipervinculo { get; set; }
     }
 }
