@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace IURIS.COMMON.Entidades.Ley.ComponentesDeLey
 {
-    public class Articulo
+    public class Articulo: INotifyPropertyChanged
     {
         public string NombreArticulo { get; set; }
         public string id { get; set; }
@@ -21,5 +23,12 @@ namespace IURIS.COMMON.Entidades.Ley.ComponentesDeLey
         public string TextoContenidoSeleccionado { get; set; }
         public string TextoContenidoDespues { get; set; }
         public bool TieneHipervinculo { get; set; }
+
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

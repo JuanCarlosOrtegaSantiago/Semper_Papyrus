@@ -55,7 +55,14 @@ namespace IURIS.MOVIL.Droid
                 // OPTIONAL - PhoneCountryCode: Default phone country code for PayPal Plug-In
                 PhoneCountryCode = "52",
             };
+            try
+            {
+
             CrossPayPalManager.Init(config, this);
+            }
+            catch (Exception)
+            {
+            }
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {

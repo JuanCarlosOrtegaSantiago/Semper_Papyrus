@@ -8,7 +8,7 @@
              mc:Ignorable="d"
              x:Class="IURIS.MOVIL.Detail.PageMotrarCapitulosConCodigos"
              xmlns:controls="clr-namespace:MarcTron.Plugin.Controls;assembly=Plugin.MtAdmob" 
-             xmlns:extensions="http://xamarin.com/schemas/2020/toolkit">
+             xmlns:extensions="http://xamarin.com/schemas/2020/toolkit" BindingContext="this">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -96,7 +96,7 @@
 
             <RefreshView  IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshCommand}" FlexLayout.Shrink="2.2" FlexLayout.Grow="1" Margin="0,0,0,60">
 
-                <CollectionView x:Name="cllctionArticulos" ItemsSource="{Binding ListaArticulos}" Margin="10">
+                <CollectionView x:Name="cllctionArticulos" ItemsSource="{x:Binding ListaArticulos, Mode=TwoWay}" Margin="10">
                     <CollectionView.EmptyView>
                         <StackLayout>
                             <Label FontAttributes="Bold"  FontSize="Large" HorizontalOptions="Center" Style="{StaticResource TextoAMostrarColorRojo}">No se encontraron datos</Label>

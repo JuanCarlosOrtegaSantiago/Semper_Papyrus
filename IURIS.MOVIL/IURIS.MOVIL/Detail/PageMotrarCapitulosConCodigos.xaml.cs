@@ -48,8 +48,10 @@ namespace IURIS.MOVIL.Detail
         int numToques = 0;
         public static bool res;
         ClassAnuncio Anuncio = new ClassAnuncio();
+        List<int> Indexes;
+        public int IndexPresent=0;
 
-        public PageMotrarCapitulosConCodigos(Titulo titulo, MyLey ley, MTAdView adView, Capitulo CapAIniciar,Articulo articulo)
+    public PageMotrarCapitulosConCodigos(Titulo titulo, MyLey ley, MTAdView adView, Capitulo CapAIniciar, Articulo articulo)
         {
             InitializeComponent();
             _MyLey = ley;
@@ -64,7 +66,8 @@ namespace IURIS.MOVIL.Detail
             _Capitulo = CapAIniciar;
             _CapituloFind = CapAIniciar;
             _ArticuloFin = articulo;
-            DatosAInicializar();
+            Task.WhenAll(GetIndexOfhipervinculos());
+            Task.WhenAll( DatosAInicializar());
 
         }
 
@@ -86,7 +89,7 @@ namespace IURIS.MOVIL.Detail
                 {
                     try
                     {
-                        if (_Capitulo!=null) ActualizarDatosArticulo(_Capitulo.ListaArticulos);
+                        if (_Capitulo != null) ActualizarDatosArticulo(_Capitulo.ListaArticulos);
                         else ActualizarDatosCapitulo(_titulo.ListaCapitulos);
                         //await Task.Delay(1500); // Only to demonstrate refresh views..
                     }
@@ -98,41 +101,52 @@ namespace IURIS.MOVIL.Detail
             }
         }
 
-        private void DatosAInicializar()
+        private async Task DatosAInicializar()
         {
+                    Anuncio.MostrarAnuncioPantallaParaTitulos();
 
-            Anuncio.MostrarAnuncioPantallaParaTitulos();
-
-            ActualizarDatosCapitulo(_titulo.ListaCapitulos);
-            lblTitle.Text = _titulo.NombreTitulo;
-            lblCodigo.Text = _MyLey.CodigoLey;
-            cllctionArticulos.ItemsSource = null;
-
-            if (_CapituloFind != null)
+            await Task.Run(() =>
             {
-                List<Articulo> articulosfind = _titulo.ListaCapitulos.Find(s => s.id.Equals(_CapituloFind.id)).ListaArticulos;
-                cllctionArticulos.ItemsSource = articulosfind;
-                clltionCapitulos.Position = _titulo.ListaCapitulos.IndexOf(_CapituloFind);
-                if (_ArticuloFin != null)
+                try
                 {
-                    List<Articulo> ar = new List<Articulo>() { _ArticuloFin };
-                    int pos= articulosfind.FindIndex(r => r.id.Equals(_ArticuloFin.id));
-                    cllctionArticulos.ScrollTo(4, ScrollToPosition.MakeVisible);//, null, ScrollToPosition.MakeVisible, true
+                    ActualizarDatosCapitulo(_titulo.ListaCapitulos);
+                    lblTitle.Text = _titulo.NombreTitulo;
+                    lblCodigo.Text = _MyLey.CodigoLey;
+                    cllctionArticulos.ItemsSource = null;
+
+                    if (_CapituloFind != null)
+                    {
+
+                        cllctionArticulos.ItemsSource = _titulo.ListaCapitulos.Find(s => s.id.Equals(_CapituloFind.id)).ListaArticulos;
+                        clltionCapitulos.Position = _titulo.ListaCapitulos.IndexOf(_CapituloFind);
+                        if (_ArticuloFin != null)
+                        {
+                            cllctionArticulos.ItemsSource = null;
+                            cllctionArticulos.ItemsSource = _titulo.ListaCapitulos.Find(s => s.id.Equals(_CapituloFind.id)).ListaArticulos.OrderByDescending(r => r.TieneHipervinculo).ToList();
+                            cllctionArticulos.ScrollTo(_ArticuloFin);//((List<Articulo>) cllctionArticulos.ItemsSource).Where();
+                        }
+                    }
+                    else
+                    {
+
+                        cllctionArticulos.ItemsSource = _titulo.ListaCapitulos.FirstOrDefault().ListaArticulos;//modificar
+                        _Capitulo = _titulo.ListaCapitulos.FirstOrDefault();
+                    }
                 }
-            }
-            else
-            {
-
-                cllctionArticulos.ItemsSource = _titulo.ListaCapitulos.FirstOrDefault().ListaArticulos;//modificar
-                _Capitulo = _titulo.ListaCapitulos.FirstOrDefault();
-            }
-
+                catch (Exception ex)
+                {
+                    Debug.Print(ex.Message);
+                    return;
+                }
+            });
         }
 
         private void ActualizarDatosCapitulo(List<Capitulo> listaCapitulos)
         {
+            Task.WhenAll(GetIndexOfhipervinculos());
             clltionCapitulos.ItemsSource = null;
             clltionCapitulos.ItemsSource = listaCapitulos;
+
         }
 
         private void ActualizarDatosArticulo(List<Articulo> listaArticulos)
@@ -611,8 +625,24 @@ namespace IURIS.MOVIL.Detail
 
         }
 
+        async Task GetIndexOfhipervinculos()
+        {
+           await Task.Run(() =>
+            {
+                int index = 0;
+                foreach (var item in _Capitulo.ListaArticulos)
+                {
+                    if (item.TieneHipervinculo)
+                        Indexes.Add(index);
+                    index++;
+                }
+            });
+        }
+
         private void NavegarHiperAtras(object sender, EventArgs e)
         {
+
+            
 
         }
 

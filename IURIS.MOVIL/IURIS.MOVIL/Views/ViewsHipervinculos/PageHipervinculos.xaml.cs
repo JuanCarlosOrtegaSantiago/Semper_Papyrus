@@ -65,7 +65,7 @@ namespace IURIS.MOVIL.Views.ViewsHipervinculos
             try
             {
                 var Hiper = ((Image)sender).BindingContext as hipervinculo;
-                await Navigation.PushAsync(new PageMotrarCapitulosConCodigos(Hiper._Titulo, _MyLey, null, Hiper._Capitulo, Hiper._Articulo), false);
+                await Navigation.PushModalAsync(new PageMotrarCapitulosConCodigos(Hiper._Titulo, _MyLey, null, Hiper._Capitulo, Hiper._Articulo), false);
             }
             catch (Exception)
             {
