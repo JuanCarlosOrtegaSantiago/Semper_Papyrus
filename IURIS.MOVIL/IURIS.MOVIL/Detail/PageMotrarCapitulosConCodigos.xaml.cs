@@ -28,6 +28,7 @@ using IURIS.MOVIL.Modelos_y_clases.DB_Local.COMMON;
 using Xamarin.CommunityToolkit.UI.Views;
 using System.Diagnostics;
 using System.Reflection;
+using IURIS.MOVIL.Views.ViewsHipervinculos;
 
 namespace IURIS.MOVIL.Detail
 {
@@ -123,7 +124,7 @@ namespace IURIS.MOVIL.Detail
                         {
                             cllctionArticulos.ItemsSource = null;
                             cllctionArticulos.ItemsSource = _titulo.ListaCapitulos.Find(s => s.id.Equals(_CapituloFind.id)).ListaArticulos.OrderByDescending(r => r.TieneHipervinculo).ToList();
-                            cllctionArticulos.ScrollTo(_ArticuloFin);//((List<Articulo>) cllctionArticulos.ItemsSource).Where();
+                            cllctionArticulos.ScrollTo(_ArticuloFin);
                         }
                     }
                     else
@@ -559,10 +560,19 @@ namespace IURIS.MOVIL.Detail
             }
         }
 
-        private void MostrarHipervinculo(object sender, EventArgs e)
+        private async void MostrarHipervinculo(object sender, EventArgs e)
         {
-            stkNavegarHiper.IsVisible = true;
-            expan.IsExpanded = false;
+
+            try
+            {
+                expan.IsExpanded = false;
+                await Navigation.PushModalAsync(new PageMostarrHipervinculos(_MyLey, _MyLey.Hipervinculos), false);
+            }
+            catch (Exception)
+            {
+                return;
+            }
+
         }
 
         private async void DropGestureRecognizer_DragOver(object sender, DragEventArgs e)
@@ -619,7 +629,6 @@ namespace IURIS.MOVIL.Detail
 
         private void TapGestureRecognizer_Tapped_8(object sender, EventArgs e)
         {
-            stkNavegarHiper.IsVisible = false;
             Hipertex.IsVisible = false;
             expan.IsExpanded = false;
 
@@ -639,16 +648,5 @@ namespace IURIS.MOVIL.Detail
             });
         }
 
-        private void NavegarHiperAtras(object sender, EventArgs e)
-        {
-
-            
-
-        }
-
-        private void NavegarHiperAdelante(object sender, EventArgs e)
-        {
-
-        }
     }
 }

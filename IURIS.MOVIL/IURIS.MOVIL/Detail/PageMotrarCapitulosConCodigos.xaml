@@ -230,24 +230,6 @@
                     </extensions:Expander.ContentTemplate>
                 </extensions:Expander>
 
-                <StackLayout Grid.Row="0" x:Name="stkNavegarHiper" BackgroundColor="{StaticResource PrimaryColor}" IsVisible="false" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="End" Padding="10,5">
-                    <Image Source="hiperBlanco.png" WidthRequest="35" HeightRequest="35" Rotation="180" HorizontalOptions="End">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="NavegarHiperAtras"/>
-                        </Image.GestureRecognizers>
-                    </Image>
-                    <Label x:Name="lblOkHiper" Text="OK" Style="{StaticResource TextoAMostrarColorBlanco}" FontSize="Title"  HorizontalOptions="Center" VerticalOptions="Center" Margin="30,0">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_8"/>
-                        </Label.GestureRecognizers>
-                    </Label>
-                    <Image Source="hiperBlanco.png" WidthRequest="35" HeightRequest="35" HorizontalOptions="Start">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="NavegarHiperAdelante"/>
-                        </Image.GestureRecognizers>
-                    </Image>
-                </StackLayout>
-
                 <StackLayout Grid.Row="0" x:Name="stakColores" Orientation="Horizontal" HorizontalOptions="Start"  VerticalOptions="End" Margin="60,0,0,0" IsVisible="false">
 
                     <Ellipse Fill="#F7FE2E" Aspect="Uniform"

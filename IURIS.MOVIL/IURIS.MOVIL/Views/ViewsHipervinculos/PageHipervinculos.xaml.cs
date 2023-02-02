@@ -26,6 +26,7 @@ namespace IURIS.MOVIL.Views.ViewsHipervinculos
         }
 
         MyLey _MyLey;
+        List<hipervinculo> _hipervinculos;
         public PageHipervinculos(MyLey MyLey)
         {
             InitializeComponent();
@@ -40,10 +41,10 @@ namespace IURIS.MOVIL.Views.ViewsHipervinculos
             lblCodigo.Text = _MyLey.CodigoLey;
                         
             clltionHipervinculos.ItemsSource = null;
-            List<hipervinculo> hipervinculos= App.MyUser.MisLeyes.Where(e => e.CodigoLey.Equals(_MyLey.CodigoLey)).FirstOrDefault().Hipervinculos;
-            clltionHipervinculos.ItemsSource = hipervinculos;
+            _hipervinculos = App.MyUser.MisLeyes.Where(e => e.CodigoLey.Equals(_MyLey.CodigoLey)).FirstOrDefault().Hipervinculos;
+            clltionHipervinculos.ItemsSource = _hipervinculos;
 
-            lblhiper.Text = $"Mostrar hipervinculos: Tiene {hipervinculos.Count} hipervínculos";
+            lblhiper.Text = $"Mostrar hipervinculos: Tiene {_hipervinculos.Count} hipervínculos";
         }
 
         private async void TapGestureRecognizer_Tapped_7(object sender, EventArgs e)
@@ -65,7 +66,8 @@ namespace IURIS.MOVIL.Views.ViewsHipervinculos
             try
             {
                 var Hiper = ((Image)sender).BindingContext as hipervinculo;
-                await Navigation.PushModalAsync(new PageMotrarCapitulosConCodigos(Hiper._Titulo, _MyLey, null, Hiper._Capitulo, Hiper._Articulo), false);
+                
+                await Navigation.PushModalAsync(new PageMostarrHipervinculos(_MyLey,_hipervinculos, _hipervinculos.IndexOf(Hiper)), false);
             }
             catch (Exception)
             {

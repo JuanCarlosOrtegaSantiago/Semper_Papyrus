@@ -131,6 +131,9 @@
     <EmbeddedResource Update="Views\ViewsHipervinculos\PageHipervinculos.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\ViewsHipervinculos\PageMostarrHipervinculos.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\ViewsVentanasEmergentes\PageVistaSinInternet.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
