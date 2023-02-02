@@ -67,7 +67,6 @@ namespace IURIS.MOVIL.Detail
             _Capitulo = CapAIniciar;
             _CapituloFind = CapAIniciar;
             _ArticuloFin = articulo;
-            Task.WhenAll(GetIndexOfhipervinculos());
             Task.WhenAll( DatosAInicializar());
 
         }
@@ -144,7 +143,6 @@ namespace IURIS.MOVIL.Detail
 
         private void ActualizarDatosCapitulo(List<Capitulo> listaCapitulos)
         {
-            Task.WhenAll(GetIndexOfhipervinculos());
             clltionCapitulos.ItemsSource = null;
             clltionCapitulos.ItemsSource = listaCapitulos;
 
@@ -632,20 +630,6 @@ namespace IURIS.MOVIL.Detail
             Hipertex.IsVisible = false;
             expan.IsExpanded = false;
 
-        }
-
-        async Task GetIndexOfhipervinculos()
-        {
-           await Task.Run(() =>
-            {
-                int index = 0;
-                foreach (var item in _Capitulo.ListaArticulos)
-                {
-                    if (item.TieneHipervinculo)
-                        Indexes.Add(index);
-                    index++;
-                }
-            });
         }
 
     }

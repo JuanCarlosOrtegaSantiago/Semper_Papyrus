@@ -60,8 +60,8 @@ namespace IURIS.MOVIL.Views.ViewsHipervinculos
         {
             try
             {
-                //await PopupNavigation.Instance.PushAsync(new WindowAlert(_MyLey.NombreLey), false);
-                //await Task.Delay(2500);
+                await PopupNavigation.Instance.PushAsync(new WindowAlert(_MyLey.NombreLey), false);
+                await Task.Delay(2500);
                 await PopupNavigation.Instance.PopAsync(false);
             }
             catch (Exception)
@@ -77,7 +77,7 @@ namespace IURIS.MOVIL.Views.ViewsHipervinculos
         }
 
 
-        private async void TapGestureRecognizer_Tapped_8(object sender, EventArgs e)
+        private async void Salir(object sender, EventArgs e)
         {
             NavigationPage a= new NavigationPage(new FirtsView());
             await Navigation.PushModalAsync(new FirtsView(), false);

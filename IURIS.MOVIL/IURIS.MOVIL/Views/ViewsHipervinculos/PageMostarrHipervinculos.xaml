@@ -72,7 +72,7 @@
                     </Image>
                     <Label x:Name="lblOkHiper" Text="OK" Style="{StaticResource TextoAMostrarColorBlanco}" FontSize="Title"  HorizontalOptions="Center" VerticalOptions="Center" Margin="50,0">
                         <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_8"/>
+                            <TapGestureRecognizer Tapped="Salir"/>
                         </Label.GestureRecognizers>
                     </Label>
                     <Image Source="hiperBlanco.png" WidthRequest="40" HeightRequest="40" HorizontalOptions="Start" Margin="10,0">
