@@ -1,5 +1,6 @@
 ﻿using IURIS.COMMON.Entidades.UsuariosDeAplicacion;
 using IURIS.MOVIL.Detail;
+using IURIS.MOVIL.Modelos_y_clases;
 using IURIS.MOVIL.Modelos_y_clases.DB_Local.COMMON;
 using IURIS.MOVIL.Utils;
 using IURIS.MOVIL.Views;
@@ -27,27 +28,9 @@ namespace IURIS.MOVIL.Master
         public ViewMaster()
         {
             InitializeComponent();
-            BindingContext = this;
-
             lblIDUser.Text = String.Format("IURIS Id: {0}",App.MyUser.IdApp);
         }
 
-
-        public double Subtitle
-        {
-            get
-            {
-                return Device.GetNamedSize(NamedSize.Subtitle, typeof(Label));
-            }
-        }
-
-        public double Body
-        {
-            get
-            {
-                return Device.GetNamedSize(NamedSize.Body, typeof(Label));
-            }
-        }
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Pages:PopupPage  xmlns:Pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup" xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="IURIS.MOVIL.Views.ViewsVentanasEmergentes.WindowOfMenuAccion">
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:modelos_y_clases="clr-namespace:IURIS.MOVIL.Modelos_y_clases"
+                  x:Class="IURIS.MOVIL.Views.ViewsVentanasEmergentes.WindowOfMenuAccion">
 
     <Frame BackgroundColor="{StaticResource PrimaryColor}"
            BorderColor="White"
@@ -10,23 +10,27 @@
            Margin="10"
            HorizontalOptions="CenterAndExpand"
            VerticalOptions="CenterAndExpand"
-           CornerRadius="5" >
+           CornerRadius="5"
+           x:DataType="modelos_y_clases:CFonts">
+        <Frame.BindingContext>
+            <modelos_y_clases:CFonts />
+        </Frame.BindingContext>
 
         <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="5" Spacing="10">
-            <Label Text="Clasificación personalizada" Style="{StaticResource TextoAMostrarColorBlanco}" FontSize="Large" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" VerticalOptions="Center">
+            <Label Text="Clasificación personalizada" Style="{StaticResource TextoAMostrarColorBlanco}" FontSize="{Binding Large}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" VerticalOptions="Center">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Tapped="LblClasificacionPersonalizada"/>
                 </Label.GestureRecognizers>
             </Label>
             <Frame BackgroundColor="{StaticResource SecundaryColor}" HorizontalOptions="FillAndExpand" HeightRequest="1" Margin="-50,0" Padding="0,1"/>
-            <Label Text="Crear Nota" Style="{StaticResource TextoAMostrarColorBlanco}" FontSize="Large" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" VerticalOptions="Center">
+            <Label Text="Crear Nota" Style="{StaticResource TextoAMostrarColorBlanco}" FontSize="{Binding Large}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" VerticalOptions="Center">
                 <Label.GestureRecognizers >
                     <TapGestureRecognizer Tapped="LblCrearNota"/>
                 </Label.GestureRecognizers>
             </Label>
 
             <Frame BackgroundColor="{StaticResource SecundaryColor}" HorizontalOptions="FillAndExpand" HeightRequest="1" Margin="-50,0" Padding="0,1"/>
-            <Label Text="Habilitar subrayado" Style="{StaticResource TextoAMostrarColorBlanco}" FontSize="Large" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" VerticalOptions="Center">
+            <Label Text="Habilitar subrayado" Style="{StaticResource TextoAMostrarColorBlanco}" FontSize="{Binding Large}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" VerticalOptions="Center">
                 <Label.GestureRecognizers >
                     <TapGestureRecognizer Tapped="GuardarSeleccion"/>
                 </Label.GestureRecognizers>
