@@ -11,6 +11,7 @@ using IURIS.MOVIL.Views.ViewsHipervinculos;
 using IURIS.MOVIL.Views.ViewsVentanasEmergentes;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,8 +27,26 @@ namespace IURIS.MOVIL.Master
         public ViewMaster()
         {
             InitializeComponent();
+            BindingContext = this;
 
             lblIDUser.Text = String.Format("IURIS Id: {0}",App.MyUser.IdApp);
+        }
+
+
+        public double Subtitle
+        {
+            get
+            {
+                return Device.GetNamedSize(NamedSize.Subtitle, typeof(Label));
+            }
+        }
+
+        public double Body
+        {
+            get
+            {
+                return Device.GetNamedSize(NamedSize.Body, typeof(Label));
+            }
         }
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)

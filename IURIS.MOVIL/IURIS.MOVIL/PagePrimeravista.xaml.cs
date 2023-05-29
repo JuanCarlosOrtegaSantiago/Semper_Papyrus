@@ -8,6 +8,7 @@ using IURIS.MOVIL.Modelos_y_clases.DB_Local.COMMON;
 using IURIS.MOVIL.Views.ViewsVentanasEmergentes;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Text;
@@ -117,8 +118,9 @@ namespace IURIS.MOVIL
                         UserDialogs.Instance.HideLoading();
                         await Navigation.PopAsync(false);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                        Debug.WriteLine(ex.Message);
                         UserDialogs.Instance.HideLoading();
                         
                         await Navigation.PushAsync(new PageVistaSinInternet("Ocurrio un error\nintente mas tarde"), false);

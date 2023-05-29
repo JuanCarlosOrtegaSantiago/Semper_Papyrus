@@ -4,7 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              mc:Ignorable="d"
-             x:Class="IURIS.MOVIL.Master.ViewMaster"  Title="Master">
+             x:Class="IURIS.MOVIL.Master.ViewMaster"  Title="Master" BindingContext="this">
     <ContentPage.Content>
         <Grid>
 
@@ -12,40 +12,40 @@
 
                 <StackLayout Orientation="Horizontal" BackgroundColor="{StaticResource PrimaryColor}" FlexLayout.Basis="7%">
                     <Image Source="Logo.png" Margin="15,5"/>
-                    <Label x:Name="lblIDUser" Style="{StaticResource LabelCrearCuenta}" FontAttributes="Bold" FontSize="Title" VerticalTextAlignment="Center"/>
+                    <Label x:Name="lblIDUser" Style="{StaticResource LabelCrearCuenta}" FontAttributes="Bold" VerticalTextAlignment="Center" FontSize="{Binding FontSizeSub}"/>
                 </StackLayout>
 
-                <Label Style="{StaticResource TextoAMostrarColorRojo}" Margin="15,10,0,5" HorizontalTextAlignment="Start" Text="Inicio" FontSize="Large" >
+                <Label Style="{StaticResource TextoAMostrarColorRojo}" Margin="15,10,0,5" HorizontalTextAlignment="Start" Text="Inicio" FontSize="{Binding FontSizeSub}">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_2" />
                     </Label.GestureRecognizers>
                 </Label>
 
-                <Label Style="{StaticResource TextoAMostrarColorRojo}" Margin="15,5" HorizontalTextAlignment="Start" Text="Clasificación personalizada" FontSize="Large" >
+                <Label Style="{StaticResource TextoAMostrarColorRojo}" Margin="15,5" HorizontalTextAlignment="Start" Text="Clasificación personalizada" FontSize="{Binding FontSizeSub}">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
                     </Label.GestureRecognizers>
                 </Label>
 
-                <Label Style="{StaticResource TextoAMostrarColorRojo}" Margin="15,5" HorizontalTextAlignment="Start" Text="Categoría por color"  FontSize="Large" >
+                <Label Style="{StaticResource TextoAMostrarColorRojo}" Margin="15,5" HorizontalTextAlignment="Start" Text="Categoría por color"  FontSize="{Binding FontSizeSub}" >
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_8" />
                     </Label.GestureRecognizers>
                 </Label>
 
-                <Label Style="{StaticResource TextoAMostrarColorRojo}" Margin="15,5" HorizontalTextAlignment="Start" Text="Mostrar hipervínculos"  FontSize="Large" >
+                <Label Style="{StaticResource TextoAMostrarColorRojo}" Margin="15,5" HorizontalTextAlignment="Start" Text="Mostrar hipervínculos"  FontSize="{Binding FontSizeSub}">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_9" />
                     </Label.GestureRecognizers>
                 </Label>
 
-                <Label Style="{StaticResource TextoAMostrarColorRojo}" Margin="15,5" HorizontalTextAlignment="Start" Text="Mis apuntes"  FontSize="Large" >
+                <Label Style="{StaticResource TextoAMostrarColorRojo}" Margin="15,5" HorizontalTextAlignment="Start" Text="Mis apuntes" FontSize="{Binding FontSizeSub}">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" />
                     </Label.GestureRecognizers>
                 </Label>
 
-                <Label Style="{StaticResource TextoAMostrarColorRojo}" Margin="15,5" HorizontalTextAlignment="Start" Text="Cargar / cambiar ley" FontSize="Large" >
+                <Label Style="{StaticResource TextoAMostrarColorRojo}" Margin="15,5" HorizontalTextAlignment="Start" Text="Cargar / cambiar ley" FontSize="{Binding FontSizeSub}" >
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_3" />
                     </Label.GestureRecognizers>
@@ -76,12 +76,12 @@
                         <pv:GradientStop Color="{StaticResource PrimaryColor}" Offset="1"/>
                     </pv:GradientStopCollection>
                 </pv:PancakeView.BackgroundGradientStops>
-                <Label Margin="10,15,10,20" Text=" para mas espacio " Style="{StaticResource TextoAMostrarColorBlanco }" FontSize="Large" Padding="15">
+                <Label Margin="10,15,10,20" Text=" para mas espacio " Style="{StaticResource TextoAMostrarColorBlanco }" Padding="15" FontSize="{Binding FontSizeSub}">
                     <Label.FormattedText>
                         <FormattedString>
                             <Span Text="Solo cuentas con 2 espacios para leyes de forma gratuita. &#10;"></Span>
                             <Span Text="Para solicitar mas espacio ponte en contacto con: "></Span>
-                            <Span Text="iurisespacio@gmail.com" TextDecorations="Underline" FontSize="Body" FontAttributes="Bold">
+                            <Span Text="iurisespacio@gmail.com" TextDecorations="Underline" FontSize="{Binding Body}"  FontAttributes="Bold">
                                 <!--<Span.GestureRecognizers>
                                     <TapGestureRecognizer
                                 </Span.GestureRecognizers>-->

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Text;
@@ -16,10 +17,25 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
         public PageVistaSinInternet(String Txt)
         {
             InitializeComponent();
+            BindingContext = this;
             txtData.Text = Txt;
-        } 
-                
+        }
 
+        public double Subtitle
+        {
+            get
+            {
+                return Device.GetNamedSize(NamedSize.Subtitle, typeof(Label));
+            }
+        }
+
+        public double Large
+        {
+            get
+            {
+                return Device.GetNamedSize(NamedSize.Large, typeof(Label));
+            }
+        }
         private async void btnIntentarDeNuevo_Clicked(object sender, EventArgs e)
         {
             if (HayConexion())
@@ -41,6 +57,23 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
             catch
             {
                 return false;
+            }
+        }
+
+        private void txtData_SizeChanged(object sender, EventArgs e)
+        {
+            const int max_size = 18;
+            Label en = sender as Label;
+            if (en.Text.Length * en.FontSize > en.Width)
+            {
+                en.FontSize--;
+            }
+            if (en.Text != null)
+            {
+                if (en.Text.Length < en.Text.Length & (en.Text.Length * (en.FontSize + 1)) < en.Width & en.FontSize < max_size)
+                {
+                    en.FontSize++;
+                }
             }
         }
     }

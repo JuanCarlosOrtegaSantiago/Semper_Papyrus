@@ -33,6 +33,7 @@ namespace IURIS.MOVIL.Droid
             base.OnElementChanged(e);
             if (Control != null)
             {
+                Control.SetAutoSizeTextTypeWithDefaults(AutoSizeTextType.Uniform);
                 Control.SetTextIsSelectable(true);
                 Control.Selected = true;
             }
