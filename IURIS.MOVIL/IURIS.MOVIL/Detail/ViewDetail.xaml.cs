@@ -42,7 +42,7 @@ namespace IURIS.MOVIL.Detail
             }
 
         }
-
+        
         ClassAnuncio Anuncio = new ClassAnuncio();
         MyLey _MyLey;
 
@@ -51,16 +51,16 @@ namespace IURIS.MOVIL.Detail
             InitializeComponent();
             DatosAInicializar();
 
-            MainThread.BeginInvokeOnMainThread(async () =>
-            {
-                await Task.Delay(1500);
+            //MainThread.BeginInvokeOnMainThread(async () =>
+            //{
+            //    await Task.Delay(1500);
+            //});
                 myAds.IsVisible = true;
-            });
 
+            //var test = CrossMTAdmob.Current.IsInterstitialLoaded().ToString();
+            //CrossMTAdmob.Current.ShowInterstitial();
+            //CrossMTAdmob.Current.LoadInterstitial("ca-app-pub-2336879831564913/4601945943");
             Anuncio.MostrarAnuncioPantalla();
-            var test = CrossMTAdmob.Current.IsInterstitialLoaded().ToString();
-            CrossMTAdmob.Current.ShowInterstitial();
-            CrossMTAdmob.Current.LoadInterstitial("ca-app-pub-2336879831564913/4601945943");
         }
 
         private void DatosAInicializar()

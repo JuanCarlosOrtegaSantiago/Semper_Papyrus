@@ -6,7 +6,6 @@
              mc:Ignorable="d"
              x:Class="IURIS.MOVIL.Master.ViewMaster"  Title="Master" >
     <ContentPage.Content>
-        <Grid>
 
             <FlexLayout JustifyContent="Start"
                         x:DataType="modelos_y_clases:CFonts">
@@ -20,6 +19,10 @@
                     <Label x:Name="lblIDUser" Style="{StaticResource LabelCrearCuenta}" FontAttributes="Bold" VerticalTextAlignment="Center" FontSize="{Binding Subtitle}"/>
                 </StackLayout>
 
+        <ScrollView VerticalScrollBarVisibility="Never" FlowDirection="MatchParent">
+                <ScrollView.Content>
+                    <FlexLayout>
+                        
                 <Label Style="{StaticResource TextoAMostrarColorRojo}" Margin="15,10,0,5" HorizontalTextAlignment="Start" Text="Inicio" FontSize="{Binding Subtitle}">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_2" />
@@ -55,6 +58,9 @@
                         <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_3" />
                     </Label.GestureRecognizers>
                 </Label>
+                    </FlexLayout>
+                </ScrollView.Content>
+        </ScrollView>
 
                 <!--
             <Label Margin="15,5" Text="Ajustes" Style="{StaticResource TextoAMostrarColorRojo}" FontSize="Large">
@@ -74,7 +80,7 @@
             </FlexLayout>
 
 
-            <pv:PancakeView HorizontalOptions="FillAndExpand" VerticalOptions="End" CornerRadius="0,50,0,0">
+            <!--<pv:PancakeView HorizontalOptions="FillAndExpand" VerticalOptions="End" CornerRadius="0,50,0,0">
                 <pv:PancakeView.BackgroundGradientStops>
                     <pv:GradientStopCollection>
                         <pv:GradientStop Color="{StaticResource PrimaryColor}" Offset="0"/>
@@ -87,17 +93,16 @@
                             <Span Text="Solo cuentas con 2 espacios para leyes de forma gratuita. &#10;"></Span>
                             <Span Text="Para solicitar mas espacio ponte en contacto con: "></Span>
                             <Span Text="iurisespacio@gmail.com" TextDecorations="Underline" FontSize="{Binding Body}"  FontAttributes="Bold">
-                                <!--<Span.GestureRecognizers>
+                                --><!--<Span.GestureRecognizers>
                                     <TapGestureRecognizer
-                                </Span.GestureRecognizers>-->
+                                </Span.GestureRecognizers>--><!--
                             </Span>
                         </FormattedString>
                     </Label.FormattedText>
-                    <!--<Label.GestureRecognizers>
+                    --><!--<Label.GestureRecognizers>
                         <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_4" />
-                    </Label.GestureRecognizers>-->
+                    </Label.GestureRecognizers>--><!--
                 </Label>
-            </pv:PancakeView>
-        </Grid>
+            </pv:PancakeView>-->
     </ContentPage.Content>
 </ContentPage>

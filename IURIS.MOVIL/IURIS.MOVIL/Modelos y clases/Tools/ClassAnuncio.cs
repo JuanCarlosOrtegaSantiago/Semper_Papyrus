@@ -5,6 +5,8 @@ using System.Text;
 using Rg.Plugins.Popup.Services;
 using IURIS.MOVIL.Views.ViewsVentanasEmergentes;
 using MarcTron.Plugin;
+using Plugin.Settings;
+using Plugin.Clipboard;
 
 namespace IURIS.MOVIL.Modelos_y_clases
 {
@@ -25,12 +27,14 @@ namespace IURIS.MOVIL.Modelos_y_clases
                 else
                 {
                     Random rnd = new Random();
-                    Settings.NumAleatorio = rnd.Next(10, 30);
+                    Settings.NumAleatorio = rnd.Next(5, 15);
                     Settings.CountParaNumAleatorio = "1";
 
                     var test = CrossMTAdmob.Current.IsInterstitialLoaded().ToString();
-                    CrossMTAdmob.Current.ShowInterstitial();
+                    CrossClipboard.Current.SetText("IURIS");
                     CrossMTAdmob.Current.LoadInterstitial("ca-app-pub-2336879831564913/8704842488");
+                    CrossMTAdmob.Current.UserPersonalizedAds = true;
+                    CrossMTAdmob.Current.ShowInterstitial();
                 }
             }
             else
@@ -55,13 +59,14 @@ namespace IURIS.MOVIL.Modelos_y_clases
                 else
                 {
                     Random rnd = new Random();
-                    Settings.NumAleatorioTitulos = rnd.Next(1, 4);
+                    Settings.NumAleatorioTitulos = rnd.Next(1, 3);
                     Settings.CountParaNumAleatorioTitulos = "1";
 
                     var test = CrossMTAdmob.Current.IsInterstitialLoaded().ToString();
-                    
-                    CrossMTAdmob.Current.ShowInterstitial();
+                    CrossClipboard.Current.SetText("IURIS");
                     CrossMTAdmob.Current.LoadInterstitial("ca-app-pub-2336879831564913/8704842488");
+                    CrossMTAdmob.Current.UserPersonalizedAds = true;
+                    CrossMTAdmob.Current.ShowInterstitial();
 
                     ////var test2 = CrossMTAdmob.Current.IsRewardedVideoLoaded().ToString();
                     ////CrossMTAdmob.Current.ShowRewardedVideo();

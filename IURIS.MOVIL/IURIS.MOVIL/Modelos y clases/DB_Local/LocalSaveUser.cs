@@ -85,10 +85,10 @@ namespace IURIS.MOVIL.Modelos_y_clases.DB_Local
                 ApellidoMaterno = _AMaterno,
                 ApellidoPaterno = _APaterno,
                 Nombre = _Nombre,
-                 DatosSobreUsuario=new MyDatosSobreUsuarioParaLey(), 
+              //   DatosSobreUsuario=new MyDatosSobreUsuarioParaLey(), 
                  IdApp=NumUser
             };
-            myUser.DatosSobreUsuario.NumLeyesPermitidas = _Const.NumDeLeyesInicial;
+            //myUser.DatosSobreUsuario.NumLeyesPermitidas = _Const.NumDeLeyesInicial;
             myUser.MisLeyes.Add(LeyToMyley(ley));
             myUser.MiUltimaLeyCargada = ley.CodigoLey;
 
@@ -99,9 +99,9 @@ namespace IURIS.MOVIL.Modelos_y_clases.DB_Local
                 ApellidoPaterno = _APaterno,
                  ApellidoMaterno=_AMaterno,
                 Nombre = _Nombre,
-                DatosSobreUsuario = new DatosSobreUsuarioParaLey()
+            //    DatosSobreUsuario = new DatosSobreUsuarioParaLey()
             };
-            user.DatosSobreUsuario.NumLeyesPermitidas = _Const.NumDeLeyesInicial;
+            //user.DatosSobreUsuario.NumLeyesPermitidas = _Const.NumDeLeyesInicial;
            
             
             try

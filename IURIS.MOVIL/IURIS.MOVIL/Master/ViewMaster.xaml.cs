@@ -58,11 +58,11 @@ namespace IURIS.MOVIL.Master
 
         }
 
-        private void TapGestureRecognizer_Tapped_4(object sender, EventArgs e)
-        {
-            App.masterDetail.IsPresented = false;
-            App.masterDetail.Detail = new NavigationPage(new WindowOpcionDeCompra());
-        }
+        //private void TapGestureRecognizer_Tapped_4(object sender, EventArgs e)
+        //{
+        //    App.masterDetail.IsPresented = false;
+        //    App.masterDetail.Detail = new NavigationPage(new WindowOpcionDeCompra());
+        //}
 
         private async void TapGestureRecognizer_Tapped_5(object sender, EventArgs e)
         {

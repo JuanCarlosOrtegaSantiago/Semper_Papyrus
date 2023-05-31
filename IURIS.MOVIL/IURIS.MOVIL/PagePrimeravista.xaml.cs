@@ -48,85 +48,80 @@ namespace IURIS.MOVIL
 
         private async void DatosAValidar()
         {
-                    if (!HayConexion())
-                    {
-                
+            if (!HayConexion())
+            {
                 await Navigation.PopAsync(false);
                 await Navigation.PushAsync(new PageVistaSinInternet("Revisa tu conexión\na internet"), false);
-                    return;
-                    }
-                UserDialogs.Instance.ShowLoading("Validando\npor favor espere.", MaskType.None);
-                await Task.Delay(500);
+                return;
+            }
+            UserDialogs.Instance.ShowLoading("Validando\npor favor espere.", MaskType.None);
+            await Task.Delay(500);
 
-                MainThread.BeginInvokeOnMainThread(async () =>
+            MainThread.BeginInvokeOnMainThread(async () =>
+            {
+                await Task.Delay(300);
+
+                try
                 {
-                    await Task.Delay(1000);
+
+                    //manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
+
+                    var usuarios = await App.Database.GetPeopleAsync();
+                    App.MyUser = usuarios.FirstOrDefault();
+
+                    if (App.MyUser != null)
+                    {
+
+                        //if (App.MyUser.IdApp == 0)
+                        //{
+                        //    try
+                        //    {
+                        //        Usuarios user = new Usuarios()
+                        //        {
+                        //            ApellidoMaterno = App.MyUser.ApellidoMaterno,
+                        //            ApellidoPaterno = App.MyUser.ApellidoPaterno,
+                        //            //DatosSobreUsuario = new DatosSobreUsuarioParaLey() { NumLeyesPermitidas = App.MyUser.DatosSobreUsuario.NumLeyesPermitidas },
+                        //            Nombre = App.MyUser.Nombre,
+                        //            IdApp = manejadorDeUsuarioAplicacion.Listar.Count + 1
+                        //        };
+                        //        if (manejadorDeUsuarioAplicacion.AGREGAR(user))
+                        //        {
+                        //            App.MyUser.IdApp = user.IdApp;
+                        //            await App.Database.UpdateUserAsync(App.MyUser);
+                        //        }
+                        //    }
+                        //    catch (Exception)
+                        //    {
 
 
+                        //    }
+                        //}
+
+                        //Usuarios User = await manejadorDeUsuarioAplicacion.ConsultUsuario(App.MyUser.IdApp.ToString(), App.MyUser.Nombre, App.MyUser.ApellidoPaterno, App.MyUser.ApellidoMaterno);
+
+                        //if (User.DatosSobreUsuario.NumLeyesPermitidas != App.MyUser.DatosSobreUsuario.NumLeyesPermitidas)
+                        //{
+                        //    App.MyUser.DatosSobreUsuario.NumLeyesPermitidas = User.DatosSobreUsuario.NumLeyesPermitidas;
+                        //    await App.Database.UpdateUserAsync(App.MyUser);
+                        //}
 
 
-                    
-            try
-            {
+                        await Navigation.PushModalAsync(new FirtsView(), false);
+                    }
+                    else { lblEntrar.IsVisible = true; }
 
-                        manejadorDeUsuarioAplicacion = new ManejadorDeUsuarioAplicacion(new RepositorioGenerico<Usuarios>());
+                    UserDialogs.Instance.HideLoading();
+                    await Navigation.PopAsync(false);
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.Message);
+                    UserDialogs.Instance.HideLoading();
 
-                        var usuarios = await App.Database.GetPeopleAsync();
-                        App.MyUser = usuarios.FirstOrDefault();
+                    await Navigation.PushAsync(new PageVistaSinInternet("Ocurrio un error\nintente mas tarde"), false);
+                }
 
-                        if (App.MyUser != null)
-                        {
-
-                            if (App.MyUser.IdApp == 0)
-                            {
-                                try
-                                {
-                                    Usuarios user = new Usuarios()
-                                    {
-                                        ApellidoMaterno = App.MyUser.ApellidoMaterno,
-                                        ApellidoPaterno = App.MyUser.ApellidoPaterno,
-                                        DatosSobreUsuario = new DatosSobreUsuarioParaLey() { NumLeyesPermitidas = App.MyUser.DatosSobreUsuario.NumLeyesPermitidas },
-                                        Nombre = App.MyUser.Nombre,
-                                        IdApp = manejadorDeUsuarioAplicacion.Listar.Count + 1
-                                    };
-                                    if (manejadorDeUsuarioAplicacion.AGREGAR(user))
-                                    {
-                                        App.MyUser.IdApp = user.IdApp;
-                                        await App.Database.UpdateUserAsync(App.MyUser);
-                                    }
-                                }
-                                catch (Exception)
-                                {
-
-
-                                }
-                            }
-
-                            Usuarios User = await manejadorDeUsuarioAplicacion.ConsultUsuario(App.MyUser.IdApp.ToString(), App.MyUser.Nombre, App.MyUser.ApellidoPaterno, App.MyUser.ApellidoMaterno);
-
-                            if (User.DatosSobreUsuario.NumLeyesPermitidas != App.MyUser.DatosSobreUsuario.NumLeyesPermitidas)
-                            {
-                                App.MyUser.DatosSobreUsuario.NumLeyesPermitidas = User.DatosSobreUsuario.NumLeyesPermitidas;
-                                await App.Database.UpdateUserAsync(App.MyUser);
-                            }
-
-
-                            await Navigation.PushModalAsync(new FirtsView(), false);
-                        }
-                        else { lblEntrar.IsVisible = true; }
-
-                        UserDialogs.Instance.HideLoading();
-                        await Navigation.PopAsync(false);
-            }
-            catch (Exception ex)
-            {
-                        Debug.WriteLine(ex.Message);
-                        UserDialogs.Instance.HideLoading();
-                        
-                        await Navigation.PushAsync(new PageVistaSinInternet("Ocurrio un error\nintente mas tarde"), false);
-            }
-                    
-                });
+            });
 
         }
 

@@ -70,13 +70,13 @@ namespace IURIS.MOVIL.Modelos_y_clases.Tools
 
             //if (App.MyUser.DatosSobreUsuario.TipoDeCompra != null) _1LeyMas = App.MyUser.DatosSobreUsuario.TipoDeCompra.Find(w => w == Const._ComprarEspacio1Ley || w == Const._39Mensuales);
 
-            if (App.MyUser.MisLeyes.Count >= App.MyUser.DatosSobreUsuario.NumLeyesPermitidas) //_1LeyMas != null 
-            {
-                UserDialogs.Instance.HideLoading();
-                //await PopupNavigation.Instance.PushAsync(new WindowOfComprarEspacio());
+            //if (App.MyUser.MisLeyes.Count >= App.MyUser.DatosSobreUsuario.NumLeyesPermitidas) //_1LeyMas != null 
+            //{
+            //    UserDialogs.Instance.HideLoading();
+            //    //await PopupNavigation.Instance.PushAsync(new WindowOfComprarEspacio());
                 
-                return "Aviso|Has utilizado los espacios gratuitos,\nsi requieres de mas espacio para agregar leyes a tu lista\n ponte en contacto al correo\niurisespacio@gmail.com\nCon el asunto ESPACIO|OK";
-            }
+            //    return "Aviso|Has utilizado los espacios gratuitos,\nsi requieres de mas espacio para agregar leyes a tu lista\n ponte en contacto al correo\niurisespacio@gmail.com\nCon el asunto ESPACIO|OK";
+            //}
 
 
             if (string.IsNullOrEmpty(Codigo)) return "Advertencia|Introduce un codigo valido|OK";

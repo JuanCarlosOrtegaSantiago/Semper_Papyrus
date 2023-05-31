@@ -57,12 +57,12 @@ namespace IURIS.MOVIL.Detail
             InitializeComponent();
             _MyLey = ley;
             BindingContext = this;
-            MainThread.BeginInvokeOnMainThread(async () =>
-            {
-                await Task.Delay(1500);
-                myAds.IsVisible = true;
-            });
+            //MainThread.BeginInvokeOnMainThread(async () =>
+            //{
+            //    await Task.Delay(1500);
+            //});
 
+                myAds.IsVisible = true;
             _titulo = titulo;
             _Capitulo = CapAIniciar;
             _CapituloFind = CapAIniciar;

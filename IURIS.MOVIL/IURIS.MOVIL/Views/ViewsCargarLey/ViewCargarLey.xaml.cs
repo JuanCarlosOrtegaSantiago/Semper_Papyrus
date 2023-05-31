@@ -40,7 +40,7 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
             {
                 await Task.Delay(30);
                 CargarDatos();
-                if (App.MyUser.MisLeyes.Count == 1)
+                if (App.MyUser.MisLeyes.Count <= 2)
                 {
 
                     //UserDialogs.Instance.Toast(" Para eliminar una ley,\n desliza hacia la izquierda la ley y preciona eliminar", TimeSpan.FromMilliseconds(3000));
@@ -166,9 +166,17 @@ namespace IURIS.MOVIL.Views.ViewsCargarLey
 
         private async void SwipeItem_Invoked(object sender, EventArgs e)
         {
+            var MiLey = ((SwipeItemView)sender).BindingContext as MyLey;
+            Const _Const = new Const();
+            if (MiLey.CodigoLey.ToUpper().Equals(_Const.MiLeyPrincipal.ToUpper()) && App.MyUser.MisLeyes.Count==1)
+            {
+                UserDialogs.Instance.ShowLoading("NO PUEDES BORRAR\nESTA LEY", MaskType.Gradient);
+                await Task.Delay(3000);
+                UserDialogs.Instance.HideLoading();
+                return;
+            }
             UserDialogs.Instance.ShowLoading("Borrando ley", MaskType.Gradient);
             await Task.Delay(1000);
-            var MiLey = ((SwipeItemView)sender).BindingContext as MyLey;
 
             if (MiLey == null || MiLey.CodigoLey=="ley#1") return;
 
