@@ -290,12 +290,12 @@
                         <DataTemplate>
                             <ContentView Margin="0,15,0,0">
                                 <StackLayout x:Name="expanding" >
-                                    <Image Source="Save.png" HeightRequest="35" WidthRequest="35" Rotation="180">
+                                    <Image Source="Save.png" HeightRequest="40" WidthRequest="40" Rotation="180">
                                         <Image.GestureRecognizers>
                                             <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_5"/>
                                         </Image.GestureRecognizers>
                                     </Image>
-                                    <Image Source="eraser.png" HeightRequest="35" WidthRequest="35" Rotation="180">
+                                    <Image Source="eraser.png" HeightRequest="40" WidthRequest="40" Rotation="180">
                                         <Image.GestureRecognizers>
                                             <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_6"/>
                                         </Image.GestureRecognizers>

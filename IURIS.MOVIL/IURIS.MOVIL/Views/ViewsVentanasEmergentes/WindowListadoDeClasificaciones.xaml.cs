@@ -45,9 +45,12 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
                     await PopupNavigation.Instance.PopAsync(false);
                     return;
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    await PopupNavigation.Instance.PopAllAsync(false);
+                    if(PopupNavigation.Instance.PopupStack.Count > 0)
+                    {
+                        await PopupNavigation.Instance.PopAllAsync(false);
+                    }
                     return;
 
                 }

@@ -461,6 +461,7 @@ namespace IURIS.MOVIL.Detail
             finally
             {
                 expandr.IsExpanded = false;
+                numToques = 0;
                 stakColores.IsVisible = false;
             }
         }
@@ -523,6 +524,7 @@ namespace IURIS.MOVIL.Detail
             finally
             {
                 expandr.IsExpanded = false;
+                numToques = 0;
                 stakColores.IsVisible = false;
             }
         }
