@@ -123,6 +123,9 @@
     <PackageReference Include="Xam.Plugins.Settings">
       <Version>3.1.1</Version>
     </PackageReference>
+    <PackageReference Include="Xam.Plugins.TextToSpeech">
+      <Version>4.0.0.7</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.AndroidX.Core">
       <Version>1.8.0.1</Version>
     </PackageReference>
@@ -308,7 +311,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties XamarinHotReloadDebuggerTimeoutExceptionIURISMOVILAndroidHideInfoBar="True" XamarinHotReloadUnhandledDeviceExceptionIURISMOVILAndroidHideInfoBar="True" XamarinHotReloadGenericExceptionInfoBarIURISMOVILAndroidHideInfoBar="True" />
+      <UserProperties XamarinHotReloadGenericExceptionInfoBarIURISMOVILAndroidHideInfoBar="True" XamarinHotReloadUnhandledDeviceExceptionIURISMOVILAndroidHideInfoBar="True" XamarinHotReloadDebuggerTimeoutExceptionIURISMOVILAndroidHideInfoBar="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

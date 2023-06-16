@@ -29,6 +29,7 @@ using Xamarin.CommunityToolkit.UI.Views;
 using System.Diagnostics;
 using System.Reflection;
 using IURIS.MOVIL.Views.ViewsHipervinculos;
+using Plugin.TextToSpeech;
 
 namespace IURIS.MOVIL.Detail
 {
@@ -57,12 +58,12 @@ namespace IURIS.MOVIL.Detail
             InitializeComponent();
             _MyLey = ley;
             BindingContext = this;
-            //MainThread.BeginInvokeOnMainThread(async () =>
-            //{
-            //    await Task.Delay(1500);
-            //});
-
-                myAds.IsVisible = true;
+            MainThread.BeginInvokeOnMainThread(async () =>
+            {
+                //await Task.Delay(1500);
+                
+            });
+            myAds.IsVisible = true;
             _titulo = titulo;
             _Capitulo = CapAIniciar;
             _CapituloFind = CapAIniciar;
@@ -258,7 +259,16 @@ namespace IURIS.MOVIL.Detail
         {
             var articulo = ((Image)sender).BindingContext as Articulo;
             if (articulo == null) return;
-            
+
+            //await CrossTextToSpeech.Current.Speak(articulo.Contenido);
+
+            //Task.Run(async () =>
+            //{
+            //await TextToSpeech.SpeakAsync(articulo.NumArticulo+".\n"+articulo.Contenido);
+            //   
+            //});
+
+
             _Articulo = articulo;
             await PopupNavigation.Instance.PushAsync(new WindowOfMenuAccion(_titulo, articulo, _MyLey, _Capitulo), false);
             expandr.IsEnabled = true;
