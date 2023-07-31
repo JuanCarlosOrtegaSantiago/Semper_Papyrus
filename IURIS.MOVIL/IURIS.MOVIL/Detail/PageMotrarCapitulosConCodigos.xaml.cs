@@ -53,7 +53,8 @@ namespace IURIS.MOVIL.Detail
         List<int> Indexes;
         public int IndexPresent=0;
 
-    public PageMotrarCapitulosConCodigos(Titulo titulo, MyLey ley, MTAdView adView, Capitulo CapAIniciar, Articulo articulo)
+
+        public PageMotrarCapitulosConCodigos(Titulo titulo, MyLey ley, MTAdView adView, Capitulo CapAIniciar, Articulo articulo)
         {
             InitializeComponent();
             _MyLey = ley;
@@ -72,6 +73,7 @@ namespace IURIS.MOVIL.Detail
 
         }
 
+
         public bool IsRefreshing
         {
             get => isRefreshing;
@@ -81,6 +83,7 @@ namespace IURIS.MOVIL.Detail
                 OnPropertyChanged(nameof(IsRefreshing));
             }
         }
+
 
         public ICommand RefreshCommand
         {
@@ -267,7 +270,6 @@ namespace IURIS.MOVIL.Detail
             //await TextToSpeech.SpeakAsync(articulo.NumArticulo+".\n"+articulo.Contenido);
             //   
             //});
-
 
             _Articulo = articulo;
             await PopupNavigation.Instance.PushAsync(new WindowOfMenuAccion(_titulo, articulo, _MyLey, _Capitulo), false);

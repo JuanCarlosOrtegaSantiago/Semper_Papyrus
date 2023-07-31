@@ -18,6 +18,7 @@
 
             <Style x:Key="TextoAMostrarColorRojo" TargetType="Label">
                 <Setter Property="TextColor" Value="{StaticResource ColorTexto}"/>
+                <Setter Property="FontSize" Value="17"/>
             </Style>
 
             <Style x:Key="buttonPrincipal" TargetType="Button">

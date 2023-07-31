@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:Local="clr-namespace:IURIS.MOVIL.Modelos_y_clases" xmlns:controls="clr-namespace:MarcTron.Plugin.Controls;assembly=Plugin.MtAdmob"
+             xmlns:modelos_y_clases="clr-namespace:IURIS.MOVIL.Modelos_y_clases"
              mc:Ignorable="d"
              x:Class="IURIS.MOVIL.Detail.ViewDetail" >
 
@@ -37,7 +38,10 @@
     </ContentPage.Resources>
 
     <NavigationPage.TitleView>
-        <FlexLayout Direction="Row" Wrap="Wrap">
+        <FlexLayout Direction="Row" Wrap="Wrap" x:DataType="modelos_y_clases:CFonts">
+            <FlexLayout.BindingContext>
+                <modelos_y_clases:CFonts />
+            </FlexLayout.BindingContext>
 
             <Local:CustomEntry 
                 
@@ -56,16 +60,16 @@
                 IsVisible="false"
                 />
 
-            <Label x:Name="lblNumResultados" HorizontalOptions="End" Margin="0,0,10,3" IsVisible="false" Style="{StaticResource TextoAMostrarColorBlanco}" VerticalOptions="Center" VerticalTextAlignment="Center" FontSize="Body"></Label>
+            <Label x:Name="lblNumResultados" HorizontalOptions="End" Margin="0,0,10,3" IsVisible="false" Style="{StaticResource TextoAMostrarColorBlanco}" VerticalOptions="Center" VerticalTextAlignment="Center" FontSize="{Binding Body}"></Label>
 
             <Grid ColumnDefinitions="*,Auto" ColumnSpacing="5" >
                 <FlexLayout Grid.Column="0" x:Name="tituloLey" Direction="Column" AlignItems="Center" AlignContent="Center" Margin="0,0,0,5">
-                    <Label x:Name="lblTitle" MaxLines="1" LineBreakMode="MiddleTruncation" LineHeight="10" Style="{StaticResource TextoAMostrarColorBlanco}" HorizontalTextAlignment="Center" HorizontalOptions="Center">
+                    <Label x:Name="lblTitle" MaxLines="1" FontSize="{Binding Small}" LineBreakMode="MiddleTruncation" LineHeight="10" Style="{StaticResource TextoAMostrarColorBlanco}" HorizontalTextAlignment="Center" HorizontalOptions="Center">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
                         </Label.GestureRecognizers>
                     </Label>
-                    <Label x:Name="lblCodigo" Style="{StaticResource TextoAMostrarColorBlanco}" FontSize="Small" VerticalOptions="End" VerticalTextAlignment="End" HorizontalOptions="Center" HorizontalTextAlignment="Center" Margin="0,2,0,10"/>
+                    <Label x:Name="lblCodigo" Style="{StaticResource TextoAMostrarColorBlanco}" FontSize="{Binding Small}" VerticalOptions="End" VerticalTextAlignment="End" HorizontalOptions="Center" HorizontalTextAlignment="Center" Margin="0,2,0,10"/>
                 </FlexLayout>
 
                 <Image x:Name="IMGBuscador" Grid.Column="1" Source="Buscador.png" WidthRequest="20" HorizontalOptions="End" HeightRequest="20" Margin="10,0,20,0">
@@ -78,12 +82,15 @@
     </NavigationPage.TitleView>
 
     <ContentPage.Content>
-        <Grid>
-            
+        <Grid x:DataType="modelos_y_clases:CFonts">
+            <Grid.BindingContext>
+                <modelos_y_clases:CFonts />
+            </Grid.BindingContext>
+
             <CollectionView x:Name="ClltionTitulos" SelectionMode="Single" SelectionChanged="ClltionTitulos_SelectionChanged" Margin="0,0,0,60">
                 <CollectionView.EmptyView>
                     <StackLayout>
-                        <Label FontAttributes="Bold"  FontSize="Large" HorizontalOptions="Center" Style="{StaticResource TextoAMostrarColorRojo}">No se encontraron datos</Label>
+                        <Label FontAttributes="Bold"  FontSize="{Binding Large}" HorizontalOptions="Center" Style="{StaticResource TextoAMostrarColorRojo}">No se encontraron datos</Label>
                     </StackLayout>
                 </CollectionView.EmptyView>
                 <CollectionView.ItemsLayout>
@@ -93,7 +100,7 @@
                     <DataTemplate>
                         <ContentView >
                             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Margin="10,5" >
-                                <Label Style="{StaticResource TextoAMostrarColorRojo}" >
+                                <Label Style="{StaticResource TextoAMostrarColorRojo}" FontSize="{Binding Large}">
                                     <VisualStateManager.VisualStateGroups>
                                         <VisualStateGroup x:Name="CommonStates">
                                             <VisualState x:Name="Normal"/>
@@ -121,7 +128,7 @@
             <CollectionView x:Name="ClltionDarEncontrados" SelectionMode="Single" Style="{StaticResource colection}" Margin="0,0,0,60" IsVisible="false" SelectionChanged="ClltionDarEncontrados_SelectionChanged">
                 <CollectionView.EmptyView>
                     <StackLayout>
-                        <Label FontAttributes="Bold"  FontSize="Large"  HorizontalOptions="Center" Style="{StaticResource TextoAMostrarColorRojo}">No se encontraron datos</Label>
+                        <Label FontAttributes="Bold"  FontSize="{Binding Large}"  HorizontalOptions="Center" Style="{StaticResource TextoAMostrarColorRojo}">No se encontraron datos</Label>
                     </StackLayout>
                 </CollectionView.EmptyView>
                 <CollectionView.ItemsLayout>
@@ -130,10 +137,10 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <ContentView >
-                            <StackLayout BindableLayout.ItemsSource="{Binding Subrayados}" BindingContext="{Binding .}" Margin="0,10, 0,0" Spacing="-1"    >
+                            <StackLayout x:DataType="{x:Null}" BindableLayout.ItemsSource="{Binding Subrayados}" BindingContext="{Binding .}" Margin="0,10, 0,0" Spacing="-1"    >
                                 <BindableLayout.ItemTemplate>
                                     <DataTemplate>
-                                        <Label BindingContext="{Binding .}" FontSize="Subtitle"  Style="{StaticResource TextoAMostrarColorRojo}" >
+                                        <Label BindingContext="{Binding .}" Style="{StaticResource TextoAMostrarColorRojo}" FontSize="{Binding Large}">
                                             <Label.FormattedText>
                                                 <FormattedString>
                                                     <Span Text="{Binding TextoContenidoAnteriror}"/>

@@ -38,5 +38,21 @@ namespace IURIS.MOVIL.Modelos_y_clases
                 return Device.GetNamedSize(NamedSize.Large, typeof(Label));
             }
         }
+
+        public double Small
+        {
+            get
+            {
+                return Device.GetNamedSize(NamedSize.Small, typeof(Label));
+            }
+        }
+
+        public double Medium
+        {
+            get
+            {
+                return Device.GetNamedSize(NamedSize.Medium, typeof(Label));
+            }
+        }
     }
 }

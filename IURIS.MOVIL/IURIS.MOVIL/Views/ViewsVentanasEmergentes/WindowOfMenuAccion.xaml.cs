@@ -5,7 +5,9 @@ using IURIS.COMMON.Entidades.Ley.ComponentesDeLey;
 using IURIS.COMMON.Entidades.UsuariosDeAplicacion;
 using IURIS.COMMON.Interfaces;
 using IURIS.DAL;
+using IURIS.MOVIL.Detail;
 using IURIS.MOVIL.Modelos_y_clases.DB_Local.COMMON;
+using IURIS.MOVIL.Utils;
 using Plugin.Clipboard;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
@@ -28,6 +30,9 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
         readonly Articulo _Articulo;
         MyLey _MyLey;
         readonly Capitulo _Capitulo;
+        
+        public static CancellationTokenSource cts;
+        public static bool _ReproduceArticulo { get; set; }
 
         public WindowOfMenuAccion(Titulo titulo, Articulo articulo, MyLey ley, Capitulo capitulo)
         {
@@ -36,6 +41,9 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
             _Titulo = titulo;
             _MyLey = ley;
             _Capitulo = capitulo;
+            if (_ReproduceArticulo)
+                a.Text = "Parar reproducción";
+            
         }
 
         private async void LblCrearNota(object sender, EventArgs e)
@@ -127,6 +135,64 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
 
                 await PopupNavigation.Instance.PopAsync(false);
                 await showAlert("Preciona el boton de +,\nselecciona el texto y da en copiar");
+            }
+            catch (Exception)
+            {
+
+                return;
+            }
+        }
+        bool isBusy = false;
+        private async void ReproducirArticulo(object sender, EventArgs e)
+        {
+            try
+            {
+
+                await PopupNavigation.Instance.PopAsync(false);
+                
+                if (_ReproduceArticulo)
+                {
+                    if (cts?.IsCancellationRequested ?? true)
+                        return;
+
+                    cts.Cancel();
+                    _ReproduceArticulo = false;
+                }
+                else
+                {
+                    cts = new CancellationTokenSource();
+                    var locales = await TextToSpeech.GetLocalesAsync();
+                    isBusy = true;
+                    var settings = new SpeechOptions()
+                    {
+                        Volume = 1.0f,
+                        Pitch = .69f, 
+                    };
+
+                    int init=_Capitulo.ListaArticulos.FindIndex(pre=> pre.id.Equals(_Articulo.id));
+
+
+                    var x= _Capitulo.ListaArticulos.GetRange(init, _Capitulo.ListaArticulos.Count - init);
+                    //Task.Run(async () =>
+                    //{
+
+                    //    await TextToSpeech.SpeakAsync(_Articulo.NumArticulo + ".\n" + _Articulo.Contenido, settings, cancelToken: cts.Token);
+
+                    //});
+
+                    _ReproduceArticulo = true;
+                    
+                        Task.Run(async () =>
+                        {
+                            foreach (var item in x)
+                    {
+
+                                await TextToSpeech.SpeakAsync(item.NumArticulo + ".\n" + item.Contenido, settings, cancelToken: cts.Token);
+                            }
+                            isBusy = false;
+                        });
+
+                }
             }
             catch (Exception)
             {

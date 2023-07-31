@@ -35,7 +35,7 @@
                     </Label.GestureRecognizers>
                 </Label>
 
-                <Label Style="{StaticResource TextoAMostrarColorRojo}" Margin="15,5" HorizontalTextAlignment="Start" Text="Categoría por color"  FontSize="{Binding Subtitle}" >
+                <Label Style="{StaticResource TextoAMostrarColorRojo}" Margin="15,5" HorizontalTextAlignment="Start" Text="Categoría por color"  FontSize="{Binding Large}" >
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_8" />
                     </Label.GestureRecognizers>
