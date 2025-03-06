@@ -157,6 +157,7 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
 
                     cts.Cancel();
                     _ReproduceArticulo = false;
+                    PageMotrarCapitulosConCodigos.jo = false;
                 }
                 else
                 {
@@ -171,26 +172,20 @@ namespace IURIS.MOVIL.Views.ViewsVentanasEmergentes
 
                     int init=_Capitulo.ListaArticulos.FindIndex(pre=> pre.id.Equals(_Articulo.id));
 
-
                     var x= _Capitulo.ListaArticulos.GetRange(init, _Capitulo.ListaArticulos.Count - init);
-                    //Task.Run(async () =>
-                    //{
-
-                    //    await TextToSpeech.SpeakAsync(_Articulo.NumArticulo + ".\n" + _Articulo.Contenido, settings, cancelToken: cts.Token);
-
-                    //});
-
+                    
                     _ReproduceArticulo = true;
                     
                         Task.Run(async () =>
                         {
                             foreach (var item in x)
-                    {
+                            {
 
                                 await TextToSpeech.SpeakAsync(item.NumArticulo + ".\n" + item.Contenido, settings, cancelToken: cts.Token);
                             }
                             isBusy = false;
                         });
+                    PageMotrarCapitulosConCodigos.jo = true;
 
                 }
             }

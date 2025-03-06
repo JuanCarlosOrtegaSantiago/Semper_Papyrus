@@ -30,11 +30,12 @@ using System.Diagnostics;
 using System.Reflection;
 using IURIS.MOVIL.Views.ViewsHipervinculos;
 using Plugin.TextToSpeech;
+using System.ComponentModel;
 
 namespace IURIS.MOVIL.Detail
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PageMotrarCapitulosConCodigos : ContentPage
+    public partial class PageMotrarCapitulosConCodigos : ContentPage, INotifyPropertyChanged
     {
         readonly Titulo _titulo;
         MyLey _MyLey;
@@ -81,6 +82,26 @@ namespace IURIS.MOVIL.Detail
             {
                 isRefreshing = value;
                 OnPropertyChanged(nameof(IsRefreshing));
+            }
+        }
+        public static bool jo = false;
+        bool _MinimumLength;
+
+        public bool MinimumLength
+        {
+            get
+            {
+                return jo;
+            }
+            set
+            {
+                if (jo != _MinimumLength)
+                {
+                    _MinimumLength = jo;
+
+                    OnPropertyChanged("MinimumLength");
+                    
+                }
             }
         }
 
