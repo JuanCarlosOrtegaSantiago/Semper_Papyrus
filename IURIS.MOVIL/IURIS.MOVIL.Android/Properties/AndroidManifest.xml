@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="1.0.1" package="com.SemperPapyrus.IURIS" android:installLocation="internalOnly" android:versionCode="3">
-	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="32" android:textAllCaps="false" />
+	<uses-sdk android:minSdkVersion="26" android:targetSdkVersion="36" android:textAllCaps="false" />
 	<!-- Sample AdMob App ID: ca-app-pub-9229118148963816~2600565533 -->
 	<application android:label="IURIS" android:icon="@mipmap/IURIS">
 		<meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="ca-app-pub-2336879831564913~4192836110"></meta-data>

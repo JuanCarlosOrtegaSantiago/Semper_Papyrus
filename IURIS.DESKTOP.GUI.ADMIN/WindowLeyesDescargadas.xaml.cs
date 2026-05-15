@@ -37,7 +37,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
         readonly Leyes LeyMasDescargada = null;
         readonly int TotalDeDescargas=0;
         readonly static TimeoutException ExSinInternet = new TimeoutException();
-        readonly MongoConnectionException mongoConnectionException;
+       // readonly MongoConnectionException mongoConnectionException;
         readonly IOException iOException;
         readonly SocketException socketException;
 
@@ -82,7 +82,7 @@ namespace IURIS.DESKTOP.GUI.ADMIN
             catch (Exception ex)
             {
 
-                if (ex.HResult == ExSinInternet.HResult || ex.HResult == mongoConnectionException.HResult || ex.HResult == iOException.HResult || ex.HResult == socketException.HResult)
+              //  if (ex.HResult == ExSinInternet.HResult || ex.HResult == mongoConnectionException.HResult || ex.HResult == iOException.HResult || ex.HResult == socketException.HResult)
                     NoHayInternet();
                 
             }
